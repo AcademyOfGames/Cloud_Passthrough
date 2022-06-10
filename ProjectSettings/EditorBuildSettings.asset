@@ -5,16 +5,25 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Project Scene/ProjectScene.unity
-    guid: fa05b4f596c584dc79960294a1b601cc
-  - enabled: 1
-    path: Assets/SamplesResources/Scenes/0-Splash.unity
-    guid: 7238041e8d31f4d439b8851a5d4bb6fa
-  - enabled: 1
-    path: Assets/SamplesResources/Scenes/1-Menu.unity
-    guid: 1763269b9427b4a44957006a02f06c30
-  - enabled: 1
-    path: Assets/SamplesResources/Scenes/2-Loading.unity
-    guid: 22b8f383624ec49ef986b9155d212ac1
-  m_configObjects: {}
+    path: Assets/Oculus/SampleFramework/Usage/Passthrough/Scenes/AugmentedObjects.unity
+    guid: 9afeada2bbd240b4981cfb6abb525418
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 27c4b6cadb4623245bbfa9ac30985a30,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 841166c6efb51144e91ac92be5dc0b25,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: afc26a30c5100fa42a9ef7cc27ee3051,
+      type: 2}
