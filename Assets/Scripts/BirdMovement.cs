@@ -50,7 +50,6 @@ public class BirdMovement : MonoBehaviour
     // Start with Hunting
     private BirdState currentState = BirdState.Hunting;
 
-    
     //BirdSettings class, a group of data we call BirdSettings. Just like we can do Trasform.position to access some data. we can say BirdSettings.turnAngleIntensity
     class BirdSettings
     {
@@ -89,7 +88,7 @@ public class BirdMovement : MonoBehaviour
         //InvokeRepeating("FindNewWaypoint", 1f, 10f);
         // Spawn a new waypoint at the beginning of the game
         FindNewWaypoint();
-        StartCoroutine("GoToLanding");
+        StartCoroutine("Welcome");
         
         StartCoroutine("RandomFlapping");
         
@@ -124,16 +123,27 @@ public class BirdMovement : MonoBehaviour
     // After 6 seconds greet player  
     IEnumerator Welcome()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(20f);
         SwitchState(BirdState.Welcoming);
+        StartCoroutine("GoToLanding");
+
     }
 
     IEnumerator GoToLanding()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(20f);
         SwitchState(BirdState.GoToLanding);
+        StartCoroutine("Hunting");
+
     }
     
+    IEnumerator Hunting()
+    {
+        yield return new WaitForSeconds(20f);
+        SwitchState(BirdState.GoToLanding);
+        StartCoroutine("Welcome");
+    }
+
     void FindNewWaypoint()
     {
         // Pick a random point in a sphere of 1
