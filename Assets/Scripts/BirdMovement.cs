@@ -88,7 +88,7 @@ public class BirdMovement : MonoBehaviour
         //InvokeRepeating("FindNewWaypoint", 1f, 10f);
         // Spawn a new waypoint at the beginning of the game
         FindNewWaypoint();
-        StartCoroutine("Welcome");
+        //StartCoroutine("Welcome");
         
         StartCoroutine("RandomFlapping");
         
@@ -105,9 +105,20 @@ public class BirdMovement : MonoBehaviour
          SwitchAnimation("Glide"); 
          StartCoroutine("RandomFlapping");
      }
+
+     public void StartWelcomeState()
+     {
+         SwitchState(BirdState.Welcoming);
+     }   
+     
+     public void StartLandingState()
+     {
+         SwitchState(BirdState.GoToLanding);
+     }
      
     void SwitchAnimation(string triggerName)
     {
+        if (currentState == BirdState.Landing) return;
         gliding = triggerName == "Glide";
         anim.SetTrigger(triggerName);
     }
@@ -178,7 +189,7 @@ public class BirdMovement : MonoBehaviour
                 break;
             
             case BirdState.Landing:
-                transform.position = Vector3.MoveTowards(transform.position,landingSpot.position + Vector3.up * 1.2f, .05f);
+                transform.position = Vector3.MoveTowards(transform.position,landingSpot.position , .05f);
 
                 break;
             case BirdState.Welcoming:
@@ -225,7 +236,7 @@ public class BirdMovement : MonoBehaviour
                 break;
             case BirdState.Landing:
                 SwitchAnimation("Hover");
-                Invoke("TakeOff",6);
+                //Invoke("TakeOff",6);
                 break;
             case BirdState.TakeOff:
                 print("TakingOff ");
@@ -249,7 +260,7 @@ public class BirdMovement : MonoBehaviour
         SetNewSettings(welcomingSettings);
     }
 
-    void SetToFlying()
+    public void SetToFlyingState()
     {
         SwitchState(BirdState.Hunting);
     }
@@ -363,9 +374,8 @@ public class BirdMovement : MonoBehaviour
         }
     }
     
-    void TakeOff()
+    public void TakeOffState()
     {
-        print("TakingOff");
         SwitchState(BirdState.TakeOff);
     }
 }
