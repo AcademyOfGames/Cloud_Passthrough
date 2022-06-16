@@ -40,7 +40,7 @@ public class BirdMovement : MonoBehaviour
 
     
     // States
-    private enum BirdState
+    public enum BirdState
     {
         Hunting, Welcoming, Exiting, Orbiting, GoToLanding, Landed,
         Landing,
@@ -48,7 +48,7 @@ public class BirdMovement : MonoBehaviour
     }
 
     // Start with Hunting
-    private BirdState currentState = BirdState.Hunting;
+    public BirdState currentState = BirdState.Hunting;
 
     //BirdSettings class, a group of data we call BirdSettings. Just like we can do Trasform.position to access some data. we can say BirdSettings.turnAngleIntensity
     class BirdSettings
@@ -72,6 +72,8 @@ public class BirdMovement : MonoBehaviour
 
     private BirdSettings huntingSettings; 
     private BirdSettings welcomingSettings; 
+    private BirdSettings goToLandingSettings; 
+    private BirdSettings LandedSettings; 
     private BirdSettings exitingSettings;
 
     private float flappngRate = 1;
@@ -91,7 +93,7 @@ public class BirdMovement : MonoBehaviour
         //StartCoroutine("Welcome");
         
         StartCoroutine("RandomFlapping");
-        
+        Invoke("StartLandingState", 2);
         SwitchAnimation("Glide");
 
     }
@@ -128,7 +130,9 @@ public class BirdMovement : MonoBehaviour
         //**creating each bird setting for us to use. we can add custom speed, waypoint logic etc
         huntingSettings = new BirdSettings(turnAngleIntensity, waypointRadius, waypointProximity, speed, turnSpeed);
         welcomingSettings = new BirdSettings(0f, waypointRadius, 3, speed * 1.3f, turnSpeed *3);
+        goToLandingSettings = new BirdSettings(0f, waypointRadius, .3f, speed * 1.3f, turnSpeed *3);
         exitingSettings = new BirdSettings(0f, waypointRadius, 0, speed * 1.3f, turnSpeed);
+        LandedSettings = new BirdSettings(0f, waypointRadius, 0, 0f, turnSpeed);
     }
     
     // After 6 seconds greet player  
@@ -163,7 +167,7 @@ public class BirdMovement : MonoBehaviour
         // Multiply the width and length * waypointRadius
         randomPos.x *= waypointRadius;
         randomPos.z *= waypointRadius;
-        randomPos.y *= Random.Range(minHeight, maxHeight);
+        randomPos.y = Random.Range(minHeight, maxHeight);
 
         // Multiply the height * a random number between minHeight and maxHeight
         currentWaypoint = target.position + randomPos;
@@ -189,7 +193,8 @@ public class BirdMovement : MonoBehaviour
                 break;
             
             case BirdState.Landing:
-                transform.position = Vector3.MoveTowards(transform.position,landingSpot.position , .05f);
+                transform.position = Vector3.MoveTowards(transform.position,landingSpot.position + Vector3.up *.1f, .4f * Time.deltaTime);
+                FaceTowardMovement();
 
                 break;
             case BirdState.Welcoming:
@@ -230,16 +235,21 @@ public class BirdMovement : MonoBehaviour
                 break;
             case BirdState.GoToLanding:
                 currentWaypoint = landingSpot.position;
-                
+                waypointProximity = .3f;
+
                 //after 1 second set the bird to welcoming
-                Invoke("SetWelcomeSettings", 1f);
+                Invoke("SetGoToLandingSettings", 1f);
+                
                 break;
             case BirdState.Landing:
+                anim.SetBool("OnGround",true);
                 SwitchAnimation("Hover");
+                SetNewSettings(LandedSettings);
                 //Invoke("TakeOff",6);
                 break;
             case BirdState.TakeOff:
                 print("TakingOff ");
+                anim.SetBool("OnGround",false);
 
                 SwitchAnimation("TakeOff");
                 FindNewWaypoint();
@@ -258,6 +268,11 @@ public class BirdMovement : MonoBehaviour
     void SetWelcomeSettings()
     {
         SetNewSettings(welcomingSettings);
+    }
+
+    void SetGoToLandingSettings()
+    {
+        SetNewSettings(goToLandingSettings);
     }
 
     public void SetToFlyingState()
@@ -297,6 +312,7 @@ public class BirdMovement : MonoBehaviour
         }
         else if (currentState == BirdState.GoToLanding)
         {
+print("switched to landing distance to bird is" + Vector3.Distance(currentWaypoint, transform.position));
             SwitchState(BirdState.Landing);
         }   
         else
@@ -314,7 +330,7 @@ public class BirdMovement : MonoBehaviour
 
     private void OrbitFlying()
     {
-        OrbitMovement();
+        FaceTowardMovement();
         OrbitRotation();
         Tilt();
     }
@@ -326,7 +342,7 @@ public class BirdMovement : MonoBehaviour
         previousPos = transform.position;
     }
 
-    void OrbitMovement()
+    void FaceTowardMovement()
     {
         if (Vector3.Distance(target.position, transform.position) > minOrbitRadius)
         {
