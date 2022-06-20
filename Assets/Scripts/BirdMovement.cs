@@ -200,7 +200,6 @@ public class BirdMovement : MonoBehaviour
     private void OrbitFlying()
     {
         FaceTowardMovement();
-        OrbitRotation();
         Tilt();
     }
 
@@ -210,8 +209,7 @@ public class BirdMovement : MonoBehaviour
         rotationGoal = Quaternion.LookRotation(dir);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotationGoal, turnSpeed);
 
-        
-        transform.rotation = Quaternion.LookRotation(dir.normalized);
+        //transform.rotation = Quaternion.LookRotation(dir.normalized);
         previousPos = transform.position;
     }
 
@@ -221,6 +219,7 @@ public class BirdMovement : MonoBehaviour
         if (Vector3.Distance(target.position, transform.position) > minOrbitRadius)
         {
             transform.RotateAround(target.position, Vector3.up, orbitSpeed * Time.deltaTime);
+            OrbitRotation();
         }
         else
         {   
@@ -237,6 +236,8 @@ public class BirdMovement : MonoBehaviour
         direction = (currentWaypoint - transform.position).normalized;
         rotationGoal = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotationGoal, turnSpeed);
+        
+        
         
         
         Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .1f)*Vector3.forward *10f, Color.green,Time.deltaTime);
