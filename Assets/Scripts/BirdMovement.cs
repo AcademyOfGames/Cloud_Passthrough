@@ -121,15 +121,16 @@ public class BirdMovement : MonoBehaviour
                 BasicFlying();
 
                 break;
-            
+
             case BirdStateChanger.BirdState.Landing:
-                transform.position = Vector3.MoveTowards(transform.position,landingSpot.position + Vector3.up *.1f, .4f * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, landingSpot.position + Vector3.up * .1f, .4f * Time.deltaTime);
+                
                 FaceTowardMovement();
+                ResetXAngle();
 
                 break;
             case BirdStateChanger.BirdState.Welcoming:
                 BasicFlying();
-
                 break;
 
             case BirdStateChanger.BirdState.Orbiting:
@@ -149,6 +150,23 @@ public class BirdMovement : MonoBehaviour
         
         // work on this later - birdhead.LookAt(target);
     }
+
+    private void ResetXAngle()
+    {
+        Vector3 targetRotation = transform.eulerAngles;
+        //move x rotation until it's 0
+        if (targetRotation.x > 230 && targetRotation.x < 360)
+        {
+            targetRotation.x += 20 * Time.deltaTime;
+            transform.eulerAngles = targetRotation;
+        }
+        else
+        {
+            targetRotation.x = 0f;
+            transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, targetRotation, .1f);
+        }
+    }
+
     public void SetNewSettings(BirdStateChanger.BirdSettings newSettings)
     {
         //go through each bird movement variable and switch it to the new setting
@@ -215,7 +233,6 @@ public class BirdMovement : MonoBehaviour
 
     void FaceTowardMovement()
     {
-        print("distance to orbit " + Vector3.Distance(target.position, transform.position));
         if (Vector3.Distance(target.position, transform.position) > minOrbitRadius)
         {
             transform.RotateAround(target.position, Vector3.up, orbitSpeed * Time.deltaTime);
@@ -236,23 +253,24 @@ public class BirdMovement : MonoBehaviour
         direction = (currentWaypoint - transform.position).normalized;
         rotationGoal = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotationGoal, turnSpeed);
-        
-        
-        
-        
-        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .1f)*Vector3.forward *10f, Color.green,Time.deltaTime);
-        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .2f)*Vector3.forward *10f, Color.green,Time.deltaTime);
-        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .3f)*Vector3.forward *10f, Color.green,Time.deltaTime);
-        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .5f)*Vector3.forward *10f, Color.green,Time.deltaTime);
-        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .7f)*Vector3.forward *10f, Color.green,Time.deltaTime);
-        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .8f)*Vector3.forward *10f, Color.green,Time.deltaTime);
-        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .9f)*Vector3.forward *10f, Color.green,Time.deltaTime);
+        DrawDirectionRays();
 
-        
+
         FlapWingCheck();
     }
 
-    
+    private void DrawDirectionRays()
+    {
+        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .1f) * Vector3.forward * 10f, Color.green, Time.deltaTime);
+        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .2f) * Vector3.forward * 10f, Color.green, Time.deltaTime);
+        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .3f) * Vector3.forward * 10f, Color.green, Time.deltaTime);
+        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .5f) * Vector3.forward * 10f, Color.green, Time.deltaTime);
+        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .7f) * Vector3.forward * 10f, Color.green, Time.deltaTime);
+        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .8f) * Vector3.forward * 10f, Color.green, Time.deltaTime);
+        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .9f) * Vector3.forward * 10f, Color.green, Time.deltaTime);
+    }
+
+
     private void FlapWingCheck()
     {
         if (transform.forward.y < -.05f)

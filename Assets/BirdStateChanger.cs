@@ -84,7 +84,6 @@ public class BirdStateChanger : MonoBehaviour
                 //Invoke("TakeOff",6);
                 break;
             case BirdState.TakeOff:
-                print("TakingOff ");
                 bird.SwitchAnimationState(birdState);
                 SwitchState(BirdState.Hunting);
                 break;
@@ -107,23 +106,27 @@ public class BirdStateChanger : MonoBehaviour
         if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, controllerR) || Keyboard.current[Key.W].wasPressedThisFrame)
         {
             SwitchState(BirdState.Welcoming);
-            stateText.text = "Welcoming";
         }
         if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, controllerL)|| Keyboard.current[Key.H].wasPressedThisFrame)
         {
-            SwitchState(BirdState.Hunting);
-            stateText.text = "Hunting";
+            if (currentState == BirdState.Landing)
+            {
+                bird.anim.SetTrigger("TakeOff");
+                SwitchState(BirdState.TakeOff);
+            }
+            else
+            {
+                SwitchState(BirdState.Hunting);
+            }
         }
         if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, controllerR)|| Keyboard.current[Key.L].wasPressedThisFrame)
         {
             SwitchState(BirdState.GoToLanding);
-            stateText.text = "GoToLanding";
         }    
         if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, controllerL)|| Keyboard.current[Key.T].wasPressedThisFrame)
         {
             bird.anim.SetTrigger("TakeOff");
             SwitchState(BirdState.TakeOff);
-            stateText.text = "TakeOff";
         }
     }
     
