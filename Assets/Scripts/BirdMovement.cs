@@ -210,9 +210,9 @@ public class BirdMovement : MonoBehaviour
 
     private void BasicFlying()
     {
+        Tilt();
         ForwardMovement();
         DistanceCheck();
-        Tilt();
     }
 
     private void OrbitFlying()
