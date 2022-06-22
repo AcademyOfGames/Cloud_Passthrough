@@ -261,13 +261,13 @@ public class BirdMovement : MonoBehaviour
 
     private void DrawDirectionRays()
     {
-        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .1f) * Vector3.forward * 10f, Color.green, Time.deltaTime);
+        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, 0f) * Vector3.forward * 10f, Color.red, Time.deltaTime);
         Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .2f) * Vector3.forward * 10f, Color.green, Time.deltaTime);
         Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .3f) * Vector3.forward * 10f, Color.green, Time.deltaTime);
         Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .5f) * Vector3.forward * 10f, Color.green, Time.deltaTime);
         Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .7f) * Vector3.forward * 10f, Color.green, Time.deltaTime);
         Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .8f) * Vector3.forward * 10f, Color.green, Time.deltaTime);
-        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .9f) * Vector3.forward * 10f, Color.green, Time.deltaTime);
+        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, 1f) * Vector3.forward * 10f, Color.blue, Time.deltaTime);
     }
 
 
