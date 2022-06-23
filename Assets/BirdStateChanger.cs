@@ -64,6 +64,7 @@ public class BirdStateChanger : MonoBehaviour
         {
             case BirdState.Hunting:
                 bird.SetNewSettings(huntingSettings);
+
                 break;
 
             case BirdState.Welcoming:
@@ -78,6 +79,7 @@ public class BirdStateChanger : MonoBehaviour
                 break;
             case BirdState.Landing:
                 bird.SwitchAnimationState(birdState);
+
                 bird.SetNewSettings(LandedSettings);
                 //Invoke("TakeOff",6);
                 break;
