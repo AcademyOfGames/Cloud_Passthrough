@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -49,6 +50,8 @@ public class BirdMovement : MonoBehaviour
     private float originalGlidingRate = 5;
     private float glidingRate = 5;
 
+    public Transform prey;
+
     void Start()
     {
         birdState = GetComponent<BirdStateChanger>();
@@ -94,21 +97,24 @@ public class BirdMovement : MonoBehaviour
         // Multiply the width and length * waypointRadius
         randomPos.x *= waypointRadius;
         randomPos.z *= waypointRadius;
-        randomPos.y = Random.Range(minHeight, maxHeight);
+        float distance = Vector2.Distance(new Vector2(randomPos.x, randomPos.z), new Vector2(target.position.x,target.position.z));
 
+        randomPos.y = Random.Range(minHeight, maxHeight+distance*.4f);
+print(Vector3.Distance(transform.position, target.position));
         // Multiply the height * a random number between minHeight and maxHeight
         currentWaypoint = target.position + randomPos;
 
         // For testing spawn a cube at the new waypoint
-        if( currentCube !=null) Destroy(currentCube);
+       // if( currentCube !=null) Destroy(currentCube);
         currentCube = Instantiate(testcube, currentWaypoint, Quaternion.identity);
+        currentCube.transform.localScale *= .2f;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-       // Debug.DrawRay(transform.position, direction *10f);
+        // Debug.DrawRay(transform.position, direction *10f);
         //Debug.DrawRay(transform.position, transform.forward *10f, Color.blue,Time.deltaTime);
         // Check which State we are in 
         switch (birdState.currentState)
@@ -132,7 +138,14 @@ public class BirdMovement : MonoBehaviour
             case BirdStateChanger.BirdState.Welcoming:
                 BasicFlying();
                 break;
+            case BirdStateChanger.BirdState.Catching:
+                currentWaypoint = prey.position;
+                BasicFlying();
+                speed *= 1.01f;
+                turnSpeed *= 1.01f;
+                
 
+                break;
             case BirdStateChanger.BirdState.Orbiting:
                 OrbitFlying();
                 
@@ -167,6 +180,10 @@ public class BirdMovement : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+    }
+
     public void SetNewSettings(BirdStateChanger.BirdSettings newSettings)
     {
         //go through each bird movement variable and switch it to the new setting
@@ -177,16 +194,7 @@ public class BirdMovement : MonoBehaviour
         turnSpeed = newSettings.turnSpeed;
     }
 
-    private void Tilt()
-    {
-        // Compare the forward angle of the bird and the direction of the waypoint
-        float angle = Vector3.SignedAngle(transform.forward, direction, Vector3.up);
-        angle *= turnAngleIntensity;
-        // Angle bird towards waypoint
-        if(Mathf.Abs(angle) > 14) SwitchAnimation("Glide");
 
-        transform.Rotate(Vector3.forward, angle);
-    }
 
     private void DistanceCheck()
     {
@@ -212,7 +220,7 @@ public class BirdMovement : MonoBehaviour
     {
         ForwardMovement();
         DistanceCheck();
-        Tilt();
+       // Tilt();
     }
 
     private void OrbitFlying()
@@ -243,17 +251,103 @@ public class BirdMovement : MonoBehaviour
             transform.Translate(Vector3.forward* speed * Time.deltaTime);
         }
     }
-    
+    private void Tilt()
+    {
+        // Compare the forward angle of the bird and the direction of the waypoint
+        float angle = Vector3.SignedAngle(transform.forward, direction, Vector3.up);
+        angle *= turnAngleIntensity;
+        
+        
+        // Angle bird towards waypoint
+        if(Mathf.Abs(angle) > 14) SwitchAnimation("Glide");
+        
+        transform.Rotate(Vector3.forward,angle);
+        
+    }
+    private float TiltWithReturn()
+    {
+        // Compare the forward angle of the bird and the direction of the waypoint
+        float angle = Vector3.SignedAngle(transform.forward, direction, Vector3.up);
+        angle *= turnAngleIntensity;
+        float tempAngle = transform.eulerAngles.z;
+
+        if (tempAngle > 180)
+        {
+            tempAngle -= 360;
+        }
+        angle = Mathf.Lerp(tempAngle, angle, .004f);
+        if(Mathf.Abs(angle) > 20) SwitchAnimation("Flap");
+
+        //print("Going from " + transform.eulerAngles.z + " to " + angle);
+        // Angle bird towards waypoint
+
+        return angle;
+
+    }
     private void ForwardMovement()
+    {
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        
+        direction = (currentWaypoint - transform.position).normalized;
+        Vector3 eulerRotationGoal = Quaternion.LookRotation(direction).eulerAngles;
+        
+        Quaternion flatVersion;
+ 
+        flatVersion =
+            Quaternion.Euler(
+                eulerRotationGoal.x,
+                eulerRotationGoal.y,
+                transform.eulerAngles.z
+            );
+ 
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            flatVersion,
+            Time.deltaTime * .5f);
+        
+        
+        Vector3 tilt = transform.eulerAngles;
+        tilt.z = TiltWithReturn();
+        transform.rotation = Quaternion.Euler(tilt);
+    }
+    
+    private void ForwardMovement2()
     {
         // Move forward
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
         // Finding waypoint direction
         direction = (currentWaypoint - transform.position).normalized;
-        rotationGoal = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotationGoal, turnSpeed);
+        Vector3 eulerRotationGoal = Quaternion.LookRotation(direction).eulerAngles;
+
+        Vector3 tempRotation = transform.eulerAngles;
         DrawDirectionRays();
+
+        print("Blending between " + tempRotation.x + " to goal of " + rotationGoal.eulerAngles.x);
+        if (eulerRotationGoal.x > 180)
+        {
+            eulerRotationGoal.x -= 360f;
+        }
+        tempRotation.x = Mathf.Lerp(tempRotation.x, rotationGoal.eulerAngles.x, turnSpeed);
+        //tempRotation.y = Mathf.Lerp(tempRotation.y, rotationGoal.eulerAngles.y, turnSpeed);
+        transform.eulerAngles = tempRotation;
+        
+/*
+ 
+        Quaternion rotationWithoutZ = transform.rotation;
+        rotationWithoutZ.z = 0;
+
+        rotationWithoutZ = Quaternion.Lerp(rotationWithoutZ, rotationGoal, turnSpeed);
+
+        transform.rotation = new Quaternion(rotationWithoutZ.x, rotationWithoutZ.y, transform.rotation.z,rotationWithoutZ.w);
+        */
+        
+        
+        //transform.rotation.z = Quaternion.Lerp(rotationWithoutZ, rotationGoal, turnSpeed);
+
+      //  float tempEulerX = Mathf.Lerp(transform.eulerAngles.x, rotationGoal.eulerAngles.x, .5f);
+       // transform.eulerAngles = new Vector3(tempEulerX, transform.eulerAngles.y, transform.eulerAngles.z);
+
 
 
         FlapWingCheck();
@@ -261,13 +355,21 @@ public class BirdMovement : MonoBehaviour
 
     private void DrawDirectionRays()
     {
-        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .1f) * Vector3.forward * 10f, Color.green, Time.deltaTime);
-        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .2f) * Vector3.forward * 10f, Color.green, Time.deltaTime);
-        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .3f) * Vector3.forward * 10f, Color.green, Time.deltaTime);
-        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .5f) * Vector3.forward * 10f, Color.green, Time.deltaTime);
-        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .7f) * Vector3.forward * 10f, Color.green, Time.deltaTime);
-        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .8f) * Vector3.forward * 10f, Color.green, Time.deltaTime);
-        Debug.DrawRay(transform.position, Quaternion.Lerp(transform.rotation, rotationGoal, .9f) * Vector3.forward * 10f, Color.green, Time.deltaTime);
+        Vector3 tempRotation = transform.eulerAngles;
+        
+        float newRotX = Mathf.Lerp(tempRotation.x, rotationGoal.eulerAngles.x, .1f);
+        Vector3 newRot = tempRotation;
+        newRot.x = newRotX;
+        Debug.DrawRay(transform.position, Quaternion.Euler(newRot) *transform.forward * 10f, Color.green, Time.deltaTime);
+
+        newRotX = Mathf.Lerp(tempRotation.x, rotationGoal.eulerAngles.x, .4f);
+        newRot = tempRotation;
+        newRot.x = newRotX;
+        Debug.DrawRay(transform.position, Quaternion.Euler(newRot) *transform.forward * 10f, Color.green, Time.deltaTime);
+        
+        Debug.DrawRay(transform.position, Quaternion.Euler(rotationGoal.eulerAngles)*transform.forward * 10f, Color.blue, Time.deltaTime);
+        Debug.DrawRay(transform.position, Quaternion.Euler(transform.forward) * transform.forward * 10f, Color.red, Time.deltaTime);
+
     }
 
 

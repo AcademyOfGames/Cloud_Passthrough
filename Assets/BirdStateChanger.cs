@@ -15,7 +15,8 @@ public class BirdStateChanger : MonoBehaviour
     {
         Hunting, Welcoming, Exiting, Orbiting, GoToLanding, Landed,
         Landing,
-        TakeOff
+        TakeOff,
+        Catching
     }
 
     // Start with Hunting
@@ -46,6 +47,7 @@ public class BirdStateChanger : MonoBehaviour
     private BirdSettings goToLandingSettings; 
     private BirdSettings LandedSettings; 
     private BirdSettings exitingSettings;
+    private BirdSettings catchingSettings;
 
     private BirdMovement bird;
     // Start is called before the first frame update
@@ -89,6 +91,9 @@ public class BirdStateChanger : MonoBehaviour
                 break;
             case BirdState.Exiting:
                 break;
+            case BirdState.Catching:
+                bird.prey.gameObject.SetActive(true);
+                break;
 
             default:
                 break;
@@ -128,12 +133,17 @@ public class BirdStateChanger : MonoBehaviour
             bird.anim.SetTrigger("TakeOff");
             SwitchState(BirdState.TakeOff);
         }
+        if(Keyboard.current[Key.C].wasPressedThisFrame)
+        {
+            SwitchState(BirdState.Catching);
+        }
     }
     
     void SetBirdSettings()
     {
         //**creating each bird setting for us to use. we can add custom speed, waypoint logic etc
         huntingSettings = new BirdSettings(bird.turnAngleIntensity, bird.waypointRadius, bird.waypointProximity, bird.speed, bird.turnSpeed);
+        catchingSettings = new BirdSettings(bird.turnAngleIntensity, bird.waypointRadius, bird.waypointProximity, bird.speed, bird.turnSpeed*3f);
         welcomingSettings = new BirdSettings(0f, bird.waypointRadius, 1, bird.speed * 1.3f, bird.turnSpeed *3);
         goToLandingSettings = new BirdSettings(0f, bird.waypointRadius, .3f, bird.speed * 1.3f, bird.turnSpeed *15);
         exitingSettings = new BirdSettings(0f, bird.waypointRadius, 0, bird.speed * 1.3f, bird.turnSpeed);
