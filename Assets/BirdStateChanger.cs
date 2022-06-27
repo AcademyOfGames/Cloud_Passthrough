@@ -65,24 +65,24 @@ public class BirdStateChanger : MonoBehaviour
         switch (birdState)
         {
             case BirdState.Hunting:
-                bird.SetNewSettings(huntingSettings);
+                bird.UpdateSettings(huntingSettings);
 
                 break;
 
             case BirdState.Welcoming:
                 bird.currentWaypoint = bird.target.position + Vector3.up *.3f;
                 //after 1 second set the bird to welcoming
-                bird.SetNewSettings(welcomingSettings);
+                bird.UpdateSettings(welcomingSettings);
                 break;
             case BirdState.GoToLanding:
                 bird.currentWaypoint = bird.landingSpot.position;
-                bird.SetNewSettings(goToLandingSettings);
+                bird.UpdateSettings(goToLandingSettings);
 
                 break;
             case BirdState.Landing:
                 bird.SwitchAnimationState(birdState);
 
-                bird.SetNewSettings(LandedSettings);
+                bird.UpdateSettings(LandedSettings);
                 //Invoke("TakeOff",6);
                 break;
             case BirdState.TakeOff:
@@ -93,6 +93,10 @@ public class BirdStateChanger : MonoBehaviour
                 break;
             case BirdState.Catching:
                 bird.prey.gameObject.SetActive(true);
+                bird.UpdateSettings(catchingSettings);
+                StartCoroutine("ResetToHunting");
+
+
                 break;
 
             default:
@@ -101,6 +105,20 @@ public class BirdStateChanger : MonoBehaviour
         stateText.text = birdState.ToString();
 
         currentState = birdState;
+    }
+    IEnumerator ResetToHunting()
+    {
+        print("Reset coroutine");
+        yield return new WaitForSeconds(4f);
+
+        while (bird.transform.eulerAngles.x < -10 || bird.transform.eulerAngles.x > 10 )
+        {
+            print(bird.transform.eulerAngles.x);
+            bird.transform.Rotate(Vector3.right, 1f);
+            yield return null;
+        }
+        print("Done rotating " + bird.transform.eulerAngles.x );
+        SwitchState(BirdState.Hunting);
     }
 
 
@@ -143,7 +161,7 @@ public class BirdStateChanger : MonoBehaviour
     {
         //**creating each bird setting for us to use. we can add custom speed, waypoint logic etc
         huntingSettings = new BirdSettings(bird.turnAngleIntensity, bird.waypointRadius, bird.waypointProximity, bird.speed, bird.turnSpeed);
-        catchingSettings = new BirdSettings(bird.turnAngleIntensity, bird.waypointRadius, bird.waypointProximity, bird.speed, bird.turnSpeed*3f);
+        catchingSettings = new BirdSettings(bird.turnAngleIntensity, bird.waypointRadius, .5f, bird.speed, bird.turnSpeed);
         welcomingSettings = new BirdSettings(0f, bird.waypointRadius, 1, bird.speed * 1.3f, bird.turnSpeed *3);
         goToLandingSettings = new BirdSettings(0f, bird.waypointRadius, .3f, bird.speed * 1.3f, bird.turnSpeed *15);
         exitingSettings = new BirdSettings(0f, bird.waypointRadius, 0, bird.speed * 1.3f, bird.turnSpeed);
