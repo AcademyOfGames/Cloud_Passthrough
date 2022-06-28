@@ -7,17 +7,29 @@ using Random = UnityEngine.Random;
 public class PreyBehavior : MonoBehaviour
 {
     private Vector3 ogPos;
-    private void OnCollisionEnter(Collision other)
+    public Transform birdHand;
+
+    private void OnTriggerEnter(Collider other)
     {
-        other.collider.GetComponent<BirdStateChanger>().SwitchState(BirdStateChanger.BirdState.Hunting);
-        transform.SetParent(other.transform);
+        other.GetComponent<BirdStateChanger>().SwitchState(BirdStateChanger.BirdState.Hunting);
+        transform.SetParent(birdHand);
+        StartCoroutine("LerpToHand");    }
+
+    IEnumerator LerpToHand()
+    {
+        while (transform.localPosition.magnitude > .01f)
+        {
+            print(transform.localPosition);
+            transform.localPosition *= .9f;
+            yield return null;
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
         ogPos = transform.position;
-        GetComponent<Rigidbody>().AddForce(Abs(Random.insideUnitSphere) *500f);   
+        //GetComponent<Rigidbody>().AddForce(Abs(Random.insideUnitSphere) *500f);   
     }
 
     Vector3 Abs(Vector3 v)
@@ -28,7 +40,7 @@ public class PreyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-                GetComponent<Rigidbody>().AddForce(Vector3.up *1.5f);   
+                //GetComponent<Rigidbody>().AddForce(Vector3.up *1.5f);   
 
     }
 }

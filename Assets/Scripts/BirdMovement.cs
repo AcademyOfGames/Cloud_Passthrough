@@ -136,9 +136,9 @@ public class BirdMovement : MonoBehaviour
             case BirdStateChanger.BirdState.Welcoming:
                 BasicFlying();
                 break;
-            case BirdStateChanger.BirdState.Catching:
+            case BirdStateChanger.BirdState.Diving:
                 currentWaypoint = prey.position;
-                currentWaypoint.y -= Vector3.Distance(prey.position, transform.position);
+                //currentWaypoint.y -= Vector3.Distance(prey.position, transform.position);
                 BasicFlying();
                 if (speed < maxSpeed)
                 {
@@ -205,8 +205,8 @@ public class BirdMovement : MonoBehaviour
             case BirdStateChanger.BirdState.GoToLanding:
                 birdState.SwitchState(BirdStateChanger.BirdState.Landing);
                 break;
-            case BirdStateChanger.BirdState.Catching:
-                print("Catch"); 
+            case BirdStateChanger.BirdState.Diving:
+                SwitchAnimation("Catching");
                 break;
             default:
                 FindNewWaypoint();
@@ -318,8 +318,6 @@ break;
         tilt.z = TiltWithReturn();
         transform.rotation = Quaternion.Euler(tilt);
         
-        Debug.DrawRay(transform.position, Quaternion.LookRotation(direction) * transform.forward * 10f, Color.red, Time.deltaTime);
-        
         FlapWingCheck();
     }
     
@@ -424,6 +422,9 @@ break;
                 
                 anim.SetBool("OnGround",true);
                 SwitchAnimation("Hover");
+                break;
+            case BirdStateChanger.BirdState.Diving:
+                SwitchAnimation("Diving");
                 break;
         }
 

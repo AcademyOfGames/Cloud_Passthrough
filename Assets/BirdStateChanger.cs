@@ -16,7 +16,7 @@ public class BirdStateChanger : MonoBehaviour
         Hunting, Welcoming, Exiting, Orbiting, GoToLanding, Landed,
         Landing,
         TakeOff,
-        Catching
+        Diving
     }
 
     // Start with Hunting
@@ -47,7 +47,7 @@ public class BirdStateChanger : MonoBehaviour
     private BirdSettings goToLandingSettings; 
     private BirdSettings LandedSettings; 
     private BirdSettings exitingSettings;
-    private BirdSettings catchingSettings;
+    private BirdSettings divingSettings;
 
     private BirdMovement bird;
     // Start is called before the first frame update
@@ -81,21 +81,22 @@ public class BirdStateChanger : MonoBehaviour
                 break;
             case BirdState.Landing:
                 bird.SwitchAnimationState(birdState);
-
                 bird.UpdateSettings(LandedSettings);
                 //Invoke("TakeOff",6);
                 break;
+            
             case BirdState.TakeOff:
                 bird.SwitchAnimationState(birdState);
                 SwitchState(BirdState.Hunting);
                 break;
             case BirdState.Exiting:
                 break;
-            case BirdState.Catching:
-                bird.prey.gameObject.SetActive(true);
-                bird.UpdateSettings(catchingSettings);
-                StartCoroutine("ResetToHunting");
+            case BirdState.Diving:
+                bird.SwitchAnimationState(birdState);
 
+                bird.prey.gameObject.SetActive(true);
+                bird.UpdateSettings(divingSettings);
+                //StartCoroutine("ResetToHunting");
 
                 break;
 
@@ -151,9 +152,9 @@ public class BirdStateChanger : MonoBehaviour
             bird.anim.SetTrigger("TakeOff");
             SwitchState(BirdState.TakeOff);
         }
-        if(Keyboard.current[Key.C].wasPressedThisFrame)
+        if(OVRInput.GetDown(OVRInput.Button.One, controllerL) || Keyboard.current[Key.C].wasPressedThisFrame)
         {
-            SwitchState(BirdState.Catching);
+            SwitchState(BirdState.Diving);
         }
     }
     
@@ -161,7 +162,7 @@ public class BirdStateChanger : MonoBehaviour
     {
         //**creating each bird setting for us to use. we can add custom speed, waypoint logic etc
         huntingSettings = new BirdSettings(bird.turnAngleIntensity, bird.waypointRadius, bird.waypointProximity, bird.speed, bird.turnSpeed);
-        catchingSettings = new BirdSettings(bird.turnAngleIntensity, bird.waypointRadius, .5f, bird.speed, bird.turnSpeed);
+        divingSettings = new BirdSettings(bird.turnAngleIntensity, bird.waypointRadius, 1f, bird.speed, bird.turnSpeed);
         welcomingSettings = new BirdSettings(0f, bird.waypointRadius, 1, bird.speed * 1.3f, bird.turnSpeed *3);
         goToLandingSettings = new BirdSettings(0f, bird.waypointRadius, .3f, bird.speed * 1.3f, bird.turnSpeed *15);
         exitingSettings = new BirdSettings(0f, bird.waypointRadius, 0, bird.speed * 1.3f, bird.turnSpeed);
