@@ -7,13 +7,16 @@ using TMPro;
 
 public class PreyBehavior : MonoBehaviour
 {
+
+
     public TextMeshProUGUI debugTemp;
 
     private Vector3 ogPos;
     public Transform birdHand;
-    private OVRGrabbable grabInfo;
+    private OVRGrabbableExtended grabInfo;
     private BirdStateChanger birdState;
 
+    private bool isGrabbed;
     private void OnTriggerEnter(Collider other)
     {
         var bird = other.GetComponent<BirdStateChanger>();
@@ -24,6 +27,18 @@ public class PreyBehavior : MonoBehaviour
             transform.SetParent(birdHand);
             StartCoroutine("LerpToHand");    
         }
+    }
+ 
+    private void OnEnable() {
+        // listen for grabs
+        grabInfo.OnGrabBegin.AddListener(IsGrabbed);
+        grabInfo.OnGrabEnd.AddListener(IsReleased);
+    }
+ 
+    private void OnDisable() {
+        // stop listening for grabs
+        grabInfo.OnGrabBegin.RemoveListener(IsGrabbed);
+        grabInfo.OnGrabEnd.RemoveListener(IsReleased);
     }
 
     IEnumerator LerpToHand()
@@ -37,9 +52,9 @@ public class PreyBehavior : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        grabInfo = GetComponent<OVRGrabbable>();
+        grabInfo = GetComponent<OVRGrabbableExtended>();
         ogPos = transform.position;
         //GetComponent<Rigidbody>().AddForce(Abs(Random.insideUnitSphere) *500f);   
     }
@@ -49,10 +64,20 @@ public class PreyBehavior : MonoBehaviour
         Vector3 absVector = new Vector3(v.x, Mathf.Abs(v.y), v.z);
         return absVector;
     }
+
+    void IsGrabbed()
+    {
+        isGrabbed = true;
+    }
+    
+    void IsReleased()
+    {
+        isGrabbed = false;
+    }
     // Update is called once per frame
     void Update()
     {
-        if (grabInfo.isGrabbed)
+        if (isGrabbed)
         {
             debugTemp.text = "FISH GRABBED";
             birdState.GetComponent<BirdMovement>().prey = transform;
