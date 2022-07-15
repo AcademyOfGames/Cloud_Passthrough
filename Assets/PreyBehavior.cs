@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using TMPro;
 
 public class PreyBehavior : MonoBehaviour
 {
+    public TextMeshProUGUI debugTemp;
+
     private Vector3 ogPos;
     public Transform birdHand;
     private OVRGrabbable grabInfo;
@@ -50,6 +53,7 @@ public class PreyBehavior : MonoBehaviour
     {
         if (grabInfo.isGrabbed)
         {
+            debugTemp.text = "FISH GRABBED";
             birdState.GetComponent<BirdMovement>().prey = transform;
             birdState.SwitchState(BirdStateChanger.BirdState.Diving);
         }
