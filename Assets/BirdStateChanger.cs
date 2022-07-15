@@ -127,7 +127,7 @@ public class BirdStateChanger : MonoBehaviour
     void Update()
     {
         
-        if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, controllerR) || Keyboard.current[Key.W].wasPressedThisFrame)
+        /*if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, controllerR) || Keyboard.current[Key.W].wasPressedThisFrame)
         {
             SwitchState(BirdState.Welcoming);
         }
@@ -151,11 +151,11 @@ public class BirdStateChanger : MonoBehaviour
         {
             bird.anim.SetTrigger("TakeOff");
             SwitchState(BirdState.TakeOff);
-        }
-        if(OVRInput.GetDown(OVRInput.Button.One, controllerL) || Keyboard.current[Key.C].wasPressedThisFrame)
+        }*/
+        /*if(OVRInput.GetDown(OVRInput.Button.One, controllerL) || Keyboard.current[Key.C].wasPressedThisFrame)
         {
             SwitchState(BirdState.Diving);
-        }
+        }*/
     }
     
     void SetBirdSettings()

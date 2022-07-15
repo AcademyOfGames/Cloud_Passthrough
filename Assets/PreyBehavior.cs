@@ -20,6 +20,7 @@ public class PreyBehavior : MonoBehaviour
         if (bird != null)
         {
             bird.SwitchState(BirdStateChanger.BirdState.Hunting);
+            GetComponent<Rigidbody>().useGravity = false;
             transform.SetParent(birdHand);
             StartCoroutine("LerpToHand");    
         }
