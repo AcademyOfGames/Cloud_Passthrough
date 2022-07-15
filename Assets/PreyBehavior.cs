@@ -8,12 +8,19 @@ public class PreyBehavior : MonoBehaviour
 {
     private Vector3 ogPos;
     public Transform birdHand;
+    private OVRGrabbable grabInfo;
+    private BirdStateChanger birdState;
 
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<BirdStateChanger>().SwitchState(BirdStateChanger.BirdState.Hunting);
-        transform.SetParent(birdHand);
-        StartCoroutine("LerpToHand");    }
+        var bird = other.GetComponent<BirdStateChanger>();
+        if (bird != null)
+        {
+            bird.SwitchState(BirdStateChanger.BirdState.Hunting);
+            transform.SetParent(birdHand);
+            StartCoroutine("LerpToHand");    
+        }
+    }
 
     IEnumerator LerpToHand()
     {
@@ -28,6 +35,7 @@ public class PreyBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        grabInfo = GetComponent<OVRGrabbable>();
         ogPos = transform.position;
         //GetComponent<Rigidbody>().AddForce(Abs(Random.insideUnitSphere) *500f);   
     }
@@ -40,6 +48,11 @@ public class PreyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (grabInfo.isGrabbed)
+        {
+            birdState.GetComponent<BirdMovement>().prey = transform;
+            birdState.SwitchState(BirdStateChanger.BirdState.Diving);
+        }
                 //GetComponent<Rigidbody>().AddForce(Vector3.up *1.5f);   
 
     }
