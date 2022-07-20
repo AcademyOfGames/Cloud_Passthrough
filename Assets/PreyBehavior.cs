@@ -54,6 +54,7 @@ public class PreyBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        birdState = FindObjectOfType<BirdStateChanger>();
         grabInfo = GetComponent<OVRGrabbableExtended>();
         ogPos = transform.position;
         //GetComponent<Rigidbody>().AddForce(Abs(Random.insideUnitSphere) *500f);   
@@ -77,9 +78,13 @@ public class PreyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print("grabbed by " +grabInfo.grabbedBy);
+        print("Is grabbed? " + grabInfo.isGrabbed);
+//        if(transform.parent)
         if (isGrabbed)
         {
             debugTemp.text = "FISH GRABBED";
+            print("FishGrabbed");
             birdState.GetComponent<BirdMovement>().prey = transform;
             birdState.SwitchState(BirdStateChanger.BirdState.Diving);
         }

@@ -72,7 +72,7 @@ public class OVRGrabber : MonoBehaviour
     protected Quaternion m_grabbedObjectRotOff;
 	protected Dictionary<OVRGrabbable, int> m_grabCandidates = new Dictionary<OVRGrabbable, int>();
 	protected bool m_operatingWithoutOVRCameraRig = true;
-
+    public OVRGrabbable closestGrabbable;
     /// <summary>
     /// The currently grabbed object.
     /// </summary>
@@ -226,9 +226,10 @@ public class OVRGrabber : MonoBehaviour
     protected virtual void GrabBegin()
     {
         float closestMagSq = float.MaxValue;
-		OVRGrabbable closestGrabbable = null;
+		 closestGrabbable = null;
         Collider closestGrabbableCollider = null;
-
+        print("GRABBED BEGINN");
+    
         // Iterate grab candidates and find the closest grabbable candidate
 		foreach (OVRGrabbable grabbable in m_grabCandidates.Keys)
         {
@@ -253,9 +254,10 @@ public class OVRGrabber : MonoBehaviour
             }
         }
 
+        print("GRABBED SOMETHING");
         // Disable grab volumes to prevent overlaps
         GrabVolumeEnable(false);
-
+        
         if (closestGrabbable != null)
         {
             if (closestGrabbable.isGrabbed)
