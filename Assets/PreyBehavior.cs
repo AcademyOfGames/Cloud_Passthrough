@@ -74,20 +74,25 @@ public class PreyBehavior : MonoBehaviour
     void IsReleased()
     {
         isGrabbed = false;
+        birdState.GetComponent<BirdMovement>().prey = transform;
+        print("FishReleased ");
+
+        birdState.SwitchState(BirdStateChanger.BirdState.Diving);
+
     }
     // Update is called once per frame
     void Update()
     {
-        print("grabbed by " +grabInfo.grabbedBy);
-        print("Is grabbed? " + grabInfo.isGrabbed);
+
 //        if(transform.parent)
         if (isGrabbed)
         {
             debugTemp.text = "FISH GRABBED";
             print("FishGrabbed");
             birdState.GetComponent<BirdMovement>().prey = transform;
-            birdState.SwitchState(BirdStateChanger.BirdState.Diving);
+            birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
         }
+        
                 //GetComponent<Rigidbody>().AddForce(Vector3.up *1.5f);   
 
     }
