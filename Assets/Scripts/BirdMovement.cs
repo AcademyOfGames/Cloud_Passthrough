@@ -54,9 +54,18 @@ public class BirdMovement : MonoBehaviour
 
     public Transform prey;
     public float maxSpeed;
+    private static readonly int OnGround = Animator.StringToHash("OnGround");
+    private static readonly int Eating = Animator.StringToHash("Eating");
+    private static readonly int Flap = Animator.StringToHash("Flap");
+    private static readonly int Glide = Animator.StringToHash("Glide");
+    public bool grabbedFish { get; set; }
+    public int fishCaught { get; set; }
+    private BirdAudioManager birdAudio;
 
     void Start()
     {
+        birdAudio = GetComponent<BirdAudioManager>();
+        fishCaught = 0;
         birdState = GetComponent<BirdStateChanger>();
         anim = GetComponent<Animator>();
 
@@ -65,7 +74,17 @@ public class BirdMovement : MonoBehaviour
         
         StartCoroutine("RandomFlapping");
         SwitchAnimation("Glide");
+        
+        birdAudio.PlaySound("birdFlying");
+        birdAudio.PlaySound("forest");
 
+        StartCoroutine("RandomSounds");
+    }
+
+    IEnumerator RandomSounds()
+    {
+        yield return new WaitForSeconds(Random.Range(8, 20));   
+        birdAudio.PlaySound("birdFlying");
     }
 
      IEnumerator RandomFlapping()
@@ -83,6 +102,7 @@ public class BirdMovement : MonoBehaviour
     void SwitchAnimation(string triggerName)
     {
         if (birdState.currentState == BirdStateChanger.BirdState.Landing) return;
+        
         if (anim.GetBool(triggerName))
         {
             return;
@@ -104,72 +124,87 @@ public class BirdMovement : MonoBehaviour
         // Multiply the height * a random number between minHeight and maxHeight
         currentWaypoint = target.position + randomPos;
 
-        print("Finding waypoint");
         // For testing spawn a cube at the new waypoint
         if( currentCube !=null) Destroy(currentCube);
         currentCube = Instantiate(testcube, currentWaypoint, Quaternion.identity);
         currentCube.transform.localScale *= .5f;
-
     }
 
+    public IEnumerator FacePlayer()
+    {
+        rotationGoal = Quaternion.LookRotation(target.position - transform.position);
+        float timePassed = 0;
+
+
+        while (timePassed < 1)
+        {
+            Vector3 tempRotation = transform.eulerAngles;
+            tempRotation.y = Mathf.Lerp(tempRotation.y, rotationGoal.eulerAngles.y, timePassed);
+            tempRotation.z = 0;
+
+            transform.eulerAngles = tempRotation;
+            timePassed += Time.deltaTime * .3f;
+            yield return new WaitForFixedUpdate();
+        }
+    }
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("floor"))
         {
-            transform.Translate(Vector3.up *.05f);
+            transform.Rotate(Vector3.right * -.3f);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        // Debug.DrawRay(transform.position, direction *10f);
-        //Debug.DrawRay(transform.position, transform.forward *10f, Color.blue,Time.deltaTime);
-        // Check which State we are in 
         switch (birdState.currentState)
         {
             case BirdStateChanger.BirdState.Hunting:
                 BasicFlying();
-
                 break;
+            
             case BirdStateChanger.BirdState.GoToLanding:
                 BasicFlying();
-
                 break;
 
             case BirdStateChanger.BirdState.Landing:
-                transform.position = Vector3.MoveTowards(transform.position, landingSpot.position + Vector3.up * .1f, .4f * Time.deltaTime);
+                if (grabbedFish)
+                {
+                    grabbedFish = false;
+                    Destroy(prey.gameObject);
+                }
                 
+                transform.position = Vector3.MoveTowards(transform.position, landingSpot.position + Vector3.up * .1f, .4f * Time.deltaTime);
                 FaceTowardMovement();
                 ResetXAngle();
-
                 break;
+            
             case BirdStateChanger.BirdState.Welcoming:
                 BasicFlying();
                 break;
+            
             case BirdStateChanger.BirdState.Diving:
                 currentWaypoint = prey.position;
                 //currentWaypoint.y -= Vector3.Distance(prey.position, transform.position);
                 BasicFlying();
+                turnSpeed *= 1.01f;
+                turnSpeed += Mathf.Lerp(.1f, 0, Vector3.Distance(transform.position, prey.position)*.5f);
+
                 if (speed < maxSpeed)
                 {
                     speed *= 1.01f;
-
                 }
-                turnSpeed *= 1.01f;
-                
-                break;
+               break;
             case BirdStateChanger.BirdState.Orbiting:
                 OrbitFlying();
-                
                 break;
+            
             case BirdStateChanger.BirdState.Exiting:
-
                 break;
+            
             case BirdStateChanger.BirdState.TakeOff:
                 BasicFlying();
-
                 break;
             default:
                 break;
@@ -212,6 +247,7 @@ public class BirdMovement : MonoBehaviour
         switch (birdState.currentState)
         {
             case BirdStateChanger.BirdState.Welcoming:
+                birdAudio.PlaySound("birdScream");
                 birdState.SwitchState(BirdStateChanger.BirdState.Orbiting);
                 break;
             case BirdStateChanger.BirdState.GoToLanding:
@@ -222,17 +258,7 @@ public class BirdMovement : MonoBehaviour
                 break;
             default:
                 FindNewWaypoint();
-break;
-        }
-        
-        if (birdState.currentState == BirdStateChanger.BirdState.Welcoming)
-        {
-        }
-        else if (birdState.currentState == BirdStateChanger.BirdState.GoToLanding)
-        {
-        }   
-        else
-        {
+                break;
         }
     }
 
@@ -251,12 +277,13 @@ break;
 
     private void OrbitRotation()
     {
-        Vector3 dir = transform.position - previousPos;
+        var position = transform.position;
+        Vector3 dir = position - previousPos;
         rotationGoal = Quaternion.LookRotation(dir);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotationGoal, turnSpeed);
 
         //transform.rotation = Quaternion.LookRotation(dir.normalized);
-        previousPos = transform.position;
+        previousPos = position;
     }
 
     void FaceTowardMovement()
@@ -298,101 +325,33 @@ break;
         angle = Mathf.Lerp(tempAngle, angle, .004f);
         if(Mathf.Abs(angle) > 20) SwitchAnimation("Flap");
 
-        //print("Going from " + transform.eulerAngles.z + " to " + angle);
-        // Angle bird towards waypoint
-
         return angle;
 
     }
     private void ForwardMovement()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        Transform t = transform;
+
+        t.Translate(Vector3.forward * speed * Time.deltaTime);
         
-        direction = (currentWaypoint - transform.position).normalized;
+        direction = (currentWaypoint - t.position).normalized;
         Vector3 eulerRotationGoal = Quaternion.LookRotation(direction).eulerAngles;
-        
-        Quaternion flatVersion;
- 
-        flatVersion =
-            Quaternion.Euler(
-                eulerRotationGoal.x,
-                eulerRotationGoal.y,
-                transform.eulerAngles.z
-            );
- 
-        transform.rotation = Quaternion.Slerp(
-            transform.rotation,
+
+        Quaternion flatVersion = Quaternion.Euler(eulerRotationGoal.x,
+                                                  eulerRotationGoal.y,
+                                                  t.eulerAngles.z);
+
+        t.rotation = Quaternion.Slerp(
+            t.rotation,
             flatVersion,
             turnSpeed);
-        
-        
-        Vector3 tilt = transform.eulerAngles;
+
+        Vector3 tilt = t.eulerAngles;
         tilt.z = TiltWithReturn();
-        transform.rotation = Quaternion.Euler(tilt);
+        t.rotation = Quaternion.Euler(tilt);
         
         FlapWingCheck();
     }
-    
-    private void ForwardMovement2()
-    {
-        // Move forward
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
-
-        // Finding waypoint direction
-        direction = (currentWaypoint - transform.position).normalized;
-        Vector3 eulerRotationGoal = Quaternion.LookRotation(direction).eulerAngles;
-
-        Vector3 tempRotation = transform.eulerAngles;
-        DrawDirectionRays();
-
-        print("Blending between " + tempRotation.x + " to goal of " + rotationGoal.eulerAngles.x);
-        if (eulerRotationGoal.x > 180)
-        {
-            eulerRotationGoal.x -= 360f;
-        }
-        tempRotation.x = Mathf.Lerp(tempRotation.x, rotationGoal.eulerAngles.x, turnSpeed);
-        //tempRotation.y = Mathf.Lerp(tempRotation.y, rotationGoal.eulerAngles.y, turnSpeed);
-        transform.eulerAngles = tempRotation;
-
-/*
- 
-        Quaternion rotationWithoutZ = transform.rotation;
-        rotationWithoutZ.z = 0;
-
-        rotationWithoutZ = Quaternion.Lerp(rotationWithoutZ, rotationGoal, turnSpeed);
-
-        transform.rotation = new Quaternion(rotationWithoutZ.x, rotationWithoutZ.y, transform.rotation.z,rotationWithoutZ.w);
-        */
-        
-        
-        //transform.rotation.z = Quaternion.Lerp(rotationWithoutZ, rotationGoal, turnSpeed);
-
-      //  float tempEulerX = Mathf.Lerp(transform.eulerAngles.x, rotationGoal.eulerAngles.x, .5f);
-       // transform.eulerAngles = new Vector3(tempEulerX, transform.eulerAngles.y, transform.eulerAngles.z);
-
-
-
-    }
-
-    private void DrawDirectionRays()
-    {
-        Vector3 tempRotation = transform.eulerAngles;
-        
-        float newRotX = Mathf.Lerp(tempRotation.x, rotationGoal.eulerAngles.x, .1f);
-        Vector3 newRot = tempRotation;
-        newRot.x = newRotX;
-        Debug.DrawRay(transform.position, Quaternion.Euler(newRot) *transform.forward * 10f, Color.green, Time.deltaTime);
-
-        newRotX = Mathf.Lerp(tempRotation.x, rotationGoal.eulerAngles.x, .4f);
-        newRot = tempRotation;
-        newRot.x = newRotX;
-        Debug.DrawRay(transform.position, Quaternion.Euler(newRot) *transform.forward * 10f, Color.green, Time.deltaTime);
-        
-        Debug.DrawRay(transform.position, Quaternion.Euler(rotationGoal.eulerAngles)*transform.forward * 10f, Color.blue, Time.deltaTime);
-        Debug.DrawRay(transform.position, Quaternion.Euler(transform.forward) * transform.forward * 10f, Color.red, Time.deltaTime);
-
-    }
-
 
     private void FlapWingCheck()
     {
@@ -402,7 +361,7 @@ break;
             glidingRate = originalGlidingRate * 2;
 
             SwitchAnimation("Glide");
-            anim.ResetTrigger("Flap");
+            anim.ResetTrigger(Flap);
         }
         else if (transform.forward.y > .1f)
         {
@@ -410,7 +369,7 @@ break;
             glidingRate = originalGlidingRate * .1f;
 
             SwitchAnimation("Flap");
-            anim.ResetTrigger("Glide");
+            anim.ResetTrigger(Glide);
 
         }
         else
@@ -425,19 +384,24 @@ break;
         switch (newState)
         {
             case BirdStateChanger.BirdState.TakeOff:
-                anim.SetBool("OnGround",false);
+                anim.SetBool(OnGround,false);
                 SwitchAnimation("Flap");
                 SwitchAnimation("TakeOff");
 
                 break;
             case BirdStateChanger.BirdState.Landing:
                 
-                anim.SetBool("OnGround",true);
+                anim.SetBool(OnGround,true);
                 SwitchAnimation("Hover");
+
                 break;
             case BirdStateChanger.BirdState.Diving:
                 SwitchAnimation("Diving");
                 break;
+            case BirdStateChanger.BirdState.Eating:
+                anim.SetBool(Eating,true);
+                break;
+            
         }
 
     }

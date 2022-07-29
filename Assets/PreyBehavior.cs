@@ -11,42 +11,46 @@ public class PreyBehavior : MonoBehaviour
 
     public TextMeshProUGUI debugTemp;
 
-    private Vector3 ogPos;
+    private Vector3 _ogPos;
     public Transform birdHand;
-    private OVRGrabbableExtended grabInfo;
-    private BirdStateChanger birdState;
+    private OVRGrabbableExtended _grabInfo;
+    private BirdStateChanger _birdState;
 
-    private bool isGrabbed;
+    private bool _isGrabbed;
     private void OnTriggerEnter(Collider other)
     {
-        var bird = other.GetComponent<BirdStateChanger>();
+
+        var bird = other.GetComponent<BirdMovement>();
         if (bird != null)
         {
-            birdState.GetComponent<BirdMovement>().landingSpot = birdState.GetComponent<BirdMovement>().branchLandingSpot;
-            birdState.SwitchState(BirdStateChanger.BirdState.GoToLanding);            
+            if (bird.grabbedFish) return;
+
+            bird.fishCaught++;
+            bird.grabbedFish = true;
+            _birdState.GetComponent<BirdMovement>().landingSpot = bird.branchLandingSpot;
+            _birdState.SwitchState(BirdStateChanger.BirdState.GoToLanding);            
             GetComponent<Rigidbody>().useGravity = false;
             transform.SetParent(birdHand);
-            StartCoroutine("LerpToHand");    
+            StartCoroutine(nameof(LerpToHand));    
         }
     }
  
     private void OnEnable() {
         // listen for grabs
-        grabInfo.OnGrabBegin.AddListener(IsGrabbed);
-        grabInfo.OnGrabEnd.AddListener(IsReleased);
+        _grabInfo.OnGrabBegin.AddListener(IsGrabbed);
+        _grabInfo.OnGrabEnd.AddListener(IsReleased);
     }
  
     private void OnDisable() {
         // stop listening for grabs
-        grabInfo.OnGrabBegin.RemoveListener(IsGrabbed);
-        grabInfo.OnGrabEnd.RemoveListener(IsReleased);
+        _grabInfo.OnGrabBegin.RemoveListener(IsGrabbed);
+        _grabInfo.OnGrabEnd.RemoveListener(IsReleased);
     }
 
     IEnumerator LerpToHand()
     {
         while (transform.localPosition.magnitude > .01f)
         {
-            print(transform.localPosition);
             transform.localPosition *= .9f;
             yield return null;
         }
@@ -55,9 +59,9 @@ public class PreyBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        birdState = FindObjectOfType<BirdStateChanger>();
-        grabInfo = GetComponent<OVRGrabbableExtended>();
-        ogPos = transform.position;
+        _birdState = FindObjectOfType<BirdStateChanger>();
+        _grabInfo = GetComponent<OVRGrabbableExtended>();
+        _ogPos = transform.position;
         //GetComponent<Rigidbody>().AddForce(Abs(Random.insideUnitSphere) *500f);   
     }
 
@@ -69,32 +73,21 @@ public class PreyBehavior : MonoBehaviour
 
     void IsGrabbed()
     {
-        isGrabbed = true;
+        _birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
+        _birdState.GetComponent<BirdMovement>().anim.SetBool("Eating", false);
+
     }
     
     void IsReleased()
     {
-        isGrabbed = false;
-        birdState.GetComponent<BirdMovement>().prey = transform;
-        print("FishReleased ");
-
-        birdState.SwitchState(BirdStateChanger.BirdState.Diving);
+        _birdState.GetComponent<BirdMovement>().prey = transform;
+        //print("FishReleased ");
+        _birdState.SwitchState(BirdStateChanger.BirdState.Diving);
 
     }
     // Update is called once per frame
     void Update()
     {
-
-//        if(transform.parent)
-        if (isGrabbed)
-        {
-            debugTemp.text = "FISH GRABBED";
-            print("FishGrabbed");
-            //birdState.GetComponent<BirdMovement>().landingSpot = GetComponent<BirdMovement>().branchLandingSpot;
-            birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
-        }
-        
-                //GetComponent<Rigidbody>().AddForce(Vector3.up *1.5f);   
 
     }
 }

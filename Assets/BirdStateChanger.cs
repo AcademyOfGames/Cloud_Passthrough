@@ -9,6 +9,7 @@ public class BirdStateChanger : MonoBehaviour
     OVRInput.Controller controllerL = OVRInput.Controller.LTouch;
 
     public TextMeshProUGUI stateText;
+    public GameObject ghostHand;
     
     // States
     public enum BirdState
@@ -16,7 +17,8 @@ public class BirdStateChanger : MonoBehaviour
         Hunting, Welcoming, Exiting, Orbiting, GoToLanding, Landed,
         Landing,
         TakeOff,
-        Diving
+        Diving,
+        Eating
     }
 
     // Start with Hunting
@@ -60,18 +62,15 @@ public class BirdStateChanger : MonoBehaviour
     // Change the bird from flying to meeting player to leaving
     public void SwitchState(BirdState birdState)
     {
-        print("Switching to " + birdState);
         if (currentState == birdState) return;
-        
         switch (birdState)
         {
             case BirdState.Hunting:
                 bird.UpdateSettings(huntingSettings);
-
                 break;
 
             case BirdState.Welcoming:
-                bird.currentWaypoint = bird.target.position + Vector3.up *.3f;
+                bird.currentWaypoint = bird.target.position + Vector3.up *.5f;
                 //after 1 second set the bird to welcoming
                 bird.UpdateSettings(welcomingSettings);
                 break;
@@ -83,7 +82,18 @@ public class BirdStateChanger : MonoBehaviour
             case BirdState.Landing:
                 bird.SwitchAnimationState(birdState);
                 bird.UpdateSettings(LandedSettings);
-                //Invoke("TakeOff",6);
+                if (bird.grabbedFish)
+                {
+                    SwitchState(BirdState.Eating);
+                    IEnumerator facePlayer = bird.FacePlayer();
+                    StartCoroutine(facePlayer);
+                    if (bird.fishCaught == 3)
+                    {
+                        ghostHand.SetActive(true);
+                    }
+                }
+        
+                //Invoke("TakeOff",6);  
                 break;
             
             case BirdState.TakeOff:
@@ -94,11 +104,14 @@ public class BirdStateChanger : MonoBehaviour
                 break;
             case BirdState.Diving:
                 bird.SwitchAnimationState(birdState);
-
                 bird.prey.gameObject.SetActive(true);
                 bird.UpdateSettings(divingSettings);
                 //StartCoroutine("ResetToHunting");
+                break;
+            case BirdState.Eating:
+                bird.SwitchAnimationState(birdState);
 
+                //StartCoroutine("ResetToHunting");
                 break;
 
             default:
@@ -110,16 +123,13 @@ public class BirdStateChanger : MonoBehaviour
     }
     IEnumerator ResetToHunting()
     {
-        print("Reset coroutine");
         yield return new WaitForSeconds(4f);
 
         while (bird.transform.eulerAngles.x < -10 || bird.transform.eulerAngles.x > 10 )
         {
-            print(bird.transform.eulerAngles.x);
             bird.transform.Rotate(Vector3.right, 1f);
             yield return null;
         }
-        print("Done rotating " + bird.transform.eulerAngles.x );
         SwitchState(BirdState.Hunting);
     }
 
@@ -165,7 +175,7 @@ public class BirdStateChanger : MonoBehaviour
     {
         //**creating each bird setting for us to use. we can add custom speed, waypoint logic etc
         huntingSettings = new BirdSettings(bird.turnAngleIntensity, bird.waypointRadius, bird.waypointProximity, bird.speed, bird.turnSpeed);
-        divingSettings = new BirdSettings(bird.turnAngleIntensity, bird.waypointRadius, 1f, bird.speed, bird.turnSpeed);
+        divingSettings = new BirdSettings(bird.turnAngleIntensity, bird.waypointRadius, 1f, bird.speed, bird.turnSpeed*1.4f);
         welcomingSettings = new BirdSettings(0f, bird.waypointRadius, 1, bird.speed * 1.3f, bird.turnSpeed *3);
         goToLandingSettings = new BirdSettings(0f, bird.waypointRadius, .3f, bird.speed * 1.3f, bird.turnSpeed *15);
         exitingSettings = new BirdSettings(0f, bird.waypointRadius, 0, bird.speed * 1.3f, bird.turnSpeed);
