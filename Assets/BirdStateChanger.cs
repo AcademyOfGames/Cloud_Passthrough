@@ -60,6 +60,7 @@ public class BirdStateChanger : MonoBehaviour
     // Change the bird from flying to meeting player to leaving
     public void SwitchState(BirdState birdState)
     {
+        print("Switching to " + birdState);
         if (currentState == birdState) return;
         
         switch (birdState)
@@ -145,6 +146,8 @@ public class BirdStateChanger : MonoBehaviour
         }
         if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, controllerR)|| Keyboard.current[Key.L].wasPressedThisFrame)
         {
+                    birdState.GetComponent<BirdMovement>().landingSpot = GetComponent<BirdMovement>().handLandingSpot;
+
             SwitchState(BirdState.GoToLanding);
         }    
         if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, controllerL)|| Keyboard.current[Key.T].wasPressedThisFrame)
@@ -152,10 +155,10 @@ public class BirdStateChanger : MonoBehaviour
             bird.anim.SetTrigger("TakeOff");
             SwitchState(BirdState.TakeOff);
         }*/
-        /*if(OVRInput.GetDown(OVRInput.Button.One, controllerL) || Keyboard.current[Key.C].wasPressedThisFrame)
+        if(OVRInput.GetDown(OVRInput.Button.One, controllerL) || Keyboard.current[Key.C].wasPressedThisFrame)
         {
             SwitchState(BirdState.Diving);
-        }*/
+        }
     }
     
     void SetBirdSettings()

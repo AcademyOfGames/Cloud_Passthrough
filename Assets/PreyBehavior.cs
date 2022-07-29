@@ -22,7 +22,8 @@ public class PreyBehavior : MonoBehaviour
         var bird = other.GetComponent<BirdStateChanger>();
         if (bird != null)
         {
-            bird.SwitchState(BirdStateChanger.BirdState.Hunting);
+            birdState.GetComponent<BirdMovement>().landingSpot = birdState.GetComponent<BirdMovement>().branchLandingSpot;
+            birdState.SwitchState(BirdStateChanger.BirdState.GoToLanding);            
             GetComponent<Rigidbody>().useGravity = false;
             transform.SetParent(birdHand);
             StartCoroutine("LerpToHand");    
@@ -89,7 +90,7 @@ public class PreyBehavior : MonoBehaviour
         {
             debugTemp.text = "FISH GRABBED";
             print("FishGrabbed");
-            birdState.GetComponent<BirdMovement>().prey = transform;
+            //birdState.GetComponent<BirdMovement>().landingSpot = GetComponent<BirdMovement>().branchLandingSpot;
             birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
         }
         

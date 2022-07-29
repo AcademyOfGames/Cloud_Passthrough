@@ -30,6 +30,8 @@ public class BirdMovement : MonoBehaviour
     public float waypointProximity;
     public float minHeight, maxHeight;
     public Transform landingSpot;
+    public Transform handLandingSpot;
+    public Transform branchLandingSpot;
 
     [HideInInspector]
     public Vector3 currentWaypoint;
@@ -52,6 +54,7 @@ public class BirdMovement : MonoBehaviour
 
     public Transform prey;
     public float maxSpeed;
+
     void Start()
     {
         birdState = GetComponent<BirdStateChanger>();
@@ -109,9 +112,18 @@ public class BirdMovement : MonoBehaviour
 
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("floor"))
+        {
+            transform.Translate(Vector3.up *.05f);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        
         // Debug.DrawRay(transform.position, direction *10f);
         //Debug.DrawRay(transform.position, transform.forward *10f, Color.blue,Time.deltaTime);
         // Check which State we are in 
