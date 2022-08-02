@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,10 @@ public class BirdStateChanger : MonoBehaviour
 
     public TextMeshProUGUI stateText;
     public GameObject ghostHand;
-    
+
+    public bool customControlsUnlocked;
+
+
     // States
     public enum BirdState
     {
@@ -22,7 +26,7 @@ public class BirdStateChanger : MonoBehaviour
     }
 
     // Start with Hunting
-    public BirdState currentState = BirdState.Hunting;
+    public BirdState currentState = BirdState.GoToLanding;
 
     //BirdSettings class, a group of data we call BirdSettings. Just like we can do Trasform.position to access some data. we can say BirdSettings.turnAngleIntensity
     public class BirdSettings
@@ -52,17 +56,25 @@ public class BirdStateChanger : MonoBehaviour
     private BirdSettings divingSettings;
 
     private BirdMovement bird;
-    // Start is called before the first frame update
-    void Start()
+    private static readonly int TakeOff = Animator.StringToHash("TakeOff");
+
+    public BirdStateChanger(bool customControlsUnlocked)
+    {
+        this.customControlsUnlocked = customControlsUnlocked;
+    }
+
+    private void Awake()
     {
         bird = GetComponent<BirdMovement>();
         SetBirdSettings();
-
     }
+
+    
     // Change the bird from flying to meeting player to leaving
     public void SwitchState(BirdState birdState)
     {
         if (currentState == birdState) return;
+        print("Switched to " + birdState);
         switch (birdState)
         {
             case BirdState.Hunting:
@@ -100,21 +112,20 @@ public class BirdStateChanger : MonoBehaviour
                 bird.SwitchAnimationState(birdState);
                 SwitchState(BirdState.Hunting);
                 break;
+            
             case BirdState.Exiting:
                 break;
+            
             case BirdState.Diving:
                 bird.SwitchAnimationState(birdState);
                 bird.prey.gameObject.SetActive(true);
                 bird.UpdateSettings(divingSettings);
                 //StartCoroutine("ResetToHunting");
                 break;
+            
             case BirdState.Eating:
                 bird.SwitchAnimationState(birdState);
-
                 //StartCoroutine("ResetToHunting");
-                break;
-
-            default:
                 break;
         }
         stateText.text = birdState.ToString();
@@ -137,34 +148,36 @@ public class BirdStateChanger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        /*if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, controllerR) || Keyboard.current[Key.W].wasPressedThisFrame)
+        if (customControlsUnlocked)
         {
-            SwitchState(BirdState.Welcoming);
-        }
-        if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, controllerL)|| Keyboard.current[Key.H].wasPressedThisFrame)
-        {
-            if (currentState == BirdState.Landing)
+            if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, controllerR) || Keyboard.current[Key.W].wasPressedThisFrame)
             {
-                bird.anim.SetTrigger("TakeOff");
+                SwitchState(BirdState.Welcoming);
+            }
+            if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, controllerL)|| Keyboard.current[Key.H].wasPressedThisFrame)
+            {
+                if (currentState == BirdState.Landing)
+                {
+                    bird.anim.SetTrigger(TakeOff);
+                    SwitchState(BirdState.TakeOff);
+                }
+                else
+                {
+                    SwitchState(BirdState.Hunting);
+                }
+            }
+            if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, controllerR)|| Keyboard.current[Key.L].wasPressedThisFrame)
+            {
+                bird.landingSpot = GetComponent<BirdMovement>().handLandingSpot;
+                SwitchState(BirdState.GoToLanding);
+            }    
+            if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, controllerL)|| Keyboard.current[Key.T].wasPressedThisFrame)
+            {
+                bird.anim.SetTrigger(TakeOff);
                 SwitchState(BirdState.TakeOff);
             }
-            else
-            {
-                SwitchState(BirdState.Hunting);
-            }
         }
-        if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, controllerR)|| Keyboard.current[Key.L].wasPressedThisFrame)
-        {
-                    birdState.GetComponent<BirdMovement>().landingSpot = GetComponent<BirdMovement>().handLandingSpot;
 
-            SwitchState(BirdState.GoToLanding);
-        }    
-        if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, controllerL)|| Keyboard.current[Key.T].wasPressedThisFrame)
-        {
-            bird.anim.SetTrigger("TakeOff");
-            SwitchState(BirdState.TakeOff);
-        }*/
         if(OVRInput.GetDown(OVRInput.Button.One, controllerL) || Keyboard.current[Key.C].wasPressedThisFrame)
         {
             SwitchState(BirdState.Diving);
