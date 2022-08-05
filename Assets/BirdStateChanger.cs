@@ -104,6 +104,15 @@ public class BirdStateChanger : MonoBehaviour
                     }
                 }
         
+                if (bird.landingSpot == bird.handLandingSpot)
+                {
+                    customControlsUnlocked = true;
+                    print("CUSTOM CONTROLLER UNLOCKED");
+                    foreach (var g in bird.customControlsUI)
+                    {
+                        g.SetActive(true);
+                    }
+                }
                 //Invoke("TakeOff",6);  
                 break;
             
@@ -151,10 +160,13 @@ public class BirdStateChanger : MonoBehaviour
         {
             if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, controllerR) || Keyboard.current[Key.W].wasPressedThisFrame)
             {
+                print("Pressing welcome");
                 SwitchState(BirdState.Welcoming);
             }
             if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, controllerL)|| Keyboard.current[Key.H].wasPressedThisFrame)
             {
+                print("Pressing takeoffHunt");
+
                 if (currentState == BirdState.Landing)
                 {
                     bird.anim.SetTrigger(TakeOff);
@@ -167,6 +179,8 @@ public class BirdStateChanger : MonoBehaviour
             }
             if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, controllerR)|| Keyboard.current[Key.L].wasPressedThisFrame)
             {
+                print("Pressing landing");
+
                 bird.landingSpot = GetComponent<BirdMovement>().handLandingSpot;
                 SwitchState(BirdState.GoToLanding);
             }    
@@ -179,6 +193,8 @@ public class BirdStateChanger : MonoBehaviour
 
         if(OVRInput.GetDown(OVRInput.Button.One, controllerL) || Keyboard.current[Key.C].wasPressedThisFrame)
         {
+            print("Pressing diving");
+
             SwitchState(BirdState.Diving);
         }
     }

@@ -188,14 +188,7 @@ public class BirdMovement : MonoBehaviour
                     StartCoroutine(nameof(IntroSequence));
                 }
 
-                if (landingSpot == handLandingSpot)
-                {
-                    birdState.customControlsUnlocked = true;
-                    foreach (var g in customControlsUI)
-                    {
-                        g.SetActive(true);
-                    }
-                }
+
                 transform.position = Vector3.MoveTowards(transform.position, landingSpot.position + Vector3.up * .1f, .4f * Time.deltaTime);
                // FaceTowardMovement();
                 ResetXAngle();

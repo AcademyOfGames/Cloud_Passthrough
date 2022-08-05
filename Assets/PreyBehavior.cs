@@ -24,6 +24,8 @@ public class PreyBehavior : MonoBehaviour
         if (bird != null)
         {
             if (bird.grabbedFish) return;
+            print("fish caught "+ bird.fishCaught);
+            bird.prey = transform;
 
             bird.fishCaught++;
             bird.grabbedFish = true;
@@ -80,6 +82,8 @@ public class PreyBehavior : MonoBehaviour
     
     void IsReleased()
     {
+        if ( _birdState.GetComponent<BirdMovement>().grabbedFish) return;
+
         _birdState.GetComponent<BirdMovement>().prey = transform;
         //print("FishReleased ");
         _birdState.SwitchState(BirdStateChanger.BirdState.Diving);
