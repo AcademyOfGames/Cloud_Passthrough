@@ -87,7 +87,6 @@ public class BirdStateChanger : MonoBehaviour
                 bird.UpdateSettings(welcomingSettings);
                 break;
             case BirdState.GoToLanding:
-                bird.currentWaypoint = bird.landingSpot.position;
                 bird.UpdateSettings(goToLandingSettings);
 
                 break;

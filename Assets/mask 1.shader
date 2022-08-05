@@ -10,7 +10,7 @@ Shader "Custom/mask"
 
         Pass
         {
-            
+            Blend Zero One
             Zwrite Off
 
             

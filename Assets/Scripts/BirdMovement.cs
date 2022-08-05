@@ -171,6 +171,7 @@ public class BirdMovement : MonoBehaviour
                 break;
             
             case BirdStateChanger.BirdState.GoToLanding:
+                currentWaypoint = landingSpot.position;
                 BasicFlying();
                 break;
 
@@ -183,7 +184,6 @@ public class BirdMovement : MonoBehaviour
 
                 if (!introSequenceDone)
                 {
-                    print("INTRO SEQUENCE STARTING");
                     introSequenceDone = true;
                     StartCoroutine(nameof(IntroSequence));
                 }
@@ -234,14 +234,12 @@ public class BirdMovement : MonoBehaviour
 
     IEnumerator IntroSequence()
     {
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(6f);
         birdAudio.PlaySound("birdScream");
-        yield return new WaitForSeconds(3f);
-        print("GOING TO TakeOff");
+        yield return new WaitForSeconds(2f);
 
         birdState.SwitchState(BirdStateChanger.BirdState.TakeOff);
-        yield return new WaitForSeconds(15f);
-        print("GOING TO Welcoming");
+        yield return new WaitForSeconds(20f);
 
         birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
 
