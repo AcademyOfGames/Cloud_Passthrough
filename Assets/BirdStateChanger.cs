@@ -192,7 +192,7 @@ public class BirdStateChanger : MonoBehaviour
         }
 
         if(OVRInput.GetDown(OVRInput.Button.One, controllerL) || Keyboard.current[Key.C].wasPressedThisFrame)
-        {
+        {       
             print("Pressing diving");
 
             SwitchState(BirdState.Diving);
