@@ -156,6 +156,7 @@ public class BirdStateChanger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        customControlsUnlocked = true;
         if (customControlsUnlocked)
         {
             if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, controllerR) || Keyboard.current[Key.W].wasPressedThisFrame)

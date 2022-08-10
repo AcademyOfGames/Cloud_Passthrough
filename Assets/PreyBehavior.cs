@@ -7,16 +7,17 @@ using TMPro;
 
 public class PreyBehavior : MonoBehaviour
 {
-
-
     public TextMeshProUGUI debugTemp;
 
     private Vector3 _ogPos;
     public Transform birdHand;
+    public float throwMultiplier;
     private OVRGrabbableExtended _grabInfo;
     private BirdStateChanger _birdState;
 
     private bool _isGrabbed;
+    private Vector3 _velocity;
+    private Vector3 _lastPos;
     private void OnTriggerEnter(Collider other)
     {
 
@@ -24,7 +25,6 @@ public class PreyBehavior : MonoBehaviour
         if (bird != null)
         {
             if (bird.grabbedFish) return;
-            print("fish caught "+ bird.fishCaught);
             bird.prey = transform;
 
             bird.fishCaught++;
@@ -32,6 +32,7 @@ public class PreyBehavior : MonoBehaviour
             _birdState.GetComponent<BirdMovement>().landingSpot = bird.branchLandingSpot;
             _birdState.SwitchState(BirdStateChanger.BirdState.GoToLanding);            
             GetComponent<Rigidbody>().useGravity = false;
+            GetComponent<Rigidbody>().isKinematic = true;
             transform.SetParent(birdHand);
             StartCoroutine(nameof(LerpToHand));    
         }
@@ -53,9 +54,12 @@ public class PreyBehavior : MonoBehaviour
     {
         while (transform.localPosition.magnitude > .01f)
         {
-            transform.localPosition *= .9f;
+            transform.localPosition *= .1f;
             yield return null;
         }
+        Vector3 newRotation = transform.eulerAngles;
+        newRotation.y = 0;
+        transform.eulerAngles = newRotation;
     }
 
     // Start is called before the first frame update
@@ -83,7 +87,8 @@ public class PreyBehavior : MonoBehaviour
     void IsReleased()
     {
         if ( _birdState.GetComponent<BirdMovement>().grabbedFish) return;
-
+    GetComponent<Rigidbody>().AddForce(_velocity * throwMultiplier);
+        
         _birdState.GetComponent<BirdMovement>().prey = transform;
         //print("FishReleased ");
         _birdState.SwitchState(BirdStateChanger.BirdState.Diving);
@@ -92,6 +97,7 @@ public class PreyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        _velocity = transform.position - _lastPos;
+        _lastPos = transform.position;
     }
 }
