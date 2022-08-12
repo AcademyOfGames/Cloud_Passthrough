@@ -18,6 +18,8 @@ public class PreyBehavior : MonoBehaviour
     private bool _isGrabbed;
     private Vector3 _velocity;
     private Vector3 _lastPos;
+
+    private Rigidbody rb;
     private void OnTriggerEnter(Collider other)
     {
 
@@ -26,7 +28,7 @@ public class PreyBehavior : MonoBehaviour
         {
             if (bird.grabbedFish) return;
             bird.prey = transform;
-
+            _isGrabbed = true;
             bird.fishCaught++;
             bird.grabbedFish = true;
             _birdState.GetComponent<BirdMovement>().landingSpot = bird.branchLandingSpot;
@@ -68,6 +70,7 @@ public class PreyBehavior : MonoBehaviour
         _birdState = FindObjectOfType<BirdStateChanger>();
         _grabInfo = GetComponent<OVRGrabbableExtended>();
         _ogPos = transform.position;
+        rb= GetComponent<Rigidbody>();
         //GetComponent<Rigidbody>().AddForce(Abs(Random.insideUnitSphere) *500f);   
     }
 
@@ -99,5 +102,9 @@ public class PreyBehavior : MonoBehaviour
     {
         _velocity = transform.position - _lastPos;
         _lastPos = transform.position;
+        if (_isGrabbed)
+        {
+            rb.isKinematic = true;
+        }
     }
 }

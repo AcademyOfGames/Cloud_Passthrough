@@ -154,7 +154,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 4b543561623be2a42a6eda7f81cd3b02,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.2990003
+      value: -4.87
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4b543561623be2a42a6eda7f81cd3b02,
         type: 3}
@@ -164,7 +164,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 4b543561623be2a42a6eda7f81cd3b02,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.75
+      value: 7.28
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4b543561623be2a42a6eda7f81cd3b02,
         type: 3}
@@ -3650,7 +3650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inFrontOfPlayer: 1
   lookAtPlayer: 0
-  offset: {x: -0.56, y: -1.569, z: 0.36}
+  offset: {x: -0.56, y: -1, z: 0.36}
   player: {fileID: 931075468}
 --- !u!54 &240631863
 Rigidbody:
@@ -3709,7 +3709,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 244244722}
   m_LocalRotation: {x: -0, y: 0.15656535, z: -0, w: 0.9876676}
-  m_LocalPosition: {x: -4.75, y: -2.3649998, z: 9.56}
+  m_LocalPosition: {x: -4.3209996, y: -2.3649998, z: 8.090002}
   m_LocalScale: {x: 0.59929, y: 0.59929, z: 0.59929}
   m_Children:
   - {fileID: 691571894}
@@ -4067,7 +4067,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 265189948}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.0294, y: -10.23, z: 8.722999}
+  m_LocalPosition: {x: -4.6003995, y: -10.23, z: 7.2529993}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1177793251}
@@ -7174,7 +7174,7 @@ ConstantForce:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 643612698}
   m_Enabled: 1
-  m_Force: {x: 0, y: 0.5, z: 0}
+  m_Force: {x: 0, y: 1, z: 0}
   m_RelativeForce: {x: 0, y: 0, z: 0}
   m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: 0}
@@ -7192,7 +7192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugTemp: {fileID: 0}
   birdHand: {fileID: 286958840}
-  throwMultiplier: 0.5
+  throwMultiplier: 1
 --- !u!54 &643612702
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13847,7 +13847,7 @@ ConstantForce:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051235612}
   m_Enabled: 1
-  m_Force: {x: 0, y: 0.5, z: 0}
+  m_Force: {x: 0, y: 1, z: 0}
   m_RelativeForce: {x: 0, y: 0, z: 0}
   m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: 0}
@@ -13888,7 +13888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugTemp: {fileID: 2017939647}
   birdHand: {fileID: 286958840}
-  throwMultiplier: 0.5
+  throwMultiplier: 1
 --- !u!1 &1081517369
 GameObject:
   m_ObjectHideFlags: 0
@@ -23743,7 +23743,7 @@ ConstantForce:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1471643285}
   m_Enabled: 1
-  m_Force: {x: 0, y: 0.5, z: 0}
+  m_Force: {x: 0, y: 1, z: 0}
   m_RelativeForce: {x: 0, y: 0, z: 0}
   m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: 0}
@@ -23761,7 +23761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugTemp: {fileID: 2017939647}
   birdHand: {fileID: 286958840}
-  throwMultiplier: 0.5
+  throwMultiplier: 1
 --- !u!54 &1471643289
 Rigidbody:
   m_ObjectHideFlags: 0
