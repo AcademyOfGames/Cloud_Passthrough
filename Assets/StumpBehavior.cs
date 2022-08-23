@@ -16,8 +16,10 @@ public class StumpBehavior : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        if (!other.gameObject.CompareTag("floor")) return;
         foreach (var rb in fishRbs)
         {
+            if (rb == null) continue;
             rb.useGravity = true;
             rb.isKinematic = false;
         }

@@ -7,6 +7,8 @@ using TMPro;
 
 public class PreyBehavior : MonoBehaviour
 {
+    OVRInput.Controller controllerR = OVRInput.Controller.RTouch;
+
     public TextMeshProUGUI debugTemp;
 
     private Vector3 _ogPos;
@@ -20,6 +22,8 @@ public class PreyBehavior : MonoBehaviour
     private Vector3 _lastPos;
 
     private Rigidbody rb;
+
+    int _frameCount;
     private void OnTriggerEnter(Collider other)
     {
 
@@ -90,7 +94,10 @@ public class PreyBehavior : MonoBehaviour
     void IsReleased()
     {
         if ( _birdState.GetComponent<BirdMovement>().grabbedFish) return;
-    GetComponent<Rigidbody>().AddForce(_velocity * throwMultiplier);
+
+        print("***throwing with velocity of " + _velocity);
+        print("***controller velocity from ovrInput " + OVRInput.GetLocalControllerVelocity(controllerR));
+        GetComponent<Rigidbody>().AddForce(_velocity * throwMultiplier);
         
         _birdState.GetComponent<BirdMovement>().prey = transform;
         //print("FishReleased ");
@@ -100,8 +107,15 @@ public class PreyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _frameCount++;
         _velocity = transform.position - _lastPos;
-        _lastPos = transform.position;
+
+        if(_frameCount % 3 == 0)
+        {
+            _frameCount = 1;
+            _lastPos = transform.position;
+
+        }
         if (_isGrabbed)
         {
             rb.isKinematic = true;

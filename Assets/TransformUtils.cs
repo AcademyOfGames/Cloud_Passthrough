@@ -11,9 +11,7 @@ public class TransformUtils : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print("Distance x " + name + " =  " + (transform.position.x - player.position.x));
-        print("Distance y " + name + " =  " + (transform.position.y - player.position.y));
-        print("Distance z " + name + " =  " + (transform.position.z - player.position.z));
+
         
         
         if(inFrontOfPlayer)

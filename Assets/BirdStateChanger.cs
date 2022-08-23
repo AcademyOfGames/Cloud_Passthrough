@@ -93,6 +93,7 @@ public class BirdStateChanger : MonoBehaviour
             case BirdState.Landing:
                 bird.SwitchAnimationState(birdState);
                 bird.UpdateSettings(LandedSettings);
+
                 if (bird.grabbedFish)
                 {
                     SwitchState(BirdState.Eating);
@@ -107,7 +108,6 @@ public class BirdStateChanger : MonoBehaviour
                 if (bird.landingSpot == bird.handLandingSpot)
                 {
                     customControlsUnlocked = true;
-                    print("CUSTOM CONTROLLER UNLOCKED");
                     foreach (var g in bird.customControlsUI)
                     {
                         g.SetActive(true);
@@ -156,15 +156,16 @@ public class BirdStateChanger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        customControlsUnlocked = true;
+        //customControlsUnlocked = true;
         if (customControlsUnlocked)
         {
-            if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, controllerR) || Keyboard.current[Key.W].wasPressedThisFrame)
+
+            if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.RTouch) || Keyboard.current[Key.W].wasPressedThisFrame)
             {
                 print("Pressing welcome");
                 SwitchState(BirdState.Welcoming);
             }
-            if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, controllerL)|| Keyboard.current[Key.H].wasPressedThisFrame)
+            if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch) || Keyboard.current[Key.H].wasPressedThisFrame)
             {
                 print("Pressing takeoffHunt");
 
@@ -178,14 +179,14 @@ public class BirdStateChanger : MonoBehaviour
                     SwitchState(BirdState.Hunting);
                 }
             }
-            if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, controllerR)|| Keyboard.current[Key.L].wasPressedThisFrame)
+            if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch) || Keyboard.current[Key.L].wasPressedThisFrame)
             {
                 print("Pressing landing");
 
                 bird.landingSpot = GetComponent<BirdMovement>().handLandingSpot;
                 SwitchState(BirdState.GoToLanding);
             }    
-            if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, controllerL)|| Keyboard.current[Key.T].wasPressedThisFrame)
+            if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch) || Keyboard.current[Key.T].wasPressedThisFrame)
             {
                 bird.anim.SetTrigger(TakeOff);
                 SwitchState(BirdState.TakeOff);

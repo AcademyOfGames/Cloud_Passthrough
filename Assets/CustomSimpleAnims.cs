@@ -12,13 +12,12 @@ public class CustomSimpleAnims : MonoBehaviour
     {
         if (deactivateAfterTime)
         {
-            Destroy(gameObject, time);
+            Invoke(nameof(WaitAndDeactivate), time);
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    void WaitAndDeactivate()
     {
-        
+        gameObject.SetActive(false);
     }
 }
