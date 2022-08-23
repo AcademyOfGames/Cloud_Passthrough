@@ -7277,7 +7277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugTemp: {fileID: 0}
   birdHand: {fileID: 286958840}
-  throwMultiplier: 5000
+  throwMultiplier: 1300
 --- !u!54 &643612702
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13960,7 +13960,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugTemp: {fileID: 2017939647}
   birdHand: {fileID: 286958840}
-  throwMultiplier: 5000
+  throwMultiplier: 1300
 --- !u!1 &1081517369
 GameObject:
   m_ObjectHideFlags: 0
@@ -23845,7 +23845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugTemp: {fileID: 2017939647}
   birdHand: {fileID: 286958840}
-  throwMultiplier: 5000
+  throwMultiplier: 1300
 --- !u!54 &1471643289
 Rigidbody:
   m_ObjectHideFlags: 0
