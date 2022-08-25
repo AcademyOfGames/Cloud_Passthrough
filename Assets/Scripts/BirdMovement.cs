@@ -64,6 +64,7 @@ public class BirdMovement : MonoBehaviour
     public bool grabbedFish { get; set; }
     public int fishCaught { get; set; }
     private BirdAudioManager birdAudio;
+    
 
     void Start()
     {
@@ -77,7 +78,7 @@ public class BirdMovement : MonoBehaviour
         StartCoroutine("RandomFlapping");
         SwitchAnimation("Glide");
         
-        birdAudio.PlaySound("birdFlying");
+        birdAudio.PlaySound("hawkFlying");
         birdAudio.PlaySound("forest");
 
         StartCoroutine("RandomSounds");
@@ -88,7 +89,7 @@ public class BirdMovement : MonoBehaviour
     IEnumerator RandomSounds()
     {
         yield return new WaitForSeconds(Random.Range(8, 20));   
-        birdAudio.PlaySound("birdFlying");
+        birdAudio.PlaySound("hawkFlying");
     }
 
      IEnumerator RandomFlapping()
@@ -172,6 +173,22 @@ public class BirdMovement : MonoBehaviour
             
             case BirdStateChanger.BirdState.GoToLanding:
                 currentWaypoint = landingSpot.position;
+
+                if (grabbedFish)
+                {
+                    //turnSpeed *= 1.001f;
+                    turnSpeed += Mathf.Lerp(.0002f, 0, Vector3.Distance(transform.position, prey.position)*2f);
+                    print("distance" +Vector3.Distance(transform.position, prey.position) );
+                    print("Adjusting turn speed by " + Mathf.Lerp(.005f, 0, Vector3.Distance(transform.position, prey.position)*2f));
+                    print("new turn speed " + turnSpeed);
+                }
+                else
+                {
+                    turnSpeed *= 1.01f;
+                    turnSpeed += Mathf.Lerp(.01f, 0, Vector3.Distance(transform.position, prey.position)*.1f);
+                }
+ 
+
                 BasicFlying();
                 break;
 
@@ -195,6 +212,8 @@ public class BirdMovement : MonoBehaviour
                 break;
             
             case BirdStateChanger.BirdState.Welcoming:
+                turnSpeed += Mathf.Lerp(.04f, 0, Vector3.Distance(transform.position, target.position)*.06f);
+
                 BasicFlying();
                 break;
             
@@ -207,7 +226,7 @@ public class BirdMovement : MonoBehaviour
 
                 if (speed < maxSpeed)
                 {
-                    speed *= 1.01f;
+                    speed *= 1.005f;
                 }
                break;
             case BirdStateChanger.BirdState.Orbiting:
@@ -307,7 +326,9 @@ public class BirdMovement : MonoBehaviour
         var position = transform.position;
         Vector3 dir = position - previousPos;
         rotationGoal = Quaternion.LookRotation(dir);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotationGoal, turnSpeed);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotationGoal, .015f);
+        transform.Translate(Vector3.forward* .4f * Time.deltaTime);
 
         //transform.rotation = Quaternion.LookRotation(dir.normalized);
         previousPos = position;
@@ -317,11 +338,13 @@ public class BirdMovement : MonoBehaviour
     {
         if (Vector3.Distance(target.position, transform.position) > minOrbitRadius)
         {
+
             transform.RotateAround(target.position, Vector3.up, orbitSpeed * Time.deltaTime);
             OrbitRotation();
         }
         else
         {   
+
             transform.Translate(Vector3.forward* speed * Time.deltaTime);
             
             if (transform.position.y < -12f)

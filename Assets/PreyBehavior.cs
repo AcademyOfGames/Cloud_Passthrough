@@ -75,7 +75,6 @@ public class PreyBehavior : MonoBehaviour
         _grabInfo = GetComponent<OVRGrabbableExtended>();
         _ogPos = transform.position;
         rb= GetComponent<Rigidbody>();
-        //GetComponent<Rigidbody>().AddForce(Abs(Random.insideUnitSphere) *500f);   
     }
 
     Vector3 Abs(Vector3 v)

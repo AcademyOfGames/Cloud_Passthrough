@@ -6,6 +6,7 @@ TagManager:
   tags:
   - floor
   - LandingSpot
+  - Brick
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - OppositeMask
   - OutsidePortal
   - Mask
-  - 
+  - IgnoreTreeLayer
   - 
   - 
   - 
