@@ -185,7 +185,7 @@ public class BirdMovement : MonoBehaviour
                 else
                 {
                     turnSpeed *= 1.01f;
-                    turnSpeed += Mathf.Lerp(.01f, 0, Vector3.Distance(transform.position, prey.position)*.1f);
+                    turnSpeed += Mathf.Lerp(.01f, 0, Vector3.Distance(transform.position, currentWaypoint) *.1f);
                 }
  
 
@@ -251,7 +251,7 @@ public class BirdMovement : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         birdState.SwitchState(BirdStateChanger.BirdState.TakeOff);
-        yield return new WaitForSeconds(20f);
+        yield return new WaitForSeconds(20f); 
 
         birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
 
@@ -284,6 +284,8 @@ public class BirdMovement : MonoBehaviour
     
     private void DistanceCheck()
     {
+        print("Distance check " + Vector3.Distance(currentWaypoint, transform.position) + " compared to " + waypointProximity);
+
         // Checking distance between waypoint and bird position, if it is less than distance find a new spot
         if (!(Vector3.Distance(currentWaypoint, transform.position) < waypointProximity)) return;
 
