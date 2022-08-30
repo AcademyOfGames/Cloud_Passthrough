@@ -176,7 +176,7 @@ public class BirdMovement : MonoBehaviour
 
                 if (grabbedFish)
                 {
-                    //turnSpeed *= 1.001f;
+                    turnSpeed *= 1.01f;
                     turnSpeed += Mathf.Lerp(.0002f, 0, Vector3.Distance(transform.position, prey.position)*2f);
                     print("distance" +Vector3.Distance(transform.position, prey.position) );
                     print("Adjusting turn speed by " + Mathf.Lerp(.005f, 0, Vector3.Distance(transform.position, prey.position)*2f));
@@ -212,7 +212,8 @@ public class BirdMovement : MonoBehaviour
                 break;
             
             case BirdStateChanger.BirdState.Welcoming:
-                turnSpeed += Mathf.Lerp(.04f, 0, Vector3.Distance(transform.position, target.position)*.06f);
+                turnSpeed *= 1.01f;
+                turnSpeed += Mathf.Lerp(.02f, 0, Vector3.Distance(transform.position, target.position)*.06f);
 
                 BasicFlying();
                 break;
@@ -284,7 +285,6 @@ public class BirdMovement : MonoBehaviour
     
     private void DistanceCheck()
     {
-        print("Distance check " + Vector3.Distance(currentWaypoint, transform.position) + " compared to " + waypointProximity);
 
         // Checking distance between waypoint and bird position, if it is less than distance find a new spot
         if (!(Vector3.Distance(currentWaypoint, transform.position) < waypointProximity)) return;
@@ -332,7 +332,6 @@ public class BirdMovement : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, rotationGoal, .015f);
         transform.Translate(Vector3.forward* .4f * Time.deltaTime);
 
-        //transform.rotation = Quaternion.LookRotation(dir.normalized);
         previousPos = position;
     }
 
@@ -460,6 +459,8 @@ public class BirdMovement : MonoBehaviour
 
                 break;
             case BirdStateChanger.BirdState.Diving:
+                anim.SetBool(Eating,false);
+
                 SwitchAnimation("Diving");
                 break;
             case BirdStateChanger.BirdState.Eating:
