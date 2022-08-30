@@ -14,6 +14,7 @@ public class BirdStateChanger : MonoBehaviour
 
     public bool customControlsUnlocked;
 
+    private StumpBehavior stump;
 
     // States
     public enum BirdState
@@ -65,6 +66,7 @@ public class BirdStateChanger : MonoBehaviour
 
     private void Awake()
     {
+        stump = FindObjectOfType<StumpBehavior>();
         bird = GetComponent<BirdMovement>();
         SetBirdSettings();
     }
@@ -159,12 +161,18 @@ public class BirdStateChanger : MonoBehaviour
         //customControlsUnlocked = true;
         if (customControlsUnlocked)
         {
+            // take off left trigger and landing right trigger. right A add new fish. X slow mo and Y for tricks 
 
+            if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch) || Keyboard.current[Key.S].wasPressedThisFrame)
+            {
+                stump.SpawnMorePrey();
+            }
             if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.RTouch) || Keyboard.current[Key.W].wasPressedThisFrame)
             {
                 print("Pressing welcome");
                 SwitchState(BirdState.Welcoming);
             }
+            
             if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch) || Keyboard.current[Key.H].wasPressedThisFrame)
             {
                 print("Pressing takeoffHunt");
@@ -193,12 +201,13 @@ public class BirdStateChanger : MonoBehaviour
             }
         }
 
+        /*
         if(OVRInput.GetDown(OVRInput.Button.One, controllerL) || Keyboard.current[Key.C].wasPressedThisFrame)
         {       
             print("Pressing diving");
 
             SwitchState(BirdState.Diving);
-        }
+        }*/
     }
     
     void SetBirdSettings()

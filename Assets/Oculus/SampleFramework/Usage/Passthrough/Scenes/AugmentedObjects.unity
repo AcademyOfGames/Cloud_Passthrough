@@ -1234,7 +1234,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 89203230}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.753, z: 0}
+  m_LocalPosition: {x: 0, y: 2.285, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 240631858}
@@ -3150,6 +3150,7 @@ MonoBehaviour:
   - {fileID: 1471643289}
   poofEffect: {fileID: 1573088116}
   prey: {fileID: 1378899485604776650, guid: ba8ba5df7ac69ec43ac24d219b75a90d, type: 3}
+  preySpawner: {fileID: 89203231}
 --- !u!1 &244244722
 GameObject:
   m_ObjectHideFlags: 0
