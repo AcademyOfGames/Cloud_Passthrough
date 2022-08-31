@@ -7,8 +7,6 @@ using TMPro;
 
 public class PreyBehavior : MonoBehaviour
 {
-    OVRInput.Controller controllerR = OVRInput.Controller.RTouch;
-
     public TextMeshProUGUI debugTemp;
 
     private Vector3 _ogPos;
@@ -21,9 +19,12 @@ public class PreyBehavior : MonoBehaviour
     private Vector3 _velocity;
     private Vector3 _lastPos;
 
-    private Rigidbody rb;
+    private Rigidbody _rb;
 
     int _frameCount;
+    private bool _fishThrown;
+    private StumpBehavior _stump;
+
     private void OnTriggerEnter(Collider other)
     {
 
@@ -31,6 +32,7 @@ public class PreyBehavior : MonoBehaviour
         if (bird != null)
         {
             if (bird.grabbedFish) return;
+            _fishThrown = true;
             bird.prey = transform;
             _isGrabbed = true;
             bird.fishCaught++;
@@ -43,7 +45,25 @@ public class PreyBehavior : MonoBehaviour
             StartCoroutine(nameof(LerpToHand));    
         }
     }
- 
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("floor") && !_fishThrown)
+        {
+            transform.position = _stump.preySpawner.position;
+            transform.eulerAngles = new Vector3(286.403046f, 283.090424f, 347.42511f);
+            _rb.velocity = Vector3.zero;
+            _rb.angularVelocity = Vector3.zero;
+            _rb.mass = 1000;
+            StartCoroutine(nameof(ResetFishMass));
+        }
+    }
+    IEnumerator ResetFishMass()
+    {
+        yield return new WaitForSeconds(2f);
+        _rb.mass = 1;
+
+    }
     private void OnEnable() {
         // listen for grabs
         _grabInfo.OnGrabBegin.AddListener(IsGrabbed);
@@ -71,18 +91,13 @@ public class PreyBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        _stump = FindObjectOfType<StumpBehavior>();
         _birdState = FindObjectOfType<BirdStateChanger>();
         _grabInfo = GetComponent<OVRGrabbableExtended>();
         _ogPos = transform.position;
-        rb= GetComponent<Rigidbody>();
+        _rb= GetComponent<Rigidbody>();
     }
-
-    Vector3 Abs(Vector3 v)
-    {
-        Vector3 absVector = new Vector3(v.x, Mathf.Abs(v.y), v.z);
-        return absVector;
-    }
-
+    
     void IsGrabbed()
     {
         _birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
@@ -94,15 +109,12 @@ public class PreyBehavior : MonoBehaviour
     {
         if ( _birdState.GetComponent<BirdMovement>().grabbedFish) return;
 
-        print("***throwing with velocity of " + _velocity);
-        print("***controller velocity from ovrInput " + OVRInput.GetLocalControllerVelocity(controllerR));
+        _fishThrown = true;
         GetComponent<Rigidbody>().AddForce(_velocity * throwMultiplier);
-        
         _birdState.GetComponent<BirdMovement>().prey = transform;
-        //print("FishReleased ");
         _birdState.SwitchState(BirdStateChanger.BirdState.Diving);
-
     }
+    
     // Update is called once per frame
     void Update()
     {
@@ -117,7 +129,7 @@ public class PreyBehavior : MonoBehaviour
         }
         if (_isGrabbed)
         {
-            rb.isKinematic = true;
+            _rb.isKinematic = true;
         }
     }
 }

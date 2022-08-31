@@ -142,23 +142,10 @@ public class BirdStateChanger : MonoBehaviour
 
         currentState = birdState;
     }
-    IEnumerator ResetToHunting()
-    {
-        yield return new WaitForSeconds(4f);
-
-        while (bird.transform.eulerAngles.x < -10 || bird.transform.eulerAngles.x > 10 )
-        {
-            bird.transform.Rotate(Vector3.right, 1f);
-            yield return null;
-        }
-        SwitchState(BirdState.Hunting);
-    }
-
 
     // Update is called once per frame
     void Update()
     {
-        //customControlsUnlocked = true;
         if (customControlsUnlocked)
         {
             // take off left trigger and landing right trigger. right A add new fish. X slow mo and Y for tricks 
@@ -175,6 +162,7 @@ public class BirdStateChanger : MonoBehaviour
             
             if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch) || Keyboard.current[Key.H].wasPressedThisFrame)
             {
+                FindObjectOfType<FeedbackLogic>().StartFeedback();
                 print("Pressing takeoffHunt");
 
                 if (currentState == BirdState.Landing)

@@ -13,6 +13,10 @@ public class StumpBehavior : MonoBehaviour
     public GameObject prey;
 
     public Transform preySpawner;
+
+    [HideInInspector]
+    public int totalFishAlive = 3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +25,8 @@ public class StumpBehavior : MonoBehaviour
     
     public void SpawnMorePrey()
     {
+        if (totalFishAlive >= 4) return;
+        totalFishAlive++;
         GameObject newFish = Instantiate(prey, preySpawner.position, Quaternion.identity);
         newFish.transform.SetParent(gameObject.transform);
         newFish.GetComponent<Rigidbody>().mass = 1000;

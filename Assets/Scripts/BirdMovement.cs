@@ -64,10 +64,11 @@ public class BirdMovement : MonoBehaviour
     public bool grabbedFish { get; set; }
     public int fishCaught { get; set; }
     private BirdAudioManager birdAudio;
-    
 
+    private StumpBehavior _stump;
     void Start()
     {
+        _stump = FindObjectOfType<StumpBehavior>();
         birdAudio = GetComponent<BirdAudioManager>();
         fishCaught = 0;
         birdState = GetComponent<BirdStateChanger>();
@@ -196,6 +197,7 @@ public class BirdMovement : MonoBehaviour
                 if (grabbedFish)
                 {
                     grabbedFish = false;
+                    _stump.totalFishAlive--;
                     Destroy(prey.gameObject);
                 }
 
