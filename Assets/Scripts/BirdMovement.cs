@@ -254,10 +254,21 @@ public class BirdMovement : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         birdState.SwitchState(BirdStateChanger.BirdState.TakeOff);
-        yield return new WaitForSeconds(20f); 
+        yield return new WaitForSeconds(10f); 
 
         birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
+        yield return new WaitForSeconds(15f);
 
+        birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
+        yield return new WaitForSeconds(10f);
+
+        birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
+        yield return new WaitForSeconds(15f);
+
+        birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
+        yield return new WaitForSeconds(5f);
+
+        birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
     }
 
     private void ResetXAngle()
@@ -455,7 +466,7 @@ public class BirdMovement : MonoBehaviour
 
                 break;
             case BirdStateChanger.BirdState.Landing:
-                
+                anim.ResetTrigger("Catching");
                 anim.SetBool(OnGround,true);
                 SwitchAnimation("Hover");
 

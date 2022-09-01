@@ -202,7 +202,7 @@ public class BirdStateChanger : MonoBehaviour
     {
         //**creating each bird setting for us to use. we can add custom speed, waypoint logic etc
         huntingSettings = new BirdSettings(bird.turnAngleIntensity, bird.waypointRadius, bird.waypointProximity, bird.speed, bird.turnSpeed);
-        divingSettings = new BirdSettings(bird.turnAngleIntensity, bird.waypointRadius, 1f, bird.speed, bird.turnSpeed);
+        divingSettings = new BirdSettings(bird.turnAngleIntensity, bird.waypointRadius*3f, 1f, bird.speed, bird.turnSpeed);
         welcomingSettings = new BirdSettings(0f, bird.waypointRadius, 1.2f, bird.speed * 1.3f, bird.turnSpeed );
         goToLandingSettings = new BirdSettings(0f, bird.waypointRadius,  .6f, bird.speed * 1.3f, bird.turnSpeed );
         exitingSettings = new BirdSettings(0f, bird.waypointRadius, 0, bird.speed * 1.3f, bird.turnSpeed);
