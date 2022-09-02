@@ -21,6 +21,7 @@ public class TutorialHand : MonoBehaviour
                 BirdMovement bird = FindObjectOfType<BirdMovement>();
             bird.landingSpot = bird.handLandingSpot;
             bird.anim.SetBool(Eating, false);
+            bird.anim.SetTrigger("TakeOff");
             FindObjectOfType<BirdStateChanger>().SwitchState(BirdStateChanger.BirdState.GoToLanding);
             gameObject.SetActive(false);
         }

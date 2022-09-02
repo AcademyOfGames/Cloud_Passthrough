@@ -65,7 +65,7 @@ public class BirdMovement : MonoBehaviour
     public int fishCaught { get; set; }
     private BirdAudioManager birdAudio;
 
-    private StumpBehavior _stump;
+    public StumpBehavior _stump;
     void Start()
     {
         _stump = FindObjectOfType<StumpBehavior>();
@@ -260,10 +260,11 @@ public class BirdMovement : MonoBehaviour
         yield return new WaitForSeconds(15f);
 
         birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(15f);
 
         birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
         yield return new WaitForSeconds(15f);
+        fishBucket.SetActive(true);
 
         birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
         yield return new WaitForSeconds(5f);
@@ -308,7 +309,6 @@ public class BirdMovement : MonoBehaviour
         {
             case BirdStateChanger.BirdState.Welcoming:
                 birdAudio.PlaySound("birdScream");
-                fishBucket.SetActive(true);
                 birdState.SwitchState(BirdStateChanger.BirdState.Orbiting);
                 break;
             case BirdStateChanger.BirdState.GoToLanding:

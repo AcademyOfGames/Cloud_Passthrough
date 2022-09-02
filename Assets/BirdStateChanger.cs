@@ -76,7 +76,7 @@ public class BirdStateChanger : MonoBehaviour
     public void SwitchState(BirdState birdState)
     {
         if (currentState == birdState) return;
-//        print("Switched to " + birdState);
+        print("Switched to " + birdState);
         switch (birdState)
         {
             case BirdState.Hunting:
@@ -88,11 +88,13 @@ public class BirdStateChanger : MonoBehaviour
                 //after 1 second set the bird to welcoming
                 bird.UpdateSettings(welcomingSettings);
                 break;
+
             case BirdState.GoToLanding:
                 bird.UpdateSettings(goToLandingSettings);
 
                 break;
             case BirdState.Landing:
+                print("Switching animation state to" + birdState);
                 bird.SwitchAnimationState(birdState);
                 bird.UpdateSettings(LandedSettings);
 
@@ -163,7 +165,7 @@ public class BirdStateChanger : MonoBehaviour
             if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch) || Keyboard.current[Key.H].wasPressedThisFrame)
             {
                 FindObjectOfType<FeedbackLogic>().StartFeedback();
-                print("Pressing takeoffHunt");
+                print("Pressing takeoffHunt current bird state " + currentState);
 
                 if (currentState == BirdState.Landing)
                 {

@@ -6,7 +6,6 @@ using Random = UnityEngine.Random;
 
 public class BrickLogic : MonoBehaviour
 {
-
     private bool _activated;
     private bool _onFloor = true;
 
