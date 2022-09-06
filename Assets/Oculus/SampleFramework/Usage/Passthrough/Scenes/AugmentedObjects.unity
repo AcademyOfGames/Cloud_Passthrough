@@ -5797,7 +5797,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &410872698
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16921,6 +16921,7 @@ MonoBehaviour:
   currentCube: {fileID: 0}
   prey: {fileID: 1051235613}
   maxSpeed: 2.7
+  _stump: {fileID: 240631864}
 --- !u!114 &1155377847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26393,7 +26394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1494409292
 RectTransform:
   m_ObjectHideFlags: 0
@@ -40811,7 +40812,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2037754877
 RectTransform:
   m_ObjectHideFlags: 0
@@ -41516,7 +41517,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2109123599
 RectTransform:
   m_ObjectHideFlags: 0

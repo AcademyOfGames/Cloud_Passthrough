@@ -31,12 +31,14 @@ public class PreyBehavior : MonoBehaviour
         var bird = other.GetComponent<BirdMovement>();
         if (bird != null)
         {
+            print("grabbed fish in preyBehavior trigger before" + bird.grabbedFish);
             if (bird.grabbedFish) return;
             _fishThrown = true;
             bird.prey = transform;
             _isGrabbed = true;
             bird.fishCaught++;
             bird.grabbedFish = true;
+
             _birdState.GetComponent<BirdMovement>().landingSpot = bird.branchLandingSpot;
             _birdState.SwitchState(BirdStateChanger.BirdState.GoToLanding);            
             GetComponent<Rigidbody>().useGravity = false;

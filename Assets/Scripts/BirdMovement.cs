@@ -68,7 +68,6 @@ public class BirdMovement : MonoBehaviour
     public StumpBehavior _stump;
     void Start()
     {
-        _stump = FindObjectOfType<StumpBehavior>();
         birdAudio = GetComponent<BirdAudioManager>();
         fishCaught = 0;
         birdState = GetComponent<BirdStateChanger>();
@@ -174,14 +173,12 @@ public class BirdMovement : MonoBehaviour
             
             case BirdStateChanger.BirdState.GoToLanding:
                 currentWaypoint = landingSpot.position;
-
+                print("Go to landing grabbed fish " + grabbedFish);
                 if (grabbedFish)
                 {
                     turnSpeed *= 1.01f;
                     turnSpeed += Mathf.Lerp(.0002f, 0, Vector3.Distance(transform.position, prey.position)*2f);
-                    print("distance" +Vector3.Distance(transform.position, prey.position) );
-                    print("Adjusting turn speed by " + Mathf.Lerp(.005f, 0, Vector3.Distance(transform.position, prey.position)*2f));
-                    print("new turn speed " + turnSpeed);
+      
                 }
                 else
                 {
@@ -194,6 +191,8 @@ public class BirdMovement : MonoBehaviour
                 break;
 
             case BirdStateChanger.BirdState.Landing:
+                print("grabbedFish " + grabbedFish);
+                //print("prey " + prey.name);
                 if (grabbedFish)
                 {
                     grabbedFish = false;
@@ -466,7 +465,9 @@ public class BirdMovement : MonoBehaviour
 
                 break;
             case BirdStateChanger.BirdState.Landing:
+
                 anim.ResetTrigger("Catching");
+                anim.ResetTrigger("TakeOff");
                 anim.SetBool(OnGround,true);
                 SwitchAnimation("Hover");
 
