@@ -76,7 +76,6 @@ public class BirdStateChanger : MonoBehaviour
     public void SwitchState(BirdState birdState)
     {
         if (currentState == birdState) return;
-        print("Switched to " + birdState);
         switch (birdState)
         {
             case BirdState.Hunting:
@@ -94,7 +93,6 @@ public class BirdStateChanger : MonoBehaviour
 
                 break;
             case BirdState.Landing:
-                print("Switching animation state to" + birdState);
                 bird.SwitchAnimationState(birdState);
                 bird.UpdateSettings(LandedSettings);
 
@@ -158,14 +156,12 @@ public class BirdStateChanger : MonoBehaviour
             }
             if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.RTouch) || Keyboard.current[Key.W].wasPressedThisFrame)
             {
-                print("Pressing welcome");
                 SwitchState(BirdState.Welcoming);
             }
             
             if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch) || Keyboard.current[Key.H].wasPressedThisFrame)
             {
                 FindObjectOfType<FeedbackLogic>().StartFeedback();
-                print("Pressing takeoffHunt current bird state " + currentState);
 
                 if (currentState == BirdState.Landing)
                 {
@@ -179,8 +175,6 @@ public class BirdStateChanger : MonoBehaviour
             }
             if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch) || Keyboard.current[Key.L].wasPressedThisFrame)
             {
-                print("Pressing landing");
-
                 bird.landingSpot = GetComponent<BirdMovement>().handLandingSpot;
                 SwitchState(BirdState.GoToLanding);
             }    
@@ -195,7 +189,7 @@ public class BirdStateChanger : MonoBehaviour
         if(OVRInput.GetDown(OVRInput.Button.One, controllerL) || Keyboard.current[Key.C].wasPressedThisFrame)
         {       
             print("Pressing diving");
-
+    
             SwitchState(BirdState.Diving);
         }*/
     }

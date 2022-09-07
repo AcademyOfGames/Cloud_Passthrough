@@ -17,9 +17,16 @@ public class FeedbackLogic : MonoBehaviour
 
     public void NextFeedbackPanel()
     {
+        print("Setting to false: " + feedbackPanels[currentFeedbackPanel].name);
         feedbackPanels[currentFeedbackPanel].SetActive(false);
         currentFeedbackPanel++;
         feedbackPanels[currentFeedbackPanel].SetActive(true);
+        print("Setting to true " + feedbackPanels[currentFeedbackPanel].name);
+    }
+
+    public void SetStarRating(int index)
+    {
+        print("Stars set to " +  index);
     }
     // Start is called before the first frame update
     void Start()

@@ -178,7 +178,6 @@ public class BirdMovement : MonoBehaviour
                 {
                     turnSpeed *= 1.01f;
                     turnSpeed += Mathf.Lerp(.0002f, 0, Vector3.Distance(transform.position, prey.position)*2f);
-      
                 }
                 else
                 {
@@ -455,7 +454,7 @@ public class BirdMovement : MonoBehaviour
 
     public void SwitchAnimationState(BirdStateChanger.BirdState newState)
     {
-        print("Switching animation state " + newState);
+//        print("Switching animation state " + newState);
         switch (newState)
         {
             case BirdStateChanger.BirdState.TakeOff:
