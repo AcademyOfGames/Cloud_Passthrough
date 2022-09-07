@@ -83,7 +83,7 @@ public class BirdStateChanger : MonoBehaviour
                 break;
 
             case BirdState.Welcoming:
-                bird.currentWaypoint = bird.target.position + Vector3.up *.5f;
+                bird.currentWaypoint = bird.player.position + Vector3.up *.5f;
                 //after 1 second set the bird to welcoming
                 bird.UpdateSettings(welcomingSettings);
                 break;

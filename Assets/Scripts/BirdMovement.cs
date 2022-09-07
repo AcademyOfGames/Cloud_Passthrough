@@ -17,6 +17,7 @@ public class BirdMovement : MonoBehaviour
     public float turnSpeed;
     public float speed;
     public Transform target;
+    public Transform player;
     public float turnAngleIntensity;
     
     //Rotation
@@ -57,15 +58,18 @@ public class BirdMovement : MonoBehaviour
 
     public Transform prey;
     public float maxSpeed;
+
     private static readonly int OnGround = Animator.StringToHash("OnGround");
     private static readonly int Eating = Animator.StringToHash("Eating");
     private static readonly int Flap = Animator.StringToHash("Flap");
     private static readonly int Glide = Animator.StringToHash("Glide");
+
     public bool grabbedFish { get; set; }
     public int fishCaught { get; set; }
     private BirdAudioManager birdAudio;
 
     public StumpBehavior _stump;
+
     void Start()
     {
         birdAudio = GetComponent<BirdAudioManager>();
@@ -213,7 +217,7 @@ public class BirdMovement : MonoBehaviour
             
             case BirdStateChanger.BirdState.Welcoming:
                 turnSpeed *= 1.01f;
-                turnSpeed += Mathf.Lerp(.02f, 0, Vector3.Distance(transform.position, target.position)*.06f);
+                turnSpeed += Mathf.Lerp(.02f, 0, Vector3.Distance(transform.position, player.position)*.06f);
 
                 BasicFlying();
                 break;
@@ -252,16 +256,16 @@ public class BirdMovement : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         birdState.SwitchState(BirdStateChanger.BirdState.TakeOff);
-        yield return new WaitForSeconds(10f); 
+        yield return new WaitForSeconds(15f); 
 
         birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(18f);
 
         birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
         yield return new WaitForSeconds(15f);
 
         birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(18f);
         fishBucket.SetActive(true);
 
         birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
