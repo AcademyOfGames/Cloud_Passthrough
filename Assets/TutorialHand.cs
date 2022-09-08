@@ -8,6 +8,8 @@ public class TutorialHand : MonoBehaviour
 {
     private static readonly int Eating = Animator.StringToHash("Eating");
 
+    public Transform glove;
+    public Transform rightHand;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,8 @@ public class TutorialHand : MonoBehaviour
     {
         if (other.GetComponent<OVRGrabber>() != null)
         {
+            glove.SetParent(rightHand);
+            glove.localPosition = Vector3.zero;
                 BirdMovement bird = FindObjectOfType<BirdMovement>();
             bird.landingSpot = bird.handLandingSpot;
             bird.anim.SetBool(Eating, false);
