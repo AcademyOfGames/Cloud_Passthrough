@@ -24,6 +24,11 @@ public class FeedbackLogic : MonoBehaviour
         print("Setting to true " + feedbackPanels[currentFeedbackPanel].name);
     }
 
+    public void CancelFeedback()
+    {
+        gameObject.SetActive(false);
+    }
+    
     public void SetStarRating(int index)
     {
         print("Stars set to " +  index);

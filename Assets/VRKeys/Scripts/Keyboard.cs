@@ -28,7 +28,7 @@ namespace VRKeys {
 	/// you have finished validating the submitted text.
 	/// </summary>
 	public class Keyboard : MonoBehaviour {
-		public Vector3 positionRelativeToUser = new Vector3 (0f, 1.35f, 2f);
+		//public Vector3 positionRelativeToUser = new Vector3 (0f, 1.35f, 2f);
 
 		public KeyboardLayout keyboardLayout = KeyboardLayout.Qwerty;
 
@@ -162,8 +162,8 @@ namespace VRKeys {
 		}
 
 		private void PositionAndAttachMallets () {
-			transform.SetParent (playerSpace.transform, false);
-			transform.localPosition = positionRelativeToUser;
+			//transform.SetParent (playerSpace.transform, false);
+			//transform.localPosition = positionRelativeToUser;
 
 			/*leftMallet.transform.SetParent (leftHand.transform);
 			leftMallet.transform.localPosition = Vector3.zero;
