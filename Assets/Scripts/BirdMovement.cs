@@ -265,7 +265,7 @@ public class BirdMovement : MonoBehaviour
         yield return new WaitForSeconds(15f);
 
         birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
-        yield return new WaitForSeconds(18f);
+        yield return new WaitForSeconds(20f);
         fishBucket.SetActive(true);
 
         birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
