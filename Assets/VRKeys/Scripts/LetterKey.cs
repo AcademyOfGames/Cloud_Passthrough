@@ -39,7 +39,7 @@ namespace VRKeys {
 			return _shifted ? shiftedChar : character;
 		}
 
-		public override void HandleTriggerEnter (Collider other) {
+		public override void HandleTriggerEnter ( ) {
 			keyboard.AddCharacter(GetCharacter ());
 			ActivateFor (0.3f);
 		}

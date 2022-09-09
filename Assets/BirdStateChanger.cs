@@ -14,7 +14,7 @@ public class BirdStateChanger : MonoBehaviour
 
     public bool customControlsUnlocked;
 
-    private StumpBehavior stump;
+    public StumpBehavior stump;
 
     // States
     public enum BirdState
@@ -66,8 +66,7 @@ public class BirdStateChanger : MonoBehaviour
 
     private void Awake()
     {
-        stump = FindObjectOfType<StumpBehavior>();
-        bird = GetComponent<BirdMovement>();
+            bird = GetComponent<BirdMovement>();
         SetBirdSettings();
     }
 

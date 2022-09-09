@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRKeys;
 
 public class UICustomInteraction : MonoBehaviour
 {
@@ -38,6 +39,12 @@ public class UICustomInteraction : MonoBehaviour
              if (click != null)
              {
                  click.Click();
+             }
+             
+             Key key = hit.collider.GetComponent<Key>();
+             if (key != null)
+             {
+                 key.HandleTriggerEnter();
              }
          }
     }

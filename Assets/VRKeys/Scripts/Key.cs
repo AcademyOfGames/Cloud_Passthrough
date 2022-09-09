@@ -115,8 +115,8 @@ namespace VRKeys {
 				keyboard.rightPressing = true;
 			}
 
-			mallet.HandleTriggerEnter (this);
-			HandleTriggerEnter (other);
+			//mallet.HandleTriggerEnter (this);
+			HandleTriggerEnter ();
 
 			transform.localPosition = pressedPosition;
 
@@ -138,7 +138,7 @@ namespace VRKeys {
 		/// matching keyboard.colliderName.
 		/// </summary>
 		/// <param name="other">Collider.</param>
-		public virtual void HandleTriggerEnter (Collider other) {
+		public virtual void HandleTriggerEnter () {
 			// Override me!
 		}
 

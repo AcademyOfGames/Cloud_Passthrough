@@ -18,7 +18,7 @@ namespace VRKeys {
 	/// </summary>
 	public class CancelKey : Key {
 
-		public override void HandleTriggerEnter (Collider other) {
+		public override void HandleTriggerEnter ( ) {
 			keyboard.Cancel ();
 		}
 

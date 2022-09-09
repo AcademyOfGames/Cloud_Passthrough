@@ -18,7 +18,7 @@ namespace VRKeys {
 	/// </summary>
 	public class BackspaceKey : Key {
 
-		public override void HandleTriggerEnter (Collider other) {
+		public override void HandleTriggerEnter ( ) {
 			keyboard.Backspace ();
 
 			ActivateFor (0.3f);

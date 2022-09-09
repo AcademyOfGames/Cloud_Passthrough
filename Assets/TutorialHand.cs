@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 
@@ -22,6 +23,7 @@ public class TutorialHand : MonoBehaviour
         {
             glove.SetParent(rightHand);
             glove.localPosition = Vector3.zero;
+            glove.localEulerAngles =  Vector3.zero;
                 BirdMovement bird = FindObjectOfType<BirdMovement>();
             bird.landingSpot = bird.handLandingSpot;
             bird.anim.SetBool(Eating, false);
