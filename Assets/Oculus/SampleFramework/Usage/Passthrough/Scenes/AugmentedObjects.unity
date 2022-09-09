@@ -10342,9 +10342,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.03
-  waypoint: {fileID: 2139128891}
+  turnSpeed: 3
+  firstLocationGoal: {fileID: 2139128891}
+  testcube: {fileID: 8140669018861547340, guid: 5702bd3e5d4dda04c8b24c522f9d6a9d,
+    type: 3}
   currentState: 0
-  waypointProximity: 3
+  waypointProximity: 5
+  target: {fileID: 265189950}
+  waypointRadius: 5
 --- !u!1 &724568980
 GameObject:
   m_ObjectHideFlags: 0
@@ -12901,7 +12906,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &860600050
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16783,6 +16788,7 @@ MonoBehaviour:
   ghostHand: {fileID: 654963727}
   customControlsUnlocked: 0
   stump: {fileID: 240631864}
+  deer: {fileID: 712838284}
   currentState: 0
 --- !u!135 &1155377848
 SphereCollider:
@@ -26462,7 +26468,7 @@ PrefabInstance:
     - target: {fileID: 1165301265534203786, guid: eb05e69ca827ddf459eda6c2ca4d2612,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.27
+      value: 17.74
       objectReference: {fileID: 0}
     - target: {fileID: 1165301265534203786, guid: eb05e69ca827ddf459eda6c2ca4d2612,
         type: 3}
@@ -26472,12 +26478,12 @@ PrefabInstance:
     - target: {fileID: 1165301265534203786, guid: eb05e69ca827ddf459eda6c2ca4d2612,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.23
+      value: -0.19
       objectReference: {fileID: 0}
     - target: {fileID: 1165301265534203786, guid: eb05e69ca827ddf459eda6c2ca4d2612,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9998711
+      value: 0.9944368
       objectReference: {fileID: 0}
     - target: {fileID: 1165301265534203786, guid: eb05e69ca827ddf459eda6c2ca4d2612,
         type: 3}
@@ -26487,7 +26493,7 @@ PrefabInstance:
     - target: {fileID: 1165301265534203786, guid: eb05e69ca827ddf459eda6c2ca4d2612,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.016056443
+      value: 0.10533514
       objectReference: {fileID: 0}
     - target: {fileID: 1165301265534203786, guid: eb05e69ca827ddf459eda6c2ca4d2612,
         type: 3}
@@ -26502,7 +26508,7 @@ PrefabInstance:
     - target: {fileID: 1165301265534203786, guid: eb05e69ca827ddf459eda6c2ca4d2612,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -1.84
+      value: 12.093
       objectReference: {fileID: 0}
     - target: {fileID: 1165301265534203786, guid: eb05e69ca827ddf459eda6c2ca4d2612,
         type: 3}
@@ -26513,6 +26519,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RedDeer_M_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165301265534364586, guid: eb05e69ca827ddf459eda6c2ca4d2612,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb05e69ca827ddf459eda6c2ca4d2612, type: 3}
@@ -37931,7 +37942,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: What do you think of the BeWilderness demo?
+  m_text: What do you think of the Bewilderness demo?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -38133,6 +38144,8 @@ GameObject:
   - component: {fileID: 1807333966}
   - component: {fileID: 1807333965}
   - component: {fileID: 1807333969}
+  - component: {fileID: 1807333971}
+  - component: {fileID: 1807333970}
   m_Layer: 5
   m_Name: FeedbackCanvas
   m_TagString: Untagged
@@ -38243,6 +38256,37 @@ MonoBehaviour:
   feedbackStarted: 0
   feedbckEnded: 0
   currentFeedbackPanel: 0
+--- !u!225 &1807333970
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807333964}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!95 &1807333971
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807333964}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: adfec52acf83d7d40ab28798cb14c932, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1809992476
 GameObject:
   m_ObjectHideFlags: 0
@@ -41458,7 +41502,7 @@ GameObject:
   - component: {fileID: 2139128893}
   - component: {fileID: 2139128892}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: firstDeerLocation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41472,7 +41516,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2139128890}
   m_LocalRotation: {x: -0, y: -0.016056444, z: -0, w: 0.99987113}
-  m_LocalPosition: {x: 1.6768618, y: 1.89, z: 16.233267}
+  m_LocalPosition: {x: -2.03, y: 1.89, z: 11.87}
   m_LocalScale: {x: 1.2882003, y: 1.2882, z: 1.2882003}
   m_Children: []
   m_Father: {fileID: 0}
@@ -41498,7 +41542,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2139128890}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

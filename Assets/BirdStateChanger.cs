@@ -16,6 +16,7 @@ public class BirdStateChanger : MonoBehaviour
 
     public StumpBehavior stump;
 
+    public GameObject deer;
     // States
     public enum BirdState
     {
@@ -108,6 +109,7 @@ public class BirdStateChanger : MonoBehaviour
         
                 if (bird.landingSpot == bird.handLandingSpot)
                 {
+                    deer.SetActive(true);
                     customControlsUnlocked = true;
                     foreach (var g in bird.customControlsUI)
                     {
@@ -160,7 +162,6 @@ public class BirdStateChanger : MonoBehaviour
             
             if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch) || Keyboard.current[Key.H].wasPressedThisFrame)
             {
-                FindObjectOfType<FeedbackLogic>().StartFeedback();
 
                 if (currentState == BirdState.Landing)
                 {

@@ -32,7 +32,7 @@ public class BrickLogic : MonoBehaviour
     {
         if (_activated )
         {
-            StartCoroutine(nameof(TurnColliderOffAndOn));
+           // StartCoroutine(nameof(TurnColliderOffAndOn));
 
             if (!brickCrashSound)
             {
@@ -60,7 +60,15 @@ public class BrickLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.y > 5)
+        {
+            GetComponent<BoxCollider>().enabled = false;
+        }
+        else
+        {
+            GetComponent<BoxCollider>().enabled = true;
 
+        }
     }
 
     IEnumerator TurnColliderOffAndOn()

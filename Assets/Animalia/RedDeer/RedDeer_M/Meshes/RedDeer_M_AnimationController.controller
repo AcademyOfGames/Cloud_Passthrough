@@ -634,7 +634,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Loco_Trot
+  m_Name: Loco_Run 0
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -647,7 +647,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1021101406617939707, guid: fbd78a007aa6ada4d8e0934ef5f78a70,
+  m_Motion: {fileID: -6234047769082231650, guid: 69ad5e3a345061e4a8979079fa1d7180,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 

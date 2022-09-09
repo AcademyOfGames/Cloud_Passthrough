@@ -138,7 +138,8 @@ public class BirdMovement : MonoBehaviour
         {
             currentCube = Instantiate(testcube, currentWaypoint, Quaternion.identity);
 
-        currentCube.transform.localScale *= .5f;        }
+            currentCube.transform.localScale *= .5f;        
+        }
     }
 
     public IEnumerator FacePlayer()

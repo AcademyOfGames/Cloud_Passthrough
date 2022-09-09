@@ -6,9 +6,13 @@ using UnityEngine;
 public class DeerMovement : MonoBehaviour
 {
     public float speed;
+    public float turnSpeed;
+    public Transform firstLocationGoal;
+    private Vector3 waypoint;
+    private bool introSequence = true;
+    private GameObject currentCube;
+    public GameObject testcube;
 
-    public Transform waypoint;
-    
     public enum AnimalStates {Walking, Eating, StopAndLook,
         Trotting
     }
@@ -18,10 +22,14 @@ public class DeerMovement : MonoBehaviour
     private Animator anim;
     
     public float waypointProximity = 3f;
+
+    public Transform target;
+    public float waypointRadius;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        waypoint = firstLocationGoal.position;
     }
 
     void SwitchState(AnimalStates newState)
@@ -44,18 +52,18 @@ public class DeerMovement : MonoBehaviour
         {
             case AnimalStates.StopAndLook:
                 anim.SetTrigger("StopAndLook");
-                StartCoroutine(WaitAndSwitchState(AnimalStates.Eating, 2f));
+                StartCoroutine(WaitAndSwitchState(AnimalStates.Eating, 1.4f));
                 break;
             case AnimalStates.Eating:
                 anim.SetBool("Eating",true);
-                StartCoroutine(WaitAndSwitchState(AnimalStates.Trotting, 3f));
+                StartCoroutine(WaitAndSwitchState(AnimalStates.Trotting, 5f));
                 break;
             case AnimalStates.Trotting:
+                if(introSequence) FindObjectOfType<FeedbackLogic>().StartFeedback();
                 anim.SetBool("Eating",false);
                 anim.SetBool("Walking",false);
 
                 anim.SetBool("Trotting",true);
-                StartCoroutine(WaitAndSwitchState(AnimalStates.Trotting, 5f));
                 break;
         }    
     }
@@ -72,7 +80,10 @@ public class DeerMovement : MonoBehaviour
         switch (currentState)
         {
             case AnimalStates.Walking:
-                transform.LookAt(waypoint.position);
+                Quaternion rotationGoal = Quaternion.LookRotation(waypoint - transform.position );
+
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotationGoal, turnSpeed * .001f);
+                //transform.LookAt(waypoint.position);
                 transform.Translate(Vector3.forward * speed);
             break;
             case AnimalStates.Trotting:
@@ -86,14 +97,44 @@ public class DeerMovement : MonoBehaviour
 
     private void DistanceCheck()
     {
-        float waypointDistance = Vector3.Distance(waypoint.position, transform.position);
+        float waypointDistance = Vector3.Distance(waypoint, transform.position);
         
         if(waypointDistance < waypointProximity)
         {
             if (currentState == AnimalStates.Walking)
             {
-                SwitchState(AnimalStates.StopAndLook);
+                if (introSequence)
+                {
+                    SwitchState(AnimalStates.StopAndLook);
+                }
+                else
+                {
+                    FindNewWaypoint();
+                }
             }
+        }
+    }
+
+    private void FindNewWaypoint()
+    {
+        // Pick a random point in a sphere of 1
+        Vector3 randomPos = Random.insideUnitSphere;
+
+        // Multiply the width and length * waypointRadius
+        randomPos.x *= waypointRadius;
+        randomPos.z *= waypointRadius;
+        randomPos.y = transform.position.y;
+        // Multiply the height * a random number between minHeight and maxHeight
+        waypoint = target.position + randomPos;
+
+        // For testing spawn a cube at the new waypoint
+        if( currentCube !=null) Destroy(currentCube);
+
+        if (testcube != null)
+        {
+            currentCube = Instantiate(testcube, waypoint, Quaternion.identity);
+
+            currentCube.transform.localScale *= .5f;        
         }
     }
 }

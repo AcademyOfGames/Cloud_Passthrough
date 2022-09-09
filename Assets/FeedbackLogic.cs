@@ -12,6 +12,7 @@ public class FeedbackLogic : MonoBehaviour
     public void StartFeedback()
     {
         if (feedbackStarted) return;
+        GetComponent<Animator>().Play("UIFadeIn");
         feedbackStarted = true;
         feedbackPanels[0].SetActive(true);
     }
