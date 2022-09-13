@@ -12,9 +12,9 @@ public class DeerMovement : MonoBehaviour
     private bool introSequence = true;
     private GameObject currentCube;
     public GameObject testcube;
-
+    public Transform sittingUnderTreeTransform;
     public enum AnimalStates {Walking, Eating, StopAndLook,
-        Trotting
+        Trotting, GoUnderTree
     }
 
     public AnimalStates currentState = AnimalStates.Walking;
@@ -50,13 +50,19 @@ public class DeerMovement : MonoBehaviour
     {
         switch (newState)
         {
+            case AnimalStates.GoUnderTree:
+                waypoint = sittingUnderTreeTransform.position;
+                anim.SetBool("Walking", true);
+                print("we're walking");
+
+                break;
             case AnimalStates.StopAndLook:
                 anim.SetTrigger("StopAndLook");
                 StartCoroutine(WaitAndSwitchState(AnimalStates.Eating, 1.4f));
                 break;
             case AnimalStates.Eating:
                 anim.SetBool("Eating",true);
-                StartCoroutine(WaitAndSwitchState(AnimalStates.Trotting, 5f));
+                StartCoroutine(WaitAndSwitchState(AnimalStates.GoUnderTree, 5f));
                 break;
             case AnimalStates.Trotting:
                 if(introSequence) FindObjectOfType<FeedbackLogic>().StartFeedback();
