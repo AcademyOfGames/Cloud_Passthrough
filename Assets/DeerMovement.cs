@@ -13,24 +13,68 @@ public class DeerMovement : MonoBehaviour
     private GameObject currentCube;
     public GameObject testcube;
     public Transform sittingUnderTreeTransform;
-    public enum AnimalStates {Walking, Eating, StopAndLook,
-        Trotting, GoUnderTree
+
+    public enum AnimalStates { Walking, Eating, StopAndLook,
+        Trotting, LieDown
     }
 
     public AnimalStates currentState = AnimalStates.Walking;
 
     private Animator anim;
-    
+
     public float waypointProximity = 3f;
 
     public Transform target;
     public float waypointRadius;
+
+    AnimalSettings goToTargetSettings;
+    AnimalSettings wanderingSettings;
+
+
+    public class AnimalSettings
+    {
+        public float waypointRadius;
+        public float waypointProximity;
+        public float speed;
+        public float turnSpeed;
+
+        //** This is called a constructor, when you write new BirdSettings(...) in your code you can create a new BirdSettings object with specific data
+        public AnimalSettings( float wRadius, float wProximity, float vSpeed, float tSpeed)
+        {
+            waypointRadius = wRadius;
+            waypointProximity = wProximity;
+            speed = vSpeed;
+            turnSpeed = tSpeed;
+        }
+    }
+
+
+    public AnimalSettings currentSettings;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         waypoint = firstLocationGoal.position;
+        SetAnimalSettings();
+        UpdateAnimalSettings(goToTargetSettings);
     }
+
+    void SetAnimalSettings()
+    {
+        wanderingSettings = new AnimalSettings( waypointRadius, waypointProximity, speed, turnSpeed);
+        goToTargetSettings = new AnimalSettings( waypointRadius, waypointProximity * .1f, speed, turnSpeed *3f);
+
+    }
+
+    void UpdateAnimalSettings(AnimalSettings newSetting)
+    {
+        currentSettings = newSetting;
+        turnSpeed = newSetting.turnSpeed;
+        waypointRadius = newSetting.waypointRadius;
+        speed = newSetting.speed;
+        waypointProximity = newSetting.waypointProximity;
+    }
+
 
     void SwitchState(AnimalStates newState)
     {
@@ -50,9 +94,8 @@ public class DeerMovement : MonoBehaviour
     {
         switch (newState)
         {
-            case AnimalStates.GoUnderTree:
-                waypoint = sittingUnderTreeTransform.position;
-                anim.SetBool("Walking", true);
+            case AnimalStates.LieDown:
+                anim.SetBool("LyingDown", true);
                 print("we're walking");
 
                 break;
@@ -62,7 +105,7 @@ public class DeerMovement : MonoBehaviour
                 break;
             case AnimalStates.Eating:
                 anim.SetBool("Eating",true);
-                StartCoroutine(WaitAndSwitchState(AnimalStates.GoUnderTree, 5f));
+                StartCoroutine(WaitAndSwitchState(AnimalStates.LieDown, 5f));
                 break;
             case AnimalStates.Trotting:
                 if(introSequence) FindObjectOfType<FeedbackLogic>().StartFeedback();
@@ -143,4 +186,6 @@ public class DeerMovement : MonoBehaviour
             currentCube.transform.localScale *= .5f;        
         }
     }
+
+
 }
