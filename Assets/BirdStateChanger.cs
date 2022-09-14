@@ -101,7 +101,7 @@ public class BirdStateChanger : MonoBehaviour
                     SwitchState(BirdState.Eating);
                     IEnumerator facePlayer = bird.FacePlayer();
                     StartCoroutine(facePlayer);
-                    if (bird.fishCaught == 3)
+                    if (bird.fishCaught == 1)
                     {
                         ghostHand.SetActive(true);
                     }

@@ -255,22 +255,27 @@ public class BirdMovement : MonoBehaviour
         yield return new WaitForSeconds(6f);
         birdAudio.PlaySound("birdScream");
         yield return new WaitForSeconds(2f);
+        print("takeoff  for 15s ");
 
         birdState.SwitchState(BirdStateChanger.BirdState.TakeOff);
-        yield return new WaitForSeconds(15f); 
-
+        yield return new WaitForSeconds(15f);
+        print("welcoming  for 25s ");
         birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
-        yield return new WaitForSeconds(18f);
+        yield return new WaitForSeconds(25f);
+        print("hunting  for 15s ");
 
         birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
         yield return new WaitForSeconds(15f);
+        print("welcoming for 30");
 
         birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
-        yield return new WaitForSeconds(20f);
+        yield return new WaitForSeconds(30f);
         fishBucket.SetActive(true);
+        print("hunting for 5s");
 
         birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
         yield return new WaitForSeconds(5f);
+        print("hunting after 5 wait?");
 
         birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
     }
@@ -312,6 +317,7 @@ public class BirdMovement : MonoBehaviour
         {
             case BirdStateChanger.BirdState.Welcoming:
                 birdAudio.PlaySound("birdScream");
+                print("Switching to orbiting in distance check");
                 birdState.SwitchState(BirdStateChanger.BirdState.Orbiting);
                 break;
             case BirdStateChanger.BirdState.GoToLanding:
@@ -353,10 +359,11 @@ public class BirdMovement : MonoBehaviour
 
     void FaceTowardMovement()
     {
-        if (Vector3.Distance(target.position, transform.position) > minOrbitRadius)
+        print("Distance " + Vector3.Distance(player.position, transform.position) + " to reach " + minOrbitRadius);
+        if (Vector3.Distance(player.position, transform.position) > minOrbitRadius)
         {
 
-            transform.RotateAround(target.position, Vector3.up, orbitSpeed * Time.deltaTime);
+            transform.RotateAround(player.position, Vector3.up, orbitSpeed * Time.deltaTime);
             OrbitRotation();
         }
         else
