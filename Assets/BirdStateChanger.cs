@@ -109,7 +109,6 @@ public class BirdStateChanger : MonoBehaviour
         
                 if (bird.landingSpot == bird.handLandingSpot)
                 {
-                    deer.SetActive(true);
                     customControlsUnlocked = true;
                     foreach (var g in bird.customControlsUI)
                     {
@@ -173,15 +172,27 @@ public class BirdStateChanger : MonoBehaviour
                     SwitchState(BirdState.Hunting);
                 }
             }
-            if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch) || Keyboard.current[Key.L].wasPressedThisFrame)
+
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch) ||
+                Keyboard.current[Key.L].wasPressedThisFrame)
             {
-                bird.landingSpot = GetComponent<BirdMovement>().handLandingSpot;
-                SwitchState(BirdState.GoToLanding);
-            }    
+                if (currentState == BirdState.Landed || currentState == BirdState.Landing)
+                {
+                    StartCoroutine(nameof(WaitAndActivateDeer));
+                    bird.anim.SetTrigger(TakeOff);
+                    SwitchState(BirdState.TakeOff);
+                }
+                else
+                {
+                    
+                    bird.landingSpot = GetComponent<BirdMovement>().handLandingSpot;
+                    SwitchState(BirdState.GoToLanding);
+                }
+            }
+
             if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch) || Keyboard.current[Key.T].wasPressedThisFrame)
             {
-                bird.anim.SetTrigger(TakeOff);
-                SwitchState(BirdState.TakeOff);
+
             }
         }
 
@@ -193,7 +204,13 @@ public class BirdStateChanger : MonoBehaviour
             SwitchState(BirdState.Diving);
         }*/
     }
-    
+
+    private IEnumerator WaitAndActivateDeer()
+    {
+        yield return new WaitForSeconds(5f);
+        deer.SetActive(true);
+    }
+
     void SetBirdSettings()
     {
         //**creating each bird setting for us to use. we can add custom speed, waypoint logic etc

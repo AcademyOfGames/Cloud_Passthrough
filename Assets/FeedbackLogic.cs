@@ -9,12 +9,23 @@ public class FeedbackLogic : MonoBehaviour
     public bool feedbackStarted;
     public bool feedbckEnded;
     public int currentFeedbackPanel = 0;
+
+    public LineRenderer[] lasers;
     public void StartFeedback()
     {
         if (feedbackStarted) return;
         GetComponent<Animator>().Play("UIFadeIn");
         feedbackStarted = true;
         feedbackPanels[0].SetActive(true);
+        ToggleLasers(true);
+    }
+
+    void ToggleLasers(bool on)
+    {
+        foreach (var l in lasers)
+        {
+            l.enabled = on;
+        }
     }
 
     public void NextFeedbackPanel()
@@ -29,7 +40,10 @@ public class FeedbackLogic : MonoBehaviour
 
     public void CancelFeedback()
     {
+        ToggleLasers(false);
+
         gameObject.SetActive(false);
+
     }
     
     public void SetStarRating(int index)

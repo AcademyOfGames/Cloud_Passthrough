@@ -269,7 +269,7 @@ public class BirdMovement : MonoBehaviour
         print("welcoming for 30");
 
         birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
-        yield return new WaitForSeconds(30f);
+        yield return new WaitForSeconds(23f);
         fishBucket.SetActive(true);
         print("hunting for 5s");
 
