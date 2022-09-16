@@ -105,7 +105,7 @@ public class DeerMovement : MonoBehaviour
                 break;
             case AnimalStates.Eating:
                 anim.SetBool("Eating",true);
-                StartCoroutine(WaitAndSwitchState(AnimalStates.LieDown, 5f));
+                StartCoroutine(WaitAndSwitchState(AnimalStates.LieDown,12f));
                 break;
             case AnimalStates.Trotting:
                 anim.SetBool("Eating",false);
@@ -159,7 +159,7 @@ public class DeerMovement : MonoBehaviour
             {
                 if (introSequence)
                 {
-                    SwitchState(AnimalStates.StopAndLook);
+                    SwitchState(AnimalStates.Eating);
                 }
                 else
                 {

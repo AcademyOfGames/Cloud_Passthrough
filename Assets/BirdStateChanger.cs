@@ -9,7 +9,7 @@ public class BirdStateChanger : MonoBehaviour
     OVRInput.Controller controllerR = OVRInput.Controller.RTouch;
     OVRInput.Controller controllerL = OVRInput.Controller.LTouch;
 
-    public TextMeshProUGUI stateText;
+    public TextMeshPro stateText;
     public GameObject ghostHand;
 
     public bool customControlsUnlocked;
@@ -84,6 +84,8 @@ public class BirdStateChanger : MonoBehaviour
 
             case BirdState.Welcoming:
                 bird.currentWaypoint = bird.player.position + Vector3.up *.5f;
+                bird.SwitchAnimationState(birdState);
+
                 //after 1 second set the bird to welcoming
                 bird.UpdateSettings(welcomingSettings);
                 break;
@@ -148,13 +150,25 @@ public class BirdStateChanger : MonoBehaviour
     {
         if (customControlsUnlocked)
         {
-            // take off left trigger and landing right trigger. right A add new fish. X slow mo and Y for tricks 
 
+            /* 
+             * Left Index - Fly By
+             * Left Grab - Explore
+             * Right A - Add Fish
+             * Right Index - Take Off/Land
+             * Right Grab - Grab fish
+             * (Later) left X - Barrel Roll
+             * (Later) Left Y - Slow Mo
+             * */
+
+            //AddFish
             if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch) || Keyboard.current[Key.S].wasPressedThisFrame)
             {
                 stump.SpawnMorePrey();
             }
-            if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.RTouch) || Keyboard.current[Key.W].wasPressedThisFrame)
+
+            //Fly By
+            if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch) || Keyboard.current[Key.W].wasPressedThisFrame)
             {
                 SwitchState(BirdState.Welcoming);
             }
@@ -164,8 +178,8 @@ public class BirdStateChanger : MonoBehaviour
 
                 if (currentState == BirdState.Landing)
                 {
-                    bird.anim.SetTrigger(TakeOff);
-                    SwitchState(BirdState.TakeOff);
+                    /*bird.anim.SetTrigger(TakeOff);
+                    SwitchState(BirdState.TakeOff);*/
                 }
                 else
                 {

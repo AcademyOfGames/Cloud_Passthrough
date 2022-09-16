@@ -48,7 +48,9 @@ public class BirdMovement : MonoBehaviour
     // Testing
     public GameObject testcube;
     public GameObject currentCube;
-    
+
+    //UI
+    public GameObject grabFishUI;
 
     private float flappngRate = 1;
     private float originalFlappngRate = 1;
@@ -178,7 +180,6 @@ public class BirdMovement : MonoBehaviour
             
             case BirdStateChanger.BirdState.GoToLanding:
                 currentWaypoint = landingSpot.position;
-                print("Go to landing grabbed fish " + grabbedFish);
                 if (grabbedFish)
                 {
                     turnSpeed *= 1.01f;
@@ -195,7 +196,6 @@ public class BirdMovement : MonoBehaviour
                 break;
 
             case BirdStateChanger.BirdState.Landing:
-                print("grabbedFish " + grabbedFish);
                 //print("prey " + prey.name);
                 if (grabbedFish)
                 {
@@ -253,6 +253,7 @@ public class BirdMovement : MonoBehaviour
     IEnumerator IntroSequence()
     {
         yield return new WaitForSeconds(6f);
+        anim.SetTrigger("Scream");
         birdAudio.PlaySound("birdScream");
         yield return new WaitForSeconds(2f);
         print("takeoff  for 15s ");
@@ -270,6 +271,7 @@ public class BirdMovement : MonoBehaviour
 
         birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
         yield return new WaitForSeconds(23f);
+        grabFishUI.SetActive(true);
         fishBucket.SetActive(true);
         print("hunting for 5s");
 
@@ -351,7 +353,7 @@ public class BirdMovement : MonoBehaviour
         Vector3 dir = position - previousPos;
         rotationGoal = Quaternion.LookRotation(dir);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotationGoal, .015f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotationGoal, .04f);
         transform.Translate(Vector3.forward* .4f * Time.deltaTime);
 
         previousPos = position;
@@ -359,7 +361,6 @@ public class BirdMovement : MonoBehaviour
 
     void FaceTowardMovement()
     {
-        print("Distance " + Vector3.Distance(player.position, transform.position) + " to reach " + minOrbitRadius);
         if (Vector3.Distance(player.position, transform.position) > minOrbitRadius)
         {
 
@@ -469,6 +470,9 @@ public class BirdMovement : MonoBehaviour
 //        print("Switching animation state " + newState);
         switch (newState)
         {
+            case BirdStateChanger.BirdState.Welcoming:
+                anim.SetTrigger("TakeOff");
+                break;
             case BirdStateChanger.BirdState.TakeOff:
                 anim.SetBool(OnGround,false);
                 SwitchAnimation("Flap");
