@@ -175,6 +175,8 @@ public class BirdStateChanger : MonoBehaviour
             
             if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch) || Keyboard.current[Key.H].wasPressedThisFrame)
             {
+                StartCoroutine("WaitAndActivateDeer");
+
 
                 if (currentState == BirdState.Landing)
                 {
@@ -190,9 +192,11 @@ public class BirdStateChanger : MonoBehaviour
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch) ||
                 Keyboard.current[Key.L].wasPressedThisFrame)
             {
+                print("primary right index tapped");
                 if (currentState == BirdState.Landed || currentState == BirdState.Landing)
                 {
-                    StartCoroutine(nameof(WaitAndActivateDeer));
+                    print("wait and activate deer");
+                    StartCoroutine("WaitAndActivateDeer");
                     bird.anim.SetTrigger(TakeOff);
                     SwitchState(BirdState.TakeOff);
                 }
@@ -221,7 +225,9 @@ public class BirdStateChanger : MonoBehaviour
 
     private IEnumerator WaitAndActivateDeer()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(30f);
+        print("30 seconds");
+
         deer.SetActive(true);
     }
 

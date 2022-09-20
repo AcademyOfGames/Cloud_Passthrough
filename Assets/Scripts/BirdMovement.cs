@@ -256,28 +256,23 @@ public class BirdMovement : MonoBehaviour
         anim.SetTrigger("Scream");
         birdAudio.PlaySound("birdScream");
         yield return new WaitForSeconds(2f);
-        print("takeoff  for 15s ");
 
         birdState.SwitchState(BirdStateChanger.BirdState.TakeOff);
         yield return new WaitForSeconds(15f);
-        print("welcoming  for 25s ");
+
         birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
         yield return new WaitForSeconds(25f);
-        print("hunting  for 15s ");
 
         birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
         yield return new WaitForSeconds(15f);
-        print("welcoming for 30");
 
         birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
-        yield return new WaitForSeconds(23f);
+        yield return new WaitForSeconds(18f);
         grabFishUI.SetActive(true);
         fishBucket.SetActive(true);
-        print("hunting for 5s");
 
         birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
         yield return new WaitForSeconds(5f);
-        print("hunting after 5 wait?");
 
         birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
     }
@@ -318,8 +313,10 @@ public class BirdMovement : MonoBehaviour
         switch (birdState.currentState)
         {
             case BirdStateChanger.BirdState.Welcoming:
-                birdAudio.PlaySound("birdScream");
-                print("Switching to orbiting in distance check");
+                if(!introSequenceDone)                birdAudio.PlaySound("birdScream");
+
+                birdAudio.PlaySound("woosh");
+
                 birdState.SwitchState(BirdStateChanger.BirdState.Orbiting);
                 break;
             case BirdStateChanger.BirdState.GoToLanding:

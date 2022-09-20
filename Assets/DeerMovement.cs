@@ -124,7 +124,7 @@ public class DeerMovement : MonoBehaviour
     
     IEnumerator WaitAndStartFeedback()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(27f);
         if(introSequence) FindObjectOfType<FeedbackLogic>().StartFeedback();
     }
     
@@ -159,7 +159,7 @@ public class DeerMovement : MonoBehaviour
             {
                 if (introSequence)
                 {
-                    SwitchState(AnimalStates.Eating);
+                    SwitchState(AnimalStates.StopAndLook);
                 }
                 else
                 {
