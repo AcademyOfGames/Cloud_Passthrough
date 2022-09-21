@@ -61,6 +61,8 @@ public class BirdMovement : MonoBehaviour
     public Transform prey;
     public float maxSpeed;
 
+
+
     private static readonly int OnGround = Animator.StringToHash("OnGround");
     private static readonly int Eating = Animator.StringToHash("Eating");
     private static readonly int Flap = Animator.StringToHash("Flap");

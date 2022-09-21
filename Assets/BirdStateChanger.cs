@@ -13,10 +13,13 @@ public class BirdStateChanger : MonoBehaviour
     public GameObject ghostHand;
 
     public bool customControlsUnlocked;
+    public AudioSource birdWind;
 
     public StumpBehavior stump;
 
     public GameObject deer;
+
+    public TextMeshPro takeOffText;
     // States
     public enum BirdState
     {
@@ -80,9 +83,12 @@ public class BirdStateChanger : MonoBehaviour
         {
             case BirdState.Hunting:
                 bird.UpdateSettings(huntingSettings);
+                birdWind.Play();
                 break;
 
             case BirdState.Welcoming:
+                birdWind.Play();
+
                 bird.currentWaypoint = bird.player.position + Vector3.up *.5f;
                 bird.SwitchAnimationState(birdState);
 
@@ -95,6 +101,7 @@ public class BirdStateChanger : MonoBehaviour
 
                 break;
             case BirdState.Landing:
+                birdWind.Stop();
                 bird.SwitchAnimationState(birdState);
                 bird.UpdateSettings(LandedSettings);
 
@@ -136,11 +143,11 @@ public class BirdStateChanger : MonoBehaviour
                 break;
             
             case BirdState.Eating:
+                birdWind.Stop();
                 bird.SwitchAnimationState(birdState);
                 //StartCoroutine("ResetToHunting");
                 break;
         }
-        stateText.text = birdState.ToString();
 
         currentState = birdState;
     }
@@ -170,6 +177,8 @@ public class BirdStateChanger : MonoBehaviour
             //Fly By
             if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch) || Keyboard.current[Key.W].wasPressedThisFrame)
             {
+                stateText.text = "Fly By";
+
                 SwitchState(BirdState.Welcoming);
             }
             
@@ -185,6 +194,8 @@ public class BirdStateChanger : MonoBehaviour
                 }
                 else
                 {
+                    stateText.text = "Explore";
+
                     SwitchState(BirdState.Hunting);
                 }
             }
@@ -199,12 +210,21 @@ public class BirdStateChanger : MonoBehaviour
                     StartCoroutine("WaitAndActivateDeer");
                     bird.anim.SetTrigger(TakeOff);
                     SwitchState(BirdState.TakeOff);
+
+                    stateText.text = "Explore";
+
+                    takeOffText.text = "Land";
+
                 }
                 else
                 {
                     
                     bird.landingSpot = GetComponent<BirdMovement>().handLandingSpot;
                     SwitchState(BirdState.GoToLanding);
+
+                    takeOffText.text = "Take Off";
+                    stateText.text = "Land";
+
                 }
             }
 
