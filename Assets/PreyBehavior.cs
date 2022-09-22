@@ -31,7 +31,6 @@ public class PreyBehavior : MonoBehaviour
         var bird = other.GetComponent<BirdMovement>();
         if (bird != null)
         {
-            print("grabbed fish in preyBehavior trigger before" + bird.grabbedFish);
             if (bird.grabbedFish) return;
             _fishThrown = true;
             bird.prey = transform;

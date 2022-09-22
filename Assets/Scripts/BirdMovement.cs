@@ -279,6 +279,15 @@ public class BirdMovement : MonoBehaviour
         birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
     }
 
+    public void ToggleControllerUI(bool on)
+    {
+        FindObjectOfType<BirdStateChanger>().customControlsUnlocked = on;
+
+        foreach (var g in customControlsUI)
+        {
+            g.SetActive(on);
+        }
+    }
     private void ResetXAngle()
     {
         Vector3 targetRotation = transform.eulerAngles;
@@ -494,7 +503,9 @@ public class BirdMovement : MonoBehaviour
             case BirdStateChanger.BirdState.Eating:
                 anim.SetBool(Eating,true);
                 break;
-            
+            case BirdStateChanger.BirdState.GoToLanding:
+                if(birdState.currentState == BirdStateChanger.BirdState.Landing || birdState.currentState == BirdStateChanger.BirdState.Eating) anim.SetTrigger("TakeOff");
+                break;
         }
 
     }

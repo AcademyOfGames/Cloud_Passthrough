@@ -97,6 +97,8 @@ public class BirdStateChanger : MonoBehaviour
                 break;
 
             case BirdState.GoToLanding:
+                bird.SwitchAnimationState(birdState);
+
                 bird.UpdateSettings(goToLandingSettings);
 
                 break;
@@ -118,11 +120,7 @@ public class BirdStateChanger : MonoBehaviour
         
                 if (bird.landingSpot == bird.handLandingSpot)
                 {
-                    customControlsUnlocked = true;
-                    foreach (var g in bird.customControlsUI)
-                    {
-                        g.SetActive(true);
-                    }
+                    bird.ToggleControllerUI(true);
                 }
                 //Invoke("TakeOff",6);  
                 break;

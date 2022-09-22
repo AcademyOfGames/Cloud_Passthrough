@@ -14,6 +14,10 @@ public class FeedbackLogic : MonoBehaviour
     public void StartFeedback()
     {
         if (feedbackStarted) return;
+        
+        FindObjectOfType<BirdMovement>().ToggleControllerUI(false);
+        FindObjectOfType<BirdStateChanger>().SwitchState(BirdStateChanger.BirdState.TakeOff);
+
         GetComponent<Animator>().Play("UIFadeIn");
         feedbackStarted = true;
         feedbackPanels[0].SetActive(true);
@@ -41,6 +45,7 @@ public class FeedbackLogic : MonoBehaviour
     public void CancelFeedback()
     {
         ToggleLasers(false);
+        FindObjectOfType<BirdMovement>().ToggleControllerUI(true);
 
         gameObject.SetActive(false);
 
@@ -64,6 +69,8 @@ public class FeedbackLogic : MonoBehaviour
 
     public void FeedbackEnded()
     {
+        FindObjectOfType<BirdMovement>().ToggleControllerUI(true);
+
         feedbckEnded = true;
         gameObject.SetActive(false);
     }
