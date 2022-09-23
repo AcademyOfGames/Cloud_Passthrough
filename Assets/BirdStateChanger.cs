@@ -162,14 +162,25 @@ public class BirdStateChanger : MonoBehaviour
              * Right A - Add Fish
              * Right Index - Take Off/Land
              * Right Grab - Grab fish
-             * (Later) left X - Barrel Roll
-             * (Later) Left Y - Slow Mo
+             * (Later) left Y - Barrel Roll
+             * (Later) Left X - Slow Mo
              * */
 
             //AddFish
             if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch) || Keyboard.current[Key.S].wasPressedThisFrame)
             {
                 stump.SpawnMorePrey();
+            }
+
+
+            if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch) || Keyboard.current[Key.S].wasPressedThisFrame)
+            {
+                bird.ToggleSloMo(true);
+            }
+
+            if (OVRInput.GetUp(OVRInput.Button.One, OVRInput.Controller.LTouch) || Keyboard.current[Key.S].wasPressedThisFrame)
+            {
+                bird.ToggleSloMo(false);
             }
 
             //Fly By
