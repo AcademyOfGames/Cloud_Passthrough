@@ -21372,10 +21372,10 @@ MonoBehaviour:
   stateText: {fileID: 199947011}
   ghostHand: {fileID: 654963727}
   customControlsUnlocked: 0
-  birdWind: {fileID: 1155377852}
+  birdWind: {fileID: 0}
   stump: {fileID: 240631864}
   deer: {fileID: 712838284}
-  takeOffText: {fileID: 1242189289}
+  takeOffText: {fileID: 0}
   currentState: 0
 --- !u!135 &1155377848
 SphereCollider:
@@ -43660,6 +43660,7 @@ MonoBehaviour:
   lasers:
   - {fileID: 1109202964}
   - {fileID: 1210877294}
+  emailInput: {fileID: 1002496773303526712}
 --- !u!225 &1807333970
 CanvasGroup:
   m_ObjectHideFlags: 0

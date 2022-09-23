@@ -31,6 +31,8 @@ public class PreyBehavior : MonoBehaviour
         var bird = other.GetComponent<BirdMovement>();
         if (bird != null)
         {
+            FindObjectOfType<GoogleSheets>().AddEventData("Grabbed a fish.", SystemInfo.deviceUniqueIdentifier);
+
             if (bird.grabbedFish) return;
             _fishThrown = true;
             bird.prey = transform;

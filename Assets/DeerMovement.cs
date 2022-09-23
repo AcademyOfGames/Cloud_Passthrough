@@ -53,6 +53,8 @@ public class DeerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        FindObjectOfType<GoogleSheets>().AddEventData("Deer showed up", SystemInfo.deviceUniqueIdentifier);
+
         anim = GetComponent<Animator>();
         waypoint = firstLocationGoal.position;
         SetAnimalSettings();

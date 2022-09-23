@@ -26,7 +26,7 @@ namespace VRKeys {
 		{
 			FindObjectOfType<GoogleSheets>().userName = keyboard.text;
 
-			FindObjectOfType<GoogleSheets>().AddEventData("Name Entered " + keyboard.text);
+			FindObjectOfType<GoogleSheets>().AddEventData(" Email Entered " + keyboard.text, SystemInfo.deviceUniqueIdentifier);
 			FindObjectOfType<FeedbackLogic>().FeedbackEnded();
 			Destroy(FindObjectOfType<Keyboard>().gameObject);
 		}

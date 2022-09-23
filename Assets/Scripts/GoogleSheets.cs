@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GoogleSheets : MonoBehaviour
 {
-    string BASE_URL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSc9T5FuV5aLl-1RUsM9mVFmUBMWojrGIoYivfs3SIQQmvMq8Q/formResponse";
+    
+    string BASE_URL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdHkniLGcPDOwky78XShFmCSTerlW_yZrQsb_En0tyVrBGj0w/formResponse";
     public string userName = "Guest";
     void Start()
     {
@@ -12,8 +13,8 @@ public class GoogleSheets : MonoBehaviour
     }
    IEnumerator Post(string data) {
        WWWForm form = new WWWForm();
-       form.AddField("entry.781808147", data);
-       form.AddField("entry.593286627", userName);
+       form.AddField("entry.1758749926", data);
+       form.AddField("entry.1173467535", userName);
    
        byte[] rawData = form.data;
        string url = BASE_URL;
@@ -23,7 +24,9 @@ public class GoogleSheets : MonoBehaviour
        yield return www;
    }
    
-   public void AddEventData(string data) {
+   public void AddEventData(string data, string user)
+   {
+       string userName = user;
        StartCoroutine(Post(data));
    }
 }

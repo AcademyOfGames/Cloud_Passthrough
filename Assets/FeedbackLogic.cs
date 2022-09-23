@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class FeedbackLogic : MonoBehaviour
@@ -11,6 +12,8 @@ public class FeedbackLogic : MonoBehaviour
     public int currentFeedbackPanel = 0;
 
     public LineRenderer[] lasers;
+
+    public TextMeshProUGUI emailInput;
     public void StartFeedback()
     {
         if (feedbackStarted) return;
@@ -37,7 +40,11 @@ public class FeedbackLogic : MonoBehaviour
         print("Setting to false: " + feedbackPanels[currentFeedbackPanel].name);
         feedbackPanels[currentFeedbackPanel].SetActive(false);
         currentFeedbackPanel++;
-        if(currentFeedbackPanel > feedbackPanels.Length || feedbckEnded) return;
+        if (currentFeedbackPanel > feedbackPanels.Length || feedbckEnded)
+        {
+            FindObjectOfType<GoogleSheets>().AddEventData(" Email Entered " + emailInput.text, SystemInfo.deviceUniqueIdentifier);
+            return;
+        }
         feedbackPanels[currentFeedbackPanel].SetActive(true);
         print("Setting to true " + feedbackPanels[currentFeedbackPanel].name);
     }
@@ -53,7 +60,8 @@ public class FeedbackLogic : MonoBehaviour
     
     public void SetStarRating(int index)
     {
-        print("Stars set to " +  index);
+        FindObjectOfType<GoogleSheets>().AddEventData("Stars set to " + index, SystemInfo.deviceUniqueIdentifier);
+
     }
     // Start is called before the first frame update
     void Start()

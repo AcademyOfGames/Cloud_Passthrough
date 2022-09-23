@@ -28,7 +28,7 @@ public class StarButton : GenericVRClick
         {
             star.ToggleStar(false);
         }
-        feedback.SetStarRating(starIndex);
+        feedback.SetStarRating(starIndex +1);
         if (isOn)
         {
             foreach (var star in starGroup)
