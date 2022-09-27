@@ -120,6 +120,8 @@ public class BirdStateChanger : MonoBehaviour
         
                 if (bird.landingSpot == bird.handLandingSpot)
                 {
+                    FindObjectOfType<GoogleSheets>().AddEventData("Eagle on Hand", SystemInfo.deviceUniqueIdentifier);
+
                     bird.ToggleControllerUI(true);
                 }
                 //Invoke("TakeOff",6);  
@@ -169,12 +171,16 @@ public class BirdStateChanger : MonoBehaviour
             //AddFish
             if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch) || Keyboard.current[Key.S].wasPressedThisFrame)
             {
+                FindObjectOfType<GoogleSheets>().AddEventData("Added more fish", SystemInfo.deviceUniqueIdentifier);
+
                 stump.SpawnMorePrey();
             }
 
 
             if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch) || Keyboard.current[Key.S].wasPressedThisFrame)
             {
+                FindObjectOfType<GoogleSheets>().AddEventData("SlowMo Pressed", SystemInfo.deviceUniqueIdentifier);
+
                 bird.ToggleSloMo(true);
             }
 
@@ -186,6 +192,8 @@ public class BirdStateChanger : MonoBehaviour
             //Fly By
             if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch) || Keyboard.current[Key.W].wasPressedThisFrame)
             {
+                FindObjectOfType<GoogleSheets>().AddEventData("Fly By Pressed", SystemInfo.deviceUniqueIdentifier);
+
                 stateText.text = "Fly By";
 
                 SwitchState(BirdState.Welcoming);
@@ -193,6 +201,8 @@ public class BirdStateChanger : MonoBehaviour
             
             if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch) || Keyboard.current[Key.H].wasPressedThisFrame)
             {
+                FindObjectOfType<GoogleSheets>().AddEventData("Explore pressed", SystemInfo.deviceUniqueIdentifier);
+
                 StartCoroutine("WaitAndActivateDeer");
 
 
@@ -212,10 +222,11 @@ public class BirdStateChanger : MonoBehaviour
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch) ||
                 Keyboard.current[Key.L].wasPressedThisFrame)
             {
-                print("primary right index tapped");
+
                 if (currentState == BirdState.Landed || currentState == BirdState.Landing)
                 {
-                    print("wait and activate deer");
+                    FindObjectOfType<GoogleSheets>().AddEventData("Take Off pressed", SystemInfo.deviceUniqueIdentifier);
+
                     StartCoroutine("WaitAndActivateDeer");
                     bird.anim.SetTrigger(TakeOff);
                     SwitchState(BirdState.TakeOff);
@@ -227,7 +238,9 @@ public class BirdStateChanger : MonoBehaviour
                 }
                 else
                 {
-                    
+                    FindObjectOfType<GoogleSheets>().AddEventData("Land pressed", SystemInfo.deviceUniqueIdentifier);
+
+
                     bird.landingSpot = GetComponent<BirdMovement>().handLandingSpot;
                     SwitchState(BirdState.GoToLanding);
 

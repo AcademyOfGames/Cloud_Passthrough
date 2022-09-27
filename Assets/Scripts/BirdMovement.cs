@@ -492,7 +492,7 @@ public class BirdMovement : MonoBehaviour
     }
 
     public void ToggleSloMo(bool on){
-
+        print("Toggling slomo " + on);
         if (on)
         {
             Time.timeScale = .1f;

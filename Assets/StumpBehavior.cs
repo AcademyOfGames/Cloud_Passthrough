@@ -20,9 +20,9 @@ public class StumpBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        FindObjectOfType<GoogleSheets>().AddEventData("Stump appeared", SystemInfo.deviceUniqueIdentifier);
     }
-    
+
     public void SpawnMorePrey()
     {
         if (totalFishAlive >= 4) return;
