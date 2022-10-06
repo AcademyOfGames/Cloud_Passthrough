@@ -3541,7 +3541,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &240631858
 Transform:
   m_ObjectHideFlags: 0
@@ -43699,7 +43699,7 @@ MonoBehaviour:
   - {fileID: 860600049}
   - {fileID: 1420044412}
   feedbackStarted: 0
-  feedbckEnded: 0
+  feedbackEnded: 0
   currentFeedbackPanel: 0
   lasers:
   - {fileID: 1109202964}
