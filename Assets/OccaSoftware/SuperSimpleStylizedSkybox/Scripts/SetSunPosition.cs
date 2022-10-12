@@ -26,7 +26,7 @@ namespace OccaSoftware
 
         void Update()
         {
-            if (transform.eulerAngles.x > 305 || transform.eulerAngles.x < 40)
+            //if (transform.eulerAngles.x > 305 || transform.eulerAngles.x < 40)
             {
                 handSpeed = Mathf.InverseLerp(lowHandPos,highHandPos, handTransform.localPosition.y);
                 currentRotationSpeed = rotationSpeed * handSpeed* handSpeed;
@@ -38,8 +38,8 @@ namespace OccaSoftware
                 morningMusic = true;
                 GetComponent<AudioSource>().Play();
             }
-  
-           debug.text = "rotation x = " + transform.eulerAngles.x+ "between  " + lowHandPos.ToString() + " and " + highHandPos.ToString() + " at " + handTransform.localPosition.y + " speed is " + handSpeed;
+    
+        if(debug !=null)           debug.text = "rotation x = " + transform.eulerAngles.x+ "between  " + lowHandPos.ToString() + " and " + highHandPos.ToString() + " at " + handTransform.localPosition.y + " speed is " + handSpeed;
         }
     }
 }
