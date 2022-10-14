@@ -29,6 +29,8 @@ public class DeerMovement : MonoBehaviour
 
     AnimalSettings goToTargetSettings;
     AnimalSettings wanderingSettings;
+    AnimalSettings eatingSettings;
+    AnimalSettings runningSettings;
 
 
     public class AnimalSettings
@@ -58,66 +60,88 @@ public class DeerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         waypoint = firstLocationGoal.position;
         SetAnimalSettings();
-        UpdateAnimalSettings(goToTargetSettings);
+        UpdateAnimalSettings(currentState);
     }
 
     void SetAnimalSettings()
     {
         wanderingSettings = new AnimalSettings( waypointRadius, waypointProximity, speed, turnSpeed);
-        goToTargetSettings = new AnimalSettings( waypointRadius, waypointProximity * .1f, speed, turnSpeed *3f);
+        goToTargetSettings = new AnimalSettings( waypointRadius, waypointProximity , speed, turnSpeed *3f);
+        eatingSettings = new AnimalSettings( waypointRadius, waypointProximity , 0, 0);
+        runningSettings = new AnimalSettings( waypointRadius, waypointProximity , speed*3f, turnSpeed *3f);
 
     }
 
-    void UpdateAnimalSettings(AnimalSettings newSetting)
+    void UpdateAnimalSettings(AnimalStates newState)
     {
-        currentSettings = newSetting;
-        turnSpeed = newSetting.turnSpeed;
-        waypointRadius = newSetting.waypointRadius;
-        speed = newSetting.speed;
-        waypointProximity = newSetting.waypointProximity;
+        AnimalSettings settings = wanderingSettings;
+        switch (newState)
+        {
+            case AnimalStates.LieDown:
+                settings = eatingSettings;
+                break;
+            case AnimalStates.StopAndLook:
+                settings = eatingSettings;
+                break;
+            case AnimalStates.Eating:
+                settings = eatingSettings;
+                break;
+            case AnimalStates.Walking:
+                settings = wanderingSettings;
+                break;
+            case AnimalStates.Trotting:
+                settings = runningSettings;
+                break; 
+        }
+        
+
+        currentSettings = settings;
+        turnSpeed = settings.turnSpeed;
+        waypointRadius = settings.waypointRadius;
+        speed = settings.speed;
+        waypointProximity = settings.waypointProximity;
     }
 
+    
 
-    void SwitchState(AnimalStates newState)
+    public void SwitchState(AnimalStates newState)
     {
         if (newState == currentState) return;
 
-        currentState = newState;
-
-        SwitchAnimations(currentState);
-        
-        switch (currentState)
-        {
-            
-        }
-    }
-
-    private void SwitchAnimations(AnimalStates newState)
-    {
         switch (newState)
         {
             case AnimalStates.LieDown:
                 anim.SetBool("LyingDown", true);
                 StartCoroutine(nameof(WaitAndStartFeedback));
-
                 break;
+            
             case AnimalStates.StopAndLook:
                 anim.SetTrigger("StopAndLook");
-                StartCoroutine(WaitAndSwitchState(AnimalStates.Eating, 1.4f));
+                StartCoroutine(WaitAndSwitchState(AnimalStates.Trotting,1f));
                 break;
+            
             case AnimalStates.Eating:
                 anim.SetBool("Eating",true);
-                StartCoroutine(WaitAndSwitchState(AnimalStates.LieDown,12f));
+                StartCoroutine(WaitAndSwitchState(AnimalStates.StopAndLook, 10.5f));
+
+                Invoke("WolfHowl",10);
                 break;
+            
             case AnimalStates.Trotting:
                 anim.SetBool("Eating",false);
                 anim.SetBool("Walking",false);
-
                 anim.SetBool("Trotting",true);
                 break;
-        }    
+        }
+
+        currentState = newState;
+        UpdateAnimalSettings(currentState);
     }
 
+    void WolfHowl()
+    {
+        FindObjectOfType<WolfLogic>().PlayAudio("DistantHowl");
+    }
     IEnumerator WaitAndSwitchState(AnimalStates nextState, float time)
     {
         yield return new WaitForSeconds(time);
@@ -159,14 +183,19 @@ public class DeerMovement : MonoBehaviour
         {
             if (currentState == AnimalStates.Walking)
             {
+
                 if (introSequence)
                 {
-                    SwitchState(AnimalStates.StopAndLook);
+                    SwitchState(AnimalStates.Eating);
                 }
                 else
                 {
                     FindNewWaypoint();
                 }
+            }
+            else
+            {
+                print("isnot walking");
             }
         }
     }
