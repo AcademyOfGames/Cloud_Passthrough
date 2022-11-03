@@ -37,12 +37,12 @@ Material:
     - Vector1_77abaa6106b3435baa26dc377f640b7a: -2.5
     - Vector1_e3e045329f634b13b65d8b7e2ae9f19c: 3.4
     - dissolve: 0
-    - startPosInfluence: -1.78
+    - startPosInfluence: -1.4
     - transparency: 12.4
     m_Colors:
     - Color_ed3fae76df674316b976012c25457bdd: {r: 3.4415908, g: 2.3064065, b: 1.3874476,
         a: 0}
     - Vector3_3dd9a39efc0f491a80eeed65ea374954: {r: 0, g: 5.42, b: 0, a: 0}
     - emissionColor: {r: 1.4980392, g: 1.0039216, b: 0.6039216, a: 0}
-    - startPos: {r: -9.594, g: 4, b: 0, a: 0}
+    - startPos: {r: -27, g: 2.5, b: 15, a: 0}
   m_BuildTextureStacks: []
