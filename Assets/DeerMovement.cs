@@ -117,7 +117,7 @@ public class DeerMovement : MonoBehaviour
             
             case AnimalStates.StopAndLook:
                 anim.SetTrigger("StopAndLook");
-                StartCoroutine(WaitAndSwitchState(AnimalStates.Trotting,1f));
+                StartCoroutine(WaitAndSwitchState(AnimalStates.Trotting,1.5f));
                 break;
             
             case AnimalStates.Eating:
@@ -128,6 +128,7 @@ public class DeerMovement : MonoBehaviour
                 break;
             
             case AnimalStates.Trotting:
+                StartCoroutine("QuickTurn");
                 anim.SetBool("Eating",false);
                 anim.SetBool("Walking",false);
                 anim.SetBool("Trotting",true);
@@ -138,6 +139,20 @@ public class DeerMovement : MonoBehaviour
         UpdateAnimalSettings(currentState);
     }
 
+    IEnumerator QuickTurn()
+    {
+        float timePassed = 0;
+
+        while (timePassed < 1)
+        {
+            timePassed += Time.deltaTime ;
+            transform.Rotate(Vector3.up *1.5f );
+            
+            yield return new WaitForFixedUpdate();
+        }
+        
+    }
+    
     void WolfHowl()
     {
         FindObjectOfType<WolfLogic>().PlayAudio("DistantHowl");
@@ -183,7 +198,6 @@ public class DeerMovement : MonoBehaviour
         {
             if (currentState == AnimalStates.Walking)
             {
-
                 if (introSequence)
                 {
                     SwitchState(AnimalStates.Eating);
@@ -192,10 +206,6 @@ public class DeerMovement : MonoBehaviour
                 {
                     FindNewWaypoint();
                 }
-            }
-            else
-            {
-                print("isnot walking");
             }
         }
     }
