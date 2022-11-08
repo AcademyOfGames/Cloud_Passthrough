@@ -209,7 +209,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 4b543561623be2a42a6eda7f81cd3b02,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4b543561623be2a42a6eda7f81cd3b02,
         type: 3}
@@ -988,10 +988,9 @@ GameObject:
   - component: {fileID: 85182524}
   - component: {fileID: 85182523}
   - component: {fileID: 85182522}
-  - component: {fileID: 85182525}
   - component: {fileID: 85182526}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_14
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1009,8 +1008,8 @@ Transform:
   m_LocalScale: {x: 0.8210216, y: 0.34672266, z: 1.3628501}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: -11.611028, y: -68.83398, z: -7.998898}
 --- !u!65 &85182522
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1020,7 +1019,7 @@ BoxCollider:
   m_GameObject: {fileID: 85182520}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1031,7 +1030,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 85182520}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1073,22 +1072,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 85182520}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &85182525
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85182520}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &85182526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1113,10 +1096,9 @@ GameObject:
   - component: {fileID: 88241180}
   - component: {fileID: 88241179}
   - component: {fileID: 88241178}
-  - component: {fileID: 88241177}
   - component: {fileID: 88241176}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_69
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1134,8 +1116,8 @@ Transform:
   m_LocalScale: {x: 1.0706354, y: 0.4521363, z: 2.1025991}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 70
-  m_LocalEulerAnglesHint: {x: 0, y: -19.855, z: 0}
+  m_RootOrder: 71
+  m_LocalEulerAnglesHint: {x: -0.000130141, y: -100.47022, z: 0.00013056424}
 --- !u!114 &88241176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1148,22 +1130,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993c002f130478e4b9b6df8fab797767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &88241177
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 88241174}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &88241178
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1173,7 +1139,7 @@ BoxCollider:
   m_GameObject: {fileID: 88241174}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1184,7 +1150,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 88241174}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1268,31 +1234,14 @@ GameObject:
   - component: {fileID: 93737974}
   - component: {fileID: 93737973}
   - component: {fileID: 93737972}
-  - component: {fileID: 93737971}
   - component: {fileID: 93737976}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_2
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!54 &93737971
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 93737970}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &93737972
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1302,7 +1251,7 @@ BoxCollider:
   m_GameObject: {fileID: 93737970}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1313,7 +1262,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 93737970}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1367,8 +1316,8 @@ Transform:
   m_LocalScale: {x: 0.8210218, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 30
+  m_LocalEulerAnglesHint: {x: 0.00015710271, y: 75.00424, z: -0.00030568455}
 --- !u!114 &93737976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2015,10 +1964,9 @@ GameObject:
   - component: {fileID: 147598445}
   - component: {fileID: 147598444}
   - component: {fileID: 147598443}
-  - component: {fileID: 147598442}
   - component: {fileID: 147598441}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_75
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2037,7 +1985,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 244244723}
   m_RootOrder: 76
-  m_LocalEulerAnglesHint: {x: 0, y: -19.855, z: 0}
+  m_LocalEulerAnglesHint: {x: -14.975134, y: -146.62206, z: 97.3291}
 --- !u!114 &147598441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2050,22 +1998,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993c002f130478e4b9b6df8fab797767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &147598442
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 147598439}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &147598443
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2075,7 +2007,7 @@ BoxCollider:
   m_GameObject: {fileID: 147598439}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2086,7 +2018,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 147598439}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2386,31 +2318,14 @@ GameObject:
   - component: {fileID: 187398750}
   - component: {fileID: 187398749}
   - component: {fileID: 187398748}
-  - component: {fileID: 187398747}
   - component: {fileID: 187398752}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_9
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!54 &187398747
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 187398746}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_IsActive: 0
 --- !u!65 &187398748
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2420,7 +2335,7 @@ BoxCollider:
   m_GameObject: {fileID: 187398746}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2431,7 +2346,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187398746}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2485,8 +2400,8 @@ Transform:
   m_LocalScale: {x: 0.8210218, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: -0.019512694, y: -1.7347419, z: -0.0057608434}
 --- !u!114 &187398752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2769,31 +2684,14 @@ GameObject:
   - component: {fileID: 213001622}
   - component: {fileID: 213001621}
   - component: {fileID: 213001620}
-  - component: {fileID: 213001619}
   - component: {fileID: 213001624}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_8
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!54 &213001619
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 213001618}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &213001620
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2803,7 +2701,7 @@ BoxCollider:
   m_GameObject: {fileID: 213001618}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2814,7 +2712,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 213001618}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2868,8 +2766,8 @@ Transform:
   m_LocalScale: {x: 0.82102185, y: 0.34672266, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 34
+  m_LocalEulerAnglesHint: {x: 0.013752589, y: 75.29923, z: 89.63431}
 --- !u!114 &213001624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2894,10 +2792,9 @@ GameObject:
   - component: {fileID: 227404422}
   - component: {fileID: 227404421}
   - component: {fileID: 227404420}
-  - component: {fileID: 227404419}
   - component: {fileID: 227404423}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_17
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2915,24 +2812,8 @@ Transform:
   m_LocalScale: {x: 0.8210215, y: 0.34672272, z: 1.6123874}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 18
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &227404419
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 227404417}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 39
+  m_LocalEulerAnglesHint: {x: -11.37486, y: -17.574467, z: -179.44565}
 --- !u!65 &227404420
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2942,7 +2823,7 @@ BoxCollider:
   m_GameObject: {fileID: 227404417}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2953,7 +2834,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 227404417}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3166,7 +3047,7 @@ Transform:
   - {fileID: 1211376329}
   - {fileID: 89203231}
   m_Father: {fileID: 813244060}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &240631859
 BoxCollider:
@@ -3387,6 +3268,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 244244723}
+  - component: {fileID: 244244725}
   m_Layer: 0
   m_Name: bricks
   m_TagString: Untagged
@@ -3405,74 +3287,75 @@ Transform:
   m_LocalPosition: {x: -4.3209996, y: -1.5500008, z: 8.090002}
   m_LocalScale: {x: 0.59929, y: 0.59929, z: 0.59929}
   m_Children:
-  - {fileID: 691571894}
   - {fileID: 1500836651}
   - {fileID: 548748942}
-  - {fileID: 93737975}
-  - {fileID: 810670520}
   - {fileID: 1591506659}
-  - {fileID: 1524598687}
   - {fileID: 1081517374}
-  - {fileID: 1440973070}
-  - {fileID: 213001623}
   - {fileID: 187398751}
-  - {fileID: 2048935637}
   - {fileID: 735394179}
-  - {fileID: 660136118}
-  - {fileID: 1648365854}
   - {fileID: 85182521}
-  - {fileID: 503203773}
   - {fileID: 625968814}
-  - {fileID: 227404418}
-  - {fileID: 2011058166}
   - {fileID: 1036948745}
-  - {fileID: 745707688}
   - {fileID: 975964742}
-  - {fileID: 537266266}
   - {fileID: 1609096983}
-  - {fileID: 1097202313}
   - {fileID: 781247457}
-  - {fileID: 1543521611}
   - {fileID: 1463340813}
-  - {fileID: 1721845685}
-  - {fileID: 1441952340}
   - {fileID: 1019810898}
   - {fileID: 1556251311}
-  - {fileID: 1929826739}
   - {fileID: 1865860924}
-  - {fileID: 728724274}
-  - {fileID: 1992776424}
   - {fileID: 274000594}
-  - {fileID: 679554959}
   - {fileID: 1156339376}
-  - {fileID: 471241982}
   - {fileID: 262589928}
-  - {fileID: 1424235112}
   - {fileID: 1035614746}
-  - {fileID: 1150129755}
-  - {fileID: 1902739718}
   - {fileID: 820146442}
   - {fileID: 1291418679}
+  - {fileID: 707757979}
+  - {fileID: 368619129}
+  - {fileID: 327748514}
+  - {fileID: 1743110468}
+  - {fileID: 1295249466}
+  - {fileID: 1027017285}
+  - {fileID: 677814391}
+  - {fileID: 888119440}
+  - {fileID: 93737975}
+  - {fileID: 810670520}
+  - {fileID: 1524598687}
+  - {fileID: 1440973070}
+  - {fileID: 213001623}
+  - {fileID: 2048935637}
+  - {fileID: 660136118}
+  - {fileID: 1648365854}
+  - {fileID: 503203773}
+  - {fileID: 227404418}
+  - {fileID: 2011058166}
+  - {fileID: 745707688}
+  - {fileID: 537266266}
+  - {fileID: 1097202313}
+  - {fileID: 1543521611}
+  - {fileID: 1721845685}
+  - {fileID: 1441952340}
+  - {fileID: 1929826739}
+  - {fileID: 728724274}
+  - {fileID: 1992776424}
+  - {fileID: 679554959}
+  - {fileID: 471241982}
+  - {fileID: 1424235112}
+  - {fileID: 1150129755}
+  - {fileID: 1902739718}
   - {fileID: 1377524865}
   - {fileID: 305604641}
-  - {fileID: 707757979}
   - {fileID: 1279519314}
-  - {fileID: 368619129}
   - {fileID: 820311945}
   - {fileID: 1345348677}
   - {fileID: 991961296}
-  - {fileID: 327748514}
   - {fileID: 817625264}
   - {fileID: 2050002223}
-  - {fileID: 1743110468}
   - {fileID: 611337995}
   - {fileID: 748057383}
   - {fileID: 665352479}
-  - {fileID: 1295249466}
   - {fileID: 1720846703}
   - {fileID: 501708307}
   - {fileID: 541827577}
-  - {fileID: 1027017285}
   - {fileID: 1340090311}
   - {fileID: 2018800238}
   - {fileID: 88241175}
@@ -3480,14 +3363,31 @@ Transform:
   - {fileID: 1910065689}
   - {fileID: 2044076114}
   - {fileID: 1424173503}
-  - {fileID: 677814391}
   - {fileID: 147598440}
   - {fileID: 1350347815}
   - {fileID: 423712746}
-  - {fileID: 888119440}
   m_Father: {fileID: 813244060}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 18.015, z: 0}
+--- !u!95 &244244725
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244244722}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a9c8c4c5b8777424b9a726c02c7710ad, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &246759779
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3623,15 +3523,14 @@ GameObject:
   - component: {fileID: 262589932}
   - component: {fileID: 262589931}
   - component: {fileID: 262589930}
-  - component: {fileID: 262589929}
   - component: {fileID: 262589933}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_40
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &262589928
 Transform:
   m_ObjectHideFlags: 0
@@ -3644,24 +3543,8 @@ Transform:
   m_LocalScale: {x: 0.8210215, y: 0.34672272, z: 1.6123874}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 41
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &262589929
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 262589927}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: -8.785328, y: -59.53635, z: -85.74651}
 --- !u!65 &262589930
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3671,7 +3554,7 @@ BoxCollider:
   m_GameObject: {fileID: 262589927}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -3682,7 +3565,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 262589927}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3754,15 +3637,14 @@ GameObject:
   - component: {fileID: 274000598}
   - component: {fileID: 274000597}
   - component: {fileID: 274000596}
-  - component: {fileID: 274000595}
   - component: {fileID: 274000599}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_36
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &274000594
 Transform:
   m_ObjectHideFlags: 0
@@ -3775,24 +3657,8 @@ Transform:
   m_LocalScale: {x: 0.82102185, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 37
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &274000595
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274000593}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: -21.613525, y: -2.3363519, z: -0.13775983}
 --- !u!65 &274000596
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3802,7 +3668,7 @@ BoxCollider:
   m_GameObject: {fileID: 274000593}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -3813,7 +3679,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 274000593}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3998,10 +3864,9 @@ GameObject:
   - component: {fileID: 305604645}
   - component: {fileID: 305604644}
   - component: {fileID: 305604643}
-  - component: {fileID: 305604642}
   - component: {fileID: 305604646}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_48
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4019,24 +3884,8 @@ Transform:
   m_LocalScale: {x: 0.8210218, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 49
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &305604642
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 305604640}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 56
+  m_LocalEulerAnglesHint: {x: 0.00030771454, y: -37.150143, z: 0.07741833}
 --- !u!65 &305604643
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4046,7 +3895,7 @@ BoxCollider:
   m_GameObject: {fileID: 305604640}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -4057,7 +3906,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 305604640}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -4214,7 +4063,7 @@ ParticleSystem:
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
-  useRigidbodyForVelocity: 1
+  useRigidbodyForVelocity: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -4763,7 +4612,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 3500
+    maxNumParticles: 500
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -4909,7 +4758,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0.33
     radius:
-      value: 7.15
+      value: 3.59
       mode: 0
       spread: 0
       speed:
@@ -8909,7 +8758,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315277950}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
-  m_LocalPosition: {x: -3.3, y: 1.9509696, z: 0.2}
+  m_LocalPosition: {x: -1.86, y: 0.21, z: 1.02}
   m_LocalScale: {x: 0.97384787, y: 0.97384787, z: 0.97384787}
   m_Children: []
   m_Father: {fileID: 0}
@@ -8927,15 +8776,14 @@ GameObject:
   - component: {fileID: 327748518}
   - component: {fileID: 327748517}
   - component: {fileID: 327748516}
-  - component: {fileID: 327748515}
   - component: {fileID: 327748519}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_55
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &327748514
 Transform:
   m_ObjectHideFlags: 0
@@ -8948,24 +8796,8 @@ Transform:
   m_LocalScale: {x: 0.6303428, y: 0.26619786, z: 1.2379174}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 56
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &327748515
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 327748513}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: -17.982256, y: -168.38562, z: 179.81107}
 --- !u!65 &327748516
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8975,7 +8807,7 @@ BoxCollider:
   m_GameObject: {fileID: 327748513}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -8986,7 +8818,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 327748513}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -9353,15 +9185,14 @@ GameObject:
   - component: {fileID: 368619133}
   - component: {fileID: 368619132}
   - component: {fileID: 368619131}
-  - component: {fileID: 368619130}
   - component: {fileID: 368619134}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_51
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &368619129
 Transform:
   m_ObjectHideFlags: 0
@@ -9374,24 +9205,8 @@ Transform:
   m_LocalScale: {x: 0.6303428, y: 0.26619786, z: 1.2379174}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 52
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &368619130
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 368619128}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0.0002604294, y: -55.55117, z: 179.99936}
 --- !u!65 &368619131
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9401,7 +9216,7 @@ BoxCollider:
   m_GameObject: {fileID: 368619128}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -9412,7 +9227,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 368619128}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -9931,10 +9746,9 @@ GameObject:
   - component: {fileID: 423712751}
   - component: {fileID: 423712750}
   - component: {fileID: 423712749}
-  - component: {fileID: 423712748}
   - component: {fileID: 423712747}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_77
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9953,7 +9767,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 244244723}
   m_RootOrder: 78
-  m_LocalEulerAnglesHint: {x: -0.091, y: 70.525, z: 0.106}
+  m_LocalEulerAnglesHint: {x: -0.0000042863003, y: 35.083042, z: -0.000052734264}
 --- !u!114 &423712747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9966,22 +9780,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993c002f130478e4b9b6df8fab797767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &423712748
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 423712745}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &423712749
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9991,7 +9789,7 @@ BoxCollider:
   m_GameObject: {fileID: 423712745}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -10002,7 +9800,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 423712745}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -10178,10 +9976,9 @@ GameObject:
   - component: {fileID: 471241986}
   - component: {fileID: 471241985}
   - component: {fileID: 471241984}
-  - component: {fileID: 471241983}
   - component: {fileID: 471241987}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_39
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10199,24 +9996,8 @@ Transform:
   m_LocalScale: {x: 0.8210215, y: 0.34672272, z: 1.6123874}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 40
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &471241983
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 471241981}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 51
+  m_LocalEulerAnglesHint: {x: 0.0000026065377, y: 110.79227, z: -0.000021580021}
 --- !u!65 &471241984
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10226,7 +10007,7 @@ BoxCollider:
   m_GameObject: {fileID: 471241981}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -10237,7 +10018,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 471241981}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -10500,10 +10281,9 @@ GameObject:
   - component: {fileID: 501708312}
   - component: {fileID: 501708311}
   - component: {fileID: 501708310}
-  - component: {fileID: 501708309}
   - component: {fileID: 501708308}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_64
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10521,8 +10301,8 @@ Transform:
   m_LocalScale: {x: 1.0706358, y: 0.45213628, z: 1.7771957}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 65
-  m_LocalEulerAnglesHint: {x: 0, y: -19.855, z: 0}
+  m_RootOrder: 67
+  m_LocalEulerAnglesHint: {x: -22.19061, y: -74.79288, z: -179.95183}
 --- !u!114 &501708308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10535,22 +10315,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993c002f130478e4b9b6df8fab797767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &501708309
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 501708306}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &501708310
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10560,7 +10324,7 @@ BoxCollider:
   m_GameObject: {fileID: 501708306}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -10571,7 +10335,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 501708306}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -10625,10 +10389,9 @@ GameObject:
   - component: {fileID: 503203776}
   - component: {fileID: 503203775}
   - component: {fileID: 503203774}
-  - component: {fileID: 503203777}
   - component: {fileID: 503203778}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_15
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10646,8 +10409,8 @@ Transform:
   m_LocalScale: {x: 0.82102185, y: 0.34672266, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 16
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 38
+  m_LocalEulerAnglesHint: {x: 0.07339567, y: -172.78677, z: -98.92021}
 --- !u!65 &503203774
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10657,7 +10420,7 @@ BoxCollider:
   m_GameObject: {fileID: 503203772}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -10668,7 +10431,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503203772}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -10710,22 +10473,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503203772}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &503203777
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503203772}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &503203778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10879,10 +10626,9 @@ GameObject:
   - component: {fileID: 537266270}
   - component: {fileID: 537266269}
   - component: {fileID: 537266268}
-  - component: {fileID: 537266267}
   - component: {fileID: 537266271}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_22
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10900,24 +10646,8 @@ Transform:
   m_LocalScale: {x: 0.8210218, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 23
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &537266267
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 537266265}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 42
+  m_LocalEulerAnglesHint: {x: 0.026427781, y: -16.774887, z: -0.058129035}
 --- !u!65 &537266268
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10927,7 +10657,7 @@ BoxCollider:
   m_GameObject: {fileID: 537266265}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -10938,7 +10668,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 537266265}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -11004,10 +10734,9 @@ GameObject:
   - component: {fileID: 541827582}
   - component: {fileID: 541827581}
   - component: {fileID: 541827580}
-  - component: {fileID: 541827579}
   - component: {fileID: 541827578}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_65
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11025,8 +10754,8 @@ Transform:
   m_LocalScale: {x: 1.0706358, y: 0.4521363, z: 1.7771957}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 66
-  m_LocalEulerAnglesHint: {x: 0, y: -19.855, z: 0}
+  m_RootOrder: 68
+  m_LocalEulerAnglesHint: {x: 0.03785312, y: -170.0541, z: 160.04518}
 --- !u!114 &541827578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11039,22 +10768,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993c002f130478e4b9b6df8fab797767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &541827579
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 541827576}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &541827580
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11064,7 +10777,7 @@ BoxCollider:
   m_GameObject: {fileID: 541827576}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -11075,7 +10788,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541827576}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -11129,31 +10842,14 @@ GameObject:
   - component: {fileID: 548748941}
   - component: {fileID: 548748940}
   - component: {fileID: 548748939}
-  - component: {fileID: 548748938}
   - component: {fileID: 548748943}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_1
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!54 &548748938
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 548748937}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &548748939
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11163,7 +10859,7 @@ BoxCollider:
   m_GameObject: {fileID: 548748937}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -11174,7 +10870,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 548748937}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -11228,8 +10924,8 @@ Transform:
   m_LocalScale: {x: 0.8210218, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -12.701854, y: 164.28105, z: -52.43738}
 --- !u!114 &548748943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11546,10 +11242,9 @@ GameObject:
   - component: {fileID: 611338000}
   - component: {fileID: 611337999}
   - component: {fileID: 611337998}
-  - component: {fileID: 611337997}
   - component: {fileID: 611337996}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_59
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11567,8 +11262,8 @@ Transform:
   m_LocalScale: {x: 1.0706358, y: 0.4521363, z: 1.7771957}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 60
-  m_LocalEulerAnglesHint: {x: 0, y: -19.855, z: 0}
+  m_RootOrder: 63
+  m_LocalEulerAnglesHint: {x: -87.28372, y: 10.669484, z: 42.55513}
 --- !u!114 &611337996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11581,22 +11276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993c002f130478e4b9b6df8fab797767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &611337997
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 611337994}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &611337998
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11606,7 +11285,7 @@ BoxCollider:
   m_GameObject: {fileID: 611337994}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -11617,7 +11296,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 611337994}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -11683,15 +11362,14 @@ GameObject:
   - component: {fileID: 625968817}
   - component: {fileID: 625968816}
   - component: {fileID: 625968815}
-  - component: {fileID: 625968818}
   - component: {fileID: 625968819}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_16
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &625968814
 Transform:
   m_ObjectHideFlags: 0
@@ -11704,8 +11382,8 @@ Transform:
   m_LocalScale: {x: 0.8210218, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 17
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: -10.471467, y: 1.8859895, z: 37.634266}
 --- !u!65 &625968815
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11715,7 +11393,7 @@ BoxCollider:
   m_GameObject: {fileID: 625968813}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -11726,7 +11404,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 625968813}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -11768,22 +11446,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 625968813}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &625968818
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 625968813}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &625968819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12197,10 +11859,9 @@ GameObject:
   - component: {fileID: 660136121}
   - component: {fileID: 660136120}
   - component: {fileID: 660136119}
-  - component: {fileID: 660136122}
   - component: {fileID: 660136123}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_12
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12218,8 +11879,8 @@ Transform:
   m_LocalScale: {x: 0.8210218, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 36
+  m_LocalEulerAnglesHint: {x: -6.7218432, y: 114.263985, z: -41.97875}
 --- !u!65 &660136119
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12229,7 +11890,7 @@ BoxCollider:
   m_GameObject: {fileID: 660136117}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -12240,7 +11901,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 660136117}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -12282,22 +11943,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 660136117}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &660136122
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 660136117}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &660136123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12322,10 +11967,9 @@ GameObject:
   - component: {fileID: 665352484}
   - component: {fileID: 665352483}
   - component: {fileID: 665352482}
-  - component: {fileID: 665352481}
   - component: {fileID: 665352480}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_61
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12343,8 +11987,8 @@ Transform:
   m_LocalScale: {x: 1.0706359, y: 0.45213628, z: 1.7771957}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 62
-  m_LocalEulerAnglesHint: {x: 0, y: -19.855, z: 0}
+  m_RootOrder: 65
+  m_LocalEulerAnglesHint: {x: 0.034687784, y: 4.5918593, z: 179.86922}
 --- !u!114 &665352480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12357,22 +12001,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993c002f130478e4b9b6df8fab797767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &665352481
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 665352478}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &665352482
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12382,7 +12010,7 @@ BoxCollider:
   m_GameObject: {fileID: 665352478}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -12393,7 +12021,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 665352478}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -12581,10 +12209,9 @@ GameObject:
   - component: {fileID: 677814396}
   - component: {fileID: 677814395}
   - component: {fileID: 677814394}
-  - component: {fileID: 677814393}
   - component: {fileID: 677814392}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_74
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12602,8 +12229,8 @@ Transform:
   m_LocalScale: {x: 1.0706358, y: 0.4521363, z: 1.7771957}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 75
-  m_LocalEulerAnglesHint: {x: 0, y: -19.855, z: 0}
+  m_RootOrder: 28
+  m_LocalEulerAnglesHint: {x: -0.0000042487322, y: 119.26158, z: -0.00003531363}
 --- !u!114 &677814392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12616,22 +12243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993c002f130478e4b9b6df8fab797767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &677814393
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 677814390}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &677814394
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12641,7 +12252,7 @@ BoxCollider:
   m_GameObject: {fileID: 677814390}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -12652,7 +12263,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 677814390}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -12794,10 +12405,9 @@ GameObject:
   - component: {fileID: 679554963}
   - component: {fileID: 679554962}
   - component: {fileID: 679554961}
-  - component: {fileID: 679554960}
   - component: {fileID: 679554964}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_37
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12815,24 +12425,8 @@ Transform:
   m_LocalScale: {x: 0.8210218, y: 0.34672266, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 38
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &679554960
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 679554958}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 50
+  m_LocalEulerAnglesHint: {x: 0.024946501, y: 96.13518, z: -179.82736}
 --- !u!65 &679554961
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12842,7 +12436,7 @@ BoxCollider:
   m_GameObject: {fileID: 679554958}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -12853,7 +12447,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 679554958}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -12930,9 +12524,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 691571893}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.15656535, z: -0, w: 0.9876676}
+  m_LocalPosition: {x: -4.3209996, y: -1.5500008, z: 8.090002}
+  m_LocalScale: {x: 0.59929, y: 0.59929, z: 0.59929}
   m_Children:
   - {fileID: 2030546202}
   - {fileID: 2069114487}
@@ -12940,8 +12534,8 @@ Transform:
   - {fileID: 369522624}
   - {fileID: 109029753}
   - {fileID: 159096645}
-  m_Father: {fileID: 244244723}
-  m_RootOrder: 0
+  m_Father: {fileID: 813244060}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &701801520 stripped
 Transform:
@@ -13776,10 +13370,9 @@ GameObject:
   - component: {fileID: 707757983}
   - component: {fileID: 707757982}
   - component: {fileID: 707757981}
-  - component: {fileID: 707757980}
   - component: {fileID: 707757984}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_49
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13797,24 +13390,8 @@ Transform:
   m_LocalScale: {x: 0.8210218, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 50
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &707757980
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 707757978}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0.0000031732384, y: -7.5769906, z: 179.99998}
 --- !u!65 &707757981
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13824,7 +13401,7 @@ BoxCollider:
   m_GameObject: {fileID: 707757978}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -13835,7 +13412,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 707757978}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -13993,10 +13570,9 @@ GameObject:
   - component: {fileID: 728724278}
   - component: {fileID: 728724277}
   - component: {fileID: 728724276}
-  - component: {fileID: 728724275}
   - component: {fileID: 728724279}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_34
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14014,24 +13590,8 @@ Transform:
   m_LocalScale: {x: 0.8210218, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 35
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &728724275
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 728724273}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 48
+  m_LocalEulerAnglesHint: {x: -0.015745107, y: -145.55707, z: -179.43234}
 --- !u!65 &728724276
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14041,7 +13601,7 @@ BoxCollider:
   m_GameObject: {fileID: 728724273}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -14052,7 +13612,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728724273}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -14118,15 +13678,14 @@ GameObject:
   - component: {fileID: 735394182}
   - component: {fileID: 735394181}
   - component: {fileID: 735394180}
-  - component: {fileID: 735394183}
   - component: {fileID: 735394184}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_11
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &735394179
 Transform:
   m_ObjectHideFlags: 0
@@ -14139,8 +13698,8 @@ Transform:
   m_LocalScale: {x: 0.8210218, y: 0.34672266, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: -17.648296, y: -146.12259, z: -18.1688}
 --- !u!65 &735394180
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14150,7 +13709,7 @@ BoxCollider:
   m_GameObject: {fileID: 735394178}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -14161,7 +13720,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 735394178}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -14203,22 +13762,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 735394178}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &735394183
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 735394178}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &735394184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14338,10 +13881,9 @@ GameObject:
   - component: {fileID: 745707692}
   - component: {fileID: 745707691}
   - component: {fileID: 745707690}
-  - component: {fileID: 745707689}
   - component: {fileID: 745707693}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_20
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14359,24 +13901,8 @@ Transform:
   m_LocalScale: {x: 0.8210216, y: 0.34672266, z: 1.3628501}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 21
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &745707689
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 745707687}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 41
+  m_LocalEulerAnglesHint: {x: -0.00011824764, y: -173.69115, z: -89.99876}
 --- !u!65 &745707690
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14386,7 +13912,7 @@ BoxCollider:
   m_GameObject: {fileID: 745707687}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -14397,7 +13923,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 745707687}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -14463,10 +13989,9 @@ GameObject:
   - component: {fileID: 748057388}
   - component: {fileID: 748057387}
   - component: {fileID: 748057386}
-  - component: {fileID: 748057385}
   - component: {fileID: 748057384}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_60
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14484,8 +14009,8 @@ Transform:
   m_LocalScale: {x: 1.0706357, y: 0.45213628, z: 1.7771955}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 61
-  m_LocalEulerAnglesHint: {x: 0, y: -19.855, z: 0}
+  m_RootOrder: 64
+  m_LocalEulerAnglesHint: {x: -20.297348, y: -0.6582978, z: -95.92201}
 --- !u!114 &748057384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14498,22 +14023,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993c002f130478e4b9b6df8fab797767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &748057385
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 748057382}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &748057386
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14523,7 +14032,7 @@ BoxCollider:
   m_GameObject: {fileID: 748057382}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -14534,7 +14043,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 748057382}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -15125,15 +14634,14 @@ GameObject:
   - component: {fileID: 781247461}
   - component: {fileID: 781247460}
   - component: {fileID: 781247459}
-  - component: {fileID: 781247458}
   - component: {fileID: 781247462}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_25
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &781247457
 Transform:
   m_ObjectHideFlags: 0
@@ -15146,24 +14654,8 @@ Transform:
   m_LocalScale: {x: 0.8210218, y: 0.34672266, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 26
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &781247458
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 781247456}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0.00004274781, y: 65.08251, z: -0.000040981242}
 --- !u!65 &781247459
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15173,7 +14665,7 @@ BoxCollider:
   m_GameObject: {fileID: 781247456}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -15184,7 +14676,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781247456}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -15281,31 +14773,14 @@ GameObject:
   - component: {fileID: 810670519}
   - component: {fileID: 810670518}
   - component: {fileID: 810670517}
-  - component: {fileID: 810670516}
   - component: {fileID: 810670521}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_3
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!54 &810670516
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 810670515}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &810670517
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15315,7 +14790,7 @@ BoxCollider:
   m_GameObject: {fileID: 810670515}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -15326,7 +14801,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810670515}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -15380,8 +14855,8 @@ Transform:
   m_LocalScale: {x: 0.8210218, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 31
+  m_LocalEulerAnglesHint: {x: 50.875137, y: -36.50839, z: -151.65784}
 --- !u!114 &810670521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15418,11 +14893,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 813244059}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.56, y: 3.3060007, z: 0.36}
+  m_LocalPosition: {x: -0.56, y: 1.7, z: 0.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 244244723}
   - {fileID: 1853324950}
+  - {fileID: 691571894}
   - {fileID: 35231843}
   - {fileID: 265189950}
   - {fileID: 240631858}
@@ -15441,10 +14917,9 @@ GameObject:
   - component: {fileID: 817625268}
   - component: {fileID: 817625267}
   - component: {fileID: 817625266}
-  - component: {fileID: 817625265}
   - component: {fileID: 817625269}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_56
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15462,24 +14937,8 @@ Transform:
   m_LocalScale: {x: 0.6303428, y: 0.26619786, z: 1.2379174}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 57
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &817625265
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 817625263}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 61
+  m_LocalEulerAnglesHint: {x: -0.00016675898, y: -67.31562, z: 179.99986}
 --- !u!65 &817625266
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15489,7 +14948,7 @@ BoxCollider:
   m_GameObject: {fileID: 817625263}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -15500,7 +14959,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 817625263}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -15566,15 +15025,14 @@ GameObject:
   - component: {fileID: 820146446}
   - component: {fileID: 820146445}
   - component: {fileID: 820146444}
-  - component: {fileID: 820146443}
   - component: {fileID: 820146447}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_45
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &820146442
 Transform:
   m_ObjectHideFlags: 0
@@ -15587,24 +15045,8 @@ Transform:
   m_LocalScale: {x: 0.8210218, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 46
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &820146443
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 820146441}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0.025547866, y: 1.7063808, z: -0.10268688}
 --- !u!65 &820146444
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15614,7 +15056,7 @@ BoxCollider:
   m_GameObject: {fileID: 820146441}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -15625,7 +15067,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 820146441}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -15691,10 +15133,9 @@ GameObject:
   - component: {fileID: 820311949}
   - component: {fileID: 820311948}
   - component: {fileID: 820311947}
-  - component: {fileID: 820311946}
   - component: {fileID: 820311950}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_52
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15712,24 +15153,8 @@ Transform:
   m_LocalScale: {x: 0.6303428, y: 0.26619786, z: 1.2379174}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 53
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &820311946
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 820311944}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 58
+  m_LocalEulerAnglesHint: {x: -0.012599625, y: -172.9585, z: 179.641}
 --- !u!65 &820311947
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15739,7 +15164,7 @@ BoxCollider:
   m_GameObject: {fileID: 820311944}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -15750,7 +15175,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 820311944}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -16109,15 +15534,14 @@ GameObject:
   - component: {fileID: 888119445}
   - component: {fileID: 888119444}
   - component: {fileID: 888119443}
-  - component: {fileID: 888119442}
   - component: {fileID: 888119441}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_78
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &888119440
 Transform:
   m_ObjectHideFlags: 0
@@ -16130,8 +15554,8 @@ Transform:
   m_LocalScale: {x: 1.0706354, y: 0.4521363, z: 2.1025991}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 79
-  m_LocalEulerAnglesHint: {x: 0, y: -19.855, z: 0}
+  m_RootOrder: 29
+  m_LocalEulerAnglesHint: {x: -0.00017758491, y: 31.430021, z: 89.99939}
 --- !u!114 &888119441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16144,22 +15568,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993c002f130478e4b9b6df8fab797767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &888119442
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888119439}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &888119443
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16169,7 +15577,7 @@ BoxCollider:
   m_GameObject: {fileID: 888119439}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -16180,7 +15588,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888119439}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -16803,15 +16211,14 @@ GameObject:
   - component: {fileID: 975964746}
   - component: {fileID: 975964745}
   - component: {fileID: 975964744}
-  - component: {fileID: 975964743}
   - component: {fileID: 975964747}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_21
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &975964742
 Transform:
   m_ObjectHideFlags: 0
@@ -16824,24 +16231,8 @@ Transform:
   m_LocalScale: {x: 0.8210218, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 22
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &975964743
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 975964741}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0.0069122603, y: -6.538255, z: -0.03153131}
 --- !u!65 &975964744
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16851,7 +16242,7 @@ BoxCollider:
   m_GameObject: {fileID: 975964741}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -16862,7 +16253,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 975964741}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -17023,10 +16414,9 @@ GameObject:
   - component: {fileID: 991961300}
   - component: {fileID: 991961299}
   - component: {fileID: 991961298}
-  - component: {fileID: 991961297}
   - component: {fileID: 991961301}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_54
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17044,24 +16434,8 @@ Transform:
   m_LocalScale: {x: 0.6303428, y: 0.26619786, z: 1.2379174}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 55
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &991961297
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 991961295}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 60
+  m_LocalEulerAnglesHint: {x: 0.000029481365, y: 177.40852, z: -179.99991}
 --- !u!65 &991961298
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17071,7 +16445,7 @@ BoxCollider:
   m_GameObject: {fileID: 991961295}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -17082,7 +16456,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 991961295}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -18013,15 +17387,14 @@ GameObject:
   - component: {fileID: 1019810902}
   - component: {fileID: 1019810901}
   - component: {fileID: 1019810900}
-  - component: {fileID: 1019810899}
   - component: {fileID: 1019810903}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_30
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1019810898
 Transform:
   m_ObjectHideFlags: 0
@@ -18034,24 +17407,8 @@ Transform:
   m_LocalScale: {x: 0.8210215, y: 0.34672272, z: 1.6123874}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 31
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1019810899
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1019810897}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: -0.00023094576, y: 4.9437227, z: 90.00772}
 --- !u!65 &1019810900
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18061,7 +17418,7 @@ BoxCollider:
   m_GameObject: {fileID: 1019810897}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -18072,7 +17429,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1019810897}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -18138,15 +17495,14 @@ GameObject:
   - component: {fileID: 1027017290}
   - component: {fileID: 1027017289}
   - component: {fileID: 1027017288}
-  - component: {fileID: 1027017287}
   - component: {fileID: 1027017286}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_66
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1027017285
 Transform:
   m_ObjectHideFlags: 0
@@ -18159,8 +17515,8 @@ Transform:
   m_LocalScale: {x: 1.0706354, y: 0.4521363, z: 2.1025991}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 67
-  m_LocalEulerAnglesHint: {x: 0, y: -19.855, z: 0}
+  m_RootOrder: 27
+  m_LocalEulerAnglesHint: {x: -0.00003073585, y: 12.421384, z: -89.99783}
 --- !u!114 &1027017286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18173,22 +17529,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993c002f130478e4b9b6df8fab797767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &1027017287
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1027017284}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &1027017288
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18198,7 +17538,7 @@ BoxCollider:
   m_GameObject: {fileID: 1027017284}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -18209,7 +17549,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1027017284}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -18263,10 +17603,9 @@ GameObject:
   - component: {fileID: 1035614750}
   - component: {fileID: 1035614749}
   - component: {fileID: 1035614748}
-  - component: {fileID: 1035614747}
   - component: {fileID: 1035614751}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_42
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18284,24 +17623,8 @@ Transform:
   m_LocalScale: {x: 0.82102185, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 43
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1035614747
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1035614745}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: -0.00031589624, y: 27.957449, z: 89.99799}
 --- !u!65 &1035614748
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18311,7 +17634,7 @@ BoxCollider:
   m_GameObject: {fileID: 1035614745}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -18322,7 +17645,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035614745}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -18510,15 +17833,14 @@ GameObject:
   - component: {fileID: 1036948749}
   - component: {fileID: 1036948748}
   - component: {fileID: 1036948747}
-  - component: {fileID: 1036948746}
   - component: {fileID: 1036948750}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_19
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1036948745
 Transform:
   m_ObjectHideFlags: 0
@@ -18531,24 +17853,8 @@ Transform:
   m_LocalScale: {x: 0.8210215, y: 0.34672272, z: 1.6123874}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 20
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1036948746
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1036948744}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 16.490967, y: -33.008293, z: -144.32248}
 --- !u!65 &1036948747
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18558,7 +17864,7 @@ BoxCollider:
   m_GameObject: {fileID: 1036948744}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -18569,7 +17875,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1036948744}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -18869,31 +18175,14 @@ GameObject:
   - component: {fileID: 1081517373}
   - component: {fileID: 1081517372}
   - component: {fileID: 1081517371}
-  - component: {fileID: 1081517370}
   - component: {fileID: 1081517375}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_6
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!54 &1081517370
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1081517369}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_IsActive: 0
 --- !u!65 &1081517371
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18903,7 +18192,7 @@ BoxCollider:
   m_GameObject: {fileID: 1081517369}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -18914,7 +18203,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1081517369}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -18968,8 +18257,8 @@ Transform:
   m_LocalScale: {x: 0.8210218, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: -17.713251, y: -90.300934, z: -178.38867}
 --- !u!114 &1081517375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18994,10 +18283,9 @@ GameObject:
   - component: {fileID: 1097202317}
   - component: {fileID: 1097202316}
   - component: {fileID: 1097202315}
-  - component: {fileID: 1097202314}
   - component: {fileID: 1097202318}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_24
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19015,24 +18303,8 @@ Transform:
   m_LocalScale: {x: 0.82102185, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 25
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1097202314
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1097202312}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 43
+  m_LocalEulerAnglesHint: {x: -61.824272, y: -129.69171, z: 76.108}
 --- !u!65 &1097202315
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19042,7 +18314,7 @@ BoxCollider:
   m_GameObject: {fileID: 1097202312}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -19053,7 +18325,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1097202312}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -19416,10 +18688,9 @@ GameObject:
   - component: {fileID: 1150129759}
   - component: {fileID: 1150129758}
   - component: {fileID: 1150129757}
-  - component: {fileID: 1150129756}
   - component: {fileID: 1150129760}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_43
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19437,24 +18708,8 @@ Transform:
   m_LocalScale: {x: 0.8210218, y: 0.34672266, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 44
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1150129756
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150129754}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 53
+  m_LocalEulerAnglesHint: {x: -64.49419, y: 76.36381, z: -0.16030872}
 --- !u!65 &1150129757
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19464,7 +18719,7 @@ BoxCollider:
   m_GameObject: {fileID: 1150129754}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -19475,7 +18730,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1150129754}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -19886,15 +19141,14 @@ GameObject:
   - component: {fileID: 1156339380}
   - component: {fileID: 1156339379}
   - component: {fileID: 1156339378}
-  - component: {fileID: 1156339377}
   - component: {fileID: 1156339381}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_38
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1156339376
 Transform:
   m_ObjectHideFlags: 0
@@ -19907,24 +19161,8 @@ Transform:
   m_LocalScale: {x: 0.8210218, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 39
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1156339377
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1156339375}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: -5.032376, y: -9.676768, z: -16.265635}
 --- !u!65 &1156339378
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19934,7 +19172,7 @@ BoxCollider:
   m_GameObject: {fileID: 1156339375}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -19945,7 +19183,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1156339375}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -20858,10 +20096,9 @@ GameObject:
   - component: {fileID: 1279519318}
   - component: {fileID: 1279519317}
   - component: {fileID: 1279519316}
-  - component: {fileID: 1279519315}
   - component: {fileID: 1279519319}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_50
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20879,24 +20116,8 @@ Transform:
   m_LocalScale: {x: 0.8210215, y: 0.34672272, z: 1.6123874}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 51
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1279519315
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279519313}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 57
+  m_LocalEulerAnglesHint: {x: -7.696816, y: 167.69774, z: 126.89955}
 --- !u!65 &1279519316
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20906,7 +20127,7 @@ BoxCollider:
   m_GameObject: {fileID: 1279519313}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -20917,7 +20138,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279519313}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -21132,15 +20353,14 @@ GameObject:
   - component: {fileID: 1291418683}
   - component: {fileID: 1291418682}
   - component: {fileID: 1291418681}
-  - component: {fileID: 1291418680}
   - component: {fileID: 1291418684}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_46
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1291418679
 Transform:
   m_ObjectHideFlags: 0
@@ -21153,24 +20373,8 @@ Transform:
   m_LocalScale: {x: 0.8210218, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 47
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1291418680
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1291418678}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: -0.0000020913437, y: 42.56698, z: -0.000030432871}
 --- !u!65 &1291418681
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21180,7 +20384,7 @@ BoxCollider:
   m_GameObject: {fileID: 1291418678}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -21191,7 +20395,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1291418678}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -21257,15 +20461,14 @@ GameObject:
   - component: {fileID: 1295249471}
   - component: {fileID: 1295249470}
   - component: {fileID: 1295249469}
-  - component: {fileID: 1295249468}
   - component: {fileID: 1295249467}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_62
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1295249466
 Transform:
   m_ObjectHideFlags: 0
@@ -21278,8 +20481,8 @@ Transform:
   m_LocalScale: {x: 1.0706357, y: 0.45213628, z: 1.7771955}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 63
-  m_LocalEulerAnglesHint: {x: 0, y: -19.855, z: 0}
+  m_RootOrder: 26
+  m_LocalEulerAnglesHint: {x: -0.000047463356, y: 152.64671, z: 179.9999}
 --- !u!114 &1295249467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21292,22 +20495,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993c002f130478e4b9b6df8fab797767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &1295249468
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1295249465}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &1295249469
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21317,7 +20504,7 @@ BoxCollider:
   m_GameObject: {fileID: 1295249465}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -21328,7 +20515,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1295249465}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -21476,10 +20663,9 @@ GameObject:
   - component: {fileID: 1340090316}
   - component: {fileID: 1340090315}
   - component: {fileID: 1340090314}
-  - component: {fileID: 1340090313}
   - component: {fileID: 1340090312}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_67
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21497,8 +20683,8 @@ Transform:
   m_LocalScale: {x: 1.0706357, y: 0.45213628, z: 1.7771955}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 68
-  m_LocalEulerAnglesHint: {x: 0, y: -19.855, z: 0}
+  m_RootOrder: 69
+  m_LocalEulerAnglesHint: {x: -4.835416, y: -21.40742, z: -7.728623}
 --- !u!114 &1340090312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21511,22 +20697,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993c002f130478e4b9b6df8fab797767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &1340090313
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1340090310}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &1340090314
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21536,7 +20706,7 @@ BoxCollider:
   m_GameObject: {fileID: 1340090310}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -21547,7 +20717,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1340090310}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -21601,10 +20771,9 @@ GameObject:
   - component: {fileID: 1345348681}
   - component: {fileID: 1345348680}
   - component: {fileID: 1345348679}
-  - component: {fileID: 1345348678}
   - component: {fileID: 1345348682}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_53
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21622,24 +20791,8 @@ Transform:
   m_LocalScale: {x: 0.6303428, y: 0.26619786, z: 1.2379174}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 54
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1345348678
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1345348676}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 59
+  m_LocalEulerAnglesHint: {x: 0.028386852, y: -18.232397, z: -179.90712}
 --- !u!65 &1345348679
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21649,7 +20802,7 @@ BoxCollider:
   m_GameObject: {fileID: 1345348676}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -21660,7 +20813,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1345348676}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -21726,10 +20879,9 @@ GameObject:
   - component: {fileID: 1350347820}
   - component: {fileID: 1350347819}
   - component: {fileID: 1350347818}
-  - component: {fileID: 1350347817}
   - component: {fileID: 1350347816}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_76
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21748,7 +20900,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 244244723}
   m_RootOrder: 77
-  m_LocalEulerAnglesHint: {x: 0.107, y: -19.702, z: 0.091}
+  m_LocalEulerAnglesHint: {x: -0.00006403198, y: -144.21996, z: 179.99994}
 --- !u!114 &1350347816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21761,22 +20913,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993c002f130478e4b9b6df8fab797767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &1350347817
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1350347814}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &1350347818
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21786,7 +20922,7 @@ BoxCollider:
   m_GameObject: {fileID: 1350347814}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -21797,7 +20933,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1350347814}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -22252,10 +21388,9 @@ GameObject:
   - component: {fileID: 1377524869}
   - component: {fileID: 1377524868}
   - component: {fileID: 1377524867}
-  - component: {fileID: 1377524866}
   - component: {fileID: 1377524870}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_47
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22273,24 +21408,8 @@ Transform:
   m_LocalScale: {x: 0.82102185, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 48
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1377524866
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1377524864}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 55
+  m_LocalEulerAnglesHint: {x: -0.08356288, y: 12.06552, z: 0.1336891}
 --- !u!65 &1377524867
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22300,7 +21419,7 @@ BoxCollider:
   m_GameObject: {fileID: 1377524864}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -22311,7 +21430,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1377524864}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -27389,10 +26508,9 @@ GameObject:
   - component: {fileID: 1424173508}
   - component: {fileID: 1424173507}
   - component: {fileID: 1424173506}
-  - component: {fileID: 1424173505}
   - component: {fileID: 1424173504}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_73
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27410,8 +26528,8 @@ Transform:
   m_LocalScale: {x: 1.0706358, y: 0.45213628, z: 1.7771957}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 74
-  m_LocalEulerAnglesHint: {x: 0, y: 73.696, z: 0}
+  m_RootOrder: 75
+  m_LocalEulerAnglesHint: {x: 10.132437, y: -7.95292, z: -20.713444}
 --- !u!114 &1424173504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27424,22 +26542,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993c002f130478e4b9b6df8fab797767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &1424173505
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1424173502}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &1424173506
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27449,7 +26551,7 @@ BoxCollider:
   m_GameObject: {fileID: 1424173502}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -27460,7 +26562,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424173502}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -27514,10 +26616,9 @@ GameObject:
   - component: {fileID: 1424235116}
   - component: {fileID: 1424235115}
   - component: {fileID: 1424235114}
-  - component: {fileID: 1424235113}
   - component: {fileID: 1424235117}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_41
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27535,24 +26636,8 @@ Transform:
   m_LocalScale: {x: 0.8210218, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 42
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1424235113
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1424235111}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 52
+  m_LocalEulerAnglesHint: {x: 0.00016388549, y: 27.711061, z: 179.99985}
 --- !u!65 &1424235114
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27562,7 +26647,7 @@ BoxCollider:
   m_GameObject: {fileID: 1424235111}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -27573,7 +26658,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424235111}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -27684,31 +26769,14 @@ GameObject:
   - component: {fileID: 1440973069}
   - component: {fileID: 1440973068}
   - component: {fileID: 1440973067}
-  - component: {fileID: 1440973066}
   - component: {fileID: 1440973071}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_7
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!54 &1440973066
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1440973065}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &1440973067
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27718,7 +26786,7 @@ BoxCollider:
   m_GameObject: {fileID: 1440973065}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -27729,7 +26797,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1440973065}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -27783,8 +26851,8 @@ Transform:
   m_LocalScale: {x: 0.8210216, y: 0.34672266, z: 1.3628501}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 33
+  m_LocalEulerAnglesHint: {x: -0.007836561, y: 57.200478, z: -0.086647704}
 --- !u!114 &1440973071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27809,10 +26877,9 @@ GameObject:
   - component: {fileID: 1441952344}
   - component: {fileID: 1441952343}
   - component: {fileID: 1441952342}
-  - component: {fileID: 1441952341}
   - component: {fileID: 1441952345}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_29
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27830,24 +26897,8 @@ Transform:
   m_LocalScale: {x: 0.82102185, y: 0.34672266, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 30
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1441952341
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1441952339}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 46
+  m_LocalEulerAnglesHint: {x: 90, y: 177.12158, z: 0}
 --- !u!65 &1441952342
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27857,7 +26908,7 @@ BoxCollider:
   m_GameObject: {fileID: 1441952339}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -27868,7 +26919,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441952339}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -27970,15 +27021,14 @@ GameObject:
   - component: {fileID: 1463340817}
   - component: {fileID: 1463340816}
   - component: {fileID: 1463340815}
-  - component: {fileID: 1463340814}
   - component: {fileID: 1463340818}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_27
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1463340813
 Transform:
   m_ObjectHideFlags: 0
@@ -27991,24 +27041,8 @@ Transform:
   m_LocalScale: {x: 0.8210215, y: 0.34672272, z: 1.6123874}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 28
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1463340814
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1463340812}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0.000036176647, y: 110.58114, z: -0.000011351772}
 --- !u!65 &1463340815
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28018,7 +27052,7 @@ BoxCollider:
   m_GameObject: {fileID: 1463340812}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -28029,7 +27063,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1463340812}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -28444,31 +27478,15 @@ GameObject:
   - component: {fileID: 1500836650}
   - component: {fileID: 1500836649}
   - component: {fileID: 1500836648}
-  - component: {fileID: 1500836647}
   - component: {fileID: 1500836652}
+  - component: {fileID: 1500836653}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_0
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!54 &1500836647
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1500836646}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &1500836648
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28478,7 +27496,7 @@ BoxCollider:
   m_GameObject: {fileID: 1500836646}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -28489,7 +27507,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1500836646}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -28543,8 +27561,8 @@ Transform:
   m_LocalScale: {x: 0.8210216, y: 0.34672266, z: 1.3628501}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0.0035039969, y: 17.075632, z: -0.07379164}
 --- !u!114 &1500836652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28557,6 +27575,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993c002f130478e4b9b6df8fab797767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1500836653
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500836646}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7b99760a72722d144bf093b2dbe96897, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1503313493
 GameObject:
   m_ObjectHideFlags: 0
@@ -28727,31 +27764,14 @@ GameObject:
   - component: {fileID: 1524598686}
   - component: {fileID: 1524598685}
   - component: {fileID: 1524598684}
-  - component: {fileID: 1524598683}
   - component: {fileID: 1524598688}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_5
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!54 &1524598683
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1524598682}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &1524598684
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28761,7 +27781,7 @@ BoxCollider:
   m_GameObject: {fileID: 1524598682}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -28772,7 +27792,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1524598682}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -28826,8 +27846,8 @@ Transform:
   m_LocalScale: {x: 0.82102185, y: 0.34672266, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 32
+  m_LocalEulerAnglesHint: {x: 0.016267862, y: -102.46403, z: -0.012766903}
 --- !u!114 &1524598688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28858,10 +27878,9 @@ GameObject:
   - component: {fileID: 1543521615}
   - component: {fileID: 1543521614}
   - component: {fileID: 1543521613}
-  - component: {fileID: 1543521612}
   - component: {fileID: 1543521616}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_26
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28879,24 +27898,8 @@ Transform:
   m_LocalScale: {x: 0.8210218, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 27
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1543521612
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1543521610}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 44
+  m_LocalEulerAnglesHint: {x: 0.20188159, y: -8.412503, z: -89.97951}
 --- !u!65 &1543521613
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28906,7 +27909,7 @@ BoxCollider:
   m_GameObject: {fileID: 1543521610}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -28917,7 +27920,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1543521610}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -29126,10 +28129,9 @@ GameObject:
   - component: {fileID: 1556251315}
   - component: {fileID: 1556251314}
   - component: {fileID: 1556251313}
-  - component: {fileID: 1556251312}
   - component: {fileID: 1556251316}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_31
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29147,24 +28149,8 @@ Transform:
   m_LocalScale: {x: 0.8210215, y: 0.34672272, z: 1.6123874}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 32
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1556251312
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1556251310}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0.0000039481006, y: -171.51808, z: 0.00002162847}
 --- !u!65 &1556251313
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29174,7 +28160,7 @@ BoxCollider:
   m_GameObject: {fileID: 1556251310}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -29185,7 +28171,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1556251310}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -34189,31 +33175,14 @@ GameObject:
   - component: {fileID: 1591506658}
   - component: {fileID: 1591506657}
   - component: {fileID: 1591506656}
-  - component: {fileID: 1591506655}
   - component: {fileID: 1591506660}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_4
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!54 &1591506655
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1591506654}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_IsActive: 0
 --- !u!65 &1591506656
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34223,7 +33192,7 @@ BoxCollider:
   m_GameObject: {fileID: 1591506654}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -34234,7 +33203,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1591506654}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -34288,8 +33257,8 @@ Transform:
   m_LocalScale: {x: 0.8210216, y: 0.34672266, z: 1.3628501}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0.000007867338, y: -129.8305, z: 179.9988}
 --- !u!114 &1591506660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34437,15 +33406,14 @@ GameObject:
   - component: {fileID: 1609096987}
   - component: {fileID: 1609096986}
   - component: {fileID: 1609096985}
-  - component: {fileID: 1609096984}
   - component: {fileID: 1609096988}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_23
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1609096983
 Transform:
   m_ObjectHideFlags: 0
@@ -34458,24 +33426,8 @@ Transform:
   m_LocalScale: {x: 0.8210216, y: 0.34672266, z: 1.3628501}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 24
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1609096984
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1609096982}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: -0.0001519717, y: 106.287384, z: 89.997375}
 --- !u!65 &1609096985
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34485,7 +33437,7 @@ BoxCollider:
   m_GameObject: {fileID: 1609096982}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -34496,7 +33448,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1609096982}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -34738,10 +33690,9 @@ GameObject:
   - component: {fileID: 1648365857}
   - component: {fileID: 1648365856}
   - component: {fileID: 1648365855}
-  - component: {fileID: 1648365858}
   - component: {fileID: 1648365859}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_13
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34759,8 +33710,8 @@ Transform:
   m_LocalScale: {x: 0.8210215, y: 0.34672272, z: 1.6123874}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 37
+  m_LocalEulerAnglesHint: {x: 0.000031046446, y: -59.32896, z: -0.000026041613}
 --- !u!65 &1648365855
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34770,7 +33721,7 @@ BoxCollider:
   m_GameObject: {fileID: 1648365853}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -34781,7 +33732,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1648365853}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -34823,22 +33774,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1648365853}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &1648365858
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1648365853}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &1648365859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38015,7 +36950,7 @@ PrefabInstance:
     - target: {fileID: 796439336532247372, guid: e8212f6dffd25394ab9247d9c34b12a1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.022
+      value: 0.0082
       objectReference: {fileID: 0}
     - target: {fileID: 796439336532247374, guid: e8212f6dffd25394ab9247d9c34b12a1,
         type: 3}
@@ -39374,10 +38309,9 @@ GameObject:
   - component: {fileID: 1720846708}
   - component: {fileID: 1720846707}
   - component: {fileID: 1720846706}
-  - component: {fileID: 1720846705}
   - component: {fileID: 1720846704}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_63
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39395,8 +38329,8 @@ Transform:
   m_LocalScale: {x: 1.0706359, y: 0.45213628, z: 1.7771957}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 64
-  m_LocalEulerAnglesHint: {x: 0, y: -19.855, z: 0}
+  m_RootOrder: 66
+  m_LocalEulerAnglesHint: {x: -46.916832, y: 123.194214, z: 179.16946}
 --- !u!114 &1720846704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39409,22 +38343,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993c002f130478e4b9b6df8fab797767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &1720846705
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1720846702}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &1720846706
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39434,7 +38352,7 @@ BoxCollider:
   m_GameObject: {fileID: 1720846702}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -39445,7 +38363,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1720846702}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -39499,10 +38417,9 @@ GameObject:
   - component: {fileID: 1721845689}
   - component: {fileID: 1721845688}
   - component: {fileID: 1721845687}
-  - component: {fileID: 1721845686}
   - component: {fileID: 1721845690}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_28
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39520,24 +38437,8 @@ Transform:
   m_LocalScale: {x: 0.8210216, y: 0.34672266, z: 1.3628501}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 29
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1721845686
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1721845684}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 45
+  m_LocalEulerAnglesHint: {x: -0.000038523714, y: 74.41687, z: -0.000028695371}
 --- !u!65 &1721845687
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39547,7 +38448,7 @@ BoxCollider:
   m_GameObject: {fileID: 1721845684}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -39558,7 +38459,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1721845684}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -39624,15 +38525,14 @@ GameObject:
   - component: {fileID: 1743110473}
   - component: {fileID: 1743110472}
   - component: {fileID: 1743110471}
-  - component: {fileID: 1743110470}
   - component: {fileID: 1743110469}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_58
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1743110468
 Transform:
   m_ObjectHideFlags: 0
@@ -39645,8 +38545,8 @@ Transform:
   m_LocalScale: {x: 1.0706358, y: 0.4521363, z: 1.7771957}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 59
-  m_LocalEulerAnglesHint: {x: 0, y: -19.855, z: 0}
+  m_RootOrder: 25
+  m_LocalEulerAnglesHint: {x: 0.0000049277814, y: -2.9425263, z: -179.99994}
 --- !u!114 &1743110469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39659,22 +38559,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993c002f130478e4b9b6df8fab797767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &1743110470
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743110467}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &1743110471
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39684,7 +38568,7 @@ BoxCollider:
   m_GameObject: {fileID: 1743110467}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -39695,7 +38579,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743110467}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -40605,15 +39489,14 @@ GameObject:
   - component: {fileID: 1865860928}
   - component: {fileID: 1865860927}
   - component: {fileID: 1865860926}
-  - component: {fileID: 1865860925}
   - component: {fileID: 1865860929}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_33
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1865860924
 Transform:
   m_ObjectHideFlags: 0
@@ -40626,24 +39509,8 @@ Transform:
   m_LocalScale: {x: 0.8210218, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 34
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1865860925
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1865860923}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: -0.0009454755, y: 21.323433, z: 0.030266918}
 --- !u!65 &1865860926
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40653,7 +39520,7 @@ BoxCollider:
   m_GameObject: {fileID: 1865860923}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -40664,7 +39531,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1865860923}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -40876,10 +39743,9 @@ GameObject:
   - component: {fileID: 1902739722}
   - component: {fileID: 1902739721}
   - component: {fileID: 1902739720}
-  - component: {fileID: 1902739719}
   - component: {fileID: 1902739723}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_44
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40897,24 +39763,8 @@ Transform:
   m_LocalScale: {x: 0.8210215, y: 0.34672272, z: 1.6123874}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 45
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1902739719
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1902739717}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 54
+  m_LocalEulerAnglesHint: {x: -0.00051812903, y: -126.92324, z: 0.0007038261}
 --- !u!65 &1902739720
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40924,7 +39774,7 @@ BoxCollider:
   m_GameObject: {fileID: 1902739717}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -40935,7 +39785,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1902739717}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -41001,10 +39851,9 @@ GameObject:
   - component: {fileID: 1910065694}
   - component: {fileID: 1910065693}
   - component: {fileID: 1910065692}
-  - component: {fileID: 1910065691}
   - component: {fileID: 1910065690}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_71
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41022,8 +39871,8 @@ Transform:
   m_LocalScale: {x: 1.0706358, y: 0.4521363, z: 1.7771957}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 72
-  m_LocalEulerAnglesHint: {x: 0, y: -19.855, z: 0}
+  m_RootOrder: 73
+  m_LocalEulerAnglesHint: {x: -0.033267982, y: 60.565205, z: -179.94206}
 --- !u!114 &1910065690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41036,22 +39885,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993c002f130478e4b9b6df8fab797767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &1910065691
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1910065688}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &1910065692
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41061,7 +39894,7 @@ BoxCollider:
   m_GameObject: {fileID: 1910065688}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -41072,7 +39905,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1910065688}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -41239,10 +40072,9 @@ GameObject:
   - component: {fileID: 1929826743}
   - component: {fileID: 1929826742}
   - component: {fileID: 1929826741}
-  - component: {fileID: 1929826740}
   - component: {fileID: 1929826744}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_32
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41260,24 +40092,8 @@ Transform:
   m_LocalScale: {x: 0.8210215, y: 0.34672272, z: 1.6123874}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 33
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1929826740
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1929826738}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 47
+  m_LocalEulerAnglesHint: {x: 0.002515217, y: -145.35205, z: 33.518066}
 --- !u!65 &1929826741
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41287,7 +40103,7 @@ BoxCollider:
   m_GameObject: {fileID: 1929826738}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -41298,7 +40114,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1929826738}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -41364,10 +40180,9 @@ GameObject:
   - component: {fileID: 1959605154}
   - component: {fileID: 1959605153}
   - component: {fileID: 1959605152}
-  - component: {fileID: 1959605151}
   - component: {fileID: 1959605150}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_70
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41385,8 +40200,8 @@ Transform:
   m_LocalScale: {x: 1.0706357, y: 0.45213628, z: 1.7771955}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 71
-  m_LocalEulerAnglesHint: {x: 0.107, y: -19.702, z: 0.091}
+  m_RootOrder: 72
+  m_LocalEulerAnglesHint: {x: -0.019620633, y: -6.094013, z: -0.03500506}
 --- !u!114 &1959605150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41399,22 +40214,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993c002f130478e4b9b6df8fab797767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &1959605151
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1959605148}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &1959605152
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41424,7 +40223,7 @@ BoxCollider:
   m_GameObject: {fileID: 1959605148}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -41435,7 +40234,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959605148}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -41524,10 +40323,9 @@ GameObject:
   - component: {fileID: 1992776428}
   - component: {fileID: 1992776427}
   - component: {fileID: 1992776426}
-  - component: {fileID: 1992776425}
   - component: {fileID: 1992776429}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_35
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41545,24 +40343,8 @@ Transform:
   m_LocalScale: {x: 0.8210218, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 36
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1992776425
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1992776423}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 49
+  m_LocalEulerAnglesHint: {x: 0.00016679622, y: -6.642796, z: -179.9998}
 --- !u!65 &1992776426
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41572,7 +40354,7 @@ BoxCollider:
   m_GameObject: {fileID: 1992776423}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -41583,7 +40365,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1992776423}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -41907,10 +40689,9 @@ GameObject:
   - component: {fileID: 2011058170}
   - component: {fileID: 2011058169}
   - component: {fileID: 2011058168}
-  - component: {fileID: 2011058167}
   - component: {fileID: 2011058171}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_18
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41928,24 +40709,8 @@ Transform:
   m_LocalScale: {x: 0.8210215, y: 0.34672272, z: 1.6123874}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 19
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &2011058167
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2011058165}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_RootOrder: 40
+  m_LocalEulerAnglesHint: {x: -85.025154, y: 87.43839, z: -168.11183}
 --- !u!65 &2011058168
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41955,7 +40720,7 @@ BoxCollider:
   m_GameObject: {fileID: 2011058165}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -41966,7 +40731,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2011058165}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -42032,10 +40797,9 @@ GameObject:
   - component: {fileID: 2018800243}
   - component: {fileID: 2018800242}
   - component: {fileID: 2018800241}
-  - component: {fileID: 2018800240}
   - component: {fileID: 2018800239}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_68
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42053,8 +40817,8 @@ Transform:
   m_LocalScale: {x: 1.0706359, y: 0.45213628, z: 1.7771957}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 69
-  m_LocalEulerAnglesHint: {x: 0, y: -19.855, z: 0}
+  m_RootOrder: 70
+  m_LocalEulerAnglesHint: {x: 0.000000817168, y: 0.7213665, z: -0.000026249116}
 --- !u!114 &2018800239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42067,22 +40831,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993c002f130478e4b9b6df8fab797767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &2018800240
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2018800237}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &2018800241
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42092,7 +40840,7 @@ BoxCollider:
   m_GameObject: {fileID: 2018800237}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -42103,7 +40851,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2018800237}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -42345,10 +41093,9 @@ GameObject:
   - component: {fileID: 2044076119}
   - component: {fileID: 2044076118}
   - component: {fileID: 2044076117}
-  - component: {fileID: 2044076116}
   - component: {fileID: 2044076115}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_72
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42366,8 +41113,8 @@ Transform:
   m_LocalScale: {x: 1.0706357, y: 0.45213628, z: 1.7771955}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 73
-  m_LocalEulerAnglesHint: {x: 0, y: -19.855, z: 0}
+  m_RootOrder: 74
+  m_LocalEulerAnglesHint: {x: 0.000010651891, y: 39.045673, z: -0.000025047144}
 --- !u!114 &2044076115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42380,22 +41127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993c002f130478e4b9b6df8fab797767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &2044076116
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2044076113}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &2044076117
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42405,7 +41136,7 @@ BoxCollider:
   m_GameObject: {fileID: 2044076113}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -42416,7 +41147,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2044076113}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -42470,10 +41201,9 @@ GameObject:
   - component: {fileID: 2048935640}
   - component: {fileID: 2048935639}
   - component: {fileID: 2048935638}
-  - component: {fileID: 2048935641}
   - component: {fileID: 2048935642}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_10
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42491,8 +41221,8 @@ Transform:
   m_LocalScale: {x: 0.82102185, y: 0.34672272, z: 1.3628502}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 35
+  m_LocalEulerAnglesHint: {x: -0.0008571887, y: 39.462, z: 89.997444}
 --- !u!65 &2048935638
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42502,7 +41232,7 @@ BoxCollider:
   m_GameObject: {fileID: 2048935636}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -42513,7 +41243,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2048935636}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -42555,22 +41285,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2048935636}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &2048935641
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2048935636}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &2048935642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42595,10 +41309,9 @@ GameObject:
   - component: {fileID: 2050002228}
   - component: {fileID: 2050002227}
   - component: {fileID: 2050002226}
-  - component: {fileID: 2050002225}
   - component: {fileID: 2050002224}
   m_Layer: 0
-  m_Name: brick
+  m_Name: brick_57
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42616,8 +41329,8 @@ Transform:
   m_LocalScale: {x: 1.0706357, y: 0.45213628, z: 1.7771955}
   m_Children: []
   m_Father: {fileID: 244244723}
-  m_RootOrder: 58
-  m_LocalEulerAnglesHint: {x: 0, y: -19.855, z: 0}
+  m_RootOrder: 62
+  m_LocalEulerAnglesHint: {x: 40.835373, y: -108.35625, z: -112.11852}
 --- !u!114 &2050002224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42630,22 +41343,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993c002f130478e4b9b6df8fab797767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &2050002225
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2050002222}
-  serializedVersion: 2
-  m_Mass: 2000
-  m_Drag: 0.5
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &2050002226
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42655,7 +41352,7 @@ BoxCollider:
   m_GameObject: {fileID: 2050002222}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -42666,7 +41363,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2050002222}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -47349,7 +46046,7 @@ PrefabInstance:
     - target: {fileID: 2442608620501816546, guid: 4d6578a489356694b8c10423300aa632,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2442608620501816546, guid: 4d6578a489356694b8c10423300aa632,
         type: 3}
