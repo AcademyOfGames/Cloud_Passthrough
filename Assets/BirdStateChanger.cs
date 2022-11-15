@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+
 public class BirdStateChanger : MonoBehaviour
 {
     OVRInput.Controller controllerR = OVRInput.Controller.RTouch;
@@ -27,7 +29,8 @@ public class BirdStateChanger : MonoBehaviour
         Landing,
         TakeOff,
         Diving,
-        Eating
+        Eating,
+        FlyIntoTheClouds
     }
 
     // Start with Hunting
@@ -74,7 +77,25 @@ public class BirdStateChanger : MonoBehaviour
         SetBirdSettings();
     }
 
-    
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneChange;
+    }
+
+    private void OnDisable()
+    {
+        throw new NotImplementedException();
+    }
+
+    void OnSceneChange(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "GrassyHlls")
+        {
+            customControlsUnlocked = false;
+            SwitchState(BirdState.FlyIntoTheClouds);
+        }
+    }
+
     // Change the bird from flying to meeting player to leaving
     public void SwitchState(BirdState birdState)
     {
@@ -133,6 +154,11 @@ public class BirdStateChanger : MonoBehaviour
                 break;
             
             case BirdState.Exiting:
+                break;
+            
+            case BirdState.FlyIntoTheClouds:
+                bird.currentWaypoint = GameObject.FindGameObjectWithTag("Birds").transform.position;
+                bird.waypointProximity = 3f;
                 break;
             
             case BirdState.Diving:

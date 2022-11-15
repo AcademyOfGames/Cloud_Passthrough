@@ -16,7 +16,9 @@ public class HeroBeeBehavior : MonoBehaviour
     public BeeState currentState;
 
     public float proximityDistance;
-    public Transform flowerTransform;
+    public Transform rightHandLandingSpot;
+    public Transform leftHandLandingSpot;
+    private Transform handHoldingBee;
     
     [SerializeField] private Vector3 wayPointOrigin;
     [SerializeField] private float speed;
@@ -35,9 +37,10 @@ public class HeroBeeBehavior : MonoBehaviour
         originalSpeed = speed;
         anim = GetComponent<Animator>();
         SwitchStates(BeeState.MeetingPlayer);
+        OVRGrabber[] hands = FindObjectsOfType<OVRGrabber>();
+        rightHandLandingSpot = hands[0].transform;
+        leftHandLandingSpot = hands[1].transform;
 
-        BirdStateChanger bird = FindObjectOfType<BirdStateChanger>();
-        if(bird != null) bird.customControlsUnlocked = false;
         //bee starts going to players face
     } 
 
@@ -94,9 +97,18 @@ public class HeroBeeBehavior : MonoBehaviour
                 case BeeState.WatchingPlayer:
                     speed = 0f;
 
-                    if (Vector3.Distance(flowerTransform.position, t.position) < .5f)
+                    if (Vector3.Distance(rightHandLandingSpot.position, t.position) < .5f)
                     {
+                        handHoldingBee = rightHandLandingSpot;
+
                         SwitchStates(BeeState.GoToFlower);
+                    }
+                    
+                    if(Vector3.Distance(leftHandLandingSpot.position, t.position) < .5f)
+                    {
+                        handHoldingBee = leftHandLandingSpot;
+                        SwitchStates(BeeState.GoToFlower);
+
                     }
                     break;
                 
@@ -125,13 +137,13 @@ public class HeroBeeBehavior : MonoBehaviour
                 StartCoroutine(nameof(MovingWatchPoint));
                 break;
             case BeeState.GoToFlower:
-                wayPoint = flowerTransform.GetChild(0).position;
+                wayPoint = handHoldingBee.position;
                 proximityDistance = .1f;
                 speed = originalSpeed*.1f;
                 break;
             case BeeState.LandedOnFlower:
                 anim.SetBool("Eating",true);
-                transform.SetParent(flowerTransform);
+                transform.SetParent(handHoldingBee);
                 speed = 0;
                 break;
         }

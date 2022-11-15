@@ -8,6 +8,9 @@ TagManager:
   - LandingSpot
   - Brick
   - Deer
+  - HeartButterfly
+  - Birds
+  - LeftHandLanding
   layers:
   - Default
   - TransparentFX
