@@ -28,19 +28,19 @@ public class HeroBeeBehavior : MonoBehaviour
 
     public GameObject waypointViz;
 
-    private Animator anim;
+    public Animator anim;
     //temporarily public so I can see it without seeing all the debug private vars
     public float distance;
     // Start is called before the first frame update
     void Start()
     {
         originalSpeed = speed;
-        anim = GetComponent<Animator>();
         SwitchStates(BeeState.MeetingPlayer);
         OVRGrabber[] hands = FindObjectsOfType<OVRGrabber>();
         rightHandLandingSpot = hands[0].transform;
         leftHandLandingSpot = hands[1].transform;
-
+        transform.parent = null;
+        transform.localScale = new Vector3(0.04f, 0.04f, 0.04f);
         //bee starts going to players face
     } 
 
@@ -50,17 +50,21 @@ public class HeroBeeBehavior : MonoBehaviour
         switch (currentState)
         {
             case BeeState.MeetingPlayer:
-                transform.LookAt(player);
+                transform.LookAt(wayPoint);
                 
                 //translate already takes account transform so it should just be vector3
                 transform.Translate(Vector3.forward * speed );
                 wayPoint = player.position + player.forward;
+                waypointViz.transform.position = wayPoint;
+
                 DistanceCheck(player.position);
 
                 break;
             case BeeState.WatchingPlayer:
                 transform.LookAt(player);
                 transform.position = Vector3.MoveTowards(transform.position, wayPoint,speed );
+                waypointViz.transform.position = wayPoint;
+
                 DistanceCheck(wayPoint);
 
                 break;        
@@ -132,8 +136,10 @@ public class HeroBeeBehavior : MonoBehaviour
                 break;
             //In watch player, bee will look at the player and sporadically switch spots
             case BeeState.WatchingPlayer:
+                wayPointOrigin = player.position + player.forward;
+
                 speed = 0f;
-                proximityDistance = .1f;
+                proximityDistance = .02f;
                 StartCoroutine(nameof(MovingWatchPoint));
                 break;
             case BeeState.GoToFlower:
@@ -170,11 +176,9 @@ public class HeroBeeBehavior : MonoBehaviour
         speed = originalSpeed*.6f;
         
         //if player turns bee will always be in front of players face
-        wayPointOrigin = player.position + player.forward;
 
         
         //find new spot within a certain range of the original point
         wayPoint = Random.insideUnitSphere * .5f + wayPointOrigin;
-        if(waypointViz != null) waypointViz.transform.position = wayPoint;
     }
 }
