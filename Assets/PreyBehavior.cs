@@ -12,7 +12,7 @@ public class PreyBehavior : MonoBehaviour
     private Vector3 _ogPos;
     public Transform birdHand;
     public float throwMultiplier;
-    private OVRGrabbableExtended _grabInfo;
+    private FishGrabbableBehavior _grabInfo;
     private BirdStateChanger _birdState;
 
     private bool _isGrabbed;
@@ -91,12 +91,11 @@ public class PreyBehavior : MonoBehaviour
         transform.eulerAngles = newRotation;
     }
 
-    // Start is called before the first frame update
     void Awake()
     {
         _stump = FindObjectOfType<StumpBehavior>();
         _birdState = FindObjectOfType<BirdStateChanger>();
-        _grabInfo = GetComponent<OVRGrabbableExtended>();
+        _grabInfo = GetComponent<FishGrabbableBehavior>();
         _ogPos = transform.position;
         _rb= GetComponent<Rigidbody>();
     }
@@ -105,7 +104,6 @@ public class PreyBehavior : MonoBehaviour
     {
         _birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
         _birdState.GetComponent<BirdMovement>().anim.SetBool("Eating", false);
-
     }
     
     void IsReleased()

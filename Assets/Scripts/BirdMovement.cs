@@ -354,6 +354,10 @@ public class BirdMovement : MonoBehaviour
             case BirdStateChanger.BirdState.Diving:
                 SwitchAnimation("Catching");
                 break;
+            case BirdStateChanger.BirdState.FlyIntoTheClouds:
+                target = GameObject.FindGameObjectWithTag("Birds").transform;
+                birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
+                break;
             default:
                 FindNewWaypoint();
                 break;

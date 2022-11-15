@@ -1,15 +1,16 @@
 using UnityEngine;
 using UnityEngine.Events;
  
-public class OVRGrabbableExtended : OVRGrabbable
+public class SeedGrabbableBehavior : OVRGrabbable
 {
     [HideInInspector] public UnityEvent OnGrabBegin;
     [HideInInspector] public UnityEvent OnGrabEnd;
  
     public override void GrabBegin(OVRGrabber hand, Collider grabPoint)
     {
-        OnGrabBegin.Invoke();
         base.GrabBegin(hand, grabPoint);
+
+        OnGrabBegin.Invoke();
     }
  
     public override void GrabEnd(Vector3 linearVelocity, Vector3 angularVelocity)
