@@ -8,11 +8,15 @@ using Random = UnityEngine.Random;
 public class HeroBeeBehavior : MonoBehaviour
 {
     public Transform player;
-    public enum BeeState { MeetingPlayer, WatchingPlayer,HandWandering }
-    public BeeState currentState = BeeState.MeetingPlayer;
+    public enum BeeState { MeetingPlayer, WatchingPlayer,HandWandering,
+        GoToFlower,
+        LandedOnFlower
+    }
+
+    public BeeState currentState;
 
     public float proximityDistance;
-
+    public Transform flowerTransform;
     
     [SerializeField] private Vector3 wayPointOrigin;
     [SerializeField] private float speed;
@@ -22,13 +26,18 @@ public class HeroBeeBehavior : MonoBehaviour
 
     public GameObject waypointViz;
 
+    private Animator anim;
     //temporarily public so I can see it without seeing all the debug private vars
     public float distance;
     // Start is called before the first frame update
     void Start()
     {
         originalSpeed = speed;
-        
+        anim = GetComponent<Animator>();
+        SwitchStates(BeeState.MeetingPlayer);
+
+        BirdStateChanger bird = FindObjectOfType<BirdStateChanger>();
+        if(bird != null) bird.customControlsUnlocked = false;
         //bee starts going to players face
     } 
 
@@ -51,10 +60,18 @@ public class HeroBeeBehavior : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, wayPoint,speed );
                 DistanceCheck(wayPoint);
 
-                break;
-        }
+                break;        
+            case BeeState.GoToFlower:
+                transform.LookAt(wayPoint);
+                transform.position = Vector3.MoveTowards(transform.position, wayPoint,speed );
+                DistanceCheck(wayPoint);
 
+                break;
+            
+            
+        }
     }
+    
 
     /// <summary>
     /// check how far bee is from objective
@@ -76,6 +93,16 @@ public class HeroBeeBehavior : MonoBehaviour
                     break;
                 case BeeState.WatchingPlayer:
                     speed = 0f;
+
+                    if (Vector3.Distance(flowerTransform.position, t.position) < .5f)
+                    {
+                        SwitchStates(BeeState.GoToFlower);
+                    }
+                    break;
+                
+                case BeeState.GoToFlower:
+                    SwitchStates(BeeState.LandedOnFlower);
+
                     break;
             }
         }
@@ -88,11 +115,24 @@ public class HeroBeeBehavior : MonoBehaviour
 
         switch (newState)
         {
+            case BeeState.MeetingPlayer:
+       
+                break;
             //In watch player, bee will look at the player and sporadically switch spots
             case BeeState.WatchingPlayer:
                 speed = 0f;
                 proximityDistance = .1f;
                 StartCoroutine(nameof(MovingWatchPoint));
+                break;
+            case BeeState.GoToFlower:
+                wayPoint = flowerTransform.GetChild(0).position;
+                proximityDistance = .1f;
+                speed = originalSpeed*.1f;
+                break;
+            case BeeState.LandedOnFlower:
+                anim.SetBool("Eating",true);
+                transform.SetParent(flowerTransform);
+                speed = 0;
                 break;
         }
         
@@ -104,13 +144,10 @@ public class HeroBeeBehavior : MonoBehaviour
     /// <returns></returns>
     IEnumerator MovingWatchPoint()
     {
-        float waitTime = Random.Range(1f, 3f);
-        print("finding new point waitTime " + waitTime + " currentState " + currentState);
-
         while (currentState == BeeState.WatchingPlayer)
         {
+            float waitTime = Random.Range(1f, 5f);
             yield return new WaitForSeconds(waitTime);
-            waitTime = Random.Range(1f, 3f);
             FindNewWayPoint();
         }
     }
@@ -118,22 +155,14 @@ public class HeroBeeBehavior : MonoBehaviour
     private void FindNewWayPoint()
     {
         //magic number for now
-        speed = originalSpeed*.4f;
+        speed = originalSpeed*.6f;
         
         //if player turns bee will always be in front of players face
         wayPointOrigin = player.position + player.forward;
 
         
         //find new spot within a certain range of the original point
-        wayPoint = Random.insideUnitSphere + wayPointOrigin;
+        wayPoint = Random.insideUnitSphere * .5f + wayPointOrigin;
         if(waypointViz != null) waypointViz.transform.position = wayPoint;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (currentState == BeeState.WatchingPlayer && other.CompareTag("Hand"))
-        {
-            SwitchStates(BeeState.HandWandering);
-        }
     }
 }
