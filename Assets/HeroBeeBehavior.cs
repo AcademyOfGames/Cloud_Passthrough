@@ -7,15 +7,19 @@ using Random = UnityEngine.Random;
 
 public class HeroBeeBehavior : MonoBehaviour
 {
-    public Transform player;
+    //State
+    public BeeState currentState;
     public enum BeeState { MeetingPlayer, WatchingPlayer,HandWandering,
         GoToFlower,
         LandedOnFlower
     }
 
-    public BeeState currentState;
 
+    
+    //Positions
     public float proximityDistance;
+    
+    public Transform player;
     public Transform rightHandLandingSpot;
     public Transform leftHandLandingSpot;
     private Transform handHoldingBee;
@@ -29,8 +33,11 @@ public class HeroBeeBehavior : MonoBehaviour
     public GameObject waypointViz;
 
     public Animator anim;
+    public AudioSource beeAudio;
+
     //temporarily public so I can see it without seeing all the debug private vars
     public float distance;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -112,7 +119,6 @@ public class HeroBeeBehavior : MonoBehaviour
                     {
                         handHoldingBee = leftHandLandingSpot;
                         SwitchStates(BeeState.GoToFlower);
-
                     }
                     break;
                 
@@ -148,6 +154,7 @@ public class HeroBeeBehavior : MonoBehaviour
                 speed = originalSpeed*.1f;
                 break;
             case BeeState.LandedOnFlower:
+                beeAudio.Stop();
                 anim.SetBool("Eating",true);
                 transform.SetParent(handHoldingBee);
                 speed = 0;

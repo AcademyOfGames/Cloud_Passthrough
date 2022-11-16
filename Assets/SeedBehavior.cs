@@ -32,7 +32,6 @@ public class SeedBehavior : MonoBehaviour
         GetComponent<MeshRenderer>().enabled = true;
         grabbed = true;
         snapPos = _grabInfo.grabbedBy.transform;
-        print("Grabbed by " + _grabInfo.grabbedBy.name);
     }
 
     void IsReleased()
