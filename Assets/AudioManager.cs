@@ -30,7 +30,6 @@ public class AudioManager : MonoBehaviour
 
         if (s == null)
         {
-            print(soundName + " not found");
             return;
         }
         

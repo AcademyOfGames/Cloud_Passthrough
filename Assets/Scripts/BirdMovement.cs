@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 public class BirdMovement : MonoBehaviour
 {
     public BirdStateChanger birdState;
+    
     //Custom behavior
     private bool introSequenceDone;
     public GameObject fishBucket;
@@ -25,6 +26,7 @@ public class BirdMovement : MonoBehaviour
     private Vector3 direction;
     private Quaternion rotationGoal;
     private float currentTurnSpeed;
+    private bool keepEagleUpwards;
 
     //Orbiting
     public float orbitSpeed;
@@ -61,7 +63,7 @@ public class BirdMovement : MonoBehaviour
 
     public Transform prey;
     public float maxSpeed;
-
+    private Transform t;
 
 
     private static readonly int OnGround = Animator.StringToHash("OnGround");
@@ -74,6 +76,11 @@ public class BirdMovement : MonoBehaviour
     private BirdAudioManager birdAudio;
 
     public StumpBehavior _stump;
+
+    private void Awake()
+    {
+        t = transform;
+    }
 
     void Start()
     {
@@ -151,14 +158,12 @@ public class BirdMovement : MonoBehaviour
     {
         rotationGoal = Quaternion.LookRotation(target.position - transform.position);
         float timePassed = 0;
-
-
+        
         while (timePassed < 1)
         {
             Vector3 tempRotation = transform.eulerAngles;
             tempRotation.y = Mathf.Lerp(tempRotation.y, rotationGoal.eulerAngles.y, timePassed);
             tempRotation.z = 0;
-
             transform.eulerAngles = tempRotation;
             timePassed += Time.deltaTime * .3f;
             yield return new WaitForFixedUpdate();
@@ -172,14 +177,28 @@ public class BirdMovement : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         switch (birdState.currentState)
         {
             case BirdStateChanger.BirdState.Hunting:
+            case BirdStateChanger.BirdState.GoToLanding:
+            case BirdStateChanger.BirdState.Welcoming:
+            case BirdStateChanger.BirdState.Diving:
+            case BirdStateChanger.BirdState.TakeOff:
                 BasicFlying();
                 break;
+            case BirdStateChanger.BirdState.Orbiting:
+                OrbitFlying();
+                break;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        switch (birdState.currentState)
+        {
+
 
             case BirdStateChanger.BirdState.GoToLanding:
                 currentWaypoint = landingSpot.position;
@@ -193,9 +212,6 @@ public class BirdMovement : MonoBehaviour
                     turnSpeed *= 1.01f;
                     turnSpeed += Mathf.Lerp(.01f, 0, Vector3.Distance(transform.position, currentWaypoint) * .1f);
                 }
-
-
-                BasicFlying();
                 break;
 
             case BirdStateChanger.BirdState.Landing:
@@ -214,22 +230,24 @@ public class BirdMovement : MonoBehaviour
                 }
 
 
-                transform.position = Vector3.MoveTowards(transform.position, landingSpot.position + Vector3.up * .1f, .4f * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, landingSpot.position + Vector3.up * .1f, 2f * Time.deltaTime);
                 // FaceTowardMovement();
-                ResetXAngle();
+                if (keepEagleUpwards)
+                {
+                    Vector3 newAngle = t.eulerAngles;
+                    newAngle.x = 0;
+                    t.eulerAngles = newAngle;
+                }
                 break;
 
             case BirdStateChanger.BirdState.Welcoming:
                 turnSpeed *= 1.01f;
                 turnSpeed += Mathf.Lerp(.02f, 0, Vector3.Distance(transform.position, player.position) * .06f);
 
-                BasicFlying();
                 break;
 
             case BirdStateChanger.BirdState.Diving:
                 currentWaypoint = prey.position;
-                //currentWaypoint.y -= Vector3.Distance(prey.position, transform.position);
-                BasicFlying();
                 turnSpeed *= 1.01f;
                 turnSpeed += Mathf.Lerp(.1f, 0, Vector3.Distance(transform.position, prey.position) * .5f);
 
@@ -238,16 +256,10 @@ public class BirdMovement : MonoBehaviour
                     speed *= 1.005f;
                 }
                 break;
-            case BirdStateChanger.BirdState.Orbiting:
-                OrbitFlying();
-                break;
 
             case BirdStateChanger.BirdState.Exiting:
                 break;
-
-            case BirdStateChanger.BirdState.TakeOff:
-                BasicFlying();
-                break;
+            
             default:
                 break;
         }
@@ -301,21 +313,33 @@ public class BirdMovement : MonoBehaviour
             g.SetActive(on);
         }
     }
-    private void ResetXAngle()
+    
+
+
+    public IEnumerator ResetXAngle()
     {
-        Vector3 targetRotation = transform.eulerAngles;
-        //move x rotation until it's 0
-        if (targetRotation.x > 230 && targetRotation.x < 360)
+        while (t.eulerAngles.x > 10 || t.eulerAngles.x < -10)
         {
-            targetRotation.x += 20 * Time.deltaTime;
-            transform.eulerAngles = targetRotation;
+            Vector3 targetRotation = t.eulerAngles;
+            //move x rotation until it's 0
+            if (targetRotation.x > 230 && targetRotation.x < 360)
+            {
+                targetRotation.x += 20 * Time.deltaTime;
+                t.eulerAngles = targetRotation;
+            }
+            else
+            {
+                targetRotation.x = 0f;
+                t.eulerAngles = Vector3.Lerp(t.eulerAngles, targetRotation, .1f);
+            }
+
+            yield return null;
         }
-        else
-        {
-            targetRotation.x = 0f;
-            transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, targetRotation, .1f);
-        }
+
+        keepEagleUpwards = true;
+
     }
+    
     public void UpdateSettings(BirdStateChanger.BirdSettings newSettings)
     {
         //go through each bird movement variable and switch it to the new setting
@@ -492,7 +516,6 @@ public class BirdMovement : MonoBehaviour
     }
 
     public void ToggleSloMo(bool on){
-        print("Toggling slomo " + on);
         if (on)
         {
             Time.timeScale = .1f;

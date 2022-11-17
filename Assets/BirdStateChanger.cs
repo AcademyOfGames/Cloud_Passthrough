@@ -107,6 +107,9 @@ public class BirdStateChanger : MonoBehaviour
                 bird.SwitchAnimationState(birdState);
                 bird.UpdateSettings(LandedSettings);
 
+                IEnumerator coroutine = bird.ResetXAngle();
+                StartCoroutine(coroutine);
+        
                 if (bird.grabbedFish)
                 {
                     SwitchState(BirdState.Eating);
@@ -268,8 +271,6 @@ public class BirdStateChanger : MonoBehaviour
     private IEnumerator WaitAndActivateDeer()
     {
         yield return new WaitForSeconds(30f);
-        print("30 seconds");
-
         deer.SetActive(true);
     }
 

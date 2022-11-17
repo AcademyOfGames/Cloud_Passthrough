@@ -261,7 +261,6 @@ namespace VRKeys {
 		/// <param name="character">Character.</param>
 		public void AddCharacter (string character) {
 			text += character;
-			print("Adding character " + character);
 			UpdateDisplayText ();
 			PlaceholderVisibility ();
 

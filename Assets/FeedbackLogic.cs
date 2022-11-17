@@ -47,7 +47,6 @@ public class FeedbackLogic : MonoBehaviour
             return;
         }
         feedbackPanels[currentFeedbackPanel].SetActive(true);
-        print("Setting to true " + feedbackPanels[currentFeedbackPanel].name);
     }
 
     public void CancelFeedback()

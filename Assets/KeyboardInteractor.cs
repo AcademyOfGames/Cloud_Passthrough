@@ -30,7 +30,6 @@ public class KeyboardInteractor : MonoBehaviour
         {
             if (previousPress != pressed)
             {
-                print("StateHandled");
                 previousPress = pressed;
                 if (pressed)
                 {
@@ -60,12 +59,10 @@ public class KeyboardInteractor : MonoBehaviour
 
     public void ShootRay()
     {
-    print("RayShot");
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
         if(Physics.Raycast(ray,out hit))
         {
-            print("Hit " + hit.collider.name);
             LetterKey key = hit.collider.GetComponent<LetterKey>();
             if(key != null){
                 hit.collider.GetComponent<LetterKey>().KeySelected();

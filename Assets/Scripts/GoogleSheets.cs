@@ -15,7 +15,6 @@ public class GoogleSheets : MonoBehaviour
 
    IEnumerator Post(string data) {
        
-       print("Sending data " + data);
        WWWForm form = new WWWForm();
        form.AddField("entry.1758749926", data);
        form.AddField("entry.1173467535", userName);
