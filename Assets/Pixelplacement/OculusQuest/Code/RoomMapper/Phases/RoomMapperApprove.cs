@@ -13,6 +13,9 @@ namespace Pixelplacement.XRTools
         //Startup:
         private void OnEnable()
         {
+            RoomMapper.Instance.Save();
+            RoomMapper.Instance.ShowGeometry();
+            Next(true);
             //hooks:
             redoButton.onClick.AddListener(HandleRedo);
             acceptButton.onClick.AddListener(HandleAccept);

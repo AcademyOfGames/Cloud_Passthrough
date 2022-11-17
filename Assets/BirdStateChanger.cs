@@ -84,7 +84,7 @@ public class BirdStateChanger : MonoBehaviour
 
     private void OnDisable()
     {
-        throw new NotImplementedException();
+       SceneManager.sceneLoaded -= OnSceneChange;
     }
 
     void OnSceneChange(Scene scene, LoadSceneMode mode)

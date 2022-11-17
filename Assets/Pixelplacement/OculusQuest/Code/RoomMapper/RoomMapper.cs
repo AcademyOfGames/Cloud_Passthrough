@@ -100,14 +100,14 @@ namespace Pixelplacement.XRTools
         //Callbacks:
         private void RoomAnchorReadyCallback()
         {
-            if (PlayerPrefs.HasKey("RoomMapper"))
+           /* if (PlayerPrefs.HasKey("RoomMapper"))
             {
                 LoadPrevious();
             }
             else
-            {
+            {*/
                 Restart();
-            }
+            //}
         }
         
         //Event Handlers:

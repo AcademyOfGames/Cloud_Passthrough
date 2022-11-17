@@ -10,6 +10,7 @@ namespace Pixelplacement.XRTools
         //Startup:
         private void OnEnable()
         {
+            Next();
             //hooks:
             goButton.onClick.AddListener(HandleGo);
         }
