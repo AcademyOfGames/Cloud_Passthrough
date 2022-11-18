@@ -1,31 +1,26 @@
+using System;
 using UnityEngine.UI;
 
 namespace Pixelplacement.XRTools
 {
     public class RoomMapperIntro : RoomMapperPhase
     {
-        //Public Variables:
-        public Button goButton;
-        
-        //Startup:
-        private void OnEnable()
+        private void Start()
         {
-            Next();
-            //hooks:
-            goButton.onClick.AddListener(HandleGo);
+            foreach (var hand in FindObjectsOfType<UICustomInteraction>())
+            {
+                hand.ToggleLaser(true);
+            }
         }
-        
-        //Shutdown:
-        private void OnDisable()
-        {
-            //hooks:
-            goButton.onClick.RemoveListener(HandleGo);
-        }
-        
+
         //Event Handlers:
-        private void HandleGo()
+        public void HandleGo()
         {
             Next();
+            foreach (var hand in FindObjectsOfType<UICustomInteraction>())
+            {
+                hand.ToggleLaser(false);
+            }
         }
     }
 }

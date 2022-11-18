@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,14 +7,21 @@ using UnityEngine;
 public class FeedbackLogic : MonoBehaviour
 {
     public GameObject[] feedbackPanels;
-    [HideInInspector]
-    public bool feedbackStarted;
+    [HideInInspector] public bool feedbackStarted;
+
+    private UICustomInteraction[] hands;
     public bool feedbackEnded;
     public int currentFeedbackPanel = 0;
 
     public LineRenderer[] lasers;
 
     public TextMeshProUGUI emailInput;
+
+    private void Awake()
+    {
+        hands = FindObjectsOfType<UICustomInteraction>();
+    }
+
     public void StartFeedback()
     {
         if (feedbackStarted) return;
@@ -25,16 +33,18 @@ public class FeedbackLogic : MonoBehaviour
         GetComponent<Animator>().Play("UIFadeIn");
         feedbackStarted = true;
         feedbackPanels[0].SetActive(true);
+
         ToggleLasers(true);
     }
 
-    void ToggleLasers(bool on)
+    private void ToggleLasers(bool on)
     {
-        foreach (var l in lasers)
+        foreach (var hand in hands)
         {
-            l.enabled = on;
+            hand.ToggleLaser(on);
         }
     }
+
 
     public void NextFeedbackPanel()
     {
@@ -53,9 +63,9 @@ public class FeedbackLogic : MonoBehaviour
     public void CancelFeedback()
     {
         FindObjectOfType<GoogleSheets>().AddEventData("Feedback Cancelled", SystemInfo.deviceUniqueIdentifier);
+        FindObjectOfType<BirdMovement>().ToggleControllerUI(true);
 
         ToggleLasers(false);
-        FindObjectOfType<BirdMovement>().ToggleControllerUI(true);
 
         gameObject.SetActive(false);
 
@@ -65,17 +75,6 @@ public class FeedbackLogic : MonoBehaviour
     {
         FindObjectOfType<GoogleSheets>().AddEventData("Stars set to " + index, SystemInfo.deviceUniqueIdentifier);
 
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void FeedbackEnded()

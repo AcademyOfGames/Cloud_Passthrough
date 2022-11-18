@@ -9,7 +9,7 @@ public class UICustomInteraction : MonoBehaviour
     private LineRenderer line;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         line = GetComponent<LineRenderer>();
     }
@@ -28,10 +28,13 @@ public class UICustomInteraction : MonoBehaviour
             ShootRay();
         }
     }
+    public void ToggleLaser(bool on)
+    {
+        line.enabled = on;
+    }
 
      void ShootRay()
      {
-        print("Shot ray");
          RaycastHit hit;
          Ray ray = new Ray(transform.position, transform.forward);
          if (Physics.Raycast(ray, out hit))
@@ -41,13 +44,18 @@ public class UICustomInteraction : MonoBehaviour
              {
                  click.Click();
              }
-
-            print("Checking if hit is a key " + hit.collider.name);
              
              Key key = hit.collider.GetComponent<Key>();
              if (key != null)
              {
                  key.HandleTriggerEnter();
+             }
+             
+             OnClickVRCollider colliderClick = hit.collider.GetComponent<OnClickVRCollider>();
+             
+             if (colliderClick != null)
+             {
+                 colliderClick.Click();
              }
          }
     }
