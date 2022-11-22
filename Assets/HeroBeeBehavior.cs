@@ -36,10 +36,12 @@ public class HeroBeeBehavior : MonoBehaviour
 
     //temporarily public so I can see it without seeing all the debug private vars
     public float distance;
-    
+    Vector3 beeMoveDir;
+
     // Start is called before the first frame update
     void Start()
     {
+        beeMoveDir = Vector3.zero;
         originalSpeed = speed;
         SwitchStates(BeeState.MeetingPlayer);
         OVRGrabber[] hands = FindObjectsOfType<OVRGrabber>();
@@ -48,7 +50,8 @@ public class HeroBeeBehavior : MonoBehaviour
         transform.parent = null;
         transform.localScale = new Vector3(0.04f, 0.04f, 0.04f);
         //bee starts going to players face
-    } 
+    }
+
 
     void FixedUpdate()
     {
@@ -60,18 +63,23 @@ public class HeroBeeBehavior : MonoBehaviour
                 
                 //translate already takes account transform so it should just be vector3
                 transform.Translate(Vector3.forward * speed );
-                wayPoint = player.position + player.forward;
+                wayPoint = player.position + new Vector3(player.forward.x, 0, player.forward.z);
                 waypointViz.transform.position = wayPoint;
 
                 DistanceCheck(player.position);
 
                 break;
             case BeeState.WatchingPlayer:
-                transform.LookAt(player);
-                swingAmount.y = Mathf.Sin(Time.time * swingFrequency) * swingStrength;
-                transform.Rotate(swingAmount);
+                transform.LookAt((player.position + wayPoint )/2);
+
+                //swingAmount.y = Mathf.Sin(Time.time * swingFrequency) * swingStrength;
+
                 transform.position = Vector3.MoveTowards(transform.position, wayPoint,speed );
                 waypointViz.transform.position = wayPoint;
+
+                swingAmount.y = Mathf.Sin(Time.time * swingFrequency) * swingStrength;
+                transform.Rotate(swingAmount);
+
                 DistanceCheck(wayPoint);
                 
                 
@@ -83,8 +91,6 @@ public class HeroBeeBehavior : MonoBehaviour
                 DistanceCheck(wayPoint);
 
                 break;
-            
-            
         }
     }
     
@@ -138,7 +144,7 @@ public class HeroBeeBehavior : MonoBehaviour
                 break;
             //In watch player, bee will look at the player and sporadically switch spots
             case BeeState.WatchingPlayer:
-                wayPointOrigin = player.position + player.forward *.1f;
+                wayPointOrigin = player.position + new Vector3( player.forward.x,0, player.forward.z) *.2f;
 
                 speed = 0f;
                 proximityDistance = .02f;
@@ -154,10 +160,11 @@ public class HeroBeeBehavior : MonoBehaviour
             case BeeState.LandedOnHand:
                 print("Stopping bee audio " + beeAudio.gameObject.name);
                 beeAudio.Stop();
-                anim.SetBool("Eating",true);
+                anim.SetBool("Walking",true);
 
                 transform.SetParent(rightHandLandingSpot);
                 transform.localPosition = Vector3.zero;
+                transform.rotation = Quaternion.identity;
                 
                 speed = 0;
                 break;
@@ -175,7 +182,7 @@ public class HeroBeeBehavior : MonoBehaviour
         {
             float waitTime = Random.Range(1.7f, 5f);
             yield return new WaitForSeconds(waitTime);
-            FindNewWayPoint(.6f);
+            FindNewWayPoint(.7f);
         }
     }
 
@@ -195,7 +202,7 @@ public class HeroBeeBehavior : MonoBehaviour
     private void FindNewWayPoint()
     {
         //magic number for now
-        speed = originalSpeed*.6f;
+        speed = originalSpeed*.1f;
         
         //if player turns bee will always be in front of players face
 
