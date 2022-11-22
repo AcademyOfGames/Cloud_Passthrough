@@ -40,7 +40,9 @@ public class SeedBehavior : MonoBehaviour
 
         StartCoroutine(ScaleDown());
         flowers.SetActive(true);
-        Destroy(gameObject, seedParticles.GetComponent<ParticleSystem>().main.startLifetime.constant);
+
+
+        //Destroy(gameObject, seedParticles.GetComponent<ParticleSystem>().main.startLifetime.constant);
     }
 
     private void FixedUpdate()
@@ -55,12 +57,17 @@ public class SeedBehavior : MonoBehaviour
     IEnumerator ScaleDown( )
     {
         Transform t = transform;
+        GetComponent<SphereCollider>().enabled = false;
 
-        while (t.localScale.x <=.1f)
+        while (t.localScale.x <=.01f)
         {
             t.localScale *= .6f;
 
             yield return new WaitForFixedUpdate();
         }
+
+        GetComponent<Rigidbody>().isKinematic = false;
+        GetComponent<Rigidbody>().useGravity = true;
+
     }
 }

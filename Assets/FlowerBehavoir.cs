@@ -30,7 +30,7 @@ public class FlowerBehavoir : MonoBehaviour
         Vector3 scale = Vector3.one;
         scale.y = 0;
         var t = transform;
-        spawnPoint.position += Vector3.right;
+        spawnPoint.position -= Vector3.right * 5f;
         Vector3 pos = t.position;
         float timeLeft = 2f;
         while (timeLeft >=0f)

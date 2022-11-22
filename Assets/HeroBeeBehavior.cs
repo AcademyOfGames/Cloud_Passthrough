@@ -14,8 +14,6 @@ public class HeroBeeBehavior : MonoBehaviour
         LandedOnFlower
     }
 
-
-    
     //Positions
     public float proximityDistance;
     
@@ -33,7 +31,7 @@ public class HeroBeeBehavior : MonoBehaviour
     public GameObject waypointViz;
 
     public Animator anim;
-    public AudioSource beeAudio;
+    private AudioSource beeAudio;
 
     //temporarily public so I can see it without seeing all the debug private vars
     public float distance;
@@ -41,11 +39,12 @@ public class HeroBeeBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        beeAudio = GetComponent<AudioSource>();
         originalSpeed = speed;
         SwitchStates(BeeState.MeetingPlayer);
         OVRGrabber[] hands = FindObjectsOfType<OVRGrabber>();
-        rightHandLandingSpot = hands[0].transform;
-        leftHandLandingSpot = hands[1].transform;
+       // rightHandLandingSpot = hands[0].transform;
+        //leftHandLandingSpot = hands[1].transform;
         transform.parent = null;
         transform.localScale = new Vector3(0.04f, 0.04f, 0.04f);
         //bee starts going to players face
@@ -71,7 +70,6 @@ public class HeroBeeBehavior : MonoBehaviour
                 transform.LookAt(player);
                 transform.position = Vector3.MoveTowards(transform.position, wayPoint,speed );
                 waypointViz.transform.position = wayPoint;
-
                 DistanceCheck(wayPoint);
 
                 break;        
@@ -111,6 +109,7 @@ public class HeroBeeBehavior : MonoBehaviour
                     if (Vector3.Distance(rightHandLandingSpot.position, t.position) < .5f)
                     {
                         handHoldingBee = rightHandLandingSpot;
+                        print("landing on " + handHoldingBee);
 
                         SwitchStates(BeeState.GoToFlower);
                     }
@@ -118,6 +117,8 @@ public class HeroBeeBehavior : MonoBehaviour
                     if(Vector3.Distance(leftHandLandingSpot.position, t.position) < .5f)
                     {
                         handHoldingBee = leftHandLandingSpot;
+                        print("landing on " + handHoldingBee);
+
                         SwitchStates(BeeState.GoToFlower);
                     }
                     break;
@@ -150,12 +151,17 @@ public class HeroBeeBehavior : MonoBehaviour
                 break;
             case BeeState.GoToFlower:
                 wayPoint = handHoldingBee.position;
+                waypointViz.transform.position = wayPoint;
+
                 proximityDistance = .1f;
                 speed = originalSpeed*.1f;
                 break;
             case BeeState.LandedOnFlower:
+                print("landed on flower setting audio stop " + beeAudio.name);
                 beeAudio.Stop();
                 anim.SetBool("Eating",true);
+                print("landed parent " + handHoldingBee.name);
+
                 transform.SetParent(handHoldingBee);
                 speed = 0;
                 break;
