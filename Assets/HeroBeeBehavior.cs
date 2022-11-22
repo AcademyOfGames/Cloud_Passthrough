@@ -3,24 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using Random = UnityEngine.Random;
 
 public class HeroBeeBehavior : MonoBehaviour
 {
     //State
     public BeeState currentState;
-    public enum BeeState { MeetingPlayer, WatchingPlayer,HandWandering,
-        GoToFlower,
-        LandedOnFlower
+    public enum BeeState { MeetingPlayer, WatchingPlayer, GoToHand, LandedOnHand
     }
 
     //Positions
     public float proximityDistance;
     
     public Transform player;
-    public Transform rightHandLandingSpot;
-    public Transform leftHandLandingSpot;
-    private Transform handHoldingBee;
+    public Transform rightHandLandingSpot; 
     
     [SerializeField] private Vector3 wayPointOrigin;
     [SerializeField] private float speed;
@@ -31,7 +28,11 @@ public class HeroBeeBehavior : MonoBehaviour
     public GameObject waypointViz;
 
     public Animator anim;
-    private AudioSource beeAudio;
+    public AudioSource beeAudio;
+
+    private Vector3 swingAmount = Vector3.zero;
+    public float swingStrength;
+    public float swingFrequency;
 
     //temporarily public so I can see it without seeing all the debug private vars
     public float distance;
@@ -39,7 +40,6 @@ public class HeroBeeBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        beeAudio = GetComponent<AudioSource>();
         originalSpeed = speed;
         SwitchStates(BeeState.MeetingPlayer);
         OVRGrabber[] hands = FindObjectsOfType<OVRGrabber>();
@@ -68,12 +68,16 @@ public class HeroBeeBehavior : MonoBehaviour
                 break;
             case BeeState.WatchingPlayer:
                 transform.LookAt(player);
+                swingAmount.y = Mathf.Sin(Time.time * swingFrequency) * swingStrength;
+                transform.Rotate(swingAmount);
                 transform.position = Vector3.MoveTowards(transform.position, wayPoint,speed );
                 waypointViz.transform.position = wayPoint;
                 DistanceCheck(wayPoint);
+                
+                
 
                 break;        
-            case BeeState.GoToFlower:
+            case BeeState.GoToHand:
                 transform.LookAt(wayPoint);
                 transform.position = Vector3.MoveTowards(transform.position, wayPoint,speed );
                 DistanceCheck(wayPoint);
@@ -106,25 +110,16 @@ public class HeroBeeBehavior : MonoBehaviour
                 case BeeState.WatchingPlayer:
                     speed = 0f;
 
-                    if (Vector3.Distance(rightHandLandingSpot.position, t.position) < .5f)
+                    if (Vector3.Distance(rightHandLandingSpot.position, t.position) < .1f)
                     {
-                        handHoldingBee = rightHandLandingSpot;
-                        print("landing on " + handHoldingBee);
 
-                        SwitchStates(BeeState.GoToFlower);
+                        SwitchStates(BeeState.GoToHand);
                     }
                     
-                    if(Vector3.Distance(leftHandLandingSpot.position, t.position) < .5f)
-                    {
-                        handHoldingBee = leftHandLandingSpot;
-                        print("landing on " + handHoldingBee);
-
-                        SwitchStates(BeeState.GoToFlower);
-                    }
                     break;
                 
-                case BeeState.GoToFlower:
-                    SwitchStates(BeeState.LandedOnFlower);
+                case BeeState.GoToHand:
+                    SwitchStates(BeeState.LandedOnHand);
 
                     break;
             }
@@ -143,26 +138,27 @@ public class HeroBeeBehavior : MonoBehaviour
                 break;
             //In watch player, bee will look at the player and sporadically switch spots
             case BeeState.WatchingPlayer:
-                wayPointOrigin = player.position + player.forward;
+                wayPointOrigin = player.position + player.forward *.1f;
 
                 speed = 0f;
                 proximityDistance = .02f;
                 StartCoroutine(nameof(MovingWatchPoint));
                 break;
-            case BeeState.GoToFlower:
-                wayPoint = handHoldingBee.position;
+            case BeeState.GoToHand:
+                wayPoint = rightHandLandingSpot.position;
                 waypointViz.transform.position = wayPoint;
 
                 proximityDistance = .1f;
                 speed = originalSpeed*.1f;
                 break;
-            case BeeState.LandedOnFlower:
-                print("landed on flower setting audio stop " + beeAudio.name);
+            case BeeState.LandedOnHand:
+                print("Stopping bee audio " + beeAudio.gameObject.name);
                 beeAudio.Stop();
                 anim.SetBool("Eating",true);
-                print("landed parent " + handHoldingBee.name);
 
-                transform.SetParent(handHoldingBee);
+                transform.SetParent(rightHandLandingSpot);
+                transform.localPosition = Vector3.zero;
+                
                 speed = 0;
                 break;
         }
@@ -177,12 +173,25 @@ public class HeroBeeBehavior : MonoBehaviour
     {
         while (currentState == BeeState.WatchingPlayer)
         {
-            float waitTime = Random.Range(1f, 5f);
+            float waitTime = Random.Range(1.7f, 5f);
             yield return new WaitForSeconds(waitTime);
-            FindNewWayPoint();
+            FindNewWayPoint(.6f);
         }
     }
 
+    private void FindNewWayPoint(float waypointSphereScale)
+    {
+        //magic number for now
+        speed = originalSpeed*.6f;
+        
+        //if player turns bee will always be in front of players face
+
+        
+        //find new spot within a certain range of the original point
+        wayPoint = Random.insideUnitSphere * .5f + wayPointOrigin;
+        wayPoint.x *= waypointSphereScale;
+    }
+    
     private void FindNewWayPoint()
     {
         //magic number for now
