@@ -10,9 +10,9 @@ public class HeroBeeBehavior : MonoBehaviour
 {
     //State
     public BeeState currentState;
-    public enum BeeState { MeetingPlayer, WatchingPlayer, GoToHand, LandedOnHand
+    public enum BeeState { MeetingPlayer, WatchingPlayer, GoToHand, LandedOnHand, HandControls
     }
-
+    private BeeStateChanger beeControls;
     //Positions
     public float proximityDistance;
     
@@ -41,6 +41,8 @@ public class HeroBeeBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        beeControls = GetComponent<BeeStateChanger>();
+
         beeMoveDir = Vector3.zero;
         originalSpeed = speed;
         SwitchStates(BeeState.MeetingPlayer);
@@ -58,6 +60,9 @@ public class HeroBeeBehavior : MonoBehaviour
 
         switch (currentState)
         {
+            case BeeState.HandControls:
+                transform.Translate(new Vector3(beeControls.movement.x, 0, beeControls.movement.y)*.06f);
+                break;
             case BeeState.MeetingPlayer:
                 transform.LookAt(wayPoint);
                 
@@ -132,13 +137,16 @@ public class HeroBeeBehavior : MonoBehaviour
         }
     }
 
-    private void SwitchStates(BeeState newState)
+    public void SwitchStates(BeeState newState)
     {
         if (currentState == newState) return;
         currentState = newState;
 
         switch (newState)
         {
+            case BeeState.HandControls:
+                speed = originalSpeed;
+                break;
             case BeeState.MeetingPlayer:
        
                 break;
