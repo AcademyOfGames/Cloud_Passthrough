@@ -78393,7 +78393,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1848792586}
   m_LocalRotation: {x: -0.0000000013969838, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.36, y: -4.99, z: 9.7}
+  m_LocalPosition: {x: -1.4, y: 2.8, z: 0.4}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 610857175}
@@ -78532,8 +78532,8 @@ MonoBehaviour:
   waypointViz: {fileID: 1659114974}
   anim: {fileID: 0}
   beeAudio: {fileID: 610857177}
-  swingStrength: 0.2
-  swingFrequency: 10
+  swingStrength: 18
+  swingFrequency: 1
   distance: 0
 --- !u!1 &1858964929
 GameObject:
@@ -84343,7 +84343,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2008260708}
   m_LocalRotation: {x: 0.00749225, y: -0.6162974, z: 0.19836086, w: 0.76208556}
-  m_LocalPosition: {x: -0.041399986, y: 0.1355, z: 0.0023000005}
+  m_LocalPosition: {x: -0.09, y: 0.128, z: 0.00899}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1581274782}
