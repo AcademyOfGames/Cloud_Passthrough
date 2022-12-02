@@ -6390,6 +6390,19 @@ MonoBehaviour:
   handPos: {fileID: 0}
   seedParticles: {fileID: 19082759}
   flowers: {fileID: 324409730}
+--- !u!135 &151403895
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151403892}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: -0.0000019073486, z: 0}
 --- !u!1 &163698402
 GameObject:
   m_ObjectHideFlags: 0
@@ -8160,9 +8173,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 324409730}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f2c42454a91684f93078c690d24c03, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ea76bc8abb34da44a711c51e6a21524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  growAmount: 0.01
+  spawnPoint: {fileID: 1023480137}
+  heroBee: {fileID: 1848792586}
 --- !u!4 &324409732
 Transform:
   m_ObjectHideFlags: 0
@@ -36688,9 +36704,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 680914376}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f2c42454a91684f93078c690d24c03, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ea76bc8abb34da44a711c51e6a21524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  growAmount: 0.01
+  spawnPoint: {fileID: 1023480137}
+  heroBee: {fileID: 1848792586}
 --- !u!1 &704568583
 GameObject:
   m_ObjectHideFlags: 0
@@ -59821,6 +59840,19 @@ MonoBehaviour:
   handPos: {fileID: 0}
   seedParticles: {fileID: 97566398}
   flowers: {fileID: 680914376}
+--- !u!135 &1304757893
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304757890}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: -0.0000019073486, z: 0}
 --- !u!1 &1321517712
 GameObject:
   m_ObjectHideFlags: 0
@@ -78638,9 +78670,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1899353680}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f2c42454a91684f93078c690d24c03, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ea76bc8abb34da44a711c51e6a21524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  growAmount: 0.01
+  spawnPoint: {fileID: 1023480137}
+  heroBee: {fileID: 1848792586}
 --- !u!4 &1899353682
 Transform:
   m_ObjectHideFlags: 0
@@ -84245,6 +84280,19 @@ MonoBehaviour:
   handPos: {fileID: 0}
   seedParticles: {fileID: 978433765}
   flowers: {fileID: 1899353680}
+--- !u!135 &1999552640
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999552637}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0.00000023841858}
 --- !u!1 &2006169023
 GameObject:
   m_ObjectHideFlags: 0
