@@ -302,7 +302,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1904679312247875993}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.2461532, y: 0, z: 0, w: 0.96923095}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -310,7 +310,7 @@ Transform:
   - {fileID: 5789317658043936771}
   m_Father: {fileID: 8450719210585492523}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 28.5, y: 0, z: 0}
 --- !u!1 &2521256567002678373
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,7 +602,6 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1010,7 +1009,7 @@ GameObject:
   - component: {fileID: 2568969944271771217}
   - component: {fileID: 8272062637159939250}
   - component: {fileID: 8272062637159939251}
-  - component: {fileID: 71623021}
+  - component: {fileID: 1904679313019076175}
   m_Layer: 0
   m_Name: Low Poly Golden Eagle 1
   m_TagString: Untagged
@@ -1085,7 +1084,7 @@ MonoBehaviour:
   speed: 25
   turnSpeed: 200
   gravity: 20
---- !u!114 &71623021
+--- !u!114 &1904679313019076175
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1097,14 +1096,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fe9814470a546eeb1b2b1cbc38d1a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnSpeed: 0.01
-  speed: 3.5
-  target: {fileID: 0}
-  turnAngleIntensity: -0.01
-  waypointRadius: 40
-  waypointProximity: 8
-  minHeight: 0
-  maxHeight: 0
+  speed: 0.1
   birdhead: {fileID: 6684608970862364307}
+  waypointRadius: 40
+  target: {fileID: 0}
+  waypointProximity: 8
+  turnSpeed: 0.01
+  turnAngleIntensity: -0.01
   testcube: {fileID: 5933038044594553508, guid: b0c41c504777d4ab58f7da8909480b02,
     type: 3}
+  minHeight: 0
+  maxHeight: 0
