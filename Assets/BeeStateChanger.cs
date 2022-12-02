@@ -12,18 +12,27 @@ public class BeeStateChanger : MonoBehaviour
     OVRInput.Controller controllerL = OVRInput.Controller.LTouch;
 
     public bool customControlsUnlocked;
+    public GameObject[] controlUI;
 
-    public Vector2 movement;
+    public Vector2 lMovement;
+    public Vector2 rMovement;
 
     private HeroBeeBehavior bee;
     private static readonly int TakeOff = Animator.StringToHash("TakeOff");
 
     private void Awake()
     {
-        customControlsUnlocked = true;
         bee = GetComponent<HeroBeeBehavior>();
     }
 
+    public void UnlockControls(bool turnOn)
+    {
+        customControlsUnlocked = turnOn;
+        foreach(var control in controlUI)
+        {
+            control.SetActive(turnOn);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -38,14 +47,21 @@ public class BeeStateChanger : MonoBehaviour
              * (Later) left Y - Barrel Roll
              * (Later) Left X - Slow Mo
              * */
-            movement = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.RTouch) ;
-            print(movement);
+            lMovement = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.LTouch) ;
+            rMovement = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.RTouch) ;
 
             //AddFish
             if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch) || Keyboard.current[Key.S].wasPressedThisFrame)
             {
                 print("RTOUCH pressed");
-                bee.SwitchStates(HeroBeeBehavior.BeeState.HandControls);
+                if(bee.currentState != HeroBeeBehavior.BeeState.HandControls)
+                {
+                    bee.SwitchStates(HeroBeeBehavior.BeeState.HandControls);
+                }
+                else
+                {
+                    bee.SwitchStates(HeroBeeBehavior.BeeState.GoToHand);
+                }
             }
 
 

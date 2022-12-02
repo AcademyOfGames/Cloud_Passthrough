@@ -38,6 +38,10 @@ public class HeroBeeBehavior : MonoBehaviour
     public float distance;
     Vector3 beeMoveDir;
 
+    public float controllerMovementSpeed;
+    public float controllerRotationSpeed;
+    public float controllerVerticalSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,7 +65,10 @@ public class HeroBeeBehavior : MonoBehaviour
         switch (currentState)
         {
             case BeeState.HandControls:
-                transform.Translate(new Vector3(beeControls.movement.x, 0, beeControls.movement.y)*.06f);
+                transform.Translate(new Vector3(beeControls.rMovement.x * controllerMovementSpeed, beeControls.lMovement.y * controllerVerticalSpeed, beeControls.rMovement.y * controllerMovementSpeed) * Time.deltaTime) ;
+                transform.Rotate(Vector3.up * beeControls.lMovement.x* controllerRotationSpeed * Time.deltaTime);
+
+
                 break;
             case BeeState.MeetingPlayer:
                 transform.LookAt(wayPoint);
@@ -91,7 +98,7 @@ public class HeroBeeBehavior : MonoBehaviour
 
                 break;        
             case BeeState.GoToHand:
-                transform.LookAt(wayPoint);
+                //transform.LookAt(wayPoint);
                 transform.position = Vector3.MoveTowards(transform.position, wayPoint,speed );
                 DistanceCheck(wayPoint);
 
@@ -121,7 +128,7 @@ public class HeroBeeBehavior : MonoBehaviour
                 case BeeState.WatchingPlayer:
                     speed = 0f;
 
-                    if (Vector3.Distance(rightHandLandingSpot.position, t.position) < .1f)
+                    if (Vector3.Distance(rightHandLandingSpot.position, t.position) < .3f)
                     {
 
                         SwitchStates(BeeState.GoToHand);
@@ -136,6 +143,19 @@ public class HeroBeeBehavior : MonoBehaviour
             }
         }
     }
+    
+    IEnumerator TakeOff()
+    {
+        float timePassed = 0;
+        Vector3 adjustedPos = transform.position;
+        while (timePassed < 1.5)
+        {
+            adjustedPos.y += .004f;
+            transform.position = adjustedPos;
+            timePassed += Time.deltaTime;
+            yield return null;
+        }
+    }
 
     public void SwitchStates(BeeState newState)
     {
@@ -146,6 +166,11 @@ public class HeroBeeBehavior : MonoBehaviour
         {
             case BeeState.HandControls:
                 speed = originalSpeed;
+                anim.SetBool("Walking", false);
+                anim.SetBool("Eating", false);
+                transform.SetParent(null);
+                transform.rotation = Quaternion.identity;
+                StartCoroutine(nameof(TakeOff));
                 break;
             case BeeState.MeetingPlayer:
        
@@ -162,12 +187,12 @@ public class HeroBeeBehavior : MonoBehaviour
                 wayPoint = rightHandLandingSpot.position;
                 waypointViz.transform.position = wayPoint;
 
-                proximityDistance = .1f;
+                proximityDistance = .01f;
                 speed = originalSpeed*.1f;
                 break;
             case BeeState.LandedOnHand:
-                print("Stopping bee audio " + beeAudio.gameObject.name);
-                beeAudio.Stop();
+                beeControls.UnlockControls(true);
+                    beeAudio.Stop();
                 anim.SetBool("Walking",true);
 
                 transform.SetParent(rightHandLandingSpot);
