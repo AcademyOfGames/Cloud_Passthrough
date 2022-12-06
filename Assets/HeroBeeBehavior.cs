@@ -75,7 +75,7 @@ public class HeroBeeBehavior : MonoBehaviour
                 
                 //translate already takes account transform so it should just be vector3
                 transform.Translate(Vector3.forward * speed );
-                wayPoint = player.position + new Vector3(player.forward.x, 0, player.forward.z);
+                wayPoint = player.position + new Vector3(player.forward.x, 0, player.forward.z) *.3f;
                 
                 if(waypointViz!=null){
                 waypointViz.transform.position = wayPoint;
@@ -195,7 +195,7 @@ public class HeroBeeBehavior : MonoBehaviour
             case BeeState.LandedOnHand:
                 beeControls.UnlockControls(true);
                     beeAudio.Stop();
-                anim.SetBool("Walking",true);
+                anim.SetBool("Eating",true);
 
                 transform.SetParent(rightHandLandingSpot);
                 transform.localPosition = Vector3.zero;
@@ -215,16 +215,16 @@ public class HeroBeeBehavior : MonoBehaviour
     {
         while (currentState == BeeState.WatchingPlayer)
         {
-            float waitTime = Random.Range(1.7f, 5f);
+            float waitTime = Random.Range(2.4f, 5.2f);
             yield return new WaitForSeconds(waitTime);
-            FindNewWayPoint(.7f);
+            FindNewWayPoint(.5f);
         }
     }
 
     private void FindNewWayPoint(float waypointSphereScale)
     {
         //magic number for now
-        speed = originalSpeed*.6f;
+        speed = originalSpeed*.4f;
         
         //if player turns bee will always be in front of players face
 

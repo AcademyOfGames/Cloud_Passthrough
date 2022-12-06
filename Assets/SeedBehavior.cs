@@ -13,9 +13,17 @@ public class SeedBehavior : MonoBehaviour
 
     private bool grabbed;
     private Transform snapPos;
+
+    private Vector3 handSpeed;
+    private Vector3 lastPosition;
+    ParticleSystem seedParticleSystem;
+    
+
     void Awake()
     {
         _grabInfo = GetComponent<SeedGrabbableBehavior>();
+        print("***Grabbing particle system from " + seedParticles.name);
+        seedParticleSystem = seedParticles.GetComponent<ParticleSystem>();
     }
     private void OnEnable() {
         _grabInfo.OnGrabBegin.AddListener(IsGrabbed);
@@ -41,12 +49,16 @@ public class SeedBehavior : MonoBehaviour
         StartCoroutine(ScaleDown());
         flowers.SetActive(true);
 
-
+        seedParticleSystem.startSpeed = handSpeed.magnitude *5;
+        seedParticles.transform.parent = null; 
         //Destroy(gameObject, seedParticles.GetComponent<ParticleSystem>().main.startLifetime.constant);
     }
 
     private void FixedUpdate()
     {
+        handSpeed = lastPosition - transform.position;
+        lastPosition = transform.position;
+
         if (grabbed)
         {
             transform.position = snapPos.position;

@@ -24,11 +24,16 @@ public class TutorialHand : MonoBehaviour
             glove.SetParent(rightHand);
             glove.localPosition = Vector3.zero;
             glove.localEulerAngles =  Vector3.zero;
-                BirdMovement bird = FindObjectOfType<BirdMovement>();
-            bird.landingSpot = bird.handLandingSpot;
-            bird.anim.SetBool(Eating, false);
-            bird.anim.SetTrigger("TakeOff");
-            FindObjectOfType<BirdStateChanger>().SwitchState(BirdStateChanger.BirdState.GoToLanding);
+
+            BirdMovement bird = FindObjectOfType<BirdMovement>();
+            if (bird != null)
+            {
+                bird.landingSpot = bird.handLandingSpot;
+                bird.anim.SetBool(Eating, false);
+                bird.anim.SetTrigger("TakeOff");
+                FindObjectOfType<BirdStateChanger>().SwitchState(BirdStateChanger.BirdState.GoToLanding);
+            }
+
             gameObject.SetActive(false);
         }
     }
