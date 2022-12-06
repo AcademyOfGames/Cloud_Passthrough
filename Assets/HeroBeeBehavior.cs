@@ -76,8 +76,10 @@ public class HeroBeeBehavior : MonoBehaviour
                 //translate already takes account transform so it should just be vector3
                 transform.Translate(Vector3.forward * speed );
                 wayPoint = player.position + new Vector3(player.forward.x, 0, player.forward.z);
+                
+                if(waypointViz!=null){
                 waypointViz.transform.position = wayPoint;
-
+                }
                 DistanceCheck(player.position);
 
                 break;

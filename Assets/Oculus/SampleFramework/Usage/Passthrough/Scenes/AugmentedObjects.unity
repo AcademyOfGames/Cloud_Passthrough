@@ -12331,7 +12331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &654963728
 Transform:
   m_ObjectHideFlags: 0
@@ -15191,7 +15191,7 @@ PrefabInstance:
     - target: {fileID: 7019431210386343907, guid: e221f23363555e24c8f8dcc5d2d3e630,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7019431210386343908, guid: e221f23363555e24c8f8dcc5d2d3e630,
         type: 3}
@@ -15208,6 +15208,16 @@ PrefabInstance:
       propertyPath: controlUI.Array.data[1]
       value: 
       objectReference: {fileID: 1744698132}
+    - target: {fileID: 7019431210386343910, guid: e221f23363555e24c8f8dcc5d2d3e630,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 931075468}
+    - target: {fileID: 7019431210386343910, guid: e221f23363555e24c8f8dcc5d2d3e630,
+        type: 3}
+      propertyPath: rightHandLandingSpot
+      value: 
+      objectReference: {fileID: 841848953}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e221f23363555e24c8f8dcc5d2d3e630, type: 3}
 --- !u!1001 &768790222
@@ -16209,6 +16219,36 @@ Transform:
   - {fileID: 1629643113}
   m_Father: {fileID: 1149880614}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &841848952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 841848953}
+  m_Layer: 0
+  m_Name: beeLandingPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &841848953
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841848952}
+  m_LocalRotation: {x: 0.18374565, y: 0.50611484, z: -0.07645622, w: -0.83919}
+  m_LocalPosition: {x: -0.0709, y: 0.0881, z: 0.0477}
+  m_LocalScale: {x: 1.1868211, y: 1.1868215, z: 1.1868215}
+  m_Children: []
+  m_Father: {fileID: 31300965}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &860600049
 GameObject:
