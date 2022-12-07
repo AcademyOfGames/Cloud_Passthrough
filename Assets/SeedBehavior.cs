@@ -8,7 +8,7 @@ public class SeedBehavior : MonoBehaviour
     private SeedGrabbableBehavior _grabInfo;
     public Transform handPos;
     public GameObject seedParticles;
-    public FlowerBehavoir flowers;
+    public FlowerBehavior flowers;
 
     private bool grabbed;
     private Transform snapPos;
@@ -77,9 +77,8 @@ public class SeedBehavior : MonoBehaviour
     {
         if (other.gameObject.CompareTag("floor"))
         {
-            Vector3 growPoint = other.GetContact(0).point;
-            growPoint.y -= 2;
-            IEnumerator grow =  flowers.Grow(growPoint);
+
+            IEnumerator grow =  flowers.Grow(other.GetContact(0).point);
             StartCoroutine(grow);
         }
     }

@@ -193,6 +193,10 @@ public class HeroBeeBehavior : MonoBehaviour
                 speed = originalSpeed*.1f;
                 break;
             case BeeState.LandedOnHand:
+                foreach (var flower in FindObjectsOfType<FlowerBehavior>())
+                {
+                    flower.secondFlowersActive = true;
+                }
                 beeControls.UnlockControls(true);
                     beeAudio.Stop();
                 anim.SetBool("Eating",true);
