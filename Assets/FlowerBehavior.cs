@@ -46,9 +46,9 @@ public class FlowerBehavior : MonoBehaviour
         t.position = pos;
         
         float timePassed = 0;
-        while (timePassed <= 0)
+        while (timePassed <= 1)
         {
-            timePassed += Time.deltaTime * .5f;
+            timePassed += Time.deltaTime * .1f;
 
             t.position = Vector3.Lerp(t.position, spawnPoint, timePassed );
             t.localScale = Vector3.Lerp(t.localScale, originalScale, timePassed );

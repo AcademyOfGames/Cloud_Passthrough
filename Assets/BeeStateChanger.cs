@@ -69,7 +69,7 @@ public class BeeStateChanger : MonoBehaviour
 
             if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch) || Keyboard.current[Key.S].wasPressedThisFrame)
             {
-
+                bee.SwitchStates(HeroBeeBehavior.BeeState.Explore);
             }
 
             if (OVRInput.GetUp(OVRInput.Button.One, OVRInput.Controller.LTouch) || Keyboard.current[Key.S].wasPressedThisFrame)

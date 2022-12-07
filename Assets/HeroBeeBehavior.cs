@@ -10,12 +10,13 @@ public class HeroBeeBehavior : MonoBehaviour
 {
     //State
     public BeeState currentState;
-    public enum BeeState { MeetingPlayer, WatchingPlayer, GoToHand, LandedOnHand, HandControls
+    public enum BeeState { MeetingPlayer, WatchingPlayer, GoToHand, LandedOnHand, HandControls,
+        Explore
     }
     private BeeStateChanger beeControls;
     //Positions
     public float proximityDistance;
-    
+    public Transform flower;
     public Transform player;
     public Transform rightHandLandingSpot; 
     
@@ -64,6 +65,12 @@ public class HeroBeeBehavior : MonoBehaviour
 
         switch (currentState)
         {
+            case BeeState.Explore:
+                transform.LookAt(wayPoint);
+                transform.Translate(Vector3.forward * speed);
+
+                DistanceCheck(wayPoint);
+                break;
             case BeeState.HandControls:
                 transform.Translate(new Vector3(beeControls.rMovement.x * controllerMovementSpeed, beeControls.lMovement.y * controllerVerticalSpeed, beeControls.rMovement.y * controllerMovementSpeed) * Time.deltaTime) ;
                 transform.Rotate(Vector3.up * beeControls.lMovement.x* controllerRotationSpeed * Time.deltaTime);
@@ -122,6 +129,9 @@ public class HeroBeeBehavior : MonoBehaviour
         {
             switch (currentState)
             {
+                case BeeState.Explore:
+                    FindNewWayPoint();
+                    break;
                 // bee goes to player and starts to hover in front of them
                 case BeeState.MeetingPlayer:
                     SwitchStates(BeeState.WatchingPlayer);
@@ -169,6 +179,14 @@ public class HeroBeeBehavior : MonoBehaviour
 
         switch (newState)
         {
+            case BeeState.Explore:
+                anim.SetBool("Walking", false);
+                anim.SetBool("Eating", false);
+                transform.parent = null;
+                speed = originalSpeed * .4f;
+                wayPointOrigin = flower.position + Vector3.up * 2.5f;
+                FindNewWayPoint();
+                break;
             case BeeState.HandControls:
                 speed = originalSpeed;
                 anim.SetBool("Walking", false);
@@ -246,12 +264,11 @@ public class HeroBeeBehavior : MonoBehaviour
     private void FindNewWayPoint()
     {
         //magic number for now
-        speed = originalSpeed*.1f;
         
         //if player turns bee will always be in front of players face
 
         
         //find new spot within a certain range of the original point
-        wayPoint = Random.insideUnitSphere * .5f + wayPointOrigin;
+        wayPoint = Random.insideUnitSphere + wayPointOrigin;
     }
 }
