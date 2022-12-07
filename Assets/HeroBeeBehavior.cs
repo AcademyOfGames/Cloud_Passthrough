@@ -163,6 +163,9 @@ public class HeroBeeBehavior : MonoBehaviour
     {
         if (currentState == newState) return;
         currentState = newState;
+        
+        
+        GetComponent<Animator>().enabled = true;
 
         switch (newState)
         {
@@ -198,12 +201,14 @@ public class HeroBeeBehavior : MonoBehaviour
                     flower.secondFlowersActive = true;
                 }
                 beeControls.UnlockControls(true);
-                    beeAudio.Stop();
+                beeAudio.Stop();
                 anim.SetBool("Eating",true);
 
-                transform.SetParent(rightHandLandingSpot);
-                transform.localPosition = Vector3.zero;
-                transform.rotation = Quaternion.identity;
+                Transform t = transform;
+                t.SetParent(rightHandLandingSpot);
+                t.localPosition = Vector3.zero;
+                t.localEulerAngles = new Vector3(0,0,-90);
+                GetComponent<Animator>().enabled = false;
                 
                 speed = 0;
                 break;
