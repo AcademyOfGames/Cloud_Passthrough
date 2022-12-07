@@ -19,7 +19,7 @@ public class BeeStateChanger : MonoBehaviour
 
     private HeroBeeBehavior bee;
     private static readonly int TakeOff = Animator.StringToHash("TakeOff");
-
+    public TextMeshPro handText;
     private void Awake()
     {
         bee = GetComponent<HeroBeeBehavior>();
@@ -53,21 +53,22 @@ public class BeeStateChanger : MonoBehaviour
             //AddFish
             if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch) || Keyboard.current[Key.S].wasPressedThisFrame)
             {
-                print("RTOUCH pressed");
                 if(bee.currentState != HeroBeeBehavior.BeeState.HandControls)
                 {
                     bee.SwitchStates(HeroBeeBehavior.BeeState.HandControls);
+                    handText.text = "Land";
                 }
                 else
                 {
                     bee.SwitchStates(HeroBeeBehavior.BeeState.GoToHand);
+                    handText.text = "Take Off";
+
                 }
             }
 
 
             if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch) || Keyboard.current[Key.S].wasPressedThisFrame)
             {
-                print("LTouch pressed");
 
             }
 

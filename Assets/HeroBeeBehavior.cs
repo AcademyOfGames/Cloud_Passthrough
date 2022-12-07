@@ -78,7 +78,7 @@ public class HeroBeeBehavior : MonoBehaviour
                 wayPoint = player.position + new Vector3(player.forward.x, 0, player.forward.z) *.3f;
                 
                 if(waypointViz!=null){
-                waypointViz.transform.position = wayPoint;
+                    waypointViz.transform.position = wayPoint;
                 }
                 DistanceCheck(player.position);
 
@@ -101,8 +101,8 @@ public class HeroBeeBehavior : MonoBehaviour
                 break;        
             case BeeState.GoToHand:
                 //transform.LookAt(wayPoint);
-                transform.position = Vector3.MoveTowards(transform.position, wayPoint,speed );
-                DistanceCheck(wayPoint);
+                transform.position = Vector3.MoveTowards(transform.position, rightHandLandingSpot.position,speed );
+                DistanceCheck(rightHandLandingSpot.position);
 
                 break;
         }

@@ -6,14 +6,13 @@ using UnityEngine;
 public class FlowerBehavoir : MonoBehaviour
 {
     public float growAmount;
-    public Transform spawnPoint;
+    public Vector3 spawnPoint;
     public GameObject heroBee;
     
     static int totalFlowersPlanted = 0;
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(nameof(Grow));
         totalFlowersPlanted++;
         if (totalFlowersPlanted >= 3)
         {
@@ -25,13 +24,16 @@ public class FlowerBehavoir : MonoBehaviour
     {
         heroBee.SetActive(true);
     }
-    private IEnumerator Grow()
+    public IEnumerator Grow(Vector3 pos)
     {
-        Vector3 scale = Vector3.one;
+        Vector3 scale = transform.localScale;
         scale.y = 0;
+        spawnPoint = pos;
+        
+        //add offset for the plant to grow upward
+        spawnPoint.y += 2;
         var t = transform;
-        spawnPoint.position -= Vector3.right * 5f;
-        Vector3 pos = t.position;
+        t.position = pos;
         float timeLeft = 2f;
         while (timeLeft >=0f)
         {
@@ -40,7 +42,7 @@ public class FlowerBehavoir : MonoBehaviour
             t.localScale = scale;
             
             
-            t.position = Vector3.Lerp(t.position, spawnPoint.position, timeLeft /2f);
+            t.position = Vector3.Lerp(t.position, spawnPoint, timeLeft );
             yield return new WaitForFixedUpdate();
         }
     }

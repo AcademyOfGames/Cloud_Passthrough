@@ -1538,11 +1538,11 @@ public class OVRManager : MonoBehaviour, OVRMixedRealityCaptureConfiguration
 		string logString = System.Runtime.InteropServices.Marshal.PtrToStringAnsi(message, size);
 		if (logLevel <= OVRPlugin.LogLevel.Info)
 		{
-			UnityEngine.Debug.Log("[OVRPlugin] " + logString);
+			//UnityEngine.Debug.Log("[OVRPlugin] " + logString);
 		}
 		else
 		{
-			UnityEngine.Debug.LogWarning("[OVRPlugin] " + logString);
+			//UnityEngine.Debug.LogWarning("[OVRPlugin] " + logString);
 		}
 	}
 #endif

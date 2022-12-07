@@ -8,21 +8,21 @@ public class SeedBehavior : MonoBehaviour
     private SeedGrabbableBehavior _grabInfo;
     public Transform handPos;
     public GameObject seedParticles;
-
-    public GameObject flowers;
+    public FlowerBehavoir flowers;
 
     private bool grabbed;
     private Transform snapPos;
 
     private Vector3 handSpeed;
     private Vector3 lastPosition;
+    public GameObject controllerVisual;
     ParticleSystem seedParticleSystem;
-    
+
+    public GameObject seedVisual;
 
     void Awake()
     {
         _grabInfo = GetComponent<SeedGrabbableBehavior>();
-        print("***Grabbing particle system from " + seedParticles.name);
         seedParticleSystem = seedParticles.GetComponent<ParticleSystem>();
     }
     private void OnEnable() {
@@ -37,49 +37,50 @@ public class SeedBehavior : MonoBehaviour
 
     void IsGrabbed()
     {
-        GetComponent<MeshRenderer>().enabled = true;
+        controllerVisual.SetActive(false);
+        seedVisual.SetActive(true);
         grabbed = true;
         snapPos = _grabInfo.grabbedBy.transform;
     }
 
     void IsReleased()
     {
+        flowers.gameObject.SetActive(true);
+        Invoke("ControlVisualOn", 2);
+        //seedParticleSystem.startSpeed = handSpeed.magnitude *5;
+        print("handSpeed.magnitude " + handSpeed.magnitude);
+        grabbed = false;
+
         seedParticles.SetActive(true);
-
-        StartCoroutine(ScaleDown());
-        flowers.SetActive(true);
-
-        seedParticleSystem.startSpeed = handSpeed.magnitude *5;
-        seedParticles.transform.parent = null; 
-        //Destroy(gameObject, seedParticles.GetComponent<ParticleSystem>().main.startLifetime.constant);
+        seedVisual.SetActive(false);
+        GetComponent<Rigidbody>().isKinematic = false;
+        GetComponent<Rigidbody>().AddForce(handSpeed * 1800);
     }
 
+    public void ControlVisualOn()
+    {
+        controllerVisual.SetActive(true);
+
+    }
     private void FixedUpdate()
     {
-        handSpeed = lastPosition - transform.position;
+        handSpeed =  transform.position -lastPosition;
         lastPosition = transform.position;
-
+        
         if (grabbed)
         {
             transform.position = snapPos.position;
-            transform.rotation = Quaternion.LookRotation(snapPos.forward);
         }
     }
 
-    IEnumerator ScaleDown( )
+    private void OnCollisionEnter(Collision other)
     {
-        Transform t = transform;
-        GetComponent<SphereCollider>().enabled = false;
-
-        while (t.localScale.x <=.01f)
+        if (other.gameObject.CompareTag("floor"))
         {
-            t.localScale *= .6f;
-
-            yield return new WaitForFixedUpdate();
+            Vector3 growPoint = other.GetContact(0).point;
+            growPoint.y -= 2;
+            IEnumerator grow =  flowers.Grow(growPoint);
+            StartCoroutine(grow);
         }
-
-        GetComponent<Rigidbody>().isKinematic = false;
-        GetComponent<Rigidbody>().useGravity = true;
-
     }
 }
