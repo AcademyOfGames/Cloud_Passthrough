@@ -1,0 +1,412 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &307542813476079501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 307542813475658669}
+  m_Layer: 0
+  m_Name: Flower_Showy Autumn Crocus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &307542813475658669
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307542813476079501}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 307542813475658671}
+  - {fileID: 307542813475658665}
+  - {fileID: 307542813475658667}
+  - {fileID: 307542813475658661}
+  - {fileID: 307542813475658663}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1168770710502124806
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 307542813475658669}
+    m_Modifications:
+    - target: {fileID: 1476286001615432329, guid: 65b8da7dabc8c9c4b8a502c79081dd7f,
+        type: 3}
+      propertyPath: m_Name
+      value: Flower_Showy Autumn Crocus1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476286001615533737, guid: 65b8da7dabc8c9c4b8a502c79081dd7f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476286001615533737, guid: 65b8da7dabc8c9c4b8a502c79081dd7f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476286001615533737, guid: 65b8da7dabc8c9c4b8a502c79081dd7f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476286001615533737, guid: 65b8da7dabc8c9c4b8a502c79081dd7f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476286001615533737, guid: 65b8da7dabc8c9c4b8a502c79081dd7f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476286001615533737, guid: 65b8da7dabc8c9c4b8a502c79081dd7f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476286001615533737, guid: 65b8da7dabc8c9c4b8a502c79081dd7f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476286001615533737, guid: 65b8da7dabc8c9c4b8a502c79081dd7f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476286001615533737, guid: 65b8da7dabc8c9c4b8a502c79081dd7f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476286001615533737, guid: 65b8da7dabc8c9c4b8a502c79081dd7f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1476286001615533737, guid: 65b8da7dabc8c9c4b8a502c79081dd7f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 65b8da7dabc8c9c4b8a502c79081dd7f, type: 3}
+--- !u!4 &307542813475658671 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1476286001615533737, guid: 65b8da7dabc8c9c4b8a502c79081dd7f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1168770710502124806}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1908370946514669158
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 307542813475658669}
+    m_Modifications:
+    - target: {fileID: 2179594665925904867, guid: 6fa747b1442c4b84683f35a835f4cb0c,
+        type: 3}
+      propertyPath: m_Name
+      value: Flower_Showy Autumn Crocus4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179594665926202819, guid: 6fa747b1442c4b84683f35a835f4cb0c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179594665926202819, guid: 6fa747b1442c4b84683f35a835f4cb0c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179594665926202819, guid: 6fa747b1442c4b84683f35a835f4cb0c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179594665926202819, guid: 6fa747b1442c4b84683f35a835f4cb0c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179594665926202819, guid: 6fa747b1442c4b84683f35a835f4cb0c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179594665926202819, guid: 6fa747b1442c4b84683f35a835f4cb0c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179594665926202819, guid: 6fa747b1442c4b84683f35a835f4cb0c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179594665926202819, guid: 6fa747b1442c4b84683f35a835f4cb0c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179594665926202819, guid: 6fa747b1442c4b84683f35a835f4cb0c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179594665926202819, guid: 6fa747b1442c4b84683f35a835f4cb0c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179594665926202819, guid: 6fa747b1442c4b84683f35a835f4cb0c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6fa747b1442c4b84683f35a835f4cb0c, type: 3}
+--- !u!4 &307542813475658661 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2179594665926202819, guid: 6fa747b1442c4b84683f35a835f4cb0c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1908370946514669158}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2405480066079186066
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 307542813475658669}
+    m_Modifications:
+    - target: {fileID: 2676659830316964629, guid: ae1500d718cadf94f87de59d943b089e,
+        type: 3}
+      propertyPath: m_Name
+      value: Flower_Showy Autumn Crocus5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676659830317254453, guid: ae1500d718cadf94f87de59d943b089e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676659830317254453, guid: ae1500d718cadf94f87de59d943b089e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676659830317254453, guid: ae1500d718cadf94f87de59d943b089e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676659830317254453, guid: ae1500d718cadf94f87de59d943b089e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676659830317254453, guid: ae1500d718cadf94f87de59d943b089e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676659830317254453, guid: ae1500d718cadf94f87de59d943b089e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676659830317254453, guid: ae1500d718cadf94f87de59d943b089e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676659830317254453, guid: ae1500d718cadf94f87de59d943b089e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676659830317254453, guid: ae1500d718cadf94f87de59d943b089e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676659830317254453, guid: ae1500d718cadf94f87de59d943b089e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676659830317254453, guid: ae1500d718cadf94f87de59d943b089e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ae1500d718cadf94f87de59d943b089e, type: 3}
+--- !u!4 &307542813475658663 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2676659830317254453, guid: ae1500d718cadf94f87de59d943b089e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2405480066079186066}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6058100042574861117
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 307542813475658669}
+    m_Modifications:
+    - target: {fileID: 5788864308834423988, guid: 50c5a8931748eb94890fbfeaca661b31,
+        type: 3}
+      propertyPath: m_Name
+      value: Flower_Showy Autumn Crocus2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788864308834519188, guid: 50c5a8931748eb94890fbfeaca661b31,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788864308834519188, guid: 50c5a8931748eb94890fbfeaca661b31,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788864308834519188, guid: 50c5a8931748eb94890fbfeaca661b31,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788864308834519188, guid: 50c5a8931748eb94890fbfeaca661b31,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788864308834519188, guid: 50c5a8931748eb94890fbfeaca661b31,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788864308834519188, guid: 50c5a8931748eb94890fbfeaca661b31,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788864308834519188, guid: 50c5a8931748eb94890fbfeaca661b31,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788864308834519188, guid: 50c5a8931748eb94890fbfeaca661b31,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788864308834519188, guid: 50c5a8931748eb94890fbfeaca661b31,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788864308834519188, guid: 50c5a8931748eb94890fbfeaca661b31,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788864308834519188, guid: 50c5a8931748eb94890fbfeaca661b31,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 50c5a8931748eb94890fbfeaca661b31, type: 3}
+--- !u!4 &307542813475658665 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5788864308834519188, guid: 50c5a8931748eb94890fbfeaca661b31,
+    type: 3}
+  m_PrefabInstance: {fileID: 6058100042574861117}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8430983302932624876
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 307542813475658669}
+    m_Modifications:
+    - target: {fileID: 8161721173814227559, guid: 233925352ec83b749a842764e3ff392d,
+        type: 3}
+      propertyPath: m_Name
+      value: Flower_Showy Autumn Crocus3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161721173814324807, guid: 233925352ec83b749a842764e3ff392d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161721173814324807, guid: 233925352ec83b749a842764e3ff392d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161721173814324807, guid: 233925352ec83b749a842764e3ff392d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161721173814324807, guid: 233925352ec83b749a842764e3ff392d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161721173814324807, guid: 233925352ec83b749a842764e3ff392d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161721173814324807, guid: 233925352ec83b749a842764e3ff392d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161721173814324807, guid: 233925352ec83b749a842764e3ff392d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161721173814324807, guid: 233925352ec83b749a842764e3ff392d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161721173814324807, guid: 233925352ec83b749a842764e3ff392d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161721173814324807, guid: 233925352ec83b749a842764e3ff392d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161721173814324807, guid: 233925352ec83b749a842764e3ff392d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 233925352ec83b749a842764e3ff392d, type: 3}
+--- !u!4 &307542813475658667 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8161721173814324807, guid: 233925352ec83b749a842764e3ff392d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8430983302932624876}
+  m_PrefabAsset: {fileID: 0}
