@@ -91,7 +91,7 @@ public class BirdMovement : MonoBehaviour
         birdAudio.PlaySound("forest");
 
         StartCoroutine("RandomSounds");
-        birdState.SwitchState(BirdStateChanger.BirdState.GoToLanding);
+        //birdState.SwitchState(BirdStateChanger.BirdState.GoToLanding);
 
     }
 
@@ -177,6 +177,15 @@ public class BirdMovement : MonoBehaviour
     {
         switch (birdState.currentState)
         {
+            case BirdStateChanger.BirdState.FacingPlayer:
+                waypointProximity = 1f;
+                currentWaypoint = player.position + new Vector3(player.forward.x, 0, player.forward.z) * .02f + Vector3.up;
+
+                transform.LookAt(currentWaypoint);
+
+                BasicFlying();
+
+                break;
             case BirdStateChanger.BirdState.Hunting:
                 BasicFlying();
                 break;
@@ -336,6 +345,10 @@ public class BirdMovement : MonoBehaviour
         //decide what to do when it reaches a state
         switch (birdState.currentState)
         {
+            case BirdStateChanger.BirdState.FacingPlayer:
+                birdState.SwitchState(BirdStateChanger.BirdState.Flapping);
+                break;
+
             case BirdStateChanger.BirdState.Welcoming:
                 if (!introSequenceDone) birdAudio.PlaySound("birdScream");
                 if (sloMoOnWelcome)
@@ -508,6 +521,10 @@ public class BirdMovement : MonoBehaviour
 //        print("Switching animation state " + newState);
         switch (newState)
         {
+            case BirdStateChanger.BirdState.Flapping:
+                anim.SetTrigger("Flapping");
+
+                break;
             case BirdStateChanger.BirdState.Welcoming:
                 anim.SetTrigger("TakeOff");
                 break;

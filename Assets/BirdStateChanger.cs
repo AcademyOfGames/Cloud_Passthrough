@@ -27,7 +27,9 @@ public class BirdStateChanger : MonoBehaviour
         Landing,
         TakeOff,
         Diving,
-        Eating
+        Eating,
+        FacingPlayer,
+        Flapping
     }
 
     // Start with Hunting
@@ -53,6 +55,7 @@ public class BirdStateChanger : MonoBehaviour
         }
     }
 
+    private BirdSettings flappingSettings;
     private BirdSettings huntingSettings; 
     private BirdSettings welcomingSettings; 
     private BirdSettings goToLandingSettings; 
@@ -81,6 +84,11 @@ public class BirdStateChanger : MonoBehaviour
         if (currentState == birdState) return;
         switch (birdState)
         {
+            case BirdState.Flapping:
+                bird.UpdateSettings(flappingSettings);
+                bird.SwitchAnimationState(birdState);
+
+                break;
             case BirdState.Hunting:
                 bird.UpdateSettings(huntingSettings);
                 birdWind.Play();
@@ -276,6 +284,7 @@ public class BirdStateChanger : MonoBehaviour
     void SetBirdSettings()
     {
         //**creating each bird setting for us to use. we can add custom speed, waypoint logic etc
+        flappingSettings = new BirdSettings(bird.turnAngleIntensity, bird.waypointRadius, bird.waypointProximity, 0, bird.turnSpeed);
         huntingSettings = new BirdSettings(bird.turnAngleIntensity, bird.waypointRadius, bird.waypointProximity, bird.speed, bird.turnSpeed);
         divingSettings = new BirdSettings(bird.turnAngleIntensity, bird.waypointRadius*3f, 1f, bird.speed, bird.turnSpeed *1.5f);
         welcomingSettings = new BirdSettings(0f, bird.waypointRadius, 1.2f, bird.speed * 1.3f, bird.turnSpeed * 1.5f);

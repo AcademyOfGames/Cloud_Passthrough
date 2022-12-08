@@ -66,7 +66,7 @@ public class BeeStateChanger : MonoBehaviour
 
                 }
             }
-
+            /*
             if (Keyboard.current[Key.A].isPressed)
             {
                 rMovement = new Vector2(-1,0);
@@ -87,7 +87,7 @@ public class BeeStateChanger : MonoBehaviour
             else 
             {
                  rMovement = Vector2.zero;
-            }
+            }*/
 
             
 

@@ -49,6 +49,9 @@ public class HeroBeeBehavior : MonoBehaviour
     public float tiltIntensity = 10;
 
     public Transform beeMesh;
+
+    public float maxSpeed = 3.5f;
+    public float acceleration = 1.15f;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,8 +60,8 @@ public class HeroBeeBehavior : MonoBehaviour
         lastPos = transform.position;
         originalSpeed = speed;
         
-        //temp turn this back on
-        //SwitchStates(BeeState.MeetingPlayer);
+        
+        SwitchStates(BeeState.MeetingPlayer);
         
         
         OVRGrabber[] hands = FindObjectsOfType<OVRGrabber>();
@@ -72,7 +75,6 @@ public class HeroBeeBehavior : MonoBehaviour
     private float moveSpeedAcceleration;
     void FixedUpdate()
     {
-
         switch (currentState)
         {
             case BeeState.Explore:
@@ -89,9 +91,9 @@ public class HeroBeeBehavior : MonoBehaviour
 
                 if (moveDir.magnitude > .004f  )
                 {
-                    if (moveSpeedAcceleration < 1.2f)
+                    if (moveSpeedAcceleration < maxSpeed)
                     {
-                        moveSpeedAcceleration += Time.deltaTime *1.5f;
+                        moveSpeedAcceleration += Time.deltaTime * acceleration;
                     }
                 }
                 else
@@ -100,6 +102,7 @@ public class HeroBeeBehavior : MonoBehaviour
                 }
                 
                 transform.Translate(moveDir*moveSpeedAcceleration) ;
+                print(beeControls.lMovement);
                 transform.Rotate(Vector3.up * beeControls.lMovement.x* controllerRotationSpeed * Time.deltaTime);
                 break;
             
@@ -150,41 +153,35 @@ public class HeroBeeBehavior : MonoBehaviour
 
         Vector3 moveSpeed = lastPos - transform.position;
         var localVelocity = transform.InverseTransformDirection(moveSpeed)*110f;
-        print(localVelocity);
         if (localVelocity.magnitude > .2)
         {
             float forwardTilt = localVelocity.z;
             forwardTilt = (forwardTilt + 1) *.5f;
-            print("forward tilt " + forwardTilt);
             if (forwardTilt > 0)
             {
-                targetAngle = beeMesh.eulerAngles;
+                targetAngle = beeMesh.localEulerAngles;
                 targetAngle.x = Mathf.Lerp(20, -20, forwardTilt);
-                beeMesh.eulerAngles = targetAngle;
-                /*Quaternion.Euler(Vector3.Slerp(new Vector3(20, beeMesh.localEulerAngles.y, beeMesh.localEulerAngles.z),
-                new Vector3(-20, beeMesh.localEulerAngles.y, beeMesh.localEulerAngles.z),
-                forwardTilt));*/
+                beeMesh.localEulerAngles = targetAngle;
+                
 
             }
 
             float sideTilt = localVelocity.x;
             sideTilt = (sideTilt + 1) * .5f;
-            //print("sideTilt" + sideTilt);
             if (sideTilt > 0)
             {
-                /*targetAngle = Quaternion.Euler(Vector3.Slerp(
-                            new Vector3(targetAngle.eulerAngles.x, targetAngle.eulerAngles.y, 26),
-                            new Vector3(targetAngle.eulerAngles.x, targetAngle.eulerAngles.y, -26),
-                              sideTilt));*/
                 
-                targetAngle = beeMesh.eulerAngles;
+                
+                targetAngle = beeMesh.localEulerAngles;
                 targetAngle.z = Mathf.Lerp(-25, 25, sideTilt);
-                beeMesh.eulerAngles = targetAngle;
+                beeMesh.localEulerAngles = targetAngle;
             }
         }
         else
         {
-            beeMesh.rotation = Quaternion.Lerp(beeMesh.rotation, Quaternion.identity, .1f);
+
+            beeMesh.localRotation = Quaternion.Slerp(beeMesh.localRotation, Quaternion.identity, .1f);
+
         }
 
         lastPos = transform.position;
@@ -342,7 +339,6 @@ public class HeroBeeBehavior : MonoBehaviour
         
         //if player turns bee will always be in front of players face
 
-        
         //find new spot within a certain range of the original point
         wayPoint = Random.insideUnitSphere + wayPointOrigin;
     }
