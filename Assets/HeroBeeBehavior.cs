@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using Random = UnityEngine.Random;
@@ -37,20 +38,29 @@ public class HeroBeeBehavior : MonoBehaviour
 
     //temporarily public so I can see it without seeing all the debug private vars
     public float distance;
-    Vector3 beeMoveDir;
+    Vector3 lastPos;
 
     public float controllerMovementSpeed;
     public float controllerRotationSpeed;
     public float controllerVerticalSpeed;
 
+    private Vector2 tiltDir;
+
+    public float tiltIntensity = 10;
+
+    public Transform beeMesh;
     // Start is called before the first frame update
     void Start()
     {
         beeControls = GetComponent<BeeStateChanger>();
 
-        beeMoveDir = Vector3.zero;
+        lastPos = transform.position;
         originalSpeed = speed;
-        SwitchStates(BeeState.MeetingPlayer);
+        
+        //temp turn this back on
+        //SwitchStates(BeeState.MeetingPlayer);
+        
+        
         OVRGrabber[] hands = FindObjectsOfType<OVRGrabber>();
        // rightHandLandingSpot = hands[0].transform;
         //leftHandLandingSpot = hands[1].transform;
@@ -59,7 +69,7 @@ public class HeroBeeBehavior : MonoBehaviour
         //bee starts going to players face
     }
 
-
+    private float moveSpeedAcceleration;
     void FixedUpdate()
     {
 
@@ -68,15 +78,31 @@ public class HeroBeeBehavior : MonoBehaviour
             case BeeState.Explore:
                 transform.LookAt(wayPoint);
                 transform.Translate(Vector3.forward * speed);
-
                 DistanceCheck(wayPoint);
                 break;
+            
             case BeeState.HandControls:
-                transform.Translate(new Vector3(beeControls.rMovement.x * controllerMovementSpeed, beeControls.lMovement.y * controllerVerticalSpeed, beeControls.rMovement.y * controllerMovementSpeed) * Time.deltaTime) ;
+                Vector3 moveDir = new Vector3(beeControls.rMovement.x * controllerMovementSpeed,
+                    beeControls.lMovement.y * controllerVerticalSpeed,
+                    beeControls.rMovement.y * controllerMovementSpeed) * Time.deltaTime;
+                
+
+                if (moveDir.magnitude > .004f  )
+                {
+                    if (moveSpeedAcceleration < 1.2f)
+                    {
+                        moveSpeedAcceleration += Time.deltaTime *1.5f;
+                    }
+                }
+                else
+                {
+                    moveSpeedAcceleration = 0;
+                }
+                
+                transform.Translate(moveDir*moveSpeedAcceleration) ;
                 transform.Rotate(Vector3.up * beeControls.lMovement.x* controllerRotationSpeed * Time.deltaTime);
-
-
                 break;
+            
             case BeeState.MeetingPlayer:
                 transform.LookAt(wayPoint);
                 
@@ -113,8 +139,57 @@ public class HeroBeeBehavior : MonoBehaviour
 
                 break;
         }
+
+        CalculateTilt();
     }
-    
+
+    private void CalculateTilt()
+    {
+        
+        Vector3 targetAngle = Vector3.zero;
+
+        Vector3 moveSpeed = lastPos - transform.position;
+        var localVelocity = transform.InverseTransformDirection(moveSpeed)*110f;
+        print(localVelocity);
+        if (localVelocity.magnitude > .2)
+        {
+            float forwardTilt = localVelocity.z;
+            forwardTilt = (forwardTilt + 1) *.5f;
+            print("forward tilt " + forwardTilt);
+            if (forwardTilt > 0)
+            {
+                targetAngle = beeMesh.eulerAngles;
+                targetAngle.x = Mathf.Lerp(20, -20, forwardTilt);
+                beeMesh.eulerAngles = targetAngle;
+                /*Quaternion.Euler(Vector3.Slerp(new Vector3(20, beeMesh.localEulerAngles.y, beeMesh.localEulerAngles.z),
+                new Vector3(-20, beeMesh.localEulerAngles.y, beeMesh.localEulerAngles.z),
+                forwardTilt));*/
+
+            }
+
+            float sideTilt = localVelocity.x;
+            sideTilt = (sideTilt + 1) * .5f;
+            //print("sideTilt" + sideTilt);
+            if (sideTilt > 0)
+            {
+                /*targetAngle = Quaternion.Euler(Vector3.Slerp(
+                            new Vector3(targetAngle.eulerAngles.x, targetAngle.eulerAngles.y, 26),
+                            new Vector3(targetAngle.eulerAngles.x, targetAngle.eulerAngles.y, -26),
+                              sideTilt));*/
+                
+                targetAngle = beeMesh.eulerAngles;
+                targetAngle.z = Mathf.Lerp(-25, 25, sideTilt);
+                beeMesh.eulerAngles = targetAngle;
+            }
+        }
+        else
+        {
+            beeMesh.rotation = Quaternion.Lerp(beeMesh.rotation, Quaternion.identity, .1f);
+        }
+
+        lastPos = transform.position;
+    }
+
 
     /// <summary>
     /// check how far bee is from objective

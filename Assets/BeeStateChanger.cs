@@ -20,6 +20,7 @@ public class BeeStateChanger : MonoBehaviour
     private HeroBeeBehavior bee;
     private static readonly int TakeOff = Animator.StringToHash("TakeOff");
     public TextMeshPro handText;
+    
     private void Awake()
     {
         bee = GetComponent<HeroBeeBehavior>();
@@ -51,7 +52,7 @@ public class BeeStateChanger : MonoBehaviour
             rMovement = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.RTouch) ;
 
             //AddFish
-            if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch) || Keyboard.current[Key.S].wasPressedThisFrame)
+            if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch))
             {
                 if(bee.currentState != HeroBeeBehavior.BeeState.HandControls)
                 {
@@ -66,8 +67,32 @@ public class BeeStateChanger : MonoBehaviour
                 }
             }
 
+            if (Keyboard.current[Key.A].isPressed)
+            {
+                rMovement = new Vector2(-1,0);
+            }          
+            else if (Keyboard.current[Key.D].isPressed)
+            {
+                rMovement = new Vector2(1,0);
+            }
+            else if (Keyboard.current[Key.W].isPressed)
+            {
+                rMovement = new Vector2(0,1);
+            }          
+            
+            else if (Keyboard.current[Key.S].isPressed)
+            {
+                rMovement = new Vector2(0,-1);
+            }
+            else 
+            {
+                 rMovement = Vector2.zero;
+            }
 
-            if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch) || Keyboard.current[Key.S].wasPressedThisFrame)
+            
+
+
+            if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch))
             {
                 bee.SwitchStates(HeroBeeBehavior.BeeState.Explore);
             }
@@ -79,7 +104,6 @@ public class BeeStateChanger : MonoBehaviour
 
             if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch) || Keyboard.current[Key.W].wasPressedThisFrame)
             {
-                print("primary index triggered");
             }
             
             if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch) || Keyboard.current[Key.H].wasPressedThisFrame)

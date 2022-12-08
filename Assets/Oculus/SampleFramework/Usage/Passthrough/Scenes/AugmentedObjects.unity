@@ -64641,7 +64641,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7019431209768663735
 Transform:
   m_ObjectHideFlags: 0
@@ -79556,7 +79556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fe04690ae3d6249b22f330c65b1309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
+  currentState: 4
   proximityDistance: 1
   flower: {fileID: 7019431209768663735}
   player: {fileID: 931075468}
@@ -79573,6 +79573,8 @@ MonoBehaviour:
   controllerMovementSpeed: 0.5
   controllerRotationSpeed: 85
   controllerVerticalSpeed: 0.3
+  tiltIntensity: 10
+  beeMesh: {fileID: 4303424696372195021}
 --- !u!4 &7019431210735272306
 Transform:
   m_ObjectHideFlags: 0
