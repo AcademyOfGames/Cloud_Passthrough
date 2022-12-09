@@ -22,17 +22,15 @@ public class BirdAudioManager : MonoBehaviour
     public void PlaySound(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.clip.name == name);
-        s.source.Play();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+        if (s.source != null)
+        {
+            s.source.Play();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        }
+        else
+        {
+            print("Couldnt find sound named " + name);
+        }
     }
+    
 }

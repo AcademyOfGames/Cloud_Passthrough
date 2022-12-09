@@ -20,6 +20,8 @@ public class BirdStateChanger : MonoBehaviour
     public GameObject deer;
 
     public TextMeshPro takeOffText;
+
+    public GameObject windForceField;
     // States
     public enum BirdState
     {
@@ -73,7 +75,7 @@ public class BirdStateChanger : MonoBehaviour
 
     private void Awake()
     {
-            bird = GetComponent<BirdMovement>();
+        bird = GetComponent<BirdMovement>();
         SetBirdSettings();
     }
 
@@ -87,7 +89,13 @@ public class BirdStateChanger : MonoBehaviour
             case BirdState.Flapping:
                 bird.UpdateSettings(flappingSettings);
                 bird.SwitchAnimationState(birdState);
-
+                bird.anim.ResetTrigger("Glide");
+                bird.anim.ResetTrigger("Fly");
+                bird.birdAudio.PlaySound("strongWind");
+                Invoke("PlayScreech", 2);
+                Invoke("FlyAway", 14);
+                windForceField.SetActive(true);
+                
                 break;
             case BirdState.Hunting:
                 bird.UpdateSettings(huntingSettings);
@@ -160,6 +168,15 @@ public class BirdStateChanger : MonoBehaviour
         currentState = birdState;
     }
 
+    void FlyAway()
+    {
+        SwitchState(BirdState.Hunting);
+    }
+    void PlayScreech()
+    {
+        bird.birdAudio.PlaySound("birdScream");
+
+    }
     // Update is called once per frame
     void Update()
     {

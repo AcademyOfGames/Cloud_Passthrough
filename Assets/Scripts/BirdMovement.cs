@@ -71,7 +71,7 @@ public class BirdMovement : MonoBehaviour
 
     public bool grabbedFish { get; set; }
     public int fishCaught { get; set; }
-    private BirdAudioManager birdAudio;
+    public BirdAudioManager birdAudio;
 
     public StumpBehavior _stump;
 
