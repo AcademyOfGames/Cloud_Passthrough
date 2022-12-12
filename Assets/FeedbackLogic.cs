@@ -47,7 +47,6 @@ public class FeedbackLogic : MonoBehaviour
             return;
         }
         feedbackPanels[currentFeedbackPanel].SetActive(true);
-        print("Setting to true " + feedbackPanels[currentFeedbackPanel].name);
     }
 
     public void CancelFeedback()
@@ -55,8 +54,8 @@ public class FeedbackLogic : MonoBehaviour
         FindObjectOfType<GoogleSheets>().AddEventData("Feedback Cancelled", SystemInfo.deviceUniqueIdentifier);
 
         ToggleLasers(false);
-        FindObjectOfType<BirdMovement>().ToggleControllerUI(true);
-
+        //FindObjectOfType<BirdMovement>().ToggleControllerUI(true);
+        FindObjectOfType<BirdStateChanger>().SwitchState(BirdStateChanger.BirdState.FacingPlayer);
         gameObject.SetActive(false);
 
     }
@@ -80,7 +79,7 @@ public class FeedbackLogic : MonoBehaviour
 
     public void FeedbackEnded()
     {
-        FindObjectOfType<BirdMovement>().ToggleControllerUI(true);
+        FindObjectOfType<BirdStateChanger>().SwitchState(BirdStateChanger.BirdState.FacingPlayer);
         ToggleLasers(false);
         feedbackEnded = true;
         gameObject.SetActive(false);

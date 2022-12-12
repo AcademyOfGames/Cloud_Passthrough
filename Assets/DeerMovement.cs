@@ -112,7 +112,6 @@ public class DeerMovement : MonoBehaviour
         {
             case AnimalStates.LieDown:
                 anim.SetBool("LyingDown", true);
-                StartCoroutine(nameof(WaitAndStartFeedback));
                 break;
             
             case AnimalStates.StopAndLook:
@@ -148,11 +147,6 @@ public class DeerMovement : MonoBehaviour
         SwitchState(nextState);
     }    
     
-    IEnumerator WaitAndStartFeedback()
-    {
-        yield return new WaitForSeconds(27f);
-        if(introSequence) FindObjectOfType<FeedbackLogic>().StartFeedback();
-    }
     
     // Update is called once per frame
     void FixedUpdate()

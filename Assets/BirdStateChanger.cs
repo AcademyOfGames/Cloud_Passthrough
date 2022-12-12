@@ -93,8 +93,9 @@ public class BirdStateChanger : MonoBehaviour
                 bird.anim.ResetTrigger("Fly");
                 bird.birdAudio.PlaySound("strongWind");
                 Invoke("PlayScreech", 2);
-                Invoke("FlyAway", 14);
+                Invoke("FlyAway", 6);
                 windForceField.SetActive(true);
+
                 
                 break;
             case BirdState.Hunting:
@@ -105,7 +106,7 @@ public class BirdStateChanger : MonoBehaviour
             case BirdState.Welcoming:
                 birdWind.Play();
 
-                bird.currentWaypoint = bird.player.position + Vector3.up *.5f;
+                bird.currentWaypoint = bird.player.position + Vector3.left * 4 + Vector3.up *15f;
                 bird.SwitchAnimationState(birdState);
 
                 //after 1 second set the bird to welcoming
@@ -170,7 +171,10 @@ public class BirdStateChanger : MonoBehaviour
 
     void FlyAway()
     {
+        bird.currentWaypoint = bird.player.position + Vector3.up * 10;
         SwitchState(BirdState.Hunting);
+        FindObjectOfType<BeeSystem>().ActivateBeeSystem();
+
     }
     void PlayScreech()
     {
@@ -228,7 +232,7 @@ public class BirdStateChanger : MonoBehaviour
             {
                 FindObjectOfType<GoogleSheets>().AddEventData("Explore pressed", SystemInfo.deviceUniqueIdentifier);
 
-                StartCoroutine("WaitAndActivateDeer");
+                StartCoroutine("WaitAndStartFeedback");
 
 
                 if (currentState == BirdState.Landing)
@@ -290,10 +294,15 @@ public class BirdStateChanger : MonoBehaviour
         }*/
     }
 
+
+    IEnumerator WaitAndStartFeedback()
+    {
+        yield return new WaitForSeconds(3);
+        FindObjectOfType<FeedbackLogic>().StartFeedback();
+    }
     private IEnumerator WaitAndActivateDeer()
     {
         yield return new WaitForSeconds(30f);
-        print("30 seconds");
 
         deer.SetActive(true);
     }
