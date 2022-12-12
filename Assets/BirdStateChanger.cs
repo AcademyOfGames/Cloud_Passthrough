@@ -99,7 +99,7 @@ public class BirdStateChanger : MonoBehaviour
                 Invoke("PlayScreech", 2);
                 Invoke("FlyAway", 6);
                 windForceField.SetActive(true);
-                StartCoroutine(nameof(shrinkMist));
+                StartCoroutine(nameof(ShrinkMist));
 
                 
                 break;
@@ -179,10 +179,11 @@ public class BirdStateChanger : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         float timePassed = 0;
+        float 
 
         while(timePassed < 1)
         {
-
+            mist.transform.localScale = Vector3.Lerp()
         }
     }
     void FlyAway()
