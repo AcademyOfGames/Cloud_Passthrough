@@ -22,6 +22,9 @@ public class BirdStateChanger : MonoBehaviour
     public TextMeshPro takeOffText;
 
     public GameObject windForceField;
+    public GameObject mist;
+
+    public BeeSystem beesAndFlowers;
     // States
     public enum BirdState
     {
@@ -84,6 +87,7 @@ public class BirdStateChanger : MonoBehaviour
     public void SwitchState(BirdState birdState)
     {
         if (currentState == birdState) return;
+        print("Switching state " + birdState);
         switch (birdState)
         {
             case BirdState.Flapping:
@@ -95,6 +99,7 @@ public class BirdStateChanger : MonoBehaviour
                 Invoke("PlayScreech", 2);
                 Invoke("FlyAway", 6);
                 windForceField.SetActive(true);
+                StartCoroutine(nameof(shrinkMist));
 
                 
                 break;
@@ -106,7 +111,7 @@ public class BirdStateChanger : MonoBehaviour
             case BirdState.Welcoming:
                 birdWind.Play();
 
-                bird.currentWaypoint = bird.player.position + Vector3.left * 4 + Vector3.up *15f;
+                bird.currentWaypoint = bird.player.position + Vector3.up *.5f;
                 bird.SwitchAnimationState(birdState);
 
                 //after 1 second set the bird to welcoming
@@ -169,11 +174,23 @@ public class BirdStateChanger : MonoBehaviour
         currentState = birdState;
     }
 
+
+    IEnumerator ShrinkMist()
+    {
+        yield return new WaitForSeconds(5f);
+        float timePassed = 0;
+
+        while(timePassed < 1)
+        {
+
+        }
+    }
     void FlyAway()
     {
-        bird.currentWaypoint = bird.player.position + Vector3.up * 10;
+        bird.currentWaypoint = bird.player.position + Vector3.left * 4 + Vector3.up * 15f;
         SwitchState(BirdState.Hunting);
-        FindObjectOfType<BeeSystem>().ActivateBeeSystem();
+        beesAndFlowers.gameObject.SetActive(true)
+            beesAndFlowers.ActivateBeeSystem();
 
     }
     void PlayScreech()
@@ -256,7 +273,7 @@ public class BirdStateChanger : MonoBehaviour
                 {
                     FindObjectOfType<GoogleSheets>().AddEventData("Take Off pressed", SystemInfo.deviceUniqueIdentifier);
 
-                    StartCoroutine("WaitAndActivateDeer");
+                   // StartCoroutine("WaitAndActivateDeer");
                     bird.anim.SetTrigger(TakeOff);
                     SwitchState(BirdState.TakeOff);
 

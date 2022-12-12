@@ -91,7 +91,7 @@ public class BirdMovement : MonoBehaviour
         birdAudio.PlaySound("forest");
 
         StartCoroutine("RandomSounds");
-        //birdState.SwitchState(BirdStateChanger.BirdState.GoToLanding);
+       birdState.SwitchState(BirdStateChanger.BirdState.GoToLanding);
 
     }
 
@@ -273,6 +273,7 @@ public class BirdMovement : MonoBehaviour
         yield return new WaitForSeconds(15f);
 
         birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
+
         yield return new WaitForSeconds(25f);
 
         birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
@@ -402,7 +403,6 @@ public class BirdMovement : MonoBehaviour
     {
         if (Vector3.Distance(player.position, transform.position) > minOrbitRadius)
         {
-
             transform.RotateAround(player.position, Vector3.up, orbitSpeed * Time.deltaTime);
             OrbitRotation();
         }
@@ -411,9 +411,9 @@ public class BirdMovement : MonoBehaviour
 
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
-            if (transform.position.y < 4f)
+            if (transform.position.y < 2.4f)
             {
-                transform.Rotate(Vector3.right * -.3f);
+                transform.Rotate(Vector3.right * -.2f);
             }
 
         }
