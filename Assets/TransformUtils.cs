@@ -8,11 +8,11 @@ public class TransformUtils : MonoBehaviour
     public bool lookAtPlayer;
     public Vector3 offset;
     public Transform player;
+    
     // Start is called before the first frame update
     void Start()
     {
 
-        
         
         if(inFrontOfPlayer)
         {

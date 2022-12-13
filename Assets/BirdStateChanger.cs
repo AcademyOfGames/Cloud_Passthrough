@@ -137,6 +137,7 @@ public class BirdStateChanger : MonoBehaviour
                     if (bird.fishCaught == 1)
                     {
                         ghostHand.SetActive(true);
+                        ghostHand.transform.SetParent(null);
                     }
                 }
         
@@ -178,19 +179,30 @@ public class BirdStateChanger : MonoBehaviour
     IEnumerator ShrinkMist()
     {
         yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(4f);
         float timePassed = 0;
-        float 
 
+        float newY = mist.transform.localScale.y;
+        Vector3 localScale;
+        
         while(timePassed < 1)
         {
-            mist.transform.localScale = Vector3.Lerp()
+
+            timePassed += Time.deltaTime *.5f;
+            localScale = mist.transform.localScale;
+            newY = Mathf.Lerp(localScale.y, 0, timePassed);
+            localScale.y = newY;
+            
+            mist.transform.localScale = localScale;
+            yield return null;
         }
+        mist.SetActive((false));
     }
     void FlyAway()
     {
         bird.currentWaypoint = bird.player.position + Vector3.left * 4 + Vector3.up * 15f;
         SwitchState(BirdState.Hunting);
-        beesAndFlowers.gameObject.SetActive(true)
+        beesAndFlowers.gameObject.SetActive(true);
             beesAndFlowers.ActivateBeeSystem();
 
     }

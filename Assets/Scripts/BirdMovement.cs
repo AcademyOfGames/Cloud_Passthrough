@@ -179,7 +179,7 @@ public class BirdMovement : MonoBehaviour
         {
             case BirdStateChanger.BirdState.FacingPlayer:
                 waypointProximity = 1f;
-                currentWaypoint = player.position + new Vector3(player.forward.x, 0, player.forward.z) * .02f + Vector3.up;
+                currentWaypoint = player.position + new Vector3(player.forward.x, 0, player.forward.z) * .1f + Vector3.up * 1.3f;
 
                 transform.LookAt(currentWaypoint);
 
@@ -286,8 +286,10 @@ public class BirdMovement : MonoBehaviour
         yield return new WaitForSeconds(15f);
 
         grabFishUI.SetActive(true);
+        
         fishBucket.SetActive(true);
-
+        fishBucket.transform.SetParent(null);
+        
         birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
         yield return new WaitForSeconds(5f);
 
@@ -338,7 +340,6 @@ public class BirdMovement : MonoBehaviour
 
     private void DistanceCheck()
     {
-
         // Checking distance between waypoint and bird position, if it is less than distance find a new spot
         if (!(Vector3.Distance(currentWaypoint, transform.position) < waypointProximity)) return;
 
