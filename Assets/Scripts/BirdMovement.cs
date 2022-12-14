@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -46,6 +45,7 @@ public class BirdMovement : MonoBehaviour
     public Animator anim;
     private bool gliding;
 
+    public GameObject billboardEagle;
     // Testing
     public GameObject testcube;
     public GameObject currentCube;
@@ -91,7 +91,7 @@ public class BirdMovement : MonoBehaviour
         birdAudio.PlaySound("forest");
 
         StartCoroutine("RandomSounds");
-       birdState.SwitchState(BirdStateChanger.BirdState.GoToLanding);
+        birdState.SwitchState(BirdStateChanger.BirdState.GoToLanding);
 
     }
 
@@ -187,6 +187,7 @@ public class BirdMovement : MonoBehaviour
 
                 break;
             case BirdStateChanger.BirdState.Hunting:
+            case BirdStateChanger.BirdState.FlyingAway:
                 BasicFlying();
                 break;
 
@@ -289,7 +290,9 @@ public class BirdMovement : MonoBehaviour
         
         fishBucket.SetActive(true);
         fishBucket.transform.SetParent(null);
-        
+        fishBucket.transform.rotation = Quaternion.identity;
+
+
         birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
         yield return new WaitForSeconds(5f);
 
@@ -347,6 +350,9 @@ public class BirdMovement : MonoBehaviour
         //decide what to do when it reaches a state
         switch (birdState.currentState)
         {
+            case BirdStateChanger.BirdState.FlyingAway:
+                StartCoroutine(nameof(ShrinkAndDeactivate));
+                break;
             case BirdStateChanger.BirdState.FacingPlayer:
                 birdState.SwitchState(BirdStateChanger.BirdState.Flapping);
                 break;
@@ -400,6 +406,21 @@ public class BirdMovement : MonoBehaviour
         previousPos = position;
     }
 
+    IEnumerator ShrinkAndDeactivate()
+    {
+        float timePassed = 0;
+        float currentScale = transform.localScale.x;
+        while(timePassed <= 1)
+        {
+            print("shrinking " + currentScale);
+            yield return null;
+            transform.localScale = Vector3.one * Mathf.Lerp(currentScale, 0, timePassed);
+            currentScale = transform.localScale.x;
+            timePassed += Time.deltaTime * .6f;
+        }
+        billboardEagle.SetActive(true);
+        gameObject.SetActive(false);
+    }
     void FaceTowardMovement()
     {
         if (Vector3.Distance(player.position, transform.position) > minOrbitRadius)
@@ -412,9 +433,9 @@ public class BirdMovement : MonoBehaviour
 
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
-            if (transform.position.y < 2.4f)
+            if (transform.position.y < 2.9f)
             {
-                transform.Rotate(Vector3.right * -.2f);
+                transform.Rotate(Vector3.right * -.16f);
             }
 
         }
@@ -523,7 +544,7 @@ public class BirdMovement : MonoBehaviour
         switch (newState)
         {
             case BirdStateChanger.BirdState.Flapping:
-                anim.SetTrigger("Flapping");
+                anim.SetBool("Flapping",true);
 
                 break;
             case BirdStateChanger.BirdState.Welcoming:
