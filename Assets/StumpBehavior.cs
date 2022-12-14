@@ -17,15 +17,36 @@ public class StumpBehavior : MonoBehaviour
     [HideInInspector]
     public int totalFishAlive = 3;
 
+    public bool fishSystem;
+
+    public GameObject fishBucket;
+
+    internal void DeactivateFishBucket()
+    {
+        fishSystem = false;
+        fishBucket.SetActive(false);
+        fishBucket.transform.SetParent(null);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         FindObjectOfType<GoogleSheets>().AddEventData("Stump appeared", SystemInfo.deviceUniqueIdentifier);
     }
 
+    public void ActivateFishBucket()
+    {
+        print("Showing fish bucket");
+        fishSystem = true;
+        gameObject.SetActive(true); 
+        fishBucket.SetActive(true);
+        fishBucket.transform.SetParent(null);
+        fishBucket.transform.rotation = Quaternion.identity;
+        fishBucket.transform.position = new Vector3(fishBucket.transform.position.x, 1.722f, fishBucket.transform.position.z);
+    }
     public void SpawnMorePrey()
     {
-        if (totalFishAlive >= 4) return;
+        if (totalFishAlive >= 4 || !fishSystem) return;
         totalFishAlive++;
         GameObject newFish = Instantiate(prey, preySpawner.position, Quaternion.identity);
         newFish.transform.SetParent(gameObject.transform);

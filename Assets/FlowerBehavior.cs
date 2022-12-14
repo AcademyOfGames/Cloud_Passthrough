@@ -13,6 +13,7 @@ public class FlowerBehavior : MonoBehaviour
     public FlowerBehavior otherFlowers;
 
     public bool secondFlowersActive;
+    static int totalBLoomingFlowers;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +63,11 @@ public class FlowerBehavior : MonoBehaviour
         {
             IEnumerator grow = otherFlowers.Grow(otherFlowers.transform.position);
             StartCoroutine(grow);
+            totalBLoomingFlowers++;
+            if(totalBLoomingFlowers== 3)
+            {
+                FindObjectOfType<FeedbackLogic>().StartFeedback();
+            }
         }
     }
 

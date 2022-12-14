@@ -3346,7 +3346,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 240631857}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.06, y: -0.80273, z: 0.425}
+  m_LocalPosition: {x: -0.3, y: 0.58, z: 1.16}
   m_LocalScale: {x: 0.32999995, y: 0.37618896, z: 0.32999998}
   m_Children:
   - {fileID: 1437100089}
@@ -3468,6 +3468,8 @@ MonoBehaviour:
   prey: {fileID: 1378899485604776650, guid: ba8ba5df7ac69ec43ac24d219b75a90d, type: 3}
   preySpawner: {fileID: 89203231}
   totalFishAlive: 3
+  fishSystem: 0
+  fishBucket: {fileID: 1437100088}
 --- !u!82 &240631865
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12740,7 +12742,7 @@ ParticleSystemForceField:
     m_DirectionCurveY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -26803,7 +26805,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   birdState: {fileID: 0}
-  fishBucket: {fileID: 240631857}
   customControlsUI:
   - {fileID: 1149880613}
   - {fileID: 793721745}

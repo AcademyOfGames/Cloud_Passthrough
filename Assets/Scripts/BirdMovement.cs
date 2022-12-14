@@ -9,7 +9,6 @@ public class BirdMovement : MonoBehaviour
     public BirdStateChanger birdState;
     //Custom behavior
     private bool introSequenceDone;
-    public GameObject fishBucket;
     public GameObject[] customControlsUI;
     public bool sloMoOnWelcome;
 
@@ -75,6 +74,7 @@ public class BirdMovement : MonoBehaviour
 
     public StumpBehavior _stump;
 
+
     void Start()
     {
         birdAudio = GetComponent<BirdAudioManager>();
@@ -93,7 +93,9 @@ public class BirdMovement : MonoBehaviour
         StartCoroutine("RandomSounds");
         birdState.SwitchState(BirdStateChanger.BirdState.GoToLanding);
 
+
     }
+
 
     IEnumerator RandomSounds()
     {
@@ -266,6 +268,8 @@ public class BirdMovement : MonoBehaviour
     IEnumerator IntroSequence()
     {
         yield return new WaitForSeconds(6f);
+
+
         anim.SetTrigger("Scream");
         birdAudio.PlaySound("birdScream");
         yield return new WaitForSeconds(2f);
@@ -287,10 +291,8 @@ public class BirdMovement : MonoBehaviour
         yield return new WaitForSeconds(15f);
 
         grabFishUI.SetActive(true);
-        
-        fishBucket.SetActive(true);
-        fishBucket.transform.SetParent(null);
-        fishBucket.transform.rotation = Quaternion.identity;
+
+        _stump.ActivateFishBucket();
 
 
         birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
@@ -302,7 +304,7 @@ public class BirdMovement : MonoBehaviour
     IEnumerator SloMoForSeconds()
     {
         Time.timeScale = .1f;
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitForSeconds(.7f);
         Time.timeScale = 1;
 
     }

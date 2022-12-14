@@ -20,7 +20,7 @@ public class BeeSystem : MonoBehaviour
 
     public void ActivateBeeSystem()
     {
-        fishSystem.SetActive(false);
+        FindObjectOfType<StumpBehavior>().DeactivateFishBucket();
         seedBucket.SetActive(true);
     }
 }

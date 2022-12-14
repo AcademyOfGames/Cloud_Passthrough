@@ -25,6 +25,8 @@ public class BirdStateChanger : MonoBehaviour
     public GameObject mist;
 
     public BeeSystem beesAndFlowers;
+
+    bool mistWindSceneActivated;
     // States
     public enum BirdState
     {
@@ -91,6 +93,10 @@ public class BirdStateChanger : MonoBehaviour
         print("Switching state " + birdState);
         switch (birdState)
         {
+            case BirdState.FacingPlayer:
+                mistWindSceneActivated = true;
+                break;
+
             case BirdState.Flapping:
                 bird.UpdateSettings(flappingSettings);
                 bird.SwitchAnimationState(birdState);
@@ -127,6 +133,7 @@ public class BirdStateChanger : MonoBehaviour
 
                 break;
             case BirdState.Landing:
+
                 birdWind.Stop();
                 bird.SwitchAnimationState(birdState);
                 bird.UpdateSettings(LandedSettings);
@@ -149,7 +156,10 @@ public class BirdStateChanger : MonoBehaviour
 
                     bird.ToggleControllerUI(true);
                 }
-                //Invoke("TakeOff",6);  
+                if (mistWindSceneActivated)
+                {
+
+                }
                 break;
             
             case BirdState.TakeOff:
@@ -164,6 +174,7 @@ public class BirdStateChanger : MonoBehaviour
                 bird.SwitchAnimationState(birdState);
                 bird.prey.gameObject.SetActive(true);
                 bird.UpdateSettings(divingSettings);
+
                 //StartCoroutine("ResetToHunting");
                 break;
             
@@ -177,6 +188,10 @@ public class BirdStateChanger : MonoBehaviour
         currentState = birdState;
     }
 
+    public void ActivateWindScene()
+    {
+        SwitchState(BirdState.FacingPlayer);
+    }
 
     IEnumerator ShrinkMist()
     {
@@ -197,6 +212,8 @@ public class BirdStateChanger : MonoBehaviour
             mist.transform.localScale = localScale;
             yield return null;
         }
+
+
         beesAndFlowers.gameObject.SetActive(true);
         beesAndFlowers.ActivateBeeSystem();
         mist.SetActive(false);
