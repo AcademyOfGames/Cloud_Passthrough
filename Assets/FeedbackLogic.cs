@@ -55,7 +55,6 @@ public class FeedbackLogic : MonoBehaviour
 
         ToggleLasers(false);
         //FindObjectOfType<BirdMovement>().ToggleControllerUI(true);
-        FindObjectOfType<BirdStateChanger>().SwitchState(BirdStateChanger.BirdState.FacingPlayer);
         gameObject.SetActive(false);
 
     }
@@ -79,7 +78,6 @@ public class FeedbackLogic : MonoBehaviour
 
     public void FeedbackEnded()
     {
-        FindObjectOfType<BirdStateChanger>().SwitchState(BirdStateChanger.BirdState.FacingPlayer);
         ToggleLasers(false);
         feedbackEnded = true;
         gameObject.SetActive(false);

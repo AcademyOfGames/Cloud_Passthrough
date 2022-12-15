@@ -22,11 +22,11 @@ public class BirdStateChanger : MonoBehaviour
     public TextMeshPro takeOffText;
 
     public GameObject windForceField;
-    public GameObject mist;
 
-    public BeeSystem beesAndFlowers;
 
     bool mistWindSceneActivated;
+
+    public Transform testCube;
     // States
     public enum BirdState
     {
@@ -108,8 +108,22 @@ public class BirdStateChanger : MonoBehaviour
                 windForceField.SetActive(true);
                 break;
 
-            case BirdState.Hunting:
             case BirdState.FlyingAway:
+                bird.currentWaypoint = bird.player.position + Vector3.left * 4 + Vector3.up * 10f;
+                testCube.position = bird.currentWaypoint;
+                print("Setting current waypoint to " + bird.currentWaypoint);
+
+                bird.anim.SetBool("Flapping", false);
+
+                bird.UpdateSettings(huntingSettings);
+                birdWind.Play();
+
+                IEnumerator shrinkMist = FindObjectOfType<Wind>().ShrinkMist();
+                StartCoroutine(shrinkMist);
+
+                break;
+            
+            case BirdState.Hunting:
                 bird.anim.SetBool("Flapping", false);
 
                 bird.UpdateSettings(huntingSettings);
@@ -193,38 +207,10 @@ public class BirdStateChanger : MonoBehaviour
         SwitchState(BirdState.FacingPlayer);
     }
 
-    IEnumerator ShrinkMist()
-    {
-        yield return new WaitForSeconds(10f);
-        float timePassed = 0;
-
-        float newY = mist.transform.localScale.y;
-        Vector3 localScale;
-        
-        while(timePassed < 1)
-        {
-
-            timePassed += Time.deltaTime *.5f;
-            localScale = mist.transform.localScale;
-            newY = Mathf.Lerp(localScale.y, 0, timePassed);
-            localScale.y = newY;
-            
-            mist.transform.localScale = localScale;
-            yield return null;
-        }
-
-
-        beesAndFlowers.gameObject.SetActive(true);
-        beesAndFlowers.ActivateBeeSystem();
-        mist.SetActive(false);
-    }
+    
     void FlyAway()
     {
-        StartCoroutine(nameof(ShrinkMist));
-        print("FlyAway Invoked");
-        bird.currentWaypoint = bird.player.position + Vector3.left * 4 + Vector3.up * 15f;
         SwitchState(BirdState.FlyingAway);
-       
     }
     void PlayScreech()
     {

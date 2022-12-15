@@ -91,7 +91,6 @@ public class BirdMovement : MonoBehaviour
         birdAudio.PlaySound("forest");
 
         StartCoroutine("RandomSounds");
-        birdState.SwitchState(BirdStateChanger.BirdState.GoToLanding);
 
 
     }
@@ -184,12 +183,15 @@ public class BirdMovement : MonoBehaviour
                 currentWaypoint = player.position + new Vector3(player.forward.x, 0, player.forward.z) * .1f + Vector3.up * 1.3f;
 
                 transform.LookAt(currentWaypoint);
-
                 BasicFlying();
-
                 break;
-            case BirdStateChanger.BirdState.Hunting:
+            
             case BirdStateChanger.BirdState.FlyingAway:
+                BasicFlying();
+                turnSpeed *=1.04f;
+                break;
+            
+            case BirdStateChanger.BirdState.Hunting:
                 BasicFlying();
                 break;
 
@@ -222,7 +224,7 @@ public class BirdMovement : MonoBehaviour
                 if (!introSequenceDone)
                 {
                     introSequenceDone = true;
-                    StartCoroutine(nameof(IntroSequence));
+                    //StartCoroutine(nameof(IntroSequence));
                 }
 
 
@@ -353,6 +355,7 @@ public class BirdMovement : MonoBehaviour
         switch (birdState.currentState)
         {
             case BirdStateChanger.BirdState.FlyingAway:
+
                 StartCoroutine(nameof(ShrinkAndDeactivate));
                 break;
             case BirdStateChanger.BirdState.FacingPlayer:
@@ -414,7 +417,6 @@ public class BirdMovement : MonoBehaviour
         float currentScale = transform.localScale.x;
         while(timePassed <= 1)
         {
-            print("shrinking " + currentScale);
             yield return null;
             transform.localScale = Vector3.one * Mathf.Lerp(currentScale, 0, timePassed);
             currentScale = transform.localScale.x;

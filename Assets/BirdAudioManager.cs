@@ -33,4 +33,29 @@ public class BirdAudioManager : MonoBehaviour
         }
     }
     
+    public float GetVolume(string soundName)
+    {
+        Sound s = Array.Find(sounds, sound => sound.clip.name == soundName);
+        if (s.source != null)
+        {
+           return  s.source.volume;
+        }
+        
+        print("Couldnt find sound named " + name);
+        return .5f;
+    } 
+    public void SetVolume(string soundName, float volume)
+    {
+        Sound s = Array.Find(sounds, sound => sound.clip.name == soundName);
+        if (s.source != null)
+        {
+            s.source.volume = volume;
+
+        }
+        else
+        {
+            print("Couldnt find sound named " + name);
+        }
+    }
+
 }
