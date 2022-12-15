@@ -27,6 +27,8 @@ public class BirdStateChanger : MonoBehaviour
     bool mistWindSceneActivated;
 
     public Transform testCube;
+
+    public Wind wind;
     // States
     public enum BirdState
     {
@@ -89,8 +91,10 @@ public class BirdStateChanger : MonoBehaviour
     // Change the bird from flying to meeting player to leaving
     public void SwitchState(BirdState birdState)
     {
-        if (currentState == birdState) return;
+        if (currentState == birdState || mistWindSceneActivated) return;
+        if (currentState == BirdState.Diving && birdState != BirdStateChanger.BirdState.GoToLanding) ;
         print("Switching state " + birdState);
+
         switch (birdState)
         {
             case BirdState.FacingPlayer:
@@ -118,7 +122,7 @@ public class BirdStateChanger : MonoBehaviour
                 bird.UpdateSettings(huntingSettings);
                 birdWind.Play();
 
-                IEnumerator shrinkMist = FindObjectOfType<Wind>().ShrinkMist();
+                IEnumerator shrinkMist = wind.ShrinkMist();
                 StartCoroutine(shrinkMist);
 
                 break;
@@ -170,10 +174,7 @@ public class BirdStateChanger : MonoBehaviour
 
                     bird.ToggleControllerUI(true);
                 }
-                if (mistWindSceneActivated)
-                {
 
-                }
                 break;
             
             case BirdState.TakeOff:

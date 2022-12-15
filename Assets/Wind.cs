@@ -15,12 +15,10 @@ public class Wind : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
     public IEnumerator ShrinkMist()
     {
-        print("in 10 seconds shrink mist");
-        yield return new WaitForSeconds(10f);
+
         print("now shrink mist");
 
         float timePassed = 0;

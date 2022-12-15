@@ -5,6 +5,7 @@ using UnityEngine;
 public class BeeSystem : MonoBehaviour
 {
     public GameObject seedBucket;
+    public StumpBehavior stumpBehavior;
     public GameObject fishSystem;
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,7 @@ public class BeeSystem : MonoBehaviour
 
     public void ActivateBeeSystem()
     {
-        FindObjectOfType<StumpBehavior>().DeactivateFishBucket();
+        stumpBehavior.DeactivateFishBucket();
         seedBucket.SetActive(true);
     }
 }

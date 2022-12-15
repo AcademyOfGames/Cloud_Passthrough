@@ -180,7 +180,7 @@ public class BirdMovement : MonoBehaviour
         {
             case BirdStateChanger.BirdState.FacingPlayer:
                 waypointProximity = 1f;
-                currentWaypoint = player.position + new Vector3(player.forward.x, 0, player.forward.z) * .1f + Vector3.up * 1.3f;
+                currentWaypoint = player.position + new Vector3(player.forward.x, 0, player.forward.z) * .9f + Vector3.up * .5f;
 
                 transform.LookAt(currentWaypoint);
                 BasicFlying();
@@ -224,7 +224,7 @@ public class BirdMovement : MonoBehaviour
                 if (!introSequenceDone)
                 {
                     introSequenceDone = true;
-                    //StartCoroutine(nameof(IntroSequence));
+                    StartCoroutine(nameof(IntroSequence));
                 }
 
 
@@ -290,25 +290,22 @@ public class BirdMovement : MonoBehaviour
         birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
 
 
-        yield return new WaitForSeconds(15f);
 
-        grabFishUI.SetActive(true);
-
-        _stump.ActivateFishBucket();
 
 
         birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
-        yield return new WaitForSeconds(5f);
 
-        birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
     }
 
     IEnumerator SloMoForSeconds()
     {
+        print("Slomo happening");
         Time.timeScale = .1f;
         yield return new WaitForSeconds(.7f);
         Time.timeScale = 1;
 
+        grabFishUI.SetActive(true);
+        _stump.ActivateFishBucket();
     }
 
     public void ToggleControllerUI(bool on)
@@ -363,11 +360,12 @@ public class BirdMovement : MonoBehaviour
                 break;
 
             case BirdStateChanger.BirdState.Welcoming:
+                print("Slomo? " + sloMoOnWelcome);
                 if (!introSequenceDone) birdAudio.PlaySound("birdScream");
                 if (sloMoOnWelcome)
                 {
                     sloMoOnWelcome = false;
-                    StartCoroutine("SloMoForSeconds");
+                    StartCoroutine(nameof(SloMoForSeconds));
                 }
 
                 birdAudio.PlaySound("woosh");
@@ -417,12 +415,14 @@ public class BirdMovement : MonoBehaviour
         float currentScale = transform.localScale.x;
         while(timePassed <= 1)
         {
+            print("Shrinking eagle");
             yield return null;
             transform.localScale = Vector3.one * Mathf.Lerp(currentScale, 0, timePassed);
             currentScale = transform.localScale.x;
             timePassed += Time.deltaTime * .6f;
         }
         billboardEagle.SetActive(true);
+        print("Deactivate eagle");
         gameObject.SetActive(false);
     }
     void FaceTowardMovement()

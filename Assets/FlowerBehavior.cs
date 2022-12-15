@@ -14,6 +14,8 @@ public class FlowerBehavior : MonoBehaviour
 
     public bool secondFlowersActive;
     static int totalBLoomingFlowers;
+
+    bool secondFlowerBloom;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,7 @@ public class FlowerBehavior : MonoBehaviour
 
     void SpawnHeroBee()
     {
+        heroBee.transform.position = transform.position;
         heroBee.SetActive(true);
     }
     public IEnumerator Grow(Vector3 pos)
@@ -43,12 +46,14 @@ public class FlowerBehavior : MonoBehaviour
         spawnPoint = pos;
         
         //add offset for the plant to grow upward
-        pos.y -= 2;
+        pos.y -= 1;
         t.position = pos;
         
         float timePassed = 0;
         while (timePassed <= 1)
         {
+            print("Seed " + name + " growing to " + spawnPoint);
+
             timePassed += Time.deltaTime * .1f;
 
             t.position = Vector3.Lerp(t.position, spawnPoint, timePassed );
@@ -61,10 +66,14 @@ public class FlowerBehavior : MonoBehaviour
     {
         if (other.GetComponent<HeroBeeBehavior>() != null && secondFlowersActive)
         {
+            if (secondFlowerBloom) return;
+
             IEnumerator grow = otherFlowers.Grow(otherFlowers.transform.position);
             StartCoroutine(grow);
+
             totalBLoomingFlowers++;
-            if(totalBLoomingFlowers== 3)
+            secondFlowerBloom = true;
+            if (totalBLoomingFlowers== 3)
             {
                 FindObjectOfType<FeedbackLogic>().StartFeedback();
             }

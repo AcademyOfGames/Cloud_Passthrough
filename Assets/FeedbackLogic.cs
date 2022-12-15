@@ -19,7 +19,6 @@ public class FeedbackLogic : MonoBehaviour
         if (feedbackStarted) return;
         FindObjectOfType<GoogleSheets>().AddEventData("Feedback Started", SystemInfo.deviceUniqueIdentifier);
 
-        FindObjectOfType<BirdMovement>().ToggleControllerUI(false);
         FindObjectOfType<BirdStateChanger>().SwitchState(BirdStateChanger.BirdState.TakeOff);
 
         GetComponent<Animator>().Play("UIFadeIn");

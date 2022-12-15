@@ -125,8 +125,10 @@ public class HeroBeeBehavior : MonoBehaviour
                 //swingAmount.y = Mathf.Sin(Time.time * swingFrequency) * swingStrength;
 
                 transform.position = Vector3.MoveTowards(transform.position, wayPoint,speed );
-                waypointViz.transform.position = wayPoint;
-
+                if(waypointViz != null)
+                {
+                    waypointViz.transform.position = wayPoint;
+                }
                 swingAmount.y = Mathf.Sin(Time.time * swingFrequency) * swingStrength;
                 transform.Rotate(swingAmount);
 
@@ -280,7 +282,11 @@ public class HeroBeeBehavior : MonoBehaviour
                 break;
             case BeeState.GoToHand:
                 wayPoint = rightHandLandingSpot.position;
-                waypointViz.transform.position = wayPoint;
+                if(waypointViz != null)
+                {
+                    waypointViz.transform.position = wayPoint;
+
+                }
 
                 proximityDistance = .01f;
                 speed = originalSpeed*.1f;
