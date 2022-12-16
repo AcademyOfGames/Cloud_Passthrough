@@ -16,6 +16,8 @@ public class FlowerBehavior : MonoBehaviour
     static int totalBLoomingFlowers;
 
     bool secondFlowerBloom;
+
+    private bool beeSoundtrackStarted;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,11 @@ public class FlowerBehavior : MonoBehaviour
     }
     public IEnumerator Grow(Vector3 pos)
     {
+        if (!beeSoundtrackStarted)
+        {
+            beeSoundtrackStarted=true;
+            FindObjectOfType<SoundtrackPlayer>().PlaySound("beeSong");
+        }
         gameObject.SetActive(true);
 
         var t = transform;
@@ -52,8 +59,6 @@ public class FlowerBehavior : MonoBehaviour
         float timePassed = 0;
         while (timePassed <= 1)
         {
-            print("Seed " + name + " growing to " + spawnPoint);
-
             timePassed += Time.deltaTime * .1f;
 
             t.position = Vector3.Lerp(t.position, spawnPoint, timePassed );

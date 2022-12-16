@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class StumpBehavior : MonoBehaviour
 {
@@ -14,30 +15,40 @@ public class StumpBehavior : MonoBehaviour
 
     public Transform preySpawner;
 
-    [HideInInspector]
-    public int totalFishAlive = 3;
+    [HideInInspector] public int totalFishAlive = 3;
 
-    public bool fishSystem;
+    [HideInInspector] public bool fishSystemOn;
 
     public GameObject fishBucket;
     public GameObject seedBucket;
+    public BeeSystem beeSystem;
+
+    private List<GameObject> fish;
+    
     internal void DeactivateFishBucket()
     {
-        fishSystem = false;
+        FindObjectOfType<ControlUIManager>().ToggleEagleControlUI(false);
+        fishSystemOn = false;
         fishBucket.SetActive(false);
         fishBucket.transform.SetParent(null);
+        foreach (var f in fish)
+        {
+            if(f!=null) Destroy(f);
+        }
+        fish.Clear();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         FindObjectOfType<GoogleSheets>().AddEventData("Stump appeared", SystemInfo.deviceUniqueIdentifier);
+        fish = new List<GameObject>();
     }
 
     public void ActivateFishBucket()
     {
         print("Showing fish bucket");
-        fishSystem = true;
+        fishSystemOn = true;
         gameObject.SetActive(true); 
         fishBucket.SetActive(true);
         gameObject.transform.SetParent(null);
@@ -50,7 +61,7 @@ public class StumpBehavior : MonoBehaviour
     }
     public void SpawnMorePrey()
     {
-        if (totalFishAlive >= 4 || !fishSystem) return;
+        if (totalFishAlive >= 4 || !fishSystemOn) return;
         totalFishAlive++;
         GameObject newFish = Instantiate(prey, preySpawner.position, Quaternion.identity);
         newFish.transform.SetParent(gameObject.transform);
@@ -58,17 +69,18 @@ public class StumpBehavior : MonoBehaviour
         StartCoroutine(nameof(ResetFishMass),newFish);
         newFish.transform.eulerAngles = new Vector3(286.403046f, 283.090424f, 347.42511f);
         newFish.transform.localScale = new Vector3(1.59105301f,1.1302501f,1.33500004f);
-
+        fish.Add(newFish);
     }
     public void ActivateBeeSystem()
     {
         DeactivateFishBucket();
+        beeSystem.gameObject.SetActive(true);
         seedBucket.SetActive(true);
     }
-    IEnumerator ResetFishMass(GameObject fish)
+    IEnumerator ResetFishMass(GameObject obj)
     {
         yield return new WaitForSeconds(2f);
-        fish.GetComponent<Rigidbody>().mass = 1;
+        obj.GetComponent<Rigidbody>().mass = 1;
 
     }
     private void OnCollisionEnter(Collision other)
@@ -82,10 +94,10 @@ public class StumpBehavior : MonoBehaviour
         }
         poofEffect.SetActive(true);
     }
-
-    // Update is called once per frame
-    void Update()
+    public void RemoveFish(GameObject obj)
     {
-        
+        totalFishAlive--;
+        fish.Remove(obj);
+        Destroy(obj);    
     }
 }

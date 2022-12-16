@@ -138,7 +138,7 @@ public class BirdMovement : MonoBehaviour
 
     public IEnumerator FacePlayer()
     {
-        rotationGoal = Quaternion.LookRotation(target.position - transform.position);
+        rotationGoal = Quaternion.LookRotation(player.position - transform.position);
         float timePassed = 0;
 
 
@@ -205,13 +205,13 @@ public class BirdMovement : MonoBehaviour
                 if (grabbedFish)
                 {
                     grabbedFish = false;
-                    _stump.totalFishAlive--;
-                    Destroy(prey.gameObject);
+                    _stump.RemoveFish(prey.gameObject);
                 }
 
                 story.StartIntroSequence();
 
-                transform.position = Vector3.MoveTowards(transform.position, landingSpot.position + Vector3.up * .1f, .4f * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, landingSpot.position + Vector3.up * .1f, 1f * Time.deltaTime);
+                
                 // FaceTowardMovement();
                 ResetXAngle();
                 break;
@@ -276,6 +276,7 @@ public class BirdMovement : MonoBehaviour
             targetRotation.x = 0f;
             transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, targetRotation, .1f);
         }
+
     }
     public void UpdateSettings(BirdStateChanger.BirdSettings newSettings)
     {
@@ -289,7 +290,6 @@ public class BirdMovement : MonoBehaviour
 
     private void DistanceCheck()
     {
-        print("Distance CHeck " + Vector3.Distance(currentWaypoint, transform.position));
         // Checking distance between waypoint and bird position, if it is less than distance find a new spot
         if (!(Vector3.Distance(currentWaypoint, transform.position) < waypointProximity)) return;
 
@@ -302,7 +302,6 @@ public class BirdMovement : MonoBehaviour
                 StartCoroutine(nameof(ShrinkAndDeactivate));
                 break;
             case BirdStateChanger.BirdState.FacingPlayer:
-                print("switch to flapping");
                 birdState.SwitchState(BirdStateChanger.BirdState.Flapping);
                 break;
 

@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class BeeSystem : MonoBehaviour
 {
-    public GameObject seedBucket;
-    public StumpBehavior stumpBehavior;
-    public GameObject fishSystem;
     // Start is called before the first frame update
     void Start()
     {

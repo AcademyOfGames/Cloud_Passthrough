@@ -144,6 +144,8 @@ public class BirdStateChanger : MonoBehaviour
                 break;
 
             case BirdState.Welcoming:
+                if(mistWindSceneActivated) return;
+
                 birdWind.Play();
 
                 bird.currentWaypoint = bird.player.position + Vector3.up *.5f;
@@ -188,6 +190,8 @@ public class BirdStateChanger : MonoBehaviour
                 break;
             
             case BirdState.TakeOff:
+                if(mistWindSceneActivated) return;
+
                 bird.SwitchAnimationState(birdState);
                 SwitchState(BirdState.Hunting);
                 break;
@@ -207,7 +211,6 @@ public class BirdStateChanger : MonoBehaviour
             case BirdState.Eating:
                 birdWind.Stop();
                 bird.SwitchAnimationState(birdState);
-                //StartCoroutine("ResetToHunting");
                 break;
         }
 
@@ -254,7 +257,10 @@ public class BirdStateChanger : MonoBehaviour
             {
                 FindObjectOfType<GoogleSheets>().AddEventData("Added more fish", SystemInfo.deviceUniqueIdentifier);
 
-                stump.SpawnMorePrey();
+                if (stump.fishSystemOn)
+                {
+                    stump.SpawnMorePrey();
+                }
             }
 
 
@@ -349,7 +355,7 @@ public class BirdStateChanger : MonoBehaviour
 
     IEnumerator WaitAndClearFog()
     {
-        print("Waiting 20 secs");
+        if (mistWindSceneActivated) yield break;
         yield return new WaitForSeconds(20);
         SwitchState(BirdState.FacingPlayer);
     }
