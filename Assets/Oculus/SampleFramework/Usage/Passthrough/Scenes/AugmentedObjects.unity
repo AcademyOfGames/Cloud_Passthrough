@@ -45004,9 +45004,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa538c527696c941b48cd93d7a092dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  introSequenceStarted: 0
   introSequenceDone: 0
   title: {fileID: 1503313493}
-  sloMoOnWelcome: 0
+  firstWelcomeDone: 0
 --- !u!4 &1893122509
 Transform:
   m_ObjectHideFlags: 0
@@ -54567,7 +54568,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7843711309516050298}
   m_LocalRotation: {x: 0.008220947, y: -0.3395041, z: 0.13654272, w: 0.9306049}
-  m_LocalPosition: {x: -0.0185, y: -0.0276, z: -0.0219}
+  m_LocalPosition: {x: -0.0521, y: -0.0092, z: -0.0565}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5803917060860276564}

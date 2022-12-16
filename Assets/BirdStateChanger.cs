@@ -113,7 +113,6 @@ public class BirdStateChanger : MonoBehaviour
                 break;
             
             case BirdState.FacingPlayer:
-                mistWindSceneActivated = true;
                 bird.waypointProximity = 3;
                 break;
 
@@ -230,7 +229,7 @@ public class BirdStateChanger : MonoBehaviour
         story.firstWelcomeDone = true;
         yield return new WaitForSeconds(12);
         SwitchState(BirdState.Hunting);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(16);
         SwitchState(BirdState.Welcoming);
     }
     
@@ -238,7 +237,7 @@ public class BirdStateChanger : MonoBehaviour
 
     IEnumerator WaitAndHunt()
     {
-        yield return new WaitForSeconds(12);
+        yield return new WaitForSeconds(20);
         if (currentState == BirdState.Diving || currentState == BirdState.GoToLanding) yield break;
         
         SwitchState(BirdState.Hunting);
@@ -367,7 +366,15 @@ public class BirdStateChanger : MonoBehaviour
     IEnumerator WaitAndClearFog()
     {
         if (mistWindSceneActivated) yield break;
+        FindObjectOfType<ControlUIManager>().ToggleEagleControlUI(false);
+        customControlsUnlocked = false;
+
         yield return new WaitForSeconds(60);
+        mistWindSceneActivated = true; 
+        if(currentState == BirdState.GoToLanding || currentState == BirdState.Diving) SwitchState(BirdState.Hunting);
+        else if (currentState == BirdState.Landed) SwitchState(BirdState.TakeOff);
+
+        yield return new WaitForSeconds(10);
         SwitchState(BirdState.FacingPlayer);
     }
 

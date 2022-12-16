@@ -257,6 +257,9 @@ public class BirdMovement : MonoBehaviour
         yield return new WaitForSeconds(.7f);
         Time.timeScale = 1;
 
+        yield return new WaitForSeconds(3f);
+
+
         grabFishUI.SetActive(true);
         _stump.ActivateFishBucket();
     }
@@ -385,7 +388,7 @@ public class BirdMovement : MonoBehaviour
 
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
-            if (transform.position.y < 2.8f)
+            if (transform.position.y < 3f)
             {
                 transform.Rotate(Vector3.right * -.11f);
             }
@@ -479,7 +482,6 @@ public class BirdMovement : MonoBehaviour
     }
 
     public void ToggleSloMo(bool on){
-        print("Toggling slomo " + on);
         if (on)
         {
             Time.timeScale = .1f;
