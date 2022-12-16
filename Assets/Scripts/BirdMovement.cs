@@ -311,9 +311,9 @@ public class BirdMovement : MonoBehaviour
                     birdAudio.PlaySound("birdScream");
                 }
                 
-                if (story.sloMoOnWelcome)
+                if (story.firstWelcomeDone && !story.introSequenceDone)
                 {
-                    story.sloMoOnWelcome = false;
+                    story.introSequenceDone = true;
                     StartCoroutine(nameof(SloMoForSeconds));
                 }
 

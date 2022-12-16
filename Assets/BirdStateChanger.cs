@@ -25,8 +25,8 @@ public class BirdStateChanger : MonoBehaviour
 
     private BirdMovement bird;
     private static readonly int TakeOff = Animator.StringToHash("TakeOff");
-    
-    
+
+    private StoryParts story;
     //private
     bool mistWindSceneActivated;
 
@@ -84,6 +84,7 @@ public class BirdStateChanger : MonoBehaviour
 
     private void Awake()
     {
+        story = FindObjectOfType<StoryParts>();
         bird = GetComponent<BirdMovement>();
         SetBirdSettings();
     }
@@ -100,7 +101,15 @@ public class BirdStateChanger : MonoBehaviour
         {
             case BirdState.Orbiting:
 
-                Invoke("WaitAndHunt", 14f);
+                if (!story.firstWelcomeDone)
+                {
+                    StartCoroutine(nameof(ContinueIntroSequence));
+                }
+                else
+                {
+                    StartCoroutine(nameof(WaitAndHunt));
+
+                }
                 break;
             
             case BirdState.FacingPlayer:
@@ -124,7 +133,6 @@ public class BirdStateChanger : MonoBehaviour
             case BirdState.FlyingAway:
                 bird.currentWaypoint = bird.player.position + Vector3.left * 4 + Vector3.up * 10f;
                 testCube.position = bird.currentWaypoint;
-                print("Setting current waypoint to " + bird.currentWaypoint);
 
                 bird.anim.SetBool("Flapping", false);
 
@@ -217,13 +225,23 @@ public class BirdStateChanger : MonoBehaviour
         currentState = birdState;
     }
 
-    void WaitAndHunt()
+    IEnumerator ContinueIntroSequence()
     {
+        story.firstWelcomeDone = true;
+        yield return new WaitForSeconds(12);
         SwitchState(BirdState.Hunting);
+        yield return new WaitForSeconds(5);
+        SwitchState(BirdState.Welcoming);
     }
-    public void ActivateWindScene()
+    
+    
+
+    IEnumerator WaitAndHunt()
     {
-        SwitchState(BirdState.FacingPlayer);
+        yield return new WaitForSeconds(12);
+        if (currentState == BirdState.Diving || currentState == BirdState.GoToLanding) yield break;
+        
+        SwitchState(BirdState.Hunting);
     }
 
     
