@@ -9344,8 +9344,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba71a60d95a65cb40b32189b93c038a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beesAndFlowers: {fileID: 259968626303972133}
-  windAudio: {fileID: 0}
 --- !u!1 &327748513
 GameObject:
   m_ObjectHideFlags: 0
@@ -46199,6 +46197,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - clip: {fileID: 8300000, guid: 34dd254e6e144d64cb017fb2fef115fb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+  - clip: {fileID: 8300000, guid: 82493740015fa2f4fb133692549e3659, type: 3}
     volume: 1
     pitch: 1
     loop: 1
