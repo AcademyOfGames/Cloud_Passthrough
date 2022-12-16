@@ -25,6 +25,7 @@ public class PreyBehavior : MonoBehaviour
     private bool _fishThrown;
     private StumpBehavior _stump;
 
+    private ControlUIManager _controls;
     private void OnTriggerEnter(Collider other)
     {
 
@@ -32,6 +33,8 @@ public class PreyBehavior : MonoBehaviour
         if (bird != null)
         {
             if (bird.grabbedFish) return;
+            _controls.ChangeFishGrabText("Grab Fish");
+
             FindObjectOfType<GoogleSheets>().AddEventData("Eagle grabbed a fish.", SystemInfo.deviceUniqueIdentifier);
 
             _fishThrown = true;
@@ -91,10 +94,11 @@ public class PreyBehavior : MonoBehaviour
         transform.eulerAngles = newRotation;
     }
 
-    // Start is called before the first frame update
     void Awake()
     {
+        
         _stump = FindObjectOfType<StumpBehavior>();
+        _controls = FindObjectOfType<ControlUIManager>();
         _birdState = FindObjectOfType<BirdStateChanger>();
         _grabInfo = GetComponent<OVRGrabbableExtended>();
         _ogPos = transform.position;
@@ -104,7 +108,9 @@ public class PreyBehavior : MonoBehaviour
     void IsGrabbed()
     {
         _birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
+        
         _birdState.GetComponent<BirdMovement>().anim.SetBool("Eating", false);
+        _controls.ChangeFishGrabText("Throw Fish");
 
     }
     
@@ -116,6 +122,8 @@ public class PreyBehavior : MonoBehaviour
         GetComponent<Rigidbody>().AddForce(_velocity * throwMultiplier);
         _birdState.GetComponent<BirdMovement>().prey = transform;
         _birdState.SwitchState(BirdStateChanger.BirdState.Diving);
+        _controls.ChangeFishGrabText("Grab Fish");
+
     }
     
     // Update is called once per frame

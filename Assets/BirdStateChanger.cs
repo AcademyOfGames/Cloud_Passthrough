@@ -289,20 +289,13 @@ public class BirdStateChanger : MonoBehaviour
             if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch) || Keyboard.current[Key.H].wasPressedThisFrame)
             {
                 FindObjectOfType<GoogleSheets>().AddEventData("Explore pressed", SystemInfo.deviceUniqueIdentifier);
-
-
-
-                if (currentState == BirdState.Landing)
-                {
-                    /*bird.anim.SetTrigger(TakeOff);
-                    SwitchState(BirdState.TakeOff);*/
-                }
-                else
+                
+                if (currentState != BirdState.Landing)
                 {
                     stateText.text = "Explore";
-
                     SwitchState(BirdState.Hunting);
                 }
+
             }
 
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch) ||
@@ -317,9 +310,9 @@ public class BirdStateChanger : MonoBehaviour
                     SwitchState(BirdState.TakeOff);
 
                     stateText.text = "Explore";
-
                     takeOffText.text = "Land";
-                    StartCoroutine("WaitAndClearFog");
+                    
+                    StartCoroutine(nameof(WaitAndClearFog));
 
 
                 }
@@ -356,7 +349,7 @@ public class BirdStateChanger : MonoBehaviour
     IEnumerator WaitAndClearFog()
     {
         if (mistWindSceneActivated) yield break;
-        yield return new WaitForSeconds(20);
+        yield return new WaitForSeconds(60);
         SwitchState(BirdState.FacingPlayer);
     }
 

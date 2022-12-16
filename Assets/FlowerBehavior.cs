@@ -17,7 +17,7 @@ public class FlowerBehavior : MonoBehaviour
 
     bool secondFlowerBloom;
 
-    private bool beeSoundtrackStarted;
+    static bool beeSoundtrackStarted;
     // Start is called before the first frame update
     void Start()
     {

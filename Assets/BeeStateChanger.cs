@@ -52,7 +52,7 @@ public class BeeStateChanger : MonoBehaviour
             rMovement = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.RTouch) ;
 
             //AddFish
-            if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch))
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
             {
                 if(bee.currentState != HeroBeeBehavior.BeeState.HandControls)
                 {

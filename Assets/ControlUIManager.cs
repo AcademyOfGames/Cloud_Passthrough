@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ControlUIManager : MonoBehaviour
@@ -9,6 +10,8 @@ public class ControlUIManager : MonoBehaviour
     public GameObject rightEagleControls;
 
     public GameObject fishControlUI;
+
+    public TextMeshPro grabFishText;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,5 +29,10 @@ public class ControlUIManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ChangeFishGrabText(string grabFish)
+    {
+        grabFishText.text = grabFish;
     }
 }
