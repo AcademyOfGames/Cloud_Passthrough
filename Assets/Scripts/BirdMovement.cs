@@ -2,27 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class BirdMovement : MonoBehaviour
 {
     public BirdStateChanger birdState;
-    //Custom behavior
-    private bool introSequenceDone;
-    public GameObject[] customControlsUI;
-    public bool sloMoOnWelcome;
 
     // Flying
     public float turnSpeed;
     public float speed;
     public Transform target;
     public Transform player;
-    public float turnAngleIntensity;
-
+    public float maxSpeed;
+    
     //Rotation
     private Vector3 direction;
     private Quaternion rotationGoal;
     private float currentTurnSpeed;
+    public float turnAngleIntensity;
 
     //Orbiting
     public float orbitSpeed;
@@ -38,45 +36,41 @@ public class BirdMovement : MonoBehaviour
     public Transform branchLandingSpot;
 
     public Vector3 currentWaypoint;
+    public GameObject waypointViz;
 
     // Animation
-    public Transform birdhead;
     public Animator anim;
     private bool gliding;
-
-    public GameObject billboardEagle;
-    // Testing
-    public GameObject testcube;
-    public GameObject currentCube;
-
-    //UI
-    public GameObject grabFishUI;
-
     private float flappngRate = 1;
     private float originalFlappngRate = 1;
 
     private float originalGlidingRate = 5;
     private float glidingRate = 5;
-
-    public Transform prey;
-    public float maxSpeed;
-
-
-
+    
     private static readonly int OnGround = Animator.StringToHash("OnGround");
     private static readonly int Eating = Animator.StringToHash("Eating");
     private static readonly int Flap = Animator.StringToHash("Flap");
     private static readonly int Glide = Animator.StringToHash("Glide");
+    
 
+    //Fishing
     public bool grabbedFish { get; set; }
     public int fishCaught { get; set; }
+    
+    //Audio
     public BirdAudioManager birdAudio;
 
+    //Scene Objects
+    [Header("Objects In Scene")]
     public StumpBehavior _stump;
-
+    private StoryParts story;
+    public Transform prey;
+    public GameObject grabFishUI;
+    public GameObject billboardEagle;
 
     void Start()
     {
+        story = FindObjectOfType<StoryParts>();
         birdAudio = GetComponent<BirdAudioManager>();
         fishCaught = 0;
         birdState = GetComponent<BirdStateChanger>();
@@ -89,10 +83,8 @@ public class BirdMovement : MonoBehaviour
 
         birdAudio.PlaySound("hawkFlying");
         birdAudio.PlaySound("forest");
-
+        
         StartCoroutine("RandomSounds");
-
-
     }
 
 
@@ -136,16 +128,12 @@ public class BirdMovement : MonoBehaviour
         randomPos.y = Random.Range(minHeight, maxHeight + distance * .4f);
         // Multiply the height * a random number between minHeight and maxHeight
         currentWaypoint = target.position + randomPos;
+        
 
-        // For testing spawn a cube at the new waypoint
-        if (currentCube != null) Destroy(currentCube);
+            waypointViz.transform.position = currentWaypoint;
 
-        if (testcube != null)
-        {
-            currentCube = Instantiate(testcube, currentWaypoint, Quaternion.identity);
-
-            currentCube.transform.localScale *= .5f;
-        }
+            waypointViz.transform.localScale *= .5f;
+        
     }
 
     public IEnumerator FacePlayer()
@@ -221,12 +209,7 @@ public class BirdMovement : MonoBehaviour
                     Destroy(prey.gameObject);
                 }
 
-                if (!introSequenceDone)
-                {
-                    introSequenceDone = true;
-                    StartCoroutine(nameof(IntroSequence));
-                }
-
+                story.StartIntroSequence();
 
                 transform.position = Vector3.MoveTowards(transform.position, landingSpot.position + Vector3.up * .1f, .4f * Time.deltaTime);
                 // FaceTowardMovement();
@@ -267,39 +250,9 @@ public class BirdMovement : MonoBehaviour
         }
     }
 
-    IEnumerator IntroSequence()
-    {
-        yield return new WaitForSeconds(6f);
-
-
-        anim.SetTrigger("Scream");
-        birdAudio.PlaySound("birdScream");
-        yield return new WaitForSeconds(2f);
-
-        birdState.SwitchState(BirdStateChanger.BirdState.TakeOff);
-        yield return new WaitForSeconds(15f);
-
-        birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
-
-        yield return new WaitForSeconds(25f);
-
-        birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
-
-        yield return new WaitForSeconds(15f);
-        sloMoOnWelcome = true;
-        birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
-
-
-
-
-
-        birdState.SwitchState(BirdStateChanger.BirdState.Hunting);
-
-    }
 
     IEnumerator SloMoForSeconds()
     {
-        print("Slomo happening");
         Time.timeScale = .1f;
         yield return new WaitForSeconds(.7f);
         Time.timeScale = 1;
@@ -308,15 +261,7 @@ public class BirdMovement : MonoBehaviour
         _stump.ActivateFishBucket();
     }
 
-    public void ToggleControllerUI(bool on)
-    {
-        FindObjectOfType<BirdStateChanger>().customControlsUnlocked = on;
 
-        foreach (var g in customControlsUI)
-        {
-            g.SetActive(on);
-        }
-    }
     private void ResetXAngle()
     {
         Vector3 targetRotation = transform.eulerAngles;
@@ -344,6 +289,7 @@ public class BirdMovement : MonoBehaviour
 
     private void DistanceCheck()
     {
+        print("Distance CHeck " + Vector3.Distance(currentWaypoint, transform.position));
         // Checking distance between waypoint and bird position, if it is less than distance find a new spot
         if (!(Vector3.Distance(currentWaypoint, transform.position) < waypointProximity)) return;
 
@@ -356,21 +302,25 @@ public class BirdMovement : MonoBehaviour
                 StartCoroutine(nameof(ShrinkAndDeactivate));
                 break;
             case BirdStateChanger.BirdState.FacingPlayer:
+                print("switch to flapping");
                 birdState.SwitchState(BirdStateChanger.BirdState.Flapping);
                 break;
 
             case BirdStateChanger.BirdState.Welcoming:
-                print("Slomo? " + sloMoOnWelcome);
-                if (!introSequenceDone) birdAudio.PlaySound("birdScream");
-                if (sloMoOnWelcome)
+                if (!story.introSequenceDone)
                 {
-                    sloMoOnWelcome = false;
+                    birdAudio.PlaySound("birdScream");
+                }
+                
+                if (story.sloMoOnWelcome)
+                {
+                    story.sloMoOnWelcome = false;
                     StartCoroutine(nameof(SloMoForSeconds));
                 }
 
                 birdAudio.PlaySound("woosh");
-
                 birdState.SwitchState(BirdStateChanger.BirdState.Orbiting);
+                
                 break;
             case BirdStateChanger.BirdState.GoToLanding:
                 birdState.SwitchState(BirdStateChanger.BirdState.Landing);
@@ -388,7 +338,6 @@ public class BirdMovement : MonoBehaviour
     {
         ForwardMovement();
         DistanceCheck();
-        // Tilt();
     }
 
     private void OrbitFlying()
@@ -403,7 +352,7 @@ public class BirdMovement : MonoBehaviour
         Vector3 dir = position - previousPos;
         rotationGoal = Quaternion.LookRotation(dir);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotationGoal, .04f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotationGoal, .02f);
         transform.Translate(Vector3.forward * .4f * Time.deltaTime);
 
         previousPos = position;
@@ -437,9 +386,9 @@ public class BirdMovement : MonoBehaviour
 
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
-            if (transform.position.y < 2.9f)
+            if (transform.position.y < 2.8f)
             {
-                transform.Rotate(Vector3.right * -.16f);
+                transform.Rotate(Vector3.right * -.11f);
             }
 
         }
@@ -580,7 +529,11 @@ public class BirdMovement : MonoBehaviour
                 if(birdState.currentState == BirdStateChanger.BirdState.Landing || birdState.currentState == BirdStateChanger.BirdState.Eating) anim.SetTrigger("TakeOff");
                 break;
         }
-
     }
+
+    public void BirdScream()
+    {
+        anim.SetTrigger("Scream");
+        birdAudio.PlaySound("birdScream");    }
 }
 

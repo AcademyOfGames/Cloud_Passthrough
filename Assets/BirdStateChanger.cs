@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor;
 using UnityEngine.InputSystem;
 public class BirdStateChanger : MonoBehaviour
 {
@@ -16,14 +17,17 @@ public class BirdStateChanger : MonoBehaviour
     public AudioSource birdWind;
 
     public StumpBehavior stump;
-
-    public GameObject deer;
-
+    
     public TextMeshPro takeOffText;
 
     public GameObject windForceField;
 
 
+    private BirdMovement bird;
+    private static readonly int TakeOff = Animator.StringToHash("TakeOff");
+    
+    
+    //private
     bool mistWindSceneActivated;
 
     public Transform testCube;
@@ -73,9 +77,6 @@ public class BirdStateChanger : MonoBehaviour
     private BirdSettings exitingSettings;
     private BirdSettings divingSettings;
 
-    private BirdMovement bird;
-    private static readonly int TakeOff = Animator.StringToHash("TakeOff");
-
     public BirdStateChanger(bool customControlsUnlocked)
     {
         this.customControlsUnlocked = customControlsUnlocked;
@@ -91,14 +92,20 @@ public class BirdStateChanger : MonoBehaviour
     // Change the bird from flying to meeting player to leaving
     public void SwitchState(BirdState birdState)
     {
-        if (currentState == birdState || mistWindSceneActivated) return;
-        if (currentState == BirdState.Diving && birdState != BirdStateChanger.BirdState.GoToLanding) ;
+        if (currentState == birdState) return;
+        if (currentState == BirdState.Diving && birdState != BirdStateChanger.BirdState.GoToLanding) return;
         print("Switching state " + birdState);
 
         switch (birdState)
         {
+            case BirdState.Orbiting:
+
+                Invoke("WaitAndHunt", 14f);
+                break;
+            
             case BirdState.FacingPlayer:
                 mistWindSceneActivated = true;
+                bird.waypointProximity = 3;
                 break;
 
             case BirdState.Flapping:
@@ -110,6 +117,8 @@ public class BirdStateChanger : MonoBehaviour
                 Invoke("PlayScreech", 2);
                 Invoke("FlyAway", 12);
                 windForceField.SetActive(true);
+                
+                FindObjectOfType<SoundtrackPlayer>().PlaySound("tornadoSong");
                 break;
 
             case BirdState.FlyingAway:
@@ -145,13 +154,14 @@ public class BirdStateChanger : MonoBehaviour
                 break;
 
             case BirdState.GoToLanding:
+                if(mistWindSceneActivated) return;
                 bird.SwitchAnimationState(birdState);
 
                 bird.UpdateSettings(goToLandingSettings);
 
                 break;
             case BirdState.Landing:
-
+                if(mistWindSceneActivated) return;
                 birdWind.Stop();
                 bird.SwitchAnimationState(birdState);
                 bird.UpdateSettings(LandedSettings);
@@ -172,7 +182,7 @@ public class BirdStateChanger : MonoBehaviour
                 {
                     FindObjectOfType<GoogleSheets>().AddEventData("Eagle on Hand", SystemInfo.deviceUniqueIdentifier);
 
-                    bird.ToggleControllerUI(true);
+                    FindObjectOfType<ControlUIManager>().ToggleEagleControlUI(true);
                 }
 
                 break;
@@ -186,6 +196,7 @@ public class BirdStateChanger : MonoBehaviour
                 break;
             
             case BirdState.Diving:
+                if(mistWindSceneActivated) return;
                 bird.SwitchAnimationState(birdState);
                 bird.prey.gameObject.SetActive(true);
                 bird.UpdateSettings(divingSettings);
@@ -203,6 +214,10 @@ public class BirdStateChanger : MonoBehaviour
         currentState = birdState;
     }
 
+    void WaitAndHunt()
+    {
+        SwitchState(BirdState.Hunting);
+    }
     public void ActivateWindScene()
     {
         SwitchState(BirdState.FacingPlayer);
@@ -292,7 +307,6 @@ public class BirdStateChanger : MonoBehaviour
                 {
                     FindObjectOfType<GoogleSheets>().AddEventData("Take Off pressed", SystemInfo.deviceUniqueIdentifier);
 
-                   // StartCoroutine("WaitAndActivateDeer");
                     bird.anim.SetTrigger(TakeOff);
                     SwitchState(BirdState.TakeOff);
 
@@ -335,14 +349,9 @@ public class BirdStateChanger : MonoBehaviour
 
     IEnumerator WaitAndClearFog()
     {
-        yield return new WaitForSeconds(60);
+        print("Waiting 20 secs");
+        yield return new WaitForSeconds(20);
         SwitchState(BirdState.FacingPlayer);
-    }
-    private IEnumerator WaitAndActivateDeer()
-    {
-        yield return new WaitForSeconds(30f);
-
-        deer.SetActive(true);
     }
 
     void SetBirdSettings()

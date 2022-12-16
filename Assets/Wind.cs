@@ -4,21 +4,11 @@ using UnityEngine;
 
 public class Wind : MonoBehaviour
 {
-    public BeeSystem beesAndFlowers;
-    [HideInInspector] public AudioSource windAudio;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
     public IEnumerator ShrinkMist()
     {
+        print("5 seconds  shrink mist");
 
+        yield return new WaitForSeconds(5f);
         print("now shrink mist");
 
         float timePassed = 0;
@@ -41,8 +31,7 @@ public class Wind : MonoBehaviour
         }
 
         print("Deactivated mist");
-        beesAndFlowers.gameObject.SetActive(true);
-        beesAndFlowers.ActivateBeeSystem();
+        FindObjectOfType<StumpBehavior>().ActivateBeeSystem();
         gameObject.SetActive(false);
     }
 }

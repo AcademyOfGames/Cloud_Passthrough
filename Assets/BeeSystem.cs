@@ -19,9 +19,5 @@ public class BeeSystem : MonoBehaviour
         
     }
 
-    public void ActivateBeeSystem()
-    {
-        stumpBehavior.DeactivateFishBucket();
-        seedBucket.SetActive(true);
-    }
+
 }

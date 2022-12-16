@@ -20,7 +20,7 @@ public class StumpBehavior : MonoBehaviour
     public bool fishSystem;
 
     public GameObject fishBucket;
-
+    public GameObject seedBucket;
     internal void DeactivateFishBucket()
     {
         fishSystem = false;
@@ -40,9 +40,13 @@ public class StumpBehavior : MonoBehaviour
         fishSystem = true;
         gameObject.SetActive(true); 
         fishBucket.SetActive(true);
-        fishBucket.transform.SetParent(null);
+        gameObject.transform.SetParent(null);
         fishBucket.transform.rotation = Quaternion.identity;
         fishBucket.transform.position = new Vector3(fishBucket.transform.position.x, 1.722f, fishBucket.transform.position.z);
+        
+        seedBucket.SetActive(false);
+        seedBucket.transform.rotation = Quaternion.identity;
+        seedBucket.transform.position = new Vector3(fishBucket.transform.position.x, 1.722f, fishBucket.transform.position.z);
     }
     public void SpawnMorePrey()
     {
@@ -56,7 +60,11 @@ public class StumpBehavior : MonoBehaviour
         newFish.transform.localScale = new Vector3(1.59105301f,1.1302501f,1.33500004f);
 
     }
-
+    public void ActivateBeeSystem()
+    {
+        DeactivateFishBucket();
+        seedBucket.SetActive(true);
+    }
     IEnumerator ResetFishMass(GameObject fish)
     {
         yield return new WaitForSeconds(2f);
