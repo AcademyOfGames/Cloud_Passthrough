@@ -73,12 +73,13 @@ public class SeedBehavior : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("floor"))
         {
+            
 
-            IEnumerator grow =  flowers.Grow(other.GetContact(0).point);
+            IEnumerator grow =  flowers.Grow(other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position));
             StartCoroutine(grow);
         }
     }

@@ -281,15 +281,7 @@ public class BirdMovement : MonoBehaviour
         }
 
     }
-    public void UpdateSettings(BirdStateChanger.BirdSettings newSettings)
-    {
-        //go through each bird movement variable and switch it to the new setting
-        turnAngleIntensity = newSettings.turnAngleIntensity;
-        waypointRadius = newSettings.waypointRadius;
-        waypointProximity = newSettings.waypointProximity;
-        speed = newSettings.speed;
-        turnSpeed = newSettings.turnSpeed;
-    }
+
 
     private void DistanceCheck()
     {
@@ -360,7 +352,7 @@ public class BirdMovement : MonoBehaviour
         previousPos = position;
     }
 
-    IEnumerator ShrinkAndDeactivate()
+    public IEnumerator ShrinkAndDeactivate()
     {
         float timePassed = 0;
         float currentScale = transform.localScale.x;

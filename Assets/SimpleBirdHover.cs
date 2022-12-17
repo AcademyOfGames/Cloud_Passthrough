@@ -11,6 +11,8 @@ public class SimpleBirdHover : MonoBehaviour
     private Vector3 center;
 
     private Vector3 lastPos;
+
+    public Material mat;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +23,7 @@ public class SimpleBirdHover : MonoBehaviour
         center.x += Random.Range(-3, 3);
         center.z += Random.Range(-3, 3);
         lastPos = t.position;
+        StartCoroutine(nameof(WaitAndFadeIn));
     }
 
     // Update is called once per frame
@@ -31,4 +34,26 @@ public class SimpleBirdHover : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(lastPos - position);
         lastPos = position;
     }
+
+    IEnumerator WaitAndFadeIn()
+    {
+        yield return new WaitForSeconds(5f);
+
+
+        Color endColor = mat.color;
+        endColor.a = .5f;
+print("fade in eagle");
+        float timePassed = 0;
+        while (timePassed <=1)
+        {
+            timePassed += Time.deltaTime * .05f;
+            mat.color = Color.Lerp(mat.color, endColor, timePassed);
+        }
+    }
+
+    void UpdateTransparency()
+    {
+        
+    }
+
 }

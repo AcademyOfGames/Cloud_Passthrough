@@ -5,8 +5,8 @@ using UnityEngine.Serialization;
 
 public class StoryParts : MonoBehaviour
 {
-    public bool introSequenceStarted;
-    public bool introSequenceDone;
+    [HideInInspector]public bool introSequenceStarted;
+    [HideInInspector]public bool introSequenceDone;
     private BirdStateChanger _birdStateChanger;
     public GameObject title;    
     [HideInInspector]public bool firstWelcomeDone;

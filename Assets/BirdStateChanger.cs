@@ -88,7 +88,15 @@ public class BirdStateChanger : MonoBehaviour
         bird = GetComponent<BirdMovement>();
         SetBirdSettings();
     }
-
+    public void UpdateSettings(BirdStateChanger.BirdSettings newSettings)
+    {
+        //go through each bird movement variable and switch it to the new setting
+        bird.turnAngleIntensity = newSettings.turnAngleIntensity;
+        bird.waypointRadius = newSettings.waypointRadius;
+        bird.waypointProximity = newSettings.waypointProximity;
+        bird.speed = newSettings.speed;
+        bird.turnSpeed = newSettings.turnSpeed;
+    }
     
     // Change the bird from flying to meeting player to leaving
     public void SwitchState(BirdState birdState)
@@ -117,7 +125,7 @@ public class BirdStateChanger : MonoBehaviour
                 break;
 
             case BirdState.Flapping:
-                bird.UpdateSettings(flappingSettings);
+                UpdateSettings(flappingSettings);
                 bird.SwitchAnimationState(birdState);
                 bird.anim.ResetTrigger("Glide");
                 bird.anim.ResetTrigger("Fly");
@@ -131,22 +139,23 @@ public class BirdStateChanger : MonoBehaviour
                 break;
 
             case BirdState.FlyingAway:
-                bird.currentWaypoint = bird.player.position + Vector3.left * 6 + Vector3.up * 20 + Vector3.forward *10;
+                bird.currentWaypoint = bird.player.position + Vector3.left * 8 + Vector3.up * 30 + Vector3.forward *20;
                 testCube.position = bird.currentWaypoint;
 
                 bird.anim.SetBool("Flapping", false);
 
-                bird.UpdateSettings(huntingSettings);
+                UpdateSettings(huntingSettings);
                 birdWind.Play();
 
-
+                IEnumerator WaitAndHideBird = bird.ShrinkAndDeactivate();
+                StartCoroutine(nameof(WaitAndHideBird));
 
                 break;
             
             case BirdState.Hunting:
                 bird.anim.SetBool("Flapping", false);
 
-                bird.UpdateSettings(huntingSettings);
+                UpdateSettings(huntingSettings);
                 birdWind.Play();
                 break;
 
@@ -159,21 +168,21 @@ public class BirdStateChanger : MonoBehaviour
                 bird.SwitchAnimationState(birdState);
 
                 //after 1 second set the bird to welcoming
-                bird.UpdateSettings(welcomingSettings);
+                UpdateSettings(welcomingSettings);
                 break;
 
             case BirdState.GoToLanding:
                 if(mistWindSceneActivated) return;
                 bird.SwitchAnimationState(birdState);
 
-                bird.UpdateSettings(goToLandingSettings);
+                UpdateSettings(goToLandingSettings);
 
                 break;
             case BirdState.Landing:
                 if(mistWindSceneActivated) return;
                 birdWind.Stop();
                 bird.SwitchAnimationState(birdState);
-                bird.UpdateSettings(LandedSettings);
+                UpdateSettings(LandedSettings);
 
                 if (bird.grabbedFish)
                 {
@@ -210,7 +219,7 @@ public class BirdStateChanger : MonoBehaviour
                 if(mistWindSceneActivated) return;
                 bird.SwitchAnimationState(birdState);
                 bird.prey.gameObject.SetActive(true);
-                bird.UpdateSettings(divingSettings);
+                UpdateSettings(divingSettings);
 
                 //StartCoroutine("ResetToHunting");
                 break;

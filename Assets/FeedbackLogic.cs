@@ -19,7 +19,7 @@ public class FeedbackLogic : MonoBehaviour
         if (feedbackStarted) return;
         FindObjectOfType<GoogleSheets>().AddEventData("Feedback Started", SystemInfo.deviceUniqueIdentifier);
 
-        FindObjectOfType<BirdStateChanger>().SwitchState(BirdStateChanger.BirdState.TakeOff);
+        //FindObjectOfType<BirdStateChanger>().SwitchState(BirdStateChanger.BirdState.TakeOff);
 
         GetComponent<Animator>().Play("UIFadeIn");
         feedbackStarted = true;
@@ -80,5 +80,11 @@ public class FeedbackLogic : MonoBehaviour
         ToggleLasers(false);
         feedbackEnded = true;
         gameObject.SetActive(false);
+    }
+
+    public IEnumerator WaitAndStartFeedback()
+    {
+        yield return new WaitForSeconds(10);
+        StartFeedback();
     }
 }

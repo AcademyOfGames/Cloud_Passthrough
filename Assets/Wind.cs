@@ -48,6 +48,7 @@ public class Wind : MonoBehaviour
             
             yield return new WaitForFixedUpdate();
         }
+        
         ParticleSystem.MainModule tempPS = ps.main;
         var main = ps.main;
         main.startLifetime = 0;
@@ -57,4 +58,13 @@ public class Wind : MonoBehaviour
         stump.ActivateBeeSystem();
         gameObject.SetActive(false);
     }
+
+    public void StartRain()
+    {
+        IEnumerator waitAndStartFeedback = FindObjectOfType<FeedbackLogic>().WaitAndStartFeedback();
+        StartCoroutine(waitAndStartFeedback);
+
+    }
+
+
 }
