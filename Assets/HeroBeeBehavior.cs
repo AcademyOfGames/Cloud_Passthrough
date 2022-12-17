@@ -223,6 +223,7 @@ public class HeroBeeBehavior : MonoBehaviour
                     break;
                 
                 case BeeState.GoToHand:
+                    
                     SwitchStates(BeeState.LandedOnHand);
 
                     break;
@@ -294,7 +295,7 @@ public class HeroBeeBehavior : MonoBehaviour
             case BeeState.LandedOnHand:
                 foreach (var flower in FindObjectsOfType<FlowerBehavior>())
                 {
-                    flower.secondFlowersActive = true;
+                    flower.ActivateSecondFlowers();
                 }
                 beeControls.UnlockControls(true);
                 beeAudio.Stop();

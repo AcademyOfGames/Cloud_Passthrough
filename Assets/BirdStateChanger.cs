@@ -125,12 +125,13 @@ public class BirdStateChanger : MonoBehaviour
                 Invoke("PlayScreech", 2);
                 Invoke("FlyAway", 12);
                 windForceField.SetActive(true);
-                
+                IEnumerator shrinkMist = wind.ShrinkMist();
+                StartCoroutine(shrinkMist);
                 FindObjectOfType<SoundtrackPlayer>().PlaySound("tornadoSong");
                 break;
 
             case BirdState.FlyingAway:
-                bird.currentWaypoint = bird.player.position + Vector3.left * 4 + Vector3.up * 10f;
+                bird.currentWaypoint = bird.player.position + Vector3.left * 6 + Vector3.up * 20 + Vector3.forward *10;
                 testCube.position = bird.currentWaypoint;
 
                 bird.anim.SetBool("Flapping", false);
@@ -138,8 +139,7 @@ public class BirdStateChanger : MonoBehaviour
                 bird.UpdateSettings(huntingSettings);
                 birdWind.Play();
 
-                IEnumerator shrinkMist = wind.ShrinkMist();
-                StartCoroutine(shrinkMist);
+
 
                 break;
             

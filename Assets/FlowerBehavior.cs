@@ -12,11 +12,11 @@ public class FlowerBehavior : MonoBehaviour
 
     public FlowerBehavior otherFlowers;
 
-    public bool secondFlowersActive;
+    public static bool secondFlowersActive;
     static int totalBLoomingFlowers;
 
     bool secondFlowerBloom;
-
+    public GameObject flowerIcon;
     static bool beeSoundtrackStarted;
     // Start is called before the first frame update
     void Start()
@@ -72,7 +72,7 @@ public class FlowerBehavior : MonoBehaviour
         if (other.GetComponent<HeroBeeBehavior>() != null && secondFlowersActive)
         {
             if (secondFlowerBloom) return;
-
+            flowerIcon.SetActive(false);
             IEnumerator grow = otherFlowers.Grow(otherFlowers.transform.position);
             StartCoroutine(grow);
 
@@ -89,5 +89,11 @@ public class FlowerBehavior : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ActivateSecondFlowers()
+    {
+        secondFlowersActive = true;
+        flowerIcon.SetActive(true);
     }
 }

@@ -3628,7 +3628,6 @@ GameObject:
   - component: {fileID: 1155377846}
   - component: {fileID: 1155377847}
   - component: {fileID: 1155377850}
-  - component: {fileID: 1155377853}
   m_Layer: 0
   m_Name: BaldEagle_Prefab
   m_TagString: Untagged
@@ -3981,19 +3980,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   birdState: {fileID: 0}
-  customControlsUI:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  sloMoOnWelcome: 0
-  turnSpeed: 0.001
+  turnSpeed: 0.0015
   speed: 2
   target: {fileID: 0}
   player: {fileID: 0}
+  maxSpeed: 2.7
   turnAngleIntensity: -0.5
   orbitSpeed: 10
   minOrbitRadius: 11
-  waypointRadius: 4
+  waypointRadius: 3
   waypointProximity: 0.7
   minHeight: 0.5
   maxHeight: 0.6
@@ -4001,16 +3996,13 @@ MonoBehaviour:
   handLandingSpot: {fileID: 0}
   branchLandingSpot: {fileID: 0}
   currentWaypoint: {x: 0, y: 0, z: 0}
-  birdhead: {fileID: 0}
+  waypointViz: {fileID: 0}
   anim: {fileID: 0}
-  billboardEagle: {fileID: 0}
-  testcube: {fileID: 0}
-  currentCube: {fileID: 0}
-  grabFishUI: {fileID: 0}
-  prey: {fileID: 0}
-  maxSpeed: 2.7
   birdAudio: {fileID: 0}
   _stump: {fileID: 0}
+  prey: {fileID: 0}
+  grabFishUI: {fileID: 0}
+  billboardEagle: {fileID: 0}
 --- !u!114 &1155377847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4028,14 +4020,10 @@ MonoBehaviour:
   customControlsUnlocked: 0
   birdWind: {fileID: 1155377852}
   stump: {fileID: 0}
-  deer: {fileID: 0}
   takeOffText: {fileID: 0}
   windForceField: {fileID: 0}
-  mist: {fileID: 0}
-  wind: {fileID: 0}
-  windAudio: {fileID: 0}
-  beesAndFlowers: {fileID: 0}
   testCube: {fileID: 0}
+  wind: {fileID: 0}
   currentState: 4
 --- !u!114 &1155377850
 MonoBehaviour:
@@ -4074,19 +4062,6 @@ MonoBehaviour:
     volume: 0.706
     pitch: 1
     loop: 1
---- !u!114 &1155377853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 796439336531828590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba71a60d95a65cb40b32189b93c038a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  windAudio: {fileID: 0}
 --- !u!1 &796439336531828592
 GameObject:
   m_ObjectHideFlags: 0
