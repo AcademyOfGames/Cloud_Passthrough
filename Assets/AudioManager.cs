@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
 
+    private AudioSource latestSound;
     private void Awake()
     {
         foreach (Sound s in sounds)
@@ -19,22 +20,50 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySound(string soundName)
+    public void PlaySound(string name)
     {
-        Sound s = null;
-        foreach (var sound in sounds)
-        {
-            if (sound.clip.name == soundName) s = sound;
-        }
-        // = Array.Find(sounds, sound => sound.clip.name == name);
+        Sound s = Array.Find(sounds, sound => sound.clip.name == name);
 
-        if (s == null)
+        if (s != null)
         {
-            print(soundName + " not found");
+            s.source.Play();
+        }
+        else
+        {
+            print("Couldnt find sound named " + name);
+        }
+    }
+
+    
+    public void PlaySound(string soundName, bool fadein)
+    {
+        Sound s = Array.Find(sounds, sound => sound.clip.name == soundName);
+
+        if (s != null)
+        {
+            s.source.Play();
+        }
+        else
+        {
+            print("Couldnt find sound named " + soundName);  
             return;
         }
         
         s.source.Play();
+        latestSound = s.source;
+        if(fadein) StartCoroutine("FadeInSound", s.source);
+    }
+
+    IEnumerator FadeInSound(AudioSource source)
+    {
+        float timePassed = 0;   
+
+        while (timePassed <= 1)
+        {
+            timePassed += Time.deltaTime * .3f;
+            source.volume = Mathf.Lerp(0, .8f, timePassed);
+            yield return new WaitForFixedUpdate();
+        }
     }
     // Start is called before the first frame update
     void Start()

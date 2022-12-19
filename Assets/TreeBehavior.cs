@@ -8,6 +8,12 @@ public class TreeBehavior : MonoBehaviour
 
   public void CrashThroughBricks()
   {
-    GetComponent<AudioManager>().PlaySound("bricksCrashing");
+    FindObjectOfType<AudioManager>().PlaySound("bricksCrashing");
+  }
+
+  public void TreeGrowingSound()
+  {
+    FindObjectOfType<AudioManager>().PlaySound("treeGrowingTrimmed");
+
   }
 }

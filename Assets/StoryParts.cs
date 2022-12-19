@@ -10,6 +10,7 @@ public class StoryParts : MonoBehaviour
     private BirdStateChanger _birdStateChanger;
     public GameObject title;    
     [HideInInspector]public bool firstWelcomeDone;
+
     
     // Start is called before the first frame update
     void Start()
@@ -44,7 +45,8 @@ public class StoryParts : MonoBehaviour
         yield return new WaitForSeconds(15f);
 
         _birdStateChanger.SwitchState(BirdStateChanger.BirdState.Welcoming);
-        
-
     }
+    
+    
+    
 }

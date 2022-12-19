@@ -292,10 +292,7 @@ public class BirdMovement : MonoBehaviour
         //decide what to do when it reaches a state
         switch (birdState.currentState)
         {
-            case BirdStateChanger.BirdState.FlyingAway:
-
-                StartCoroutine(nameof(ShrinkAndDeactivate));
-                break;
+ 
             case BirdStateChanger.BirdState.FacingPlayer:
                 birdState.SwitchState(BirdStateChanger.BirdState.Flapping);
                 break;
@@ -354,18 +351,17 @@ public class BirdMovement : MonoBehaviour
 
     public IEnumerator ShrinkAndDeactivate()
     {
+        yield return new WaitForSeconds(15);
         float timePassed = 0;
         float currentScale = transform.localScale.x;
         while(timePassed <= 1)
         {
-            print("Shrinking eagle");
             yield return null;
             transform.localScale = Vector3.one * Mathf.Lerp(currentScale, 0, timePassed);
             currentScale = transform.localScale.x;
-            timePassed += Time.deltaTime * .6f;
+            timePassed += Time.deltaTime * .1f;
         }
         billboardEagle.SetActive(true);
-        print("Deactivate eagle");
         gameObject.SetActive(false);
     }
     void FaceTowardMovement()

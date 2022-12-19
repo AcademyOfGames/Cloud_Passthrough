@@ -22,7 +22,8 @@ public class SoundtrackPlayer : MonoBehaviour
     public void PlaySound(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.clip.name == name);
-        if (s.source != null)
+
+        if (s != null)
         {
             print("playing " + name);
             if(currentSource!=null) currentSource.Stop();

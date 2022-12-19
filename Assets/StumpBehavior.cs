@@ -23,7 +23,7 @@ public class StumpBehavior : MonoBehaviour
     public GameObject seedBucket;
     public BeeSystem beeSystem;
 
-    private List<GameObject> fish;
+    public List<GameObject> fish;
     
     internal void DeactivateFishBucket()
     {
@@ -47,18 +47,26 @@ public class StumpBehavior : MonoBehaviour
 
     public void ActivateFishBucket()
     {
-        print("Showing fish bucket");
         fishSystemOn = true;
         gameObject.SetActive(true); 
         fishBucket.SetActive(true);
+        
+        SetStump();
+    }
+
+    private void SetStump()
+    {
         gameObject.transform.SetParent(null);
         fishBucket.transform.rotation = Quaternion.identity;
-        fishBucket.transform.position = new Vector3(fishBucket.transform.position.x, 1.722f, fishBucket.transform.position.z);
-        
+        fishBucket.transform.position =
+            new Vector3(fishBucket.transform.position.x, 1.722f, fishBucket.transform.position.z);
+
         seedBucket.SetActive(false);
         seedBucket.transform.rotation = Quaternion.identity;
-        seedBucket.transform.position = new Vector3(fishBucket.transform.position.x, 1.722f, fishBucket.transform.position.z);
+        seedBucket.transform.position =
+            new Vector3(fishBucket.transform.position.x, 1.722f, fishBucket.transform.position.z);
     }
+
     public void SpawnMorePrey()
     {
         if (totalFishAlive >= 4 || !fishSystemOn) return;
@@ -74,6 +82,8 @@ public class StumpBehavior : MonoBehaviour
     public void ActivateBeeSystem()
     {
         DeactivateFishBucket();
+        SetStump();
+        gameObject.SetActive(true);
         beeSystem.gameObject.SetActive(true);
         seedBucket.SetActive(true);
     }
@@ -81,8 +91,8 @@ public class StumpBehavior : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         obj.GetComponent<Rigidbody>().mass = 1;
-
     }
+    
     private void OnCollisionEnter(Collision other)
     {
         if (!other.gameObject.CompareTag("floor")) return;
@@ -94,6 +104,7 @@ public class StumpBehavior : MonoBehaviour
         }
         poofEffect.SetActive(true);
     }
+    
     public void RemoveFish(GameObject obj)
     {
         totalFishAlive--;
