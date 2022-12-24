@@ -77,8 +77,6 @@ public class SeedBehavior : MonoBehaviour
     {
         if (other.gameObject.CompareTag("floor"))
         {
-            
-
             IEnumerator grow =  flowers.Grow(other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position));
             StartCoroutine(grow);
         }

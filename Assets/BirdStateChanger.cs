@@ -325,8 +325,7 @@ public class BirdStateChanger : MonoBehaviour
 
             }
 
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch) ||
-                Keyboard.current[Key.L].wasPressedThisFrame)
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch)  || Keyboard.current[Key.T].wasPressedThisFrame)
             {
 
                 if (currentState == BirdState.Landed || currentState == BirdState.Landing)
