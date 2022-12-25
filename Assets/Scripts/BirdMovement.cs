@@ -523,6 +523,7 @@ public class BirdMovement : MonoBehaviour
     public void BirdScream()
     {
         anim.SetTrigger("Scream");
-        birdAudio.PlaySound("birdScream");    }
+        birdAudio.PlaySound("birdScream");    
+        }
 }
 

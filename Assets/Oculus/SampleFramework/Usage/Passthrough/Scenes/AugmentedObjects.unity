@@ -18280,8 +18280,8 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  colorMapEditorContrast: 0
-  colorMapEditorBrightness: 0
+  colorMapEditorContrast: -0.104
+  colorMapEditorBrightness: -0.113
   colorMapEditorPosterize: 0
   textureOpacity_: 1
   edgeRenderingEnabled_: 0
