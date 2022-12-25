@@ -112,8 +112,7 @@ public class Wind : MonoBehaviour
         
         print("Deactivated mist");
         stump.ActivateBeeSystem();
-        yield return new WaitForSeconds(10);
-        gameObject.SetActive(false);
+        GetComponent<ParticleSystem>().Stop();
     }
 
     public void StartRain()

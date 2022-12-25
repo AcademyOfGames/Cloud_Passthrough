@@ -5267,7 +5267,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 3000
+    maxNumParticles: 10000
     size3D: 1
     rotation3D: 0
     gravityModifier:
@@ -48161,10 +48161,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1242189289}
     - target: {fileID: 1155377847, guid: e8212f6dffd25394ab9247d9c34b12a1, type: 3}
-      propertyPath: currentState
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1155377847, guid: e8212f6dffd25394ab9247d9c34b12a1, type: 3}
       propertyPath: windForceField
       value: 
       objectReference: {fileID: 623680954}
@@ -66993,8 +66989,8 @@ Transform:
   - {fileID: 7019431211110545705}
   - {fileID: 7019431209546183471}
   - {fileID: 336453254}
-  - {fileID: 2123994384}
   - {fileID: 7019431210735272306}
+  - {fileID: 2123994384}
   m_Father: {fileID: 3134433781838489306}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -87045,7 +87041,7 @@ Transform:
   m_Children:
   - {fileID: 4303424696372195021}
   m_Father: {fileID: 7019431209580023546}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7019431210735272307
 MonoBehaviour:
