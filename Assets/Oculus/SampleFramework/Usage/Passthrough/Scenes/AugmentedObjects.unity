@@ -5267,7 +5267,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 10000
+    maxNumParticles: 1000
     size3D: 1
     rotation3D: 0
     gravityModifier:
