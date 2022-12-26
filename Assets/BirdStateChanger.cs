@@ -339,8 +339,6 @@ public class BirdStateChanger : MonoBehaviour
                     takeOffText.text = "Land";
                     
                     StartCoroutine(nameof(WaitAndClearFog));
-
-
                 }
                 else
                 {
@@ -375,13 +373,25 @@ public class BirdStateChanger : MonoBehaviour
     IEnumerator WaitAndClearFog()
     {
         if (mistWindSceneActivated) yield break;
-        FindObjectOfType<ControlUIManager>().ToggleEagleControlUI(false);
-        customControlsUnlocked = false;
+
 
         yield return new WaitForSeconds(60);
+        FindObjectOfType<ControlUIManager>().ToggleEagleControlUI(false);
+        customControlsUnlocked = false;
         mistWindSceneActivated = true; 
-        if(currentState == BirdState.GoToLanding || currentState == BirdState.Diving) SwitchState(BirdState.Hunting);
-        else if (currentState == BirdState.Landed) SwitchState(BirdState.TakeOff);
+        
+        switch (currentState)
+        {
+            case BirdState.GoToLanding:
+            case BirdState.Diving:
+                SwitchState(BirdState.Hunting);
+                break;
+            case BirdState.Landed:
+            case BirdState.Landing:
+            case BirdState.Eating:
+                SwitchState(BirdState.TakeOff);
+                break;
+        }
 
         yield return new WaitForSeconds(10);
         SwitchState(BirdState.FacingPlayer);

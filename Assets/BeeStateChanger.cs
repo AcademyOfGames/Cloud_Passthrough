@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class BeeStateChanger : MonoBehaviour
 {
@@ -20,10 +22,18 @@ public class BeeStateChanger : MonoBehaviour
     private HeroBeeBehavior bee;
     private static readonly int TakeOff = Animator.StringToHash("TakeOff");
     public TextMeshPro handText;
+    public Transform[] flower;
+    private int i = 0;
     
     private void Awake()
     {
         bee = GetComponent<HeroBeeBehavior>();
+        InvokeRepeating("SwitchFlowers",1,1);
+    }
+
+    public void SwitchFlowers()
+    {
+        i = Random.Range(0, 3);
     }
 
     public void UnlockControls(bool turnOn)
@@ -34,9 +44,15 @@ public class BeeStateChanger : MonoBehaviour
             control.SetActive(turnOn);
         }
     }
+
+    private bool tempMoveToFlowers;
     // Update is called once per frame
     void Update()
     {
+        if (tempMoveToFlowers)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, flower[i].position,.4f);
+        }
         if (customControlsUnlocked)
         {
             /* 
@@ -57,6 +73,7 @@ public class BeeStateChanger : MonoBehaviour
                 if(bee.currentState != HeroBeeBehavior.BeeState.HandControls)
                 {
                     bee.SwitchStates(HeroBeeBehavior.BeeState.HandControls);
+                    tempMoveToFlowers = true;
                     handText.text = "Land";
                 }
                 else
