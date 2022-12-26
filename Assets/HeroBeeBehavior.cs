@@ -102,7 +102,7 @@ public class HeroBeeBehavior : MonoBehaviour
                 }
                 
                 transform.Translate(moveDir*moveSpeedAcceleration) ;
-                print(beeControls.lMovement);
+//                print(beeControls.lMovement);
                 transform.Rotate(Vector3.up * beeControls.lMovement.x* controllerRotationSpeed * Time.deltaTime);
                 break;
             

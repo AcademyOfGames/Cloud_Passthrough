@@ -162,6 +162,7 @@ public class BirdStateChanger : MonoBehaviour
 
             case BirdState.Welcoming:
                 if(mistWindSceneActivated) return;
+                bird.anim.SetBool("Eating", false);
 
                 birdWind.Play();
 
@@ -372,13 +373,15 @@ public class BirdStateChanger : MonoBehaviour
 
     IEnumerator WaitAndClearFog()
     {
+        print("Waiting and clearing fog. mistWindSceneActivated " + mistWindSceneActivated);
         if (mistWindSceneActivated) yield break;
+        mistWindSceneActivated = true; 
 
 
         yield return new WaitForSeconds(60);
+        print("60s econds passed");
         FindObjectOfType<ControlUIManager>().ToggleEagleControlUI(false);
         customControlsUnlocked = false;
-        mistWindSceneActivated = true; 
         
         switch (currentState)
         {

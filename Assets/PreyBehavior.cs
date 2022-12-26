@@ -109,7 +109,6 @@ public class PreyBehavior : MonoBehaviour
     {
         _birdState.SwitchState(BirdStateChanger.BirdState.Welcoming);
         
-        _birdState.GetComponent<BirdMovement>().anim.SetBool("Eating", false);
         _controls.ChangeFishGrabText("Throw Fish");
 
     }

@@ -28,7 +28,7 @@ public class BeeStateChanger : MonoBehaviour
     private void Awake()
     {
         bee = GetComponent<HeroBeeBehavior>();
-        InvokeRepeating("SwitchFlowers",1,1);
+        InvokeRepeating("SwitchFlowers",1,4);
     }
 
     public void SwitchFlowers()
@@ -51,7 +51,9 @@ public class BeeStateChanger : MonoBehaviour
     {
         if (tempMoveToFlowers)
         {
-            transform.position = Vector3.MoveTowards(transform.position, flower[i].position,.4f);
+            //transform.position = Vector3.MoveTowards(transform.position, flower[i].position,.1f);
+            //transform.position += Vector3.up * Mathf.Sin(Time.time*2)*.1f;
+
         }
         if (customControlsUnlocked)
         {
