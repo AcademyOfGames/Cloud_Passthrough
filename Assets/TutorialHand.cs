@@ -14,7 +14,6 @@ public class TutorialHand : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,6 +30,8 @@ public class TutorialHand : MonoBehaviour
                 bird.landingSpot = bird.handLandingSpot;
                 bird.anim.SetBool(Eating, false);
                 bird.anim.SetTrigger("TakeOff");
+                bird.anim.ResetTrigger("Glide");
+                bird.anim.ResetTrigger("Flap");
                 FindObjectOfType<BirdStateChanger>().SwitchState(BirdStateChanger.BirdState.GoToLanding);
             }
 

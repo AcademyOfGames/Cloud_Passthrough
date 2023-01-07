@@ -97,10 +97,10 @@ public class BirdMovement : MonoBehaviour
     IEnumerator RandomFlapping()
     {
         yield return new WaitForSeconds(Random.Range(glidingRate, glidingRate * 2.2f));
-        SwitchAnimation("Flap");
+        if(birdState.currentState != BirdStateChanger.BirdState.GoToLanding) SwitchAnimation("Flap");
 
         yield return new WaitForSeconds(Random.Range(flappngRate, flappngRate * 2));
-        SwitchAnimation("Glide");
+        if(birdState.currentState != BirdStateChanger.BirdState.GoToLanding) SwitchAnimation("Glide");
         StartCoroutine("RandomFlapping");
     }
 
