@@ -20,8 +20,11 @@ public class SeedBehavior : MonoBehaviour
 
     public GameObject seedVisual;
 
+    private ControlUIManager controlUIManager;
+
     void Awake()
     {
+        controlUIManager = FindObjectOfType<ControlUIManager>();
         _grabInfo = GetComponent<SeedGrabbableBehavior>();
         seedParticleSystem = seedParticles.GetComponent<ParticleSystem>();
     }
@@ -40,15 +43,17 @@ public class SeedBehavior : MonoBehaviour
         controllerVisual.SetActive(false);
         seedVisual.SetActive(true);
         grabbed = true;
+        controlUIManager.ChangeSeedText("Throw Seeds");
         snapPos = _grabInfo.grabbedBy.transform;
     }
 
     void IsReleased()
     {
+        controlUIManager.ChangeSeedText("Grab Seeds");
+
         flowers.gameObject.SetActive(true);
         Invoke("ControlVisualOn", 2);
         //seedParticleSystem.startSpeed = handSpeed.magnitude *5;
-        print("handSpeed.magnitude " + handSpeed.magnitude);
         grabbed = false;
 
         seedParticles.SetActive(true);

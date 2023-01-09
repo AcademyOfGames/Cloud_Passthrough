@@ -25,7 +25,6 @@ public class SoundtrackPlayer : MonoBehaviour
 
         if (s != null)
         {
-            print("playing " + name);
             if(currentSource!=null) currentSource.Stop();
             s.source.Play();
             currentSource = s.source;

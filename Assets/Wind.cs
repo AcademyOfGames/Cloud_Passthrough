@@ -106,26 +106,41 @@ public class Wind : MonoBehaviour
         }
         
         ParticleSystem.MainModule tempPS = ps.main;
+        
         var main = ps.main;
         main.startLifetime = 0;
         clouds.SetActive(true);
         
         print("Deactivated mist");
+
+        yield return new WaitForSeconds(5);
+
         stump.ActivateBeeSystem();
         GetComponent<ParticleSystem>().Stop();
     }
 
     public void StartRain()
     {
+    
         IEnumerator waitAndStartFeedback = FindObjectOfType<FeedbackLogic>().WaitAndStartFeedback();
         StartCoroutine(waitAndStartFeedback);
+        StartCoroutine(nameof(WaitAndStartRain));
         StartCoroutine(nameof(DarkenSky));
         
-        rain.SetActive(true);
-        FindObjectOfType<AudioManager>().PlaySound("rainSound", true);
-        FindObjectOfType<SoundtrackPlayer>().PlaySound("rainSong");
+
 
     }
 
+    IEnumerator WaitAndStartRain()
+    {
+        yield return new WaitForSeconds(4);
+        rain.SetActive(true);
+        FindObjectOfType<AudioManager>().PlaySound("rainSound", true);
+
+        IEnumerator waitAndGoAway = FindObjectOfType<BeeSystem>().WaitAndGoAway();
+        StartCoroutine(waitAndGoAway);
+
+        FindObjectOfType<SoundtrackPlayer>().PlaySound("rainSong");
+    }
 
 }

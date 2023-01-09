@@ -28,7 +28,7 @@ public class BeeStateChanger : MonoBehaviour
     private void Awake()
     {
         bee = GetComponent<HeroBeeBehavior>();
-        InvokeRepeating("SwitchFlowers",1,4);
+        //InvokeRepeating("SwitchFlowers",1,4);
     }
 
     public void SwitchFlowers()
@@ -75,7 +75,6 @@ public class BeeStateChanger : MonoBehaviour
                 if(bee.currentState != HeroBeeBehavior.BeeState.HandControls)
                 {
                     bee.SwitchStates(HeroBeeBehavior.BeeState.HandControls);
-                    tempMoveToFlowers = true;
                     handText.text = "Land";
                 }
                 else
@@ -85,35 +84,18 @@ public class BeeStateChanger : MonoBehaviour
 
                 }
             }
-            /*
-            if (Keyboard.current[Key.A].isPressed)
-            {
-                rMovement = new Vector2(-1,0);
-            }          
-            else if (Keyboard.current[Key.D].isPressed)
-            {
-                rMovement = new Vector2(1,0);
-            }
-            else if (Keyboard.current[Key.W].isPressed)
-            {
-                rMovement = new Vector2(0,1);
-            }          
-            
-            else if (Keyboard.current[Key.S].isPressed)
-            {
-                rMovement = new Vector2(0,-1);
-            }
-            else 
-            {
-                 rMovement = Vector2.zero;
-            }*/
-
-            
-
 
             if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch) || Keyboard.current[Key.T].wasPressedThisFrame)
             {
-                bee.SwitchStates(HeroBeeBehavior.BeeState.Explore);
+                print("switch to exploring, button One Pressed");
+                if(bee.currentState != HeroBeeBehavior.BeeState.Explore)
+                {
+                    bee.SwitchStates(HeroBeeBehavior.BeeState.Explore);
+                }
+                else
+                {
+                    bee.SwitchStates(HeroBeeBehavior.BeeState.HandControls);
+                }
             }
 
             if (OVRInput.GetUp(OVRInput.Button.One, OVRInput.Controller.LTouch) || Keyboard.current[Key.S].wasPressedThisFrame)

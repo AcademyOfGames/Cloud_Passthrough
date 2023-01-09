@@ -19,15 +19,19 @@ public class FlowerBehavior : MonoBehaviour
     bool secondFlowerBloom;
     public GameObject flowerIcon;
     static bool beeSoundtrackStarted;
-    
-    
+
+    ControlUIManager controlUIManager;
     // Start is called before the first frame update
     void Start()
     {
+        controlUIManager = FindObjectOfType<ControlUIManager>();
+
         totalFlowersPlanted++;
         if (totalFlowersPlanted == 3)
         {
             Invoke("SpawnHeroBee",2f);
+            controlUIManager.TurnOnSeedControls(false);
+
         }
     }
 

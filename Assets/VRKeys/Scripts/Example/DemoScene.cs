@@ -91,7 +91,7 @@ namespace VRKeys {
 		/// Validate the email and simulate a form submission. Connect this to OnSubmit.
 		/// </summary>
 		public void HandleSubmit (string text) {
-			keyboard.DisableInput ();
+			/*keyboard.DisableInput ();
 
 			if (!ValidateEmail (text)) {
 				keyboard.ShowValidationMessage ("Please enter a valid email address");
@@ -99,7 +99,7 @@ namespace VRKeys {
 				return;
 			}
 
-			StartCoroutine (SubmitEmail (text));
+			StartCoroutine (SubmitEmail (text));*/
 		}
 
 		public void HandleCancel () {

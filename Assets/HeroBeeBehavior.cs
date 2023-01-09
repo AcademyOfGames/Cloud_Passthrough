@@ -12,7 +12,8 @@ public class HeroBeeBehavior : MonoBehaviour
     //State
     public BeeState currentState;
     public enum BeeState { MeetingPlayer, WatchingPlayer, GoToHand, LandedOnHand, HandControls,
-        Explore
+        Explore, GoAway,
+        Disappear
     }
     private BeeStateChanger beeControls;
     //Positions
@@ -82,7 +83,13 @@ public class HeroBeeBehavior : MonoBehaviour
                 transform.Translate(Vector3.forward * speed);
                 DistanceCheck(wayPoint);
                 break;
-            
+
+            case BeeState.GoAway:
+                transform.LookAt(wayPoint);
+                transform.Translate(Vector3.forward * speed);
+                DistanceCheck(wayPoint);
+                break;
+
             case BeeState.HandControls:
                 Vector3 moveDir = new Vector3(beeControls.rMovement.x * controllerMovementSpeed,
                     beeControls.lMovement.y * controllerVerticalSpeed,
@@ -171,19 +178,15 @@ public class HeroBeeBehavior : MonoBehaviour
             float sideTilt = localVelocity.x;
             sideTilt = (sideTilt + 1) * .5f;
             if (sideTilt > 0)
-            {
-                
-                
+            {       
                 targetAngle = beeMesh.localEulerAngles;
                 targetAngle.z = Mathf.Lerp(-25, 25, sideTilt);
                 beeMesh.localEulerAngles = targetAngle;
             }
         }
         else
-        {
-
+        { 
             beeMesh.localRotation = Quaternion.Slerp(beeMesh.localRotation, Quaternion.identity, .1f);
-
         }
 
         lastPos = transform.position;
@@ -209,6 +212,10 @@ public class HeroBeeBehavior : MonoBehaviour
                 // bee goes to player and starts to hover in front of them
                 case BeeState.MeetingPlayer:
                     SwitchStates(BeeState.WatchingPlayer);
+
+                    break;
+                case BeeState.GoAway:
+                    SwitchStates(BeeState.Disappear);
 
                     break;
                 case BeeState.WatchingPlayer:
@@ -254,6 +261,13 @@ public class HeroBeeBehavior : MonoBehaviour
 
         switch (newState)
         {
+            case BeeState.GoAway:
+                wayPoint = player.right * 10 + player.position + player.forward * 5;
+                beeControls.UnlockControls(false);
+                break;
+            case BeeState.Disappear:
+                StartCoroutine("ScaleDownAndDestroy");
+                break;
             case BeeState.Explore:
                 anim.SetBool("Walking", false);
                 anim.SetBool("Eating", false);
@@ -280,6 +294,7 @@ public class HeroBeeBehavior : MonoBehaviour
                 speed = 0f;
                 proximityDistance = .02f;
                 StartCoroutine(nameof(MovingWatchPoint));
+                StartCoroutine(nameof(WaitAndLandOnHand));
                 break;
             case BeeState.GoToHand:
                 wayPoint = rightHandLandingSpot.position;
@@ -311,6 +326,24 @@ public class HeroBeeBehavior : MonoBehaviour
                 break;
         }
         
+    }
+
+    IEnumerator WaitAndLandOnHand()
+    {
+        yield return new WaitForSeconds(60);
+        if(!beeControls.customControlsUnlocked) SwitchStates(BeeState.GoToHand);
+
+    }
+    IEnumerator ScaleDownAndDestroy()
+    {
+        float timePassed = 0;
+        while(timePassed < 1)
+        {
+            transform.localScale *= .9f;
+            timePassed += Time.deltaTime;
+            yield return null;
+        }
+        gameObject.SetActive(false);
     }
 
     /// <summary>

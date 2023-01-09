@@ -86,6 +86,7 @@ public class StumpBehavior : MonoBehaviour
         gameObject.SetActive(true);
         beeSystem.gameObject.SetActive(true);
         seedBucket.SetActive(true);
+        FindObjectOfType<ControlUIManager>().TurnOnSeedControls(true);
     }
     IEnumerator ResetFishMass(GameObject obj)
     {

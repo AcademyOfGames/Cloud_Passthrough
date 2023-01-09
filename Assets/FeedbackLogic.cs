@@ -85,6 +85,7 @@ public class FeedbackLogic : MonoBehaviour
     public IEnumerator WaitAndStartFeedback()
     {
         yield return new WaitForSeconds(10);
+        print("Starting feedback");
         StartFeedback();
     }
 }
