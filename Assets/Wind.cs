@@ -33,7 +33,7 @@ public class Wind : MonoBehaviour
             timePassed += Time.deltaTime * .03f;
 
             newContrast = Mathf.Lerp(newContrast, .3f, timePassed);
-            newBrightness = Mathf.Lerp(newBrightness, -.3f, timePassed);
+            newBrightness = Mathf.Lerp(newBrightness, -.4f, timePassed);
             _passthroughLayer.colorMapEditorContrast = newContrast;
             _passthroughLayer.colorMapEditorBrightness = newBrightness;
             yield return new WaitForFixedUpdate();
@@ -54,8 +54,9 @@ public class Wind : MonoBehaviour
             timePassed += Time.deltaTime * .03f;
 
             newContrast = Mathf.Lerp( .3f,newContrast, timePassed);
-            newBrightness = Mathf.Lerp(-.6f,newBrightness,  timePassed);
-            _passthroughLayer.SetBrightnessContrastSaturation();
+            newBrightness = Mathf.Lerp(-.4f,newBrightness,  timePassed);
+            _passthroughLayer.colorMapEditorContrast = newContrast;
+            _passthroughLayer.colorMapEditorBrightness = newBrightness;            
             yield return new WaitForFixedUpdate();
         }
     }
