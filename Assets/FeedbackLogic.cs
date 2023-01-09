@@ -42,7 +42,7 @@ public class FeedbackLogic : MonoBehaviour
         if (currentFeedbackPanel > feedbackPanels.Length - 1 || feedbackEnded)
         {
             FindObjectOfType<GoogleSheets>().AddEventData(" Email Entered " + emailInput.text, SystemInfo.deviceUniqueIdentifier);
-            FeedbackEnded();
+            CancelFeedback();
             return;
         }
         feedbackPanels[currentFeedbackPanel].SetActive(true);
@@ -50,7 +50,8 @@ public class FeedbackLogic : MonoBehaviour
 
     public void CancelFeedback()
     {
-        FindObjectOfType<GoogleSheets>().AddEventData("Feedback Cancelled", SystemInfo.deviceUniqueIdentifier);
+        FindObjectOfType<GoogleSheets>().AddEventData("Feedback Cancelled or ended", SystemInfo.deviceUniqueIdentifier);
+        feedbackEnded = true;
 
         ToggleLasers(false);
         //FindObjectOfType<BirdMovement>().ToggleControllerUI(true);
@@ -75,12 +76,7 @@ public class FeedbackLogic : MonoBehaviour
         
     }
 
-    public void FeedbackEnded()
-    {
-        ToggleLasers(false);
-        feedbackEnded = true;
-        gameObject.SetActive(false);
-    }
+
 
     public IEnumerator WaitAndStartFeedback()
     {

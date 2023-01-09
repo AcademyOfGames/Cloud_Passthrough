@@ -10,7 +10,6 @@ public class CancelButton : GenericVRClick
     public override void Click()
     {
         base.Click();
-        feedback.CancelFeedback();
         
     }
 

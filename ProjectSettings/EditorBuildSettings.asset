@@ -5,12 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/GrassyHlls.unity
-    guid: 2b3284638643fd348b1582c9349e5d2c
   - enabled: 1
     path: Assets/Oculus/SampleFramework/Usage/Passthrough/Scenes/AugmentedObjects.unity
     guid: 9afeada2bbd240b4981cfb6abb525418
+  - enabled: 0
+    path: Assets/Scenes/GrassyHlls.unity
+    guid: 2b3284638643fd348b1582c9349e5d2c
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 27c4b6cadb4623245bbfa9ac30985a30,
       type: 2}

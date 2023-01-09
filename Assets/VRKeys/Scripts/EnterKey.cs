@@ -19,7 +19,7 @@ namespace VRKeys {
 	public class EnterKey : Key {
 
 		public override void HandleTriggerEnter () {
-			keyboard.Submit ();
+			keyboard.Submit();
 		}
 
 		public void SubmitEntry()
@@ -27,7 +27,7 @@ namespace VRKeys {
 			FindObjectOfType<GoogleSheets>().userName = keyboard.text;
 
 			FindObjectOfType<GoogleSheets>().AddEventData(" Email Entered " + keyboard.text, SystemInfo.deviceUniqueIdentifier);
-			FindObjectOfType<FeedbackLogic>().FeedbackEnded();
+			FindObjectOfType<FeedbackLogic>().NextFeedbackPanel();
 			Destroy(FindObjectOfType<Keyboard>().gameObject);
 		}
 		public override void UpdateLayout (Layout translation) {
