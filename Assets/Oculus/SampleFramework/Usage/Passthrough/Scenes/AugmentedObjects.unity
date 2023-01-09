@@ -30318,7 +30318,7 @@ GameObject:
   - component: {fileID: 1331597683}
   - component: {fileID: 1331597682}
   m_Layer: 0
-  m_Name: mist (1)
+  m_Name: Clouds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30332,7 +30332,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1331597679}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
-  m_LocalPosition: {x: 8.2, y: 30.009998, z: -38.1}
+  m_LocalPosition: {x: -0.21, y: 23.32, z: -38.1}
   m_LocalScale: {x: 0.97384787, y: 0.97384787, z: 0.97384787}
   m_Children: []
   m_Father: {fileID: 801886453}
@@ -30395,7 +30395,7 @@ ParticleSystemRenderer:
   m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
-  m_AllowRoll: 1
+  m_AllowRoll: 0
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
   m_VertexStreams: 00010304
@@ -30593,7 +30593,7 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 0
-      minColor: {r: 1, g: 1, b: 1, a: 1}
+      minColor: {r: 0.4764151, g: 0.7693959, b: 1, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
@@ -31675,9 +31675,9 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 0}
-        key1: {r: 1, g: 1, b: 1, a: 0.20784314}
-        key2: {r: 0, g: 0, b: 0, a: 0.15686275}
+        key0: {r: 0.4575472, g: 0.8358966, b: 1, a: 0}
+        key1: {r: 1, g: 1, b: 1, a: 0.74509805}
+        key2: {r: 0, g: 0, b: 0, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -31692,7 +31692,7 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 25443
+        atime1: 26021
         atime2: 39128
         atime3: 65535
         atime4: 0
@@ -32718,7 +32718,7 @@ ParticleSystem:
     randomizePerFrame: 0
   ExternalForcesModule:
     serializedVersion: 2
-    enabled: 1
+    enabled: 0
     multiplierCurve:
       serializedVersion: 2
       minMaxState: 0
@@ -52434,6 +52434,10 @@ MonoBehaviour:
     loop: 0
   - clip: {fileID: 8300000, guid: 4dc38a396bb778543876e90c79d8d6c6, type: 3}
     volume: 0.76
+    pitch: 1
+    loop: 0
+  - clip: {fileID: 8300000, guid: bf2984f96b0a0874fa4a1042bd9ee1fc, type: 3}
+    volume: 0.88
     pitch: 1
     loop: 0
 --- !u!1 &1899927272

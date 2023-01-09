@@ -13,10 +13,12 @@ public class Wind : MonoBehaviour
     public GameObject rain;
     
     public OVRPassthroughLayer _passthroughLayer;
+    private AudioManager audio;
 
     private void Start()
     {
         ps = GetComponent<ParticleSystem>();
+        audio = FindObjectOfType<AudioManager>();
     }
 
     IEnumerator DarkenSky()
@@ -84,24 +86,7 @@ public class Wind : MonoBehaviour
         {
             birdAudio.SetVolume("strongWind" , birdAudio.GetVolume("strongWind" ) *.96f);
             timePassed += Time.deltaTime *.1f;
-            //localScale = transform.localScale;
-            //print("localScale" + localScale);
 
-            //newY = Mathf.Lerp(localScale.y, 0, timePassed);
-            //localScale.y = newY;
-           
-            //transform.localScale = localScale;
-            
-            /*
-            for (int i = 0; i < particles.Length; i++)
-            {
-                particles[i].startSize *= 1.002f;
-                //particles[i].velocity *= .98f;
-
-            }
- 
-            ps.SetParticles(particles, particleCount);
-            */
             yield return new WaitForFixedUpdate();
         }
         
@@ -121,7 +106,7 @@ public class Wind : MonoBehaviour
 
     public void StartRain()
     {
-    
+        audio.PlaySound("thunderSound");
         IEnumerator waitAndStartFeedback = FindObjectOfType<FeedbackLogic>().WaitAndStartFeedback();
         StartCoroutine(waitAndStartFeedback);
         StartCoroutine(nameof(WaitAndStartRain));
@@ -135,7 +120,7 @@ public class Wind : MonoBehaviour
     {
         yield return new WaitForSeconds(4);
         rain.SetActive(true);
-        FindObjectOfType<AudioManager>().PlaySound("rainSound", true);
+        audio.PlaySound("rainSound", true);
 
         IEnumerator waitAndGoAway = FindObjectOfType<BeeSystem>().WaitAndGoAway();
         StartCoroutine(waitAndGoAway);
