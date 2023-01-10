@@ -32,7 +32,8 @@ public class BirdStateChanger : MonoBehaviour
 
     public Transform testCube;
 
-    public Wind wind;
+    private Wind wind;
+    bool waitingForMistWind;
     // States
     public enum BirdState
     {
@@ -84,6 +85,7 @@ public class BirdStateChanger : MonoBehaviour
 
     private void Awake()
     {
+        wind = FindObjectOfType<Wind>();
         story = FindObjectOfType<StoryParts>();
         bird = GetComponent<BirdMovement>();
         SetBirdSettings();
@@ -115,6 +117,7 @@ public class BirdStateChanger : MonoBehaviour
                 }
                 else
                 {
+                    if (mistWindSceneActivated) return;
                     StartCoroutine(nameof(WaitAndHunt));
 
                 }
@@ -154,6 +157,8 @@ public class BirdStateChanger : MonoBehaviour
                 break;
             
             case BirdState.Hunting:
+                if (mistWindSceneActivated || bird.grabbedFish) return;
+
                 bird.anim.SetBool("Flapping", false);
 
                 UpdateSettings(huntingSettings);
@@ -161,7 +166,7 @@ public class BirdStateChanger : MonoBehaviour
                 break;
 
             case BirdState.Welcoming:
-                if(mistWindSceneActivated) return;
+                if(mistWindSceneActivated || bird.grabbedFish) return;
                 bird.anim.SetBool("Eating", false);
 
                 birdWind.Play();
@@ -374,11 +379,14 @@ public class BirdStateChanger : MonoBehaviour
     IEnumerator WaitAndClearFog()
     {
         print("Waiting and clearing fog. mistWindSceneActivated " + mistWindSceneActivated);
-        if (mistWindSceneActivated) yield break;
-        mistWindSceneActivated = true; 
+        if (mistWindSceneActivated || waitingForMistWind) yield break;
+        waitingForMistWind = true;
 
 
         yield return new WaitForSeconds(60);
+
+        mistWindSceneActivated = true;
+
         print("60s econds passed");
         FindObjectOfType<ControlUIManager>().ToggleEagleControlUI(false);
         customControlsUnlocked = false;
@@ -407,7 +415,7 @@ public class BirdStateChanger : MonoBehaviour
         huntingSettings = new BirdSettings(bird.turnAngleIntensity, bird.waypointRadius, bird.waypointProximity, bird.speed, bird.turnSpeed);
         divingSettings = new BirdSettings(bird.turnAngleIntensity, bird.waypointRadius*3f, 1f, bird.speed, bird.turnSpeed *1.5f);
         welcomingSettings = new BirdSettings(0f, bird.waypointRadius, 1.2f, bird.speed * 1.3f, bird.turnSpeed * 1.5f);
-        goToLandingSettings = new BirdSettings(0f, bird.waypointRadius,  .6f, bird.speed * 1.3f, bird.turnSpeed );
+        goToLandingSettings = new BirdSettings(0f, bird.waypointRadius,  1f, bird.speed * 1.3f, bird.turnSpeed );
         exitingSettings = new BirdSettings(0f, bird.waypointRadius, 0, bird.speed * 1.3f, bird.turnSpeed);
         LandedSettings = new BirdSettings(0f, bird.waypointRadius, 0, 0f, bird.turnSpeed);
     }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Wind : MonoBehaviour
 {
     public  GameObject clouds;
-    ParticleSystem ps;
+    public ParticleSystem ps;
     private ParticleSystem.Particle[] particles;
     public StumpBehavior stump;
     public GameObject windGust;
@@ -17,7 +17,6 @@ public class Wind : MonoBehaviour
 
     private void Start()
     {
-        ps = GetComponent<ParticleSystem>();
         audio = FindObjectOfType<AudioManager>();
     }
 
@@ -66,7 +65,6 @@ public class Wind : MonoBehaviour
         windGust.SetActive(true);
         StartCoroutine(nameof(DarkenSky));
         
-        windGust.SetActive(true);
         StartCoroutine(nameof(ShrinkMist));
         FindObjectOfType<SoundtrackPlayer>().PlaySound("tornadoSong");
     }
@@ -102,12 +100,12 @@ public class Wind : MonoBehaviour
         yield return new WaitForSeconds(5);
 
         stump.ActivateBeeSystem();
-        GetComponent<ParticleSystem>().Stop();
+        ps.Stop();
     }
 
     public void StartRain()
     {
-        audio.PlaySound("thunderSound");
+        audio.PlaySound("thunderstormLongSound");
         IEnumerator waitAndStartFeedback = FindObjectOfType<FeedbackLogic>().WaitAndStartFeedback();
         StartCoroutine(waitAndStartFeedback);
         StartCoroutine(nameof(WaitAndStartRain));

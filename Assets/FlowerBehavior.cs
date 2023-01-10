@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class FlowerBehavior : MonoBehaviour
 {
-    public Wind Wind;
+    private Wind wind;
     public Vector3 spawnPoint;
     public GameObject heroBee;
     
@@ -24,6 +24,7 @@ public class FlowerBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        wind = FindObjectOfType<Wind>();
         controlUIManager = FindObjectOfType<ControlUIManager>();
 
         totalFlowersPlanted++;
@@ -87,7 +88,7 @@ public class FlowerBehavior : MonoBehaviour
             secondFlowerBloom = true;
             if (totalBLoomingFlowers== 3)
             {
-                Wind.StartRain();
+                wind.StartRain();
             }
         }
     }

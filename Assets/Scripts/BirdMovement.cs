@@ -257,7 +257,7 @@ public class BirdMovement : MonoBehaviour
         yield return new WaitForSeconds(.7f);
         Time.timeScale = 1;
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(8f);
 
 
         grabFishUI.SetActive(true);

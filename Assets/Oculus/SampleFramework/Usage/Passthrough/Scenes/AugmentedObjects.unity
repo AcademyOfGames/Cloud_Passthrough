@@ -4746,7 +4746,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 315277953}
-  - component: {fileID: 315277954}
   - component: {fileID: 315277952}
   - component: {fileID: 315277951}
   m_Layer: 0
@@ -9543,23 +9542,6 @@ Transform:
   m_Father: {fileID: 801886453}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &315277954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 315277950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba71a60d95a65cb40b32189b93c038a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clouds: {fileID: 1331597679}
-  stump: {fileID: 240631864}
-  windGust: {fileID: 623680954}
-  rain: {fileID: 169825732}
-  _passthroughLayer: {fileID: 876558773}
 --- !u!1 &327748513
 GameObject:
   m_ObjectHideFlags: 0
@@ -9830,7 +9812,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea76bc8abb34da44a711c51e6a21524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wind: {fileID: 0}
   spawnPoint: {x: 0, y: 0, z: 0}
   heroBee: {fileID: 7019431210735272308}
   otherFlowers: {fileID: 0}
@@ -12223,6 +12204,7 @@ GameObject:
   - component: {fileID: 544317639}
   - component: {fileID: 544317638}
   - component: {fileID: 544317637}
+  - component: {fileID: 544317640}
   m_Layer: 5
   m_Name: submitCollider
   m_TagString: Untagged
@@ -12311,6 +12293,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 544317635}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &544317640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544317635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e60c66b3d61926439c63752f2d03eef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &548748937
 GameObject:
   m_ObjectHideFlags: 0
@@ -17904,6 +17899,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 801886453}
+  - component: {fileID: 801886454}
   m_Layer: 0
   m_Name: weather
   m_TagString: Untagged
@@ -17928,6 +17924,24 @@ Transform:
   m_Father: {fileID: 311267958}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &801886454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801886452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba71a60d95a65cb40b32189b93c038a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clouds: {fileID: 1331597679}
+  ps: {fileID: 315277952}
+  stump: {fileID: 240631864}
+  windGust: {fileID: 623680954}
+  rain: {fileID: 169825732}
+  _passthroughLayer: {fileID: 876558773}
 --- !u!1 &805348287
 GameObject:
   m_ObjectHideFlags: 0
@@ -18689,7 +18703,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea76bc8abb34da44a711c51e6a21524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wind: {fileID: 0}
   spawnPoint: {x: 0, y: 0, z: 0}
   heroBee: {fileID: 7019431210735272308}
   otherFlowers: {fileID: 0}
@@ -28338,7 +28351,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea76bc8abb34da44a711c51e6a21524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wind: {fileID: 0}
   spawnPoint: {x: 0, y: 0, z: 0}
   heroBee: {fileID: 7019431210735272308}
   otherFlowers: {fileID: 0}
@@ -49962,7 +49974,7 @@ PrefabInstance:
     - target: {fileID: 1155377847, guid: e8212f6dffd25394ab9247d9c34b12a1, type: 3}
       propertyPath: wind
       value: 
-      objectReference: {fileID: 315277954}
+      objectReference: {fileID: 0}
     - target: {fileID: 1155377847, guid: e8212f6dffd25394ab9247d9c34b12a1, type: 3}
       propertyPath: stump
       value: 
@@ -52436,7 +52448,7 @@ MonoBehaviour:
     volume: 0.76
     pitch: 1
     loop: 0
-  - clip: {fileID: 8300000, guid: bf2984f96b0a0874fa4a1042bd9ee1fc, type: 3}
+  - clip: {fileID: 8300000, guid: f32e38ca355765943afec47e3e027987, type: 3}
     volume: 0.88
     pitch: 1
     loop: 0
@@ -63849,7 +63861,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &6391591766966921845
 GameObject:
   m_ObjectHideFlags: 0
@@ -69725,7 +69737,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea76bc8abb34da44a711c51e6a21524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wind: {fileID: 315277954}
   spawnPoint: {x: 0, y: 0, z: 0}
   heroBee: {fileID: 7019431210735272308}
   otherFlowers: {fileID: 336453256}
@@ -74767,7 +74778,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea76bc8abb34da44a711c51e6a21524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wind: {fileID: 315277954}
   spawnPoint: {x: 0, y: 0, z: 0}
   heroBee: {fileID: 7019431210735272308}
   otherFlowers: {fileID: 829810832}
@@ -90160,7 +90170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea76bc8abb34da44a711c51e6a21524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wind: {fileID: 315277954}
   spawnPoint: {x: 0, y: 0, z: 0}
   heroBee: {fileID: 7019431210735272308}
   otherFlowers: {fileID: 1161955438}
