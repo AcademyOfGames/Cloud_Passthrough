@@ -31,10 +31,13 @@ public class StoryParts : MonoBehaviour
         
     IEnumerator IntroSequence()
     {
-        title.SetActive(true);
-        FindObjectOfType<SoundtrackPlayer>().PlaySound("introSong");
+        FindObjectOfType<SoundtrackPlayer>().PlaySound("introSongLong");
 
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(3f);
+
+        title.SetActive(true);
+
+        yield return new WaitForSeconds(4f);
 
         FindObjectOfType<BirdMovement>().BirdScream();
 

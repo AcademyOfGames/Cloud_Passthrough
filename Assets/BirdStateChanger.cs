@@ -85,10 +85,14 @@ public class BirdStateChanger : MonoBehaviour
 
     private void Awake()
     {
+
         wind = FindObjectOfType<Wind>();
         story = FindObjectOfType<StoryParts>();
         bird = GetComponent<BirdMovement>();
         SetBirdSettings();
+
+
+
     }
     public void UpdateSettings(BirdStateChanger.BirdSettings newSettings)
     {
@@ -385,7 +389,6 @@ public class BirdStateChanger : MonoBehaviour
 
         yield return new WaitForSeconds(60);
 
-        mistWindSceneActivated = true;
 
         print("60s econds passed");
         FindObjectOfType<ControlUIManager>().ToggleEagleControlUI(false);
@@ -395,6 +398,8 @@ public class BirdStateChanger : MonoBehaviour
         {
             case BirdState.GoToLanding:
             case BirdState.Diving:
+            case BirdState.Welcoming:
+            case BirdState.Orbiting:
                 SwitchState(BirdState.Hunting);
                 break;
             case BirdState.Landed:
@@ -403,6 +408,8 @@ public class BirdStateChanger : MonoBehaviour
                 SwitchState(BirdState.TakeOff);
                 break;
         }
+
+        mistWindSceneActivated = true;
 
         yield return new WaitForSeconds(10);
         SwitchState(BirdState.FacingPlayer);

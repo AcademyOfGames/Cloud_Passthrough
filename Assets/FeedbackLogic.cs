@@ -6,6 +6,7 @@ using UnityEngine;
 public class FeedbackLogic : MonoBehaviour
 {
     public GameObject[] feedbackPanels;
+    public GameObject playAgainPanel;
     [HideInInspector]
     public bool feedbackStarted;
     public bool feedbackEnded;
@@ -47,15 +48,29 @@ public class FeedbackLogic : MonoBehaviour
         }
         feedbackPanels[currentFeedbackPanel].SetActive(true);
     }
+   
+    public void TurnOnPlayAgainPanel()
+    {
+        playAgainPanel.SetActive(true);
+    }
+
 
     public void CancelFeedback()
     {
-        FindObjectOfType<GoogleSheets>().AddEventData("Feedback Cancelled or ended", SystemInfo.deviceUniqueIdentifier);
-        feedbackEnded = true;
+        if (playAgainPanel.activeSelf)
+        {
+            FindObjectOfType<GoogleSheets>().AddEventData("Feedback Cancelled or ended", SystemInfo.deviceUniqueIdentifier);
+            feedbackEnded = true;
 
-        ToggleLasers(false);
-        //FindObjectOfType<BirdMovement>().ToggleControllerUI(true);
-        gameObject.SetActive(false);
+            ToggleLasers(false);
+            //FindObjectOfType<BirdMovement>().ToggleControllerUI(true);
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            TurnOnPlayAgainPanel();
+        }
+
 
     }
     
@@ -64,24 +79,11 @@ public class FeedbackLogic : MonoBehaviour
         FindObjectOfType<GoogleSheets>().AddEventData("Stars set to " + index, SystemInfo.deviceUniqueIdentifier);
 
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
 
     public IEnumerator WaitAndStartFeedback()
     {
         yield return new WaitForSeconds(10);
-        print("Starting feedback");
         StartFeedback();
     }
 }
