@@ -31,7 +31,7 @@ public class StoryParts : MonoBehaviour
         
     IEnumerator IntroSequence()
     {
-        FindObjectOfType<SoundtrackPlayer>().PlaySound("introSongLong");
+        FindObjectOfType<SoundtrackPlayer>().PlaySound("introSong");
 
         yield return new WaitForSeconds(3f);
 

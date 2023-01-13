@@ -129,6 +129,8 @@ public class BirdStateChanger : MonoBehaviour
             
             case BirdState.FacingPlayer:
                 bird.waypointProximity = 3;
+                bird.speed = 1.2f;
+                bird.prey.gameObject.GetComponent<MeshRenderer>().enabled = false;
                 break;
 
             case BirdState.Flapping:
@@ -170,7 +172,9 @@ public class BirdStateChanger : MonoBehaviour
                 break;
 
             case BirdState.Welcoming:
-                if(mistWindSceneActivated || bird.grabbedFish) return;
+                if (mistWindSceneActivated) SwitchState(BirdState.Hunting);
+                if (bird.grabbedFish) return;
+
                 bird.anim.SetBool("Eating", false);
 
                 birdWind.Play();
@@ -183,14 +187,14 @@ public class BirdStateChanger : MonoBehaviour
                 break;
 
             case BirdState.GoToLanding:
-                if(mistWindSceneActivated) return;
+                if (mistWindSceneActivated) SwitchState(BirdState.Hunting);
                 bird.SwitchAnimationState(birdState);
 
                 UpdateSettings(goToLandingSettings);
 
                 break;
             case BirdState.Landing:
-                if(mistWindSceneActivated) return;
+                if (mistWindSceneActivated) SwitchState(BirdState.Hunting);
                 birdWind.Stop();
                 bird.SwitchAnimationState(birdState);
                 UpdateSettings(LandedSettings);
@@ -217,7 +221,7 @@ public class BirdStateChanger : MonoBehaviour
                 break;
             
             case BirdState.TakeOff:
-                if(mistWindSceneActivated) return;
+                if(mistWindSceneActivated) SwitchState(BirdState.Hunting);
 
                 bird.SwitchAnimationState(birdState);
                 SwitchState(BirdState.Hunting);
@@ -227,8 +231,11 @@ public class BirdStateChanger : MonoBehaviour
                 break;
             
             case BirdState.Diving:
-                if(mistWindSceneActivated) return;
-                bird.SwitchAnimationState(birdState);
+                if (mistWindSceneActivated) SwitchState(BirdState.Hunting);
+                if (bird.grabbedFish) return;
+                if (currentState == BirdState.Landing) bird.anim.SetTrigger("TakeOff");
+
+                    bird.SwitchAnimationState(birdState);
                 bird.prey.gameObject.SetActive(true);
                 UpdateSettings(divingSettings);
 
@@ -242,6 +249,7 @@ public class BirdStateChanger : MonoBehaviour
         }
 
         currentState = birdState;
+        print("succesful switch to" + currentState);
     }
 
     IEnumerator ContinueIntroSequence()
@@ -400,18 +408,25 @@ public class BirdStateChanger : MonoBehaviour
             case BirdState.Diving:
             case BirdState.Welcoming:
             case BirdState.Orbiting:
+                print("preparing bird for facing player switching " + currentState + " to hunting ");
                 SwitchState(BirdState.Hunting);
                 break;
             case BirdState.Landed:
             case BirdState.Landing:
             case BirdState.Eating:
+                print("preparing bird for facing player switching " + currentState + " to takeoff ");
+
                 SwitchState(BirdState.TakeOff);
                 break;
         }
 
         mistWindSceneActivated = true;
 
+        print("10 seconds to face player");
         yield return new WaitForSeconds(10);
+
+        print("about to face player");
+
         SwitchState(BirdState.FacingPlayer);
     }
 

@@ -105,7 +105,7 @@ public class Wind : MonoBehaviour
 
     public void StartRain()
     {
-        audio.PlaySound("thunderstormLongSound");
+        audio.PlaySound("thunderSound");
         IEnumerator waitAndStartFeedback = FindObjectOfType<FeedbackLogic>().WaitAndStartFeedback();
         StartCoroutine(waitAndStartFeedback);
         StartCoroutine(nameof(WaitAndStartRain));
