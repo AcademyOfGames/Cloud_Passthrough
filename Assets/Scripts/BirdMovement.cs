@@ -129,18 +129,14 @@ public class BirdMovement : MonoBehaviour
         // Multiply the height * a random number between minHeight and maxHeight
         currentWaypoint = target.position + randomPos;
         
-
-            waypointViz.transform.position = currentWaypoint;
-
-            waypointViz.transform.localScale *= .5f;
-        
+        waypointViz.transform.position = currentWaypoint;
+        waypointViz.transform.localScale *= .5f;
     }
 
     public IEnumerator FacePlayer()
     {
         rotationGoal = Quaternion.LookRotation(player.position - transform.position);
         float timePassed = 0;
-
 
         while (timePassed < 1)
         {

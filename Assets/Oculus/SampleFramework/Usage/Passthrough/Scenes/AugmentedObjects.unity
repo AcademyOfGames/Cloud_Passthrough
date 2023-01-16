@@ -52394,7 +52394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - clip: {fileID: 8300000, guid: 34dd254e6e144d64cb017fb2fef115fb, type: 3}
+  - clip: {fileID: 8300000, guid: 8c1ab7c95c42b8f4fa6c343d62a129de, type: 3}
     volume: 1
     pitch: 1
     loop: 0

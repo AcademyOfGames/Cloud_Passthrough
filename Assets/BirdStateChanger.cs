@@ -108,7 +108,18 @@ public class BirdStateChanger : MonoBehaviour
     public void SwitchState(BirdState birdState)
     {
         if (currentState == birdState) return;
-        if (currentState == BirdState.Diving && birdState != BirdStateChanger.BirdState.GoToLanding) return;
+
+        if (currentState == BirdState.Diving
+            && birdState != BirdStateChanger.BirdState.GoToLanding)
+        {
+            if (birdState != BirdStateChanger.BirdState.FacingPlayer)
+            {
+                print("Didn't switch because current state " + currentState + " new state is " + birdState);
+                return;
+            }
+
+        }
+
         print("Switching state " + birdState);
 
         switch (birdState)
@@ -130,7 +141,10 @@ public class BirdStateChanger : MonoBehaviour
             case BirdState.FacingPlayer:
                 bird.waypointProximity = 3;
                 bird.speed = 1.2f;
-                bird.prey.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                if(bird.prey.gameObject != null)
+                {
+                    bird.prey.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                }
                 break;
 
             case BirdState.Flapping:
