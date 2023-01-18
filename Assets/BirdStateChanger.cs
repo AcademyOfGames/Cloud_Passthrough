@@ -141,7 +141,7 @@ public class BirdStateChanger : MonoBehaviour
             case BirdState.FacingPlayer:
                 bird.waypointProximity = 3;
                 bird.speed = 1.2f;
-                if(bird.prey.gameObject != null)
+                if(bird.prey != null)
                 {
                     bird.prey.gameObject.GetComponent<MeshRenderer>().enabled = false;
                 }
@@ -264,6 +264,8 @@ public class BirdStateChanger : MonoBehaviour
 
         currentState = birdState;
         print("succesful switch to" + currentState);
+        
+        
     }
 
     IEnumerator ContinueIntroSequence()

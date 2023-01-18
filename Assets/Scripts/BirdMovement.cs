@@ -205,6 +205,7 @@ public class BirdMovement : MonoBehaviour
                 }
 
                 story.StartIntroSequence();
+                //story.introSequenceDone = true;
 
                 transform.position = Vector3.MoveTowards(transform.position, landingSpot.position + Vector3.up * .1f, 1f * Time.deltaTime);
                 

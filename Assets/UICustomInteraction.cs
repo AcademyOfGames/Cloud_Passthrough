@@ -41,8 +41,6 @@ public class UICustomInteraction : MonoBehaviour
              {
                  click.Click();
              }
-
-            print("Checking if hit is a key " + hit.collider.name);
              
              Key key = hit.collider.GetComponent<Key>();
              if (key != null)
