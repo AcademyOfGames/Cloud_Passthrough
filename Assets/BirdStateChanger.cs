@@ -139,6 +139,7 @@ public class BirdStateChanger : MonoBehaviour
                 break;
             
             case BirdState.FacingPlayer:
+                bird.anim.SetBool("Eating",false);
                 bird.waypointProximity = 3;
                 bird.speed = 1.2f;
                 if(bird.prey != null)
