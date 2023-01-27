@@ -19,9 +19,7 @@ public class FeedbackLogic : MonoBehaviour
     {
         if (feedbackStarted) return;
         FindObjectOfType<GoogleSheets>().AddEventData("Feedback Started", SystemInfo.deviceUniqueIdentifier);
-
-        //FindObjectOfType<BirdStateChanger>().SwitchState(BirdStateChanger.BirdState.TakeOff);
-
+        
         GetComponent<Animator>().Play("UIFadeIn");
         feedbackStarted = true;
         feedbackPanels[0].SetActive(true);
@@ -54,12 +52,13 @@ public class FeedbackLogic : MonoBehaviour
         playAgainPanel.SetActive(true);
     }
 
-
     public void CancelFeedback()
     {
         if (playAgainPanel.activeSelf)
         {
             FindObjectOfType<GoogleSheets>().AddEventData("Feedback Cancelled or ended", SystemInfo.deviceUniqueIdentifier);
+            if(emailInput.text != "") FindObjectOfType<GoogleSheets>().AddEventData(" Email Entered " + emailInput.text, SystemInfo.deviceUniqueIdentifier);
+
             feedbackEnded = true;
 
             ToggleLasers(false);

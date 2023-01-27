@@ -264,7 +264,7 @@ public class BirdStateChanger : MonoBehaviour
         }
 
         currentState = birdState;
-        print("successful switch to" + currentState);
+        FindObjectOfType<GoogleSheets>().AddEventData("Bird State " + currentState, SystemInfo.deviceUniqueIdentifier);
         
         
     }
@@ -341,8 +341,6 @@ public class BirdStateChanger : MonoBehaviour
             //Fly By
             if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch) || Keyboard.current[Key.W].wasPressedThisFrame)
             {
-                FindObjectOfType<GoogleSheets>().AddEventData("Fly By Pressed", SystemInfo.deviceUniqueIdentifier);
-
                 stateText.text = "Fly By";
 
                 SwitchState(BirdState.Welcoming);
@@ -350,8 +348,6 @@ public class BirdStateChanger : MonoBehaviour
             
             if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch) || Keyboard.current[Key.H].wasPressedThisFrame)
             {
-                FindObjectOfType<GoogleSheets>().AddEventData("Explore pressed", SystemInfo.deviceUniqueIdentifier);
-                
                 if (currentState != BirdState.Landing)
                 {
                     stateText.text = "Explore";
@@ -365,7 +361,6 @@ public class BirdStateChanger : MonoBehaviour
 
                 if (currentState == BirdState.Landed || currentState == BirdState.Landing)
                 {
-                    FindObjectOfType<GoogleSheets>().AddEventData("Take Off pressed", SystemInfo.deviceUniqueIdentifier);
 
                     bird.anim.SetTrigger(TakeOff);
                     SwitchState(BirdState.TakeOff);
@@ -377,31 +372,16 @@ public class BirdStateChanger : MonoBehaviour
                 }
                 else
                 {
-                    FindObjectOfType<GoogleSheets>().AddEventData("Land pressed", SystemInfo.deviceUniqueIdentifier);
-
-
                     bird.landingSpot = GetComponent<BirdMovement>().handLandingSpot;
                     SwitchState(BirdState.GoToLanding);
 
                     takeOffText.text = "Take Off";
                     stateText.text = "Land";
-
                 }
             }
-
-            if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch) || Keyboard.current[Key.T].wasPressedThisFrame)
-            {
-
-            }
+            
         }
-
-        /*
-        if(OVRInput.GetDown(OVRInput.Button.One, controllerL) || Keyboard.current[Key.C].wasPressedThisFrame)
-        {       
-            print("Pressing diving");
-    
-            SwitchState(BirdState.Diving);
-        }*/
+        
     }
 
 

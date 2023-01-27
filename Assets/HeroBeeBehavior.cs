@@ -324,7 +324,7 @@ public class HeroBeeBehavior : MonoBehaviour
                 speed = 0;
                 break;
         }
-        FindObjectOfType<GoogleSheets>().AddEventData("New State "+ newState, SystemInfo.deviceUniqueIdentifier);
+        FindObjectOfType<GoogleSheets>().AddEventData("Bee State "+ newState, SystemInfo.deviceUniqueIdentifier);
 
     }
 

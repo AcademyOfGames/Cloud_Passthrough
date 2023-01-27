@@ -18,6 +18,8 @@ public class SubmitButton : GenericVRClick
         switch (type)
         {
             case ButtonType.PlayAgain:
+                FindObjectOfType<GoogleSheets>().AddEventData(" Email Entered " + feedback.emailInput.text, SystemInfo.deviceUniqueIdentifier);
+
                 SceneManager.LoadScene(0);
 
                 break;

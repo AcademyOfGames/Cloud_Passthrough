@@ -1,12 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
-using UnityEngine.PlayerLoop;
-using UnityEngine.SceneManagement;
-using Random = UnityEngine.Random;
 
 public class BeeStateChanger : MonoBehaviour
 {
