@@ -32,7 +32,7 @@ public class FlowerBehavior : MonoBehaviour
         {
             Invoke("SpawnHeroBee",2f);
             controlUIManager.TurnOnSeedControls(false);
-
+            FindObjectOfType<GoogleSheets>().AddEventData("Unlocked Hero Bee", SystemInfo.deviceUniqueIdentifier);
         }
     }
 
@@ -79,6 +79,8 @@ public class FlowerBehavior : MonoBehaviour
     {
         if (other.GetComponent<HeroBeeBehavior>() != null && secondFlowersActive)
         {
+            FindObjectOfType<GoogleSheets>().AddEventData("Pollinating flower", SystemInfo.deviceUniqueIdentifier);
+
             if (secondFlowerBloom) return;
             flowerIcon.SetActive(false);
             IEnumerator grow = otherFlowers.Grow(otherFlowers.transform.position);

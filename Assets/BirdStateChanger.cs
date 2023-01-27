@@ -264,7 +264,7 @@ public class BirdStateChanger : MonoBehaviour
         }
 
         currentState = birdState;
-        print("succesful switch to" + currentState);
+        print("successful switch to" + currentState);
         
         
     }

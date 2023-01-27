@@ -6,7 +6,6 @@ using UnityEngine;
 public class SeedBehavior : MonoBehaviour
 {
     private SeedGrabbableBehavior _grabInfo;
-    public Transform handPos;
     public GameObject seedParticles;
     public FlowerBehavior flowers;
 
@@ -16,7 +15,6 @@ public class SeedBehavior : MonoBehaviour
     private Vector3 handSpeed;
     private Vector3 lastPosition;
     public GameObject controllerVisual;
-    ParticleSystem seedParticleSystem;
 
     public GameObject seedVisual;
 
@@ -26,7 +24,6 @@ public class SeedBehavior : MonoBehaviour
     {
         controlUIManager = FindObjectOfType<ControlUIManager>();
         _grabInfo = GetComponent<SeedGrabbableBehavior>();
-        seedParticleSystem = seedParticles.GetComponent<ParticleSystem>();
     }
     private void OnEnable() {
         _grabInfo.OnGrabBegin.AddListener(IsGrabbed);
@@ -40,6 +37,8 @@ public class SeedBehavior : MonoBehaviour
 
     void IsGrabbed()
     {
+        FindObjectOfType<GoogleSheets>().AddEventData("Seeds grabbed", SystemInfo.deviceUniqueIdentifier);
+
         controllerVisual.SetActive(false);
         seedVisual.SetActive(true);
         grabbed = true;

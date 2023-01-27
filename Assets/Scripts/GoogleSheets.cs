@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GoogleSheets : MonoBehaviour
 {
+    private List<string> dataList;
     
     string BASE_URL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdHkniLGcPDOwky78XShFmCSTerlW_yZrQsb_En0tyVrBGj0w/formResponse";
     public string userName = "Guest";
@@ -11,6 +12,7 @@ public class GoogleSheets : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
+        dataList = new List<string>();
     }
 
    IEnumerator Post(string data) {
@@ -27,8 +29,12 @@ public class GoogleSheets : MonoBehaviour
    }
    
    public void AddEventData(string data, string user)
-   {
-       userName = user;
-       StartCoroutine(Post(data));
+   {    
+       if (!dataList.Contains(data))
+       {
+           userName = user;
+           StartCoroutine(Post(data));    
+           dataList.Add(data);
+       }
    }
 }

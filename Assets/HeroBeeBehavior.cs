@@ -109,7 +109,6 @@ public class HeroBeeBehavior : MonoBehaviour
                 }
                 
                 transform.Translate(moveDir*moveSpeedAcceleration) ;
-//                print(beeControls.lMovement);
                 transform.Rotate(Vector3.up * beeControls.lMovement.x* controllerRotationSpeed * Time.deltaTime);
                 break;
             
@@ -325,7 +324,8 @@ public class HeroBeeBehavior : MonoBehaviour
                 speed = 0;
                 break;
         }
-        
+        FindObjectOfType<GoogleSheets>().AddEventData("New State "+ newState, SystemInfo.deviceUniqueIdentifier);
+
     }
 
     IEnumerator WaitAndLandOnHand()

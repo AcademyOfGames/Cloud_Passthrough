@@ -22,19 +22,13 @@ public class BeeStateChanger : MonoBehaviour
     private HeroBeeBehavior bee;
     private static readonly int TakeOff = Animator.StringToHash("TakeOff");
     public TextMeshPro handText;
-    public Transform[] flower;
     private int i = 0;
     
     private void Awake()
     {
         bee = GetComponent<HeroBeeBehavior>();
-        //InvokeRepeating("SwitchFlowers",1,4);
     }
-
-    public void SwitchFlowers()
-    {
-        i = Random.Range(0, 3);
-    }
+    
 
     public void UnlockControls(bool turnOn)
     {
@@ -87,7 +81,6 @@ public class BeeStateChanger : MonoBehaviour
 
             if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch) || Keyboard.current[Key.T].wasPressedThisFrame)
             {
-                print("switch to exploring, button One Pressed");
                 if(bee.currentState != HeroBeeBehavior.BeeState.Explore)
                 {
                     bee.SwitchStates(HeroBeeBehavior.BeeState.Explore);
@@ -124,14 +117,6 @@ public class BeeStateChanger : MonoBehaviour
 
             }
         }
-
-        /*
-        if(OVRInput.GetDown(OVRInput.Button.One, controllerL) || Keyboard.current[Key.C].wasPressedThisFrame)
-        {       
-            print("Pressing diving");
-    
-            SwitchState(BirdState.Diving);
-        }*/
     }
 
     

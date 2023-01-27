@@ -13,6 +13,8 @@ public class SubmitButton : GenericVRClick
     public override void Click()
     {
         base.Click();
+        FindObjectOfType<GoogleSheets>().AddEventData(type + " clicked.", SystemInfo.deviceUniqueIdentifier);
+
         switch (type)
         {
             case ButtonType.PlayAgain:
