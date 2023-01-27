@@ -13084,7 +13084,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df56d578c57eed04c8f949b28f33d0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handPos: {fileID: 0}
   seedParticles: {fileID: 7019431209590990958}
   flowers: {fileID: 7019431209580023549}
   controllerVisual: {fileID: 920646315}
@@ -42857,7 +42856,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df56d578c57eed04c8f949b28f33d0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handPos: {fileID: 0}
   seedParticles: {fileID: 7019431211223170227}
   flowers: {fileID: 7019431211221975343}
   controllerVisual: {fileID: 920646315}
@@ -49306,7 +49304,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df56d578c57eed04c8f949b28f33d0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handPos: {fileID: 0}
   seedParticles: {fileID: 7019431210352618541}
   flowers: {fileID: 7019431209768663732}
   controllerVisual: {fileID: 920646315}
@@ -62106,7 +62103,6 @@ Transform:
   - {fileID: 7019431209768663735}
   - {fileID: 7019431209580023546}
   - {fileID: 7019431211221975340}
-  - {fileID: 7019431210735272306}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -69708,6 +69704,7 @@ Transform:
   - {fileID: 7019431209546183471}
   - {fileID: 336453254}
   - {fileID: 2123994384}
+  - {fileID: 7019431210735272306}
   m_Father: {fileID: 3134433781838489306}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -89751,12 +89748,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7019431210735272308}
   m_LocalRotation: {x: -0.0000000013969838, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.84000003, y: 20.84, z: -26.908}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4303424696372195021}
-  m_Father: {fileID: 3134433781838489306}
-  m_RootOrder: 4
+  m_Father: {fileID: 7019431209580023546}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7019431210735272307
 MonoBehaviour:
@@ -89777,10 +89774,6 @@ MonoBehaviour:
   lMovement: {x: 0, y: 0}
   rMovement: {x: 0, y: 0}
   handText: {fileID: 2451952586094471347}
-  flower:
-  - {fileID: 7019431209580023546}
-  - {fileID: 7019431209768663735}
-  - {fileID: 7019431211221975340}
 --- !u!1 &7019431210735272308
 GameObject:
   m_ObjectHideFlags: 0
@@ -89801,7 +89794,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &7019431210735272309
 Animator:
   serializedVersion: 3
