@@ -1,0 +1,184 @@
+fileFormatVersion: 2
+guid: 5a40459c60fe5ef43aa9af31f1a23bba
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: MuleDeer_Y_Bones
+    100004: RigChest
+    100006: RigHead
+    100008: RigJaw1
+    100010: RigLBLeg1
+    100012: RigLBLeg2
+    100014: RigLBLeg3
+    100016: RigLBLegAnkle
+    100018: RigLEar1
+    100020: RigLEye1
+    100022: RigLEyelid1
+    100024: RigLFLeg1
+    100026: RigLFLeg2
+    100028: RigLFLeg3
+    100030: RigLFLegAnkle
+    100032: RigLFLegCollarbone
+    100034: RigNeck1
+    100036: RigNeck2
+    100038: RigPelvis
+    100040: RigRBLeg1
+    100042: RigRBLeg2
+    100044: RigRBLeg3
+    100046: RigRBLegAnkle
+    100048: RigREar1
+    100050: RigREye1
+    100052: RigREyelid1
+    100054: RigRFLeg1
+    100056: RigRFLeg2
+    100058: RigRFLeg3
+    100060: RigRFLegAnkle
+    100062: RigRFLegCollarbone
+    100064: RigRoot
+    100066: RigSpine1
+    100068: RigTail1
+    100070: RigTail2
+    100072: RigTail3
+    100074: RigTail4
+    100076: RigTongue1
+    100078: RigTongue2
+    100080: RigTongue3
+    400000: MuleDeer_Y_Bones
+    400002: //RootNode
+    400004: RigChest
+    400006: RigHead
+    400008: RigJaw1
+    400010: RigLBLeg1
+    400012: RigLBLeg2
+    400014: RigLBLeg3
+    400016: RigLBLegAnkle
+    400018: RigLEar1
+    400020: RigLEye1
+    400022: RigLEyelid1
+    400024: RigLFLeg1
+    400026: RigLFLeg2
+    400028: RigLFLeg3
+    400030: RigLFLegAnkle
+    400032: RigLFLegCollarbone
+    400034: RigNeck1
+    400036: RigNeck2
+    400038: RigPelvis
+    400040: RigRBLeg1
+    400042: RigRBLeg2
+    400044: RigRBLeg3
+    400046: RigRBLegAnkle
+    400048: RigREar1
+    400050: RigREye1
+    400052: RigREyelid1
+    400054: RigRFLeg1
+    400056: RigRFLeg2
+    400058: RigRFLeg3
+    400060: RigRFLegAnkle
+    400062: RigRFLegCollarbone
+    400064: RigRoot
+    400066: RigSpine1
+    400068: RigTail1
+    400070: RigTail2
+    400072: RigTail3
+    400074: RigTail4
+    400076: RigTongue1
+    400078: RigTongue2
+    400080: RigTongue3
+    2100000: MuleDeer_Y_Bones
+    4300000: MuleDeer_Y_Bones
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: MuleDeer_Y_Bones
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MuleDeer_Y_Bones
+    second: {fileID: 2100000, guid: 0a6caff66da61864cbc65c47757fac75, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 0
+  copyAvatar: 1
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: f39e5a9fc93806845b6ec4fc35233bff,
+    type: 3}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
