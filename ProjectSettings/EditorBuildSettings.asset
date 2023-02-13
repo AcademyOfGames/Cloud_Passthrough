@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Oculus/SampleFramework/Usage/Passthrough/Scenes/AugmentedObjects.unity
     guid: 9afeada2bbd240b4981cfb6abb525418
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: b049586df8422499da1e4a32ea8a9a2b
   - enabled: 0
     path: Assets/Scenes/GrassyHlls.unity
     guid: 2b3284638643fd348b1582c9349e5d2c
