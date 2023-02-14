@@ -204,8 +204,8 @@ public class BirdMovement : MonoBehaviour
                     _stump.RemoveFish(prey.gameObject);
                 }
 
-                story.StartIntroSequence();
-                //story.introSequenceDone = true;
+                
+                //story.StartIntroSequence();
 
                 transform.position = Vector3.MoveTowards(transform.position, landingSpot.position + Vector3.up * .1f, 1f * Time.deltaTime);
                 
