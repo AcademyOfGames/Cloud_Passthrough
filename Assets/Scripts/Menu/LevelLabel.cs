@@ -10,7 +10,6 @@ public class LevelLabel : MonoBehaviour
 {
     [SerializeField] Transform target;
     [SerializeField] float radius = 3.0f;
-    [SerializeField] int levelToLoad = 0;
     List<Transform> components;
     bool shown = false;
 
@@ -18,7 +17,8 @@ public class LevelLabel : MonoBehaviour
     {
         if(target == null)
         {
-            Debug.LogError("Missing target from LevelLabel Component");
+            // Find object with tag Player.
+            target = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
         components = new List<Transform>();

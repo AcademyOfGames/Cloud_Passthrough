@@ -2,14 +2,19 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Button3D : MonoBehaviour
+[System.Serializable]
+public class LevelEvent : UnityEvent<MenuSystem.Level>{}
+
+public class LevelTrigger : MonoBehaviour
 {
-    public UnityEvent onPressed;
+    public LevelEvent onPressed;
     [SerializeField] float timePressing = 2.0f;
+    [SerializeField] MenuSystem.Level levelToLoad = MenuSystem.Level.eagle;
 
     private void OnTriggerEnter(Collider other)
     {
-        StartCoroutine(PressingButtonSequence());
+        if(other.CompareTag("Player"))
+            StartCoroutine(PressingButtonSequence());
     }
 
     private void OnTriggerExit(Collider other)
@@ -31,7 +36,7 @@ public class Button3D : MonoBehaviour
 
         //yield return new WaitForSeconds(timePressing);
         Debug.Log("Invoking onPressed");
-        onPressed.Invoke();
+        onPressed.Invoke(levelToLoad);
     }
 
 }
