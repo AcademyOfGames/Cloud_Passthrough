@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,8 @@ public class MenuSystem : MonoBehaviour
     [Header("Menu Components")]
     [SerializeField] List<Transform> menuObjects = new List<Transform>();
     [SerializeField] Transform parentObjects;
+
+    [SerializeField] Transform hidingHeight;
     /*
     [SerializeField] Transform parentObject;
     [SerializeField] Transform bonfire;
@@ -72,21 +75,33 @@ public class MenuSystem : MonoBehaviour
             // if transform in exception - continue;
             if (IsInList(t, exceptions)) continue;
             
+            if (show)
+            {
+                //StartCoroutine(FadeInObject(t, hidingHeight, 0.5f));
+            }
+            else
+            {
+                //StartCoroutine(FadeOutObject(t, hidingHeight, 0.5f));
+            }
+            t.gameObject.SetActive(show);
+            seconds += add;
+            yield return new WaitForSeconds(seconds);/*                                         * 
             MeshRenderer[] renderers = t.GetComponentsInChildren<MeshRenderer>();
             foreach(MeshRenderer renderer in renderers)
             {
-                if (show)
-                {
-                    StartCoroutine(FadeInObject(renderer, 0.15f));
-                }
-                else
-                {
-                    StartCoroutine(FadeOutObject(renderer, 0.15f));
-                }
-                seconds += add;
-                yield return new WaitForSeconds(seconds);
-            } 
+                
+            } */
         }
+        yield return new WaitForSeconds(5.0f);
+        // do the exceptions
+        if (exceptions.Count > 0)
+        {
+            foreach (Transform t in exceptions)
+            {
+                t.gameObject.SetActive(show);
+            }
+        }
+        
         /*
         //todo Make exception for tent frame for eagle level.
         // Separate function in two
@@ -135,6 +150,7 @@ public class MenuSystem : MonoBehaviour
         }*/
     }
 
+    /*
     private IEnumerator HideMenu(float delay, List<Transform> exceptions)
     {
         
@@ -162,8 +178,8 @@ public class MenuSystem : MonoBehaviour
         // after all animations finish playing.
         ShowAllMenuObjects(false);
         yield return null;
-    }
-
+    }*/
+    /*
     private IEnumerator ShowMenu(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -176,7 +192,7 @@ public class MenuSystem : MonoBehaviour
             yield return new WaitForSeconds(seconds);
             seconds += add;
         }
-    }
+    }*/
 
     private void ChangeLevel(Level level)
     {
@@ -202,7 +218,7 @@ public class MenuSystem : MonoBehaviour
                 eagleStory.gameObject.SetActive(true);
 
                 toIgnore.Clear();
-                toIgnore.Add(menuObjects[6]);
+                toIgnore.Add(menuObjects[0]);
                 StartCoroutine(MenuSequence(false, 0.05f, toIgnore));
 
                 currentLevel = Level.eagle;
@@ -237,34 +253,46 @@ public class MenuSystem : MonoBehaviour
         {
             if (t == transform)
             {
-                list.Remove(t);
                 return true;
             }
                 
         }
         return false;
+
     }
 
-    private IEnumerator FadeInObject(Renderer renderer, float speed = 1f)
+    private IEnumerator FadeInObject(Transform tr, Transform yStart, float speed = 1f)
     {
-        foreach(Material mat in renderer.materials)
+        Vector3 destination = tr.position;
+        tr.position = new Vector3(tr.position.x, yStart.position.y, tr.position.z);
+        while(tr.position.y < destination.y)
         {
-            mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, 0);
-            while (mat.color.a < 1)
-            {
-                Color objectColor = mat.color;
-                float fadeAmount = objectColor.a + (speed * Time.deltaTime);
-                objectColor.a = fadeAmount;
-                mat.color = objectColor;
-                yield return null;
-            }
+            tr.Translate(Vector3.up * speed * Time.deltaTime);
+            yield return null;
+        }
+        /*mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, 0);
+        while (mat.color.a < 1)
+        {
+            Color objectColor = mat.color;
+            float fadeAmount = objectColor.a + (speed * Time.deltaTime);
+            objectColor.a = fadeAmount;
+            mat.color = objectColor;
+            yield return null;
+        }*/
+    }
+
+    private IEnumerator FadeOutObject(Transform tr, Transform yDestination, float speed = 1f)
+    {
+        while (tr.position.y > yDestination.transform.position.y)
+        {
+            tr.Translate(Vector3.down * speed * Time.deltaTime);
+            yield return null;
         }
         yield return null;
-    }
 
-    private IEnumerator FadeOutObject(Renderer renderer, float speed = 1f)
-    {
-        foreach (Material mat in renderer.materials)
+        Debug.Log("Setting inactive: " + tr.name);
+        tr.gameObject.SetActive(false);
+        /*foreach (Material mat in renderer.materials)
         {
             while (mat.color.a > 0)
             {
@@ -275,6 +303,7 @@ public class MenuSystem : MonoBehaviour
                 yield return null;
             }
             renderer.gameObject.SetActive(false);
-        }
+        }*/
     }
+
 }
