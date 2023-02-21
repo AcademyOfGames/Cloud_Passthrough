@@ -32,6 +32,19 @@ public class StoryParts : MonoBehaviour
     IEnumerator IntroSequence()
     {
         FindObjectOfType<SoundtrackPlayer>().PlaySound("Good Goodbye");
+        FindObjectOfType<BirdMovement>().BirdScream();
+
+        title.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
+        _birdStateChanger.SwitchState(BirdStateChanger.BirdState.TakeOff);
+
+        yield return new WaitForSeconds(15f);
+
+        _birdStateChanger.SwitchState(BirdStateChanger.BirdState.Welcoming);
+
+        
+        /*FindObjectOfType<SoundtrackPlayer>().PlaySound("Good Goodbye");
 
         yield return new WaitForSeconds(3f);
 
@@ -48,6 +61,7 @@ public class StoryParts : MonoBehaviour
         yield return new WaitForSeconds(15f);
 
         _birdStateChanger.SwitchState(BirdStateChanger.BirdState.Welcoming);
+        */
     }
     
     

@@ -40,14 +40,12 @@ public class LevelLabel : MonoBehaviour
         {
             if (shown) return; 
             //show
-            Debug.Log("Enabling components");
             EnableComponents(true);
         }
         else
         {
             //hide
             if (!shown) return;
-            Debug.Log("Disabling components");
             EnableComponents(false);
         }
     }

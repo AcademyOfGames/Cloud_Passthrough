@@ -18,6 +18,7 @@ public class Wind : MonoBehaviour
     private void Start()
     {
         audio = FindObjectOfType<AudioManager>();
+        SetDarkSky();
     }
 
     IEnumerator DarkenSky()
@@ -58,6 +59,14 @@ public class Wind : MonoBehaviour
             _passthroughLayer.colorMapEditorBrightness = newBrightness;            
             yield return new WaitForFixedUpdate();
         }
+    }
+
+    public void SetDarkSky()
+    {
+        float newContrast = -.04f;
+        float newBrightness = -1f;
+        _passthroughLayer.colorMapEditorContrast = newContrast;
+        _passthroughLayer.colorMapEditorBrightness = newBrightness;
     }
     
     public void StartTornado()

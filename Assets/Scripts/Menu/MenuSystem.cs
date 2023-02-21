@@ -5,55 +5,51 @@ using UnityEngine;
 
 public class MenuSystem : MonoBehaviour
 {
-    public enum Level { start, eagle, bee};
-    public Level currentLevel = Level.start;
-
-    // todo? enum for state playing, pause
-
-    [SerializeField] List<LevelTrigger> levelTriggers;
-    [SerializeField] Transform eagleStory;
 
     [Header("Menu Components")]
+    [Header("Fire")]
+    [SerializeField] FireBehaviour bonfire;
+
     [SerializeField] List<Transform> menuObjects = new List<Transform>();
+
     [SerializeField] Transform parentObjects;
+    [SerializeField] Transform triggerParent;
 
-    [SerializeField] Transform hidingHeight;
-    /*
-    [SerializeField] Transform parentObject;
-    [SerializeField] Transform bonfire;
-    [SerializeField] Transform eagle;
-    [SerializeField] Transform bee;
-    [SerializeField] Transform tent;
-    [SerializeField] Transform levelSign1;
-    [SerializeField] Transform levelSign2;
-    */
-
-    // todo? a button to display menu in game
-
-    StoryParts storyParts;
+    bool isEagleOn = false;
+    BirdMovement eagle;
     
-
-    private void Start()
-    {
-        storyParts = FindObjectOfType<StoryParts>();
-        ChangeLevel(Level.start);
-    }
-
     private void OnEnable()
     {
-        foreach (LevelTrigger trigger in levelTriggers)
-        {
-            // connect onPressed with StartIntroSequence.
-            trigger.onPressed.AddListener(ChangeLevel);
-        }
+        bonfire.onToggleBonfire.AddListener(DisplayMenu);
     }
 
     private void OnDisable()
     {
-        foreach (LevelTrigger trigger in levelTriggers)
+        bonfire.onToggleBonfire.RemoveListener(DisplayMenu);
+    }
+
+    private void Start()
+    {
+        eagle = FindObjectOfType<BirdMovement>();
+        eagle.gameObject.SetActive(false);
+        //if(bonfire != null) menuObjects.Add(bonfire.transform);
+        ShowAllMenuObjects(false);
+        StartFire();
+
+    }
+
+    private void DisplayMenu()
+    {
+        
+        if (bonfire.IsOn)
         {
-            // disconnect onPressed with StartIntroSequence.
-            trigger.onPressed.RemoveAllListeners();
+            Debug.Log("Displaying Menu");
+            StartCoroutine(MenuSequence(true, 0.05f, null));
+        }
+        else
+        {
+            Debug.Log("Hiding Menu");
+            StartCoroutine(MenuSequence(false, 0.05f, null));
         }
     }
 
@@ -65,184 +61,62 @@ public class MenuSystem : MonoBehaviour
     private IEnumerator MenuSequence(bool show, float delay, List<Transform> exceptions)
     {
         yield return new WaitForSeconds(delay);
-
-        float seconds = 0.01f;
-        float add = 0.1f;
+        if(show)
+            SetAllInvisible();
         foreach (Transform t in menuObjects)
         {
-            Debug.Log("Working on: " + t.name);
-            t.gameObject.SetActive(true);
-            // if transform in exception - continue;
             if (IsInList(t, exceptions)) continue;
-            
-            if (show)
+            t.gameObject.SetActive(true);
+            Dissolve[] dissolves = t.GetComponentsInChildren<Dissolve>(true);
+            foreach(Dissolve d in dissolves)
             {
-                //StartCoroutine(FadeInObject(t, hidingHeight, 0.5f));
-            }
-            else
-            {
-                //StartCoroutine(FadeOutObject(t, hidingHeight, 0.5f));
-            }
-            t.gameObject.SetActive(show);
-            seconds += add;
-            yield return new WaitForSeconds(seconds);/*                                         * 
-            MeshRenderer[] renderers = t.GetComponentsInChildren<MeshRenderer>();
-            foreach(MeshRenderer renderer in renderers)
-            {
-                
-            } */
-        }
-        yield return new WaitForSeconds(5.0f);
-        // do the exceptions
-        if (exceptions.Count > 0)
-        {
-            foreach (Transform t in exceptions)
-            {
-                t.gameObject.SetActive(show);
-            }
-        }
-        
-        /*
-        //todo Make exception for tent frame for eagle level.
-        // Separate function in two
-        // HideMenu()
-        // ShowMenu()
-
-        // todo? Make animation for each menu component.
-
-        // Start after a short delay.
-        yield return new WaitForSeconds(delay);
-        float seconds = 0.01f;
-        float add = 0.1f;
-        foreach(Transform t in menuObjects)
-        {
-            float direction = 1; // -1 if hiding
-            if (!show)
-            {
-                direction = -1;
-                Animator animator = t.GetComponent<Animator>();
-                if (animator != null)
+                if (show)
                 {
-                    // hide
-                    // Change animation state on replay animation on reverse
-                    // Reverse Animation
-                    // then set active
-                    animator.SetFloat("animDirection", direction);
-                    animator.SetTrigger("Repeat");
+                    Debug.Log("Fade In" + d.transform.name);
+                    StartCoroutine(d.FadeIn(0.5f));
+                    if (!isEagleOn) eagle.gameObject.SetActive(true); // only turn on eagle the first time the menu displays.
+                }
+
+                else
+                {
+                    Debug.Log("Fade Out" + d.transform.name);
+                    StartCoroutine(d.FadeOut());
                 }
             }
-            yield return new WaitForSeconds(seconds);
-            seconds += add;
+            yield return new WaitForFixedUpdate();
         }
-
-        /*
-        if (!show)
-        {
-            yield return new WaitForSeconds(2.0f);
-        }
-
-        foreach(Transform t in menuObjects)
-        {
-            // to display
-            t.gameObject.SetActive(show);
-            yield return new WaitForSeconds(seconds);
-            seconds += add;
-        }*/
+        parentObjects.gameObject.SetActive(show);
+        triggerParent.gameObject.SetActive(show);
     }
 
-    /*
-    private IEnumerator HideMenu(float delay, List<Transform> exceptions)
+    public void StartFire()
     {
-        
-        yield return new WaitForSeconds(delay);
-        float seconds = 0.01f;
-        float add = 0.1f;
-        foreach (Transform t in menuObjects)
-        {
-            // if transform in exception - continue;
-            if (IsInList(t, exceptions)) continue;
-
-            float direction = -1; // to reverse Animation.
-            Animator animator = t.GetComponent<Animator>();
-            if (animator != null)
-            {
-                // Repeats animation in reverse.
-                animator.SetFloat("animDirection", direction);
-                animator.SetTrigger("Repeat");
-            }
-            yield return new WaitForSeconds(seconds);
-            seconds += add;
-        }
-        yield return new WaitForSeconds(5.0f);
-
-        // after all animations finish playing.
-        ShowAllMenuObjects(false);
-        yield return null;
-    }*/
-    /*
-    private IEnumerator ShowMenu(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        float seconds = 0.01f;
-        float add = 0.1f;
-        foreach (Transform t in menuObjects)
-        {
-            // to display
-            t.gameObject.SetActive(true);
-            yield return new WaitForSeconds(seconds);
-            seconds += add;
-        }
-    }*/
-
-    private void ChangeLevel(Level level)
-    {
-        // Change Level
-        Debug.Log("Changing Level");
-        List<Transform> toIgnore = new List<Transform>();
-        switch (level)
-        {
-            case Level.start:
-                // initial state
-                StopAllCoroutines();
-                Debug.Log("Initial Game State");
-                ShowAllMenuObjects(false);
-                eagleStory.gameObject.SetActive(false);
-                StartCoroutine(MenuSequence(true, 0.25f, null));
-                currentLevel = Level.start;
-                break;
-
-            case Level.eagle:
-                StopAllCoroutines();
-                Debug.Log("Starting Eagle Level");
-                storyParts.StartIntroSequence();
-                eagleStory.gameObject.SetActive(true);
-
-                toIgnore.Clear();
-                toIgnore.Add(menuObjects[0]);
-                StartCoroutine(MenuSequence(false, 0.05f, toIgnore));
-
-                currentLevel = Level.eagle;
-                break;
-
-            case Level.bee:
-                StopAllCoroutines();
-                Debug.Log("Starting Bee Level");
-                
-                StartCoroutine(MenuSequence(false, 0.01f, null));
-
-                currentLevel = Level.bee;
-                break;
-        } 
+        bonfire.gameObject.SetActive(true);
+        bonfire.SetFire(false);
     }
 
+    /// <summary>
+    /// Sets active or inactive all GameObjects in menuObjects list.
+    /// </summary>
+    /// <param name="display"></param>
     private void ShowAllMenuObjects(bool display)
     {
+        Debug.Log("Set all inactive");
         //parentObjects.gameObject.SetActive(display);
-        // Helper function.
         foreach(Transform t in menuObjects)
         {
-            Debug.Log("Disabling: " + t.name);
             t.gameObject.SetActive(display);
+        }
+    }
+
+    private void SetAllInvisible()
+    {
+        foreach (Transform t in menuObjects)
+        {
+            foreach (Dissolve d in t.GetComponentsInChildren<Dissolve>())
+            {
+                d.SetInvisible();
+            }
         }
     }
 
@@ -258,52 +132,6 @@ public class MenuSystem : MonoBehaviour
                 
         }
         return false;
-
-    }
-
-    private IEnumerator FadeInObject(Transform tr, Transform yStart, float speed = 1f)
-    {
-        Vector3 destination = tr.position;
-        tr.position = new Vector3(tr.position.x, yStart.position.y, tr.position.z);
-        while(tr.position.y < destination.y)
-        {
-            tr.Translate(Vector3.up * speed * Time.deltaTime);
-            yield return null;
-        }
-        /*mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, 0);
-        while (mat.color.a < 1)
-        {
-            Color objectColor = mat.color;
-            float fadeAmount = objectColor.a + (speed * Time.deltaTime);
-            objectColor.a = fadeAmount;
-            mat.color = objectColor;
-            yield return null;
-        }*/
-    }
-
-    private IEnumerator FadeOutObject(Transform tr, Transform yDestination, float speed = 1f)
-    {
-        while (tr.position.y > yDestination.transform.position.y)
-        {
-            tr.Translate(Vector3.down * speed * Time.deltaTime);
-            yield return null;
-        }
-        yield return null;
-
-        Debug.Log("Setting inactive: " + tr.name);
-        tr.gameObject.SetActive(false);
-        /*foreach (Material mat in renderer.materials)
-        {
-            while (mat.color.a > 0)
-            {
-                Color objectColor = mat.color;
-                float fadeAmount = objectColor.a - (speed * Time.deltaTime);
-                objectColor.a = fadeAmount;
-                mat.color = objectColor;
-                yield return null;
-            }
-            renderer.gameObject.SetActive(false);
-        }*/
     }
 
 }

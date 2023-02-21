@@ -3,13 +3,13 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class LevelEvent : UnityEvent<MenuSystem.Level>{}
+public class LevelEvent : UnityEvent<LevelController.Level>{}
 
 public class LevelTrigger : MonoBehaviour
 {
     public LevelEvent onPressed;
     [SerializeField] float timePressing = 2.0f;
-    [SerializeField] MenuSystem.Level levelToLoad = MenuSystem.Level.eagle;
+    [SerializeField] LevelController.Level levelToLoad = LevelController.Level.eagle;
 
     private void OnTriggerEnter(Collider other)
     {
