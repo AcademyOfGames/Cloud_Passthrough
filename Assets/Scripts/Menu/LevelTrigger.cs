@@ -8,22 +8,23 @@ public class LevelEvent : UnityEvent<LevelController.Level>{}
 public class LevelTrigger : MonoBehaviour
 {
     public LevelEvent onPressed;
-    [SerializeField] float timePressing = 2.0f;
+    //[SerializeField] float timePressing = 2.0f;
     [SerializeField] LevelController.Level levelToLoad = LevelController.Level.eagle;
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
-            StartCoroutine(PressingButtonSequence());
+            onPressed.Invoke(levelToLoad);
+        //StartCoroutine(PressingButtonSequence());
     }
 
-    private void OnTriggerExit(Collider other)
+    /*private void OnTriggerExit(Collider other)
     {
         StopCoroutine(PressingButtonSequence());
         Debug.Log("Canceling onPressed");
-    }
+    }*/
 
-    private IEnumerator PressingButtonSequence()
+    /*private IEnumerator PressingButtonSequence()
     {
         Debug.Log("Start pressing button");
         float remainingTime = timePressing;
@@ -36,7 +37,7 @@ public class LevelTrigger : MonoBehaviour
 
         //yield return new WaitForSeconds(timePressing);
         Debug.Log("Invoking onPressed");
-        onPressed.Invoke(levelToLoad);
-    }
+        
+    }*/
 
 }

@@ -3,54 +3,75 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*[System.Serializable]
+public class MenuLevelComponents
+{
+    public string levelName;
+    public Transform storyPartParent;
+    public Transform triggerLoader;
+    public Transform animal;
+    public Transform area;
+}*/
+
+
 public class MenuSystem : MonoBehaviour
 {
-
     [Header("Menu Components")]
-    [Header("Fire")]
-    [SerializeField] FireBehaviour bonfire;
-
     [SerializeField] List<Transform> menuObjects = new List<Transform>();
-
     [SerializeField] Transform parentObjects;
     [SerializeField] Transform triggerParent;
 
-    bool isEagleOn = false;
-    BirdMovement eagle;
-    
+    [Header("Switch")]
+    [SerializeField] MenuSwitch menuSwitch;
+
+    FireBehaviour bonfire;
+    LevelController levelController;
+
+    ExitCanvas exitCanvas;
+
+    //[SerializeField] List<MenuLevelComponents> levelsComponents = new List<MenuLevelComponents>();
+    //int maxLevelIndex = 0;
+
+    private void Awake()
+    {
+        bonfire = menuSwitch.GetComponent<FireBehaviour>();
+        levelController = FindObjectOfType<LevelController>();
+        exitCanvas = GetComponentInChildren<ExitCanvas>();
+    }
+
     private void OnEnable()
     {
-        bonfire.onToggleBonfire.AddListener(DisplayMenu);
+        menuSwitch.onMenuSwitched.AddListener(DisplayMenu);
     }
 
     private void OnDisable()
     {
-        bonfire.onToggleBonfire.RemoveListener(DisplayMenu);
-    }
-
-    private void Start()
-    {
-        eagle = FindObjectOfType<BirdMovement>();
-        eagle.gameObject.SetActive(false);
-        //if(bonfire != null) menuObjects.Add(bonfire.transform);
-        ShowAllMenuObjects(false);
-        StartFire();
-
+        menuSwitch.onMenuSwitched.RemoveAllListeners();
     }
 
     private void DisplayMenu()
     {
-        
-        if (bonfire.IsOn)
+        /*if(levelController.currentLevel != LevelController.Level.menu ||
+            levelController.currentLevel != LevelController.Level.start)
         {
-            Debug.Log("Displaying Menu");
-            StartCoroutine(MenuSequence(true, 0.05f, null));
+            // Toggle ExitCanvas
+            exitCanvas.OpenExitCanvas(menuSwitch.SwitchOn);
+            bonfire.TurnFireOnOff(menuSwitch.SwitchOn);
+            return;
+        }*/
+        if(levelController.currentLevel == LevelController.Level.eagle || levelController.currentLevel == LevelController.Level.bee)
+        {
+            exitCanvas.OpenExitCanvas(menuSwitch.SwitchOn);
         }
         else
         {
-            Debug.Log("Hiding Menu");
-            StartCoroutine(MenuSequence(false, 0.05f, null));
+            StartCoroutine(MenuSequence(menuSwitch.SwitchOn, 0.05f, null));
         }
+
+        bonfire.TurnFireOnOff(menuSwitch.SwitchOn);
+
+        if (levelController.currentLevel == LevelController.Level.start)
+            levelController.ChangeLevel(LevelController.Level.menu);
     }
 
     /// <summary>
@@ -72,27 +93,33 @@ public class MenuSystem : MonoBehaviour
             {
                 if (show)
                 {
-                    Debug.Log("Fade In" + d.transform.name);
+                    //Debug.Log("Fade In" + d.transform.name);
                     StartCoroutine(d.FadeIn(0.5f));
-                    if (!isEagleOn) eagle.gameObject.SetActive(true); // only turn on eagle the first time the menu displays.
+                    //if (!isEagleOn) eagle.gameObject.SetActive(true); // only turn on eagle the first time the menu displays.
                 }
 
                 else
                 {
-                    Debug.Log("Fade Out" + d.transform.name);
-                    StartCoroutine(d.FadeOut());
+                    //Debug.Log("Fade Out" + d.transform.name);
+                    StartCoroutine(d.FadeOut(0.2f));
                 }
             }
             yield return new WaitForFixedUpdate();
         }
-        parentObjects.gameObject.SetActive(show);
         triggerParent.gameObject.SetActive(show);
+        yield return new WaitForSeconds(2f);
+        parentObjects.gameObject.SetActive(show);
+        
     }
 
-    public void StartFire()
+    public void SetMenuAtStart()
     {
-        bonfire.gameObject.SetActive(true);
-        bonfire.SetFire(false);
+        //bonfire.gameObject.SetActive();
+        //menuSwitch.TurnSwitchOnOff(false);
+        bonfire.TurnFireOnOff(menuSwitch.SwitchOn);
+        triggerParent.gameObject.SetActive(menuSwitch.SwitchOn);
+        ShowAllMenuObjects(menuSwitch.SwitchOn);
+        exitCanvas.OpenExitCanvas(false);
     }
 
     /// <summary>
@@ -111,6 +138,7 @@ public class MenuSystem : MonoBehaviour
 
     private void SetAllInvisible()
     {
+        // Helper function.
         foreach (Transform t in menuObjects)
         {
             foreach (Dissolve d in t.GetComponentsInChildren<Dissolve>())
@@ -132,6 +160,30 @@ public class MenuSystem : MonoBehaviour
                 
         }
         return false;
+    }
+
+    /// <summary>
+    /// Turns the Menu On or Off. The bonfire stays active.
+    /// </summary>
+    /// <param name="onOff"></param>
+    public void SetSwitchOnOff(bool onOff)
+    {
+        menuSwitch.TurnSwitchOnOff(onOff);
+    }
+
+    /// <summary>
+    /// Sets the switch active or inactive
+    /// </summary>
+    /// <param name="isActive">If false, the menu cannot toggle.</param>
+    public void SetSwitchActive(bool isActive)
+    {
+        menuSwitch.SwitchActive = isActive;
+    }
+
+    private void LoadUnblockedLevels()
+    {
+        // todo only load the levels the player has unblocked.
+
     }
 
 }

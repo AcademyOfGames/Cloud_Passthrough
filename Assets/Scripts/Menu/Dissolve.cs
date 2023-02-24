@@ -31,7 +31,7 @@ public class Dissolve : MonoBehaviour
 
     public IEnumerator FadeIn(float speed = 1f)
     {
-        Debug.Log("Fade In" + transform.name);      
+        //Debug.Log("Fade In" + transform.name);      
         foreach (Material m in rend.materials)
         {
             if (!m.HasProperty("_Dissolve")) break;

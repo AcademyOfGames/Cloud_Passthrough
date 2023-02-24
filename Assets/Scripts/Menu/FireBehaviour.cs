@@ -10,12 +10,12 @@ public class FireBehaviour : MonoBehaviour
     [SerializeField] ParticleSystem fire;
 
     [SerializeField] Collider fireTrigger;
-    bool isOn = false;
-    public bool IsOn { get { return isOn; } }
+    //MenuSwitch menuSwitch;
+    //public bool IsOn { get { return isOn; } }
 
-    public UnityEvent onToggleBonfire;
+    //public UnityEvent onToggleBonfire;
 
-    public void SetFire(bool on)
+    private void SetFire(bool on)
     {
         float size = 0f;
         Color flameColor = Color.white;
@@ -38,7 +38,6 @@ public class FireBehaviour : MonoBehaviour
                 flameColor = new Color(1f, 1f, 1f, 0.75f);
             }
         }
-        isOn = on;
 
         ParticleSystemRenderer rend = fire.GetComponent<ParticleSystemRenderer>();
         rend.maxParticleSize = size;
@@ -49,11 +48,11 @@ public class FireBehaviour : MonoBehaviour
     /// <summary>
     /// Toggles fire, if it's on, it turns off...
     /// </summary>
-    public void ToggleFire()
+    /*public void ToggleFire()
     {
         SetFire(!isOn);
-        onToggleBonfire.Invoke();
-    }
+        //onToggleBonfire.Invoke();
+    }*/
 
     /// <summary>
     /// Turn fire on or off.
@@ -62,15 +61,15 @@ public class FireBehaviour : MonoBehaviour
     public void TurnFireOnOff(bool onOff)
     {
         SetFire(onOff);
-        onToggleBonfire.Invoke();
+        //onToggleBonfire.Invoke();
     }
 
-    private void OnTriggerEnter(Collider other)
+    /* void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {   
             ToggleFire();
         }
-    }
+    }*/
 }
 

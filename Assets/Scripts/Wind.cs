@@ -15,8 +15,11 @@ public class Wind : MonoBehaviour
     public OVRPassthroughLayer _passthroughLayer;
     private AudioManager audio;
 
+    public LevelController levelController;
+
     private void Start()
     {
+        levelController = FindObjectOfType<LevelController>();
         audio = FindObjectOfType<AudioManager>();
         SetDarkSky();
     }
@@ -76,6 +79,9 @@ public class Wind : MonoBehaviour
         
         StartCoroutine(nameof(ShrinkMist));
         FindObjectOfType<SoundtrackPlayer>().PlaySound("tornadoSong");
+
+        //
+        levelController.ChangeLevel(LevelController.Level.bee);
     }
 
     public IEnumerator ShrinkMist()
