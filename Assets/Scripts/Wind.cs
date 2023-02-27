@@ -80,7 +80,8 @@ public class Wind : MonoBehaviour
         StartCoroutine(nameof(ShrinkMist));
         FindObjectOfType<SoundtrackPlayer>().PlaySound("tornadoSong");
 
-        //
+        //Completed level. Change Level.
+        FindObjectOfType<PlayerProgression>().UpdateProgress(LevelController.Level.eagle);
         levelController.ChangeLevel(LevelController.Level.bee);
     }
 

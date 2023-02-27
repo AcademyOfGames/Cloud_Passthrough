@@ -3,29 +3,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*[System.Serializable]
-public class MenuLevelComponents
+[System.Serializable]
+public class MenuLevelEnvironments
 {
-    public string levelName;
-    public Transform storyPartParent;
-    public Transform triggerLoader;
-    public Transform animal;
-    public Transform area;
-}*/
+    public MenuLevelEnvironments()
+    {
+        blocked = true;
+    }
 
+    public string levelName;
+    public Transform area;
+    public bool blocked = true;
+}
 
 public class MenuSystem : MonoBehaviour
 {
     [Header("Menu Components")]
-    [SerializeField] List<Transform> menuObjects = new List<Transform>();
+    [SerializeField] List<Transform> menuObjects = new List<Transform>(); // todo replace with level environments.
+
     [SerializeField] Transform parentObjects;
     [SerializeField] Transform triggerParent;
+
+    [SerializeField] List<MenuLevelEnvironments> levelEnvironments = new List<MenuLevelEnvironments>();
 
     [Header("Switch")]
     [SerializeField] MenuSwitch menuSwitch;
 
     FireBehaviour bonfire;
     LevelController levelController;
+    PlayerProgression playerProgress;
 
     ExitCanvas exitCanvas;
 
@@ -37,6 +43,7 @@ public class MenuSystem : MonoBehaviour
         bonfire = menuSwitch.GetComponent<FireBehaviour>();
         levelController = FindObjectOfType<LevelController>();
         exitCanvas = GetComponentInChildren<ExitCanvas>();
+        playerProgress = GetComponent<PlayerProgression>();
     }
 
     private void OnEnable()
@@ -51,14 +58,6 @@ public class MenuSystem : MonoBehaviour
 
     private void DisplayMenu()
     {
-        /*if(levelController.currentLevel != LevelController.Level.menu ||
-            levelController.currentLevel != LevelController.Level.start)
-        {
-            // Toggle ExitCanvas
-            exitCanvas.OpenExitCanvas(menuSwitch.SwitchOn);
-            bonfire.TurnFireOnOff(menuSwitch.SwitchOn);
-            return;
-        }*/
         if(levelController.currentLevel == LevelController.Level.eagle || levelController.currentLevel == LevelController.Level.bee)
         {
             exitCanvas.OpenExitCanvas(menuSwitch.SwitchOn);
@@ -84,32 +83,37 @@ public class MenuSystem : MonoBehaviour
         yield return new WaitForSeconds(delay);
         if(show)
             SetAllInvisible();
-        foreach (Transform t in menuObjects)
+        // Display Environments.
+        foreach (MenuLevelEnvironments environment in levelEnvironments)
         {
-            if (IsInList(t, exceptions)) continue;
-            t.gameObject.SetActive(true);
-            Dissolve[] dissolves = t.GetComponentsInChildren<Dissolve>(true);
-            foreach(Dissolve d in dissolves)
+            if (environment.blocked) continue;
+            foreach (Transform t in environment.area)
             {
-                if (show)
+                if (IsInList(t, exceptions)) continue;
+                //t.gameObject.SetActive(true);
+                Dissolve[] dissolves = t.GetComponentsInChildren<Dissolve>();
+                foreach (Dissolve d in dissolves)
                 {
-                    //Debug.Log("Fade In" + d.transform.name);
-                    StartCoroutine(d.FadeIn(0.5f));
-                    //if (!isEagleOn) eagle.gameObject.SetActive(true); // only turn on eagle the first time the menu displays.
-                }
+                    if (d == null) continue;
+                    if (show)
+                    {
+                        Debug.Log("Fade In" + d.transform.name);
+                        StartCoroutine(d.FadeIn(0.5f));
+                    }
 
-                else
-                {
-                    //Debug.Log("Fade Out" + d.transform.name);
-                    StartCoroutine(d.FadeOut(0.2f));
+                    else
+                    {
+                        //Debug.Log("Fade Out" + d.transform.name);
+                        StartCoroutine(d.FadeOut(0.2f));
+                    }
                 }
+                yield return new WaitForSeconds(0.1f);
             }
-            yield return new WaitForFixedUpdate();
         }
         triggerParent.gameObject.SetActive(show);
-        yield return new WaitForSeconds(2f);
-        parentObjects.gameObject.SetActive(show);
-        
+
+        yield return new WaitForSeconds(5f);
+        ShowAllMenuObjects(show);
     }
 
     public void SetMenuAtStart()
@@ -120,6 +124,7 @@ public class MenuSystem : MonoBehaviour
         triggerParent.gameObject.SetActive(menuSwitch.SwitchOn);
         ShowAllMenuObjects(menuSwitch.SwitchOn);
         exitCanvas.OpenExitCanvas(false);
+
     }
 
     /// <summary>
@@ -128,24 +133,29 @@ public class MenuSystem : MonoBehaviour
     /// <param name="display"></param>
     private void ShowAllMenuObjects(bool display)
     {
-        Debug.Log("Set all inactive");
-        //parentObjects.gameObject.SetActive(display);
-        foreach(Transform t in menuObjects)
+        foreach (MenuLevelEnvironments env in levelEnvironments)
         {
-            t.gameObject.SetActive(display);
+            if (env.blocked) continue;
+            env.area.gameObject.SetActive(display);
         }
     }
 
     private void SetAllInvisible()
-    {
-        // Helper function.
-        foreach (Transform t in menuObjects)
+    {        
+        foreach(MenuLevelEnvironments env in levelEnvironments)
         {
-            foreach (Dissolve d in t.GetComponentsInChildren<Dissolve>())
+            if (env.blocked) continue;
+            foreach(Transform t in env.area)
             {
-                d.SetInvisible();
+                foreach (Dissolve d in t.GetComponentsInChildren<Dissolve>(true))
+                {
+                    if (d == null) continue;
+                    d.SetInvisible();
+                }
             }
+            env.area.gameObject.SetActive(true);
         }
+        
     }
 
     private bool IsInList(Transform transform, List<Transform> list)
@@ -180,10 +190,22 @@ public class MenuSystem : MonoBehaviour
         menuSwitch.SwitchActive = isActive;
     }
 
-    private void LoadUnblockedLevels()
+    public void SetBlockedEnvironments()
     {
-        // todo only load the levels the player has unblocked.
+        // only load the levels the player has unblocked.
+        // Check Level progression to decide how many levels to display
+        int maxIndex = playerProgress.GetMaxCompletedIndex();
+        for (int i = 0; i < levelEnvironments.Count; i++)
+        {
+            // Ex. Max completed is eagle. maxIndex = 0, unblock all up to next level -> maxIndex + 1
+            if (i <= maxIndex + 1)
+            {
+                levelEnvironments[i].blocked = false;
+                continue;
+            }
 
+            levelEnvironments[i].area.gameObject.SetActive(false);
+        }
     }
 
 }

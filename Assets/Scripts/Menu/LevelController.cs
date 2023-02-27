@@ -19,14 +19,18 @@ public class LevelController : MonoBehaviour
     [SerializeField] Transform beeStory;
     [SerializeField] Transform bee;
 
+    PlayerProgression playerProgress;
+
     StoryParts storyParts;
     MenuSystem menu;
-    Wind wind;
+    Wind wind; // for sky
+    StumpBehavior stump; // for bee
     
 
     private void Start()
     {
-        
+        playerProgress = GetComponent<PlayerProgression>();
+        stump = FindObjectOfType<StumpBehavior>(true);
         storyParts = FindObjectOfType<StoryParts>();
         menu = GetComponent<MenuSystem>();
         wind = FindObjectOfType<Wind>(true);
@@ -79,8 +83,8 @@ public class LevelController : MonoBehaviour
                 break;
 
             case Level.menu:
-                // todo Check Level progression to decide how many levels to display
-                
+                menu.SetBlockedEnvironments();
+
                 currentLevel = Level.menu;
                 // Eagle.
                 eagle.gameObject.SetActive(true);
@@ -117,7 +121,7 @@ public class LevelController : MonoBehaviour
                 eagle.gameObject.SetActive(false);
 
                 // Bee
-                beeStory.gameObject.SetActive(true);
+                stump.ActivateBeeSystem();
 
                 // Menu
                 menu.SetSwitchActive(true);

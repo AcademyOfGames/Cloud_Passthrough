@@ -56,6 +56,9 @@ public class Dissolve : MonoBehaviour
 
     public void SetInvisible()
     {
+        if (rend == null)
+            rend = GetComponent<Renderer>();
+
         foreach (Material m in rend.materials)
         {
             if (!m.HasProperty("_Dissolve")) break;

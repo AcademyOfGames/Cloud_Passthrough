@@ -23,7 +23,9 @@ public class ControlUIManager : MonoBehaviour
     public void ToggleEagleControlUI(bool toggle)
     {
         print("Toggling eagle controllers to " + toggle);
-        FindObjectOfType<BirdStateChanger>().customControlsUnlocked = toggle;
+        BirdStateChanger bird = FindObjectOfType<BirdStateChanger>();
+        if(bird != null)
+            bird.customControlsUnlocked = toggle;
 
         leftEagleControls.SetActive(toggle);
         rightEagleControls.SetActive(toggle);

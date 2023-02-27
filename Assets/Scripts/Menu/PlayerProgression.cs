@@ -5,15 +5,26 @@ using UnityEngine;
 
 public class PlayerProgression : MonoBehaviour
 {
-    LevelController.Level maxCompleted = LevelController.Level.start;
+    public LevelController.Level maxCompleted = LevelController.Level.eagle;
 
-    void CheckMaxCompleted(LevelController.Level currentlyPlaying)
+    /// <summary>
+    /// Compares the highest level completed with the current level the player is playing.
+    /// Updates the highest level completed if currentlyPlaying is higher than current progress.
+    /// </summary>
+    /// <param name="nameLevelCompleted"></param>
+    public void UpdateProgress(LevelController.Level nameLevelCompleted)
     {
-        int indexCurrent = Convert.ToInt32(currentlyPlaying);
+        int indexCurrent = Convert.ToInt32(nameLevelCompleted);
         int indexMaxPlayed = Convert.ToInt32(maxCompleted);
 
         if (indexCurrent > indexMaxPlayed)
-            maxCompleted = currentlyPlaying;
+            maxCompleted = nameLevelCompleted;
+    }
+
+    public int GetMaxCompletedIndex()
+    {
+        // -2 is the offset. This function does not consider the start and menu as levels.
+        return Convert.ToInt32(maxCompleted) - 2;
     }
 
     // todo save this settings
