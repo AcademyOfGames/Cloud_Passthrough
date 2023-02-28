@@ -19,8 +19,6 @@ public class MenuLevelEnvironments
 public class MenuSystem : MonoBehaviour
 {
     [Header("Menu Components")]
-    [SerializeField] List<Transform> menuObjects = new List<Transform>(); // todo replace with level environments.
-
     [SerializeField] Transform parentObjects;
     [SerializeField] Transform triggerParent;
 
@@ -35,12 +33,9 @@ public class MenuSystem : MonoBehaviour
 
     ExitCanvas exitCanvas;
 
-    //[SerializeField] List<MenuLevelComponents> levelsComponents = new List<MenuLevelComponents>();
-    //int maxLevelIndex = 0;
-
     private void Awake()
     {
-        bonfire = menuSwitch.GetComponent<FireBehaviour>();
+        bonfire = FindObjectOfType<FireBehaviour>();
         levelController = FindObjectOfType<LevelController>();
         exitCanvas = GetComponentInChildren<ExitCanvas>();
         playerProgress = GetComponent<PlayerProgression>();

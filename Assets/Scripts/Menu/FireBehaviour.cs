@@ -9,12 +9,6 @@ public class FireBehaviour : MonoBehaviour
     [SerializeField] Renderer fireSheet;
     [SerializeField] ParticleSystem fire;
 
-    [SerializeField] Collider fireTrigger;
-    //MenuSwitch menuSwitch;
-    //public bool IsOn { get { return isOn; } }
-
-    //public UnityEvent onToggleBonfire;
-
     private void SetFire(bool on)
     {
         float size = 0f;
@@ -46,30 +40,13 @@ public class FireBehaviour : MonoBehaviour
     }
 
     /// <summary>
-    /// Toggles fire, if it's on, it turns off...
-    /// </summary>
-    /*public void ToggleFire()
-    {
-        SetFire(!isOn);
-        //onToggleBonfire.Invoke();
-    }*/
-
-    /// <summary>
     /// Turn fire on or off.
     /// </summary>
     /// <param name="onOff"></param>
     public void TurnFireOnOff(bool onOff)
     {
         SetFire(onOff);
-        //onToggleBonfire.Invoke();
     }
 
-    /* void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {   
-            ToggleFire();
-        }
-    }*/
 }
 
