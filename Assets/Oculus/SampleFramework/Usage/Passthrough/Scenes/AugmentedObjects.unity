@@ -14474,7 +14474,7 @@ PrefabInstance:
     - target: {fileID: 5116519913715991082, guid: c1b020bfe499a4bad9a263e2671bc923,
         type: 3}
       propertyPath: maxCompleted
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5832281053586233688, guid: c1b020bfe499a4bad9a263e2671bc923,
         type: 3}

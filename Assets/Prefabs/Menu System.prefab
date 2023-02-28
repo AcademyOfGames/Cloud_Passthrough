@@ -53376,8 +53376,9 @@ MonoBehaviour:
   - {fileID: 8714824151014891105}
   - {fileID: 8979496111489018835}
   - {fileID: 2677275551832132618}
-  fireSheet: {fileID: 2807650016654483125}
   fire: {fileID: 4996291494257321367}
+  blackFireTexture: {fileID: 2800000, guid: e56a6c5e5410141529c537ab56a8bf5a, type: 3}
+  fireTexture: {fileID: 2800000, guid: e178de69e9f05ef4fa6a8a492e8e706a, type: 3}
 --- !u!1 &8708917706993360977
 GameObject:
   m_ObjectHideFlags: 0

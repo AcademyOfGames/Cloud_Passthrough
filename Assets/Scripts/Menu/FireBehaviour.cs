@@ -6,37 +6,47 @@ using UnityEngine.Events;
 public class FireBehaviour : MonoBehaviour
 {
     [SerializeField] List<ParticleSystem> particles;
-    [SerializeField] Renderer fireSheet;
     [SerializeField] ParticleSystem fire;
+
+    [Header("Textures")]
+    // Textures for particle system material.
+    [SerializeField] Texture blackFireTexture;
+    [SerializeField] Texture fireTexture;
 
     private void SetFire(bool on)
     {
-        float size = 0f;
-        Color flameColor = Color.white;
+        // particles
         foreach (ParticleSystem particle in particles)
         {
             if (!on)
             {
-                // off ish
+                // off
                 if (particle.isPlaying)
                     particle.Stop(false, ParticleSystemStopBehavior.StopEmitting);
-                size = 0.5f;
-                flameColor = new Color(0.08261337f, 0.08250264f, 0.1698113f, 0.75f);
             }
             else
             {
                 // normal
                 if (!particle.isPlaying)
                     particle.Play();
-                size = 2.7f;
-                flameColor = new Color(1f, 1f, 1f, 0.75f);
             }
         }
 
+        // fire
+        float size = 2.7f;
+        Color flameColor = new Color(1f, 1f, 1f, 0.75f);
+        Texture newFireTexture = fireTexture;
+        if (!on)
+        {
+            flameColor = Color.white;
+            newFireTexture = blackFireTexture;
+            size = 0.75f;
+        }
         ParticleSystemRenderer rend = fire.GetComponent<ParticleSystemRenderer>();
         rend.maxParticleSize = size;
         Material fireMat = fire.GetComponent<ParticleSystemRenderer>().sharedMaterial;
         fireMat.SetColor("_TintColor", flameColor);
+        fireMat.SetTexture("_MainTex", newFireTexture);
     }
 
     /// <summary>
