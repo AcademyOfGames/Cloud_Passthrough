@@ -90,10 +90,8 @@ public class BirdStateChanger : MonoBehaviour
         story = FindObjectOfType<StoryParts>();
         bird = GetComponent<BirdMovement>();
         SetBirdSettings();
-
-
-
     }
+
     public void UpdateSettings(BirdStateChanger.BirdSettings newSettings)
     {
         //go through each bird movement variable and switch it to the new setting

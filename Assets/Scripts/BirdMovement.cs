@@ -68,7 +68,7 @@ public class BirdMovement : MonoBehaviour
     public GameObject grabFishUI;
     public GameObject billboardEagle;
 
-    void Start()
+    void OnEnable()
     {
         story = FindObjectOfType<StoryParts>();
         birdAudio = GetComponent<BirdAudioManager>();
@@ -86,7 +86,6 @@ public class BirdMovement : MonoBehaviour
         
         StartCoroutine("RandomSounds");
     }
-
 
     IEnumerator RandomSounds()
     {

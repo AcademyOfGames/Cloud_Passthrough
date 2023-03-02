@@ -28,44 +28,32 @@ public class MenuSystem : MonoBehaviour
     [SerializeField] MenuSwitch menuSwitch;
 
     FireBehaviour bonfire;
-    LevelController levelController;
     PlayerProgression playerProgress;
 
     ExitCanvas exitCanvas;
 
+    bool isDisplayed = false;
+
     private void Awake()
     {
         bonfire = FindObjectOfType<FireBehaviour>();
-        levelController = FindObjectOfType<LevelController>();
         exitCanvas = GetComponentInChildren<ExitCanvas>();
         playerProgress = GetComponent<PlayerProgression>();
     }
 
-    private void OnEnable()
+    public void DisplayMenu()
     {
-        menuSwitch.onMenuSwitched.AddListener(DisplayMenu);
-    }
-
-    private void OnDisable()
-    {
-        menuSwitch.onMenuSwitched.RemoveAllListeners();
-    }
-
-    private void DisplayMenu()
-    {
-        if(levelController.currentLevel == LevelController.Level.eagle || levelController.currentLevel == LevelController.Level.bee)
-        {
-            exitCanvas.OpenExitCanvas(menuSwitch.SwitchOn);
-        }
-        else
-        {
-            StartCoroutine(MenuSequence(menuSwitch.SwitchOn, 0.05f, null));
-        }
-
+        if (isDisplayed) return;
+        StartCoroutine(MenuSequence(menuSwitch.SwitchOn, 0.05f, null));
         bonfire.TurnFireOnOff(menuSwitch.SwitchOn);
+        isDisplayed = true;
+    }
 
-        if (levelController.currentLevel == LevelController.Level.start)
-            levelController.ChangeLevel(LevelController.Level.menu);
+    public void HideMenu()
+    {
+        StartCoroutine(MenuSequence(false, 0.05f, null));
+        bonfire.TurnFireOnOff(menuSwitch.SwitchOn);
+        isDisplayed = false;
     }
 
     /// <summary>
@@ -92,7 +80,6 @@ public class MenuSystem : MonoBehaviour
                     if (d == null) continue;
                     if (show)
                     {
-                        Debug.Log("Fade In" + d.transform.name);
                         StartCoroutine(d.FadeIn(0.5f));
                     }
 
@@ -119,7 +106,7 @@ public class MenuSystem : MonoBehaviour
         triggerParent.gameObject.SetActive(menuSwitch.SwitchOn);
         ShowAllMenuObjects(menuSwitch.SwitchOn);
         exitCanvas.OpenExitCanvas(false);
-
+        exitCanvas.SetExitCanvasActive(false);
     }
 
     /// <summary>
@@ -201,6 +188,11 @@ public class MenuSystem : MonoBehaviour
 
             levelEnvironments[i].area.gameObject.SetActive(false);
         }
+    }
+
+    public ExitCanvas GetExitCanvas()
+    {
+        return exitCanvas;
     }
 
 }

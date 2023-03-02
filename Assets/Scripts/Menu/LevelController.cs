@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelController : MonoBehaviour
 {
     public enum Level {start, menu, eagle, bee , after};
-    public Level currentLevel = Level.start;
+    public Level currentLevel = Level.eagle;
 
     // todo? enum for state playing, pause
 
@@ -19,16 +19,19 @@ public class LevelController : MonoBehaviour
     [SerializeField] Transform beeStory;
     [SerializeField] Transform bee;
 
+    [SerializeField] Transform bucket;
+
     PlayerProgression playerProgress;
 
     StoryParts storyParts;
     MenuSystem menu;
     Wind wind; // for sky
     StumpBehavior stump; // for bee
-    
+    MenuSwitch menuSwitch;
 
     private void Start()
     {
+        menuSwitch = FindObjectOfType<MenuSwitch>();
         playerProgress = GetComponent<PlayerProgression>();
         stump = FindObjectOfType<StumpBehavior>(true);
         storyParts = FindObjectOfType<StoryParts>();
@@ -39,6 +42,8 @@ public class LevelController : MonoBehaviour
 
         ChangeLevel(Level.start);
     }
+
+
 
     private void OnEnable()
     {
@@ -61,7 +66,8 @@ public class LevelController : MonoBehaviour
     {
         // Change Level
         Debug.Log("Changing Level");
-        //List<Transform> toIgnore = new List<Transform>();
+        if (level == currentLevel) return;
+
         switch (level)
         {
             case Level.start:
@@ -79,40 +85,55 @@ public class LevelController : MonoBehaviour
                 // Menu
                 menu.SetMenuAtStart(); // configuration set by MenuSwitch
                 menu.SetSwitchActive(true);
+                menuSwitch.onMenuSwitched.AddListener(DisplayLevelEnviroments);
+
                 currentLevel = Level.start;
                 break;
 
             case Level.menu:
+                // Reset
+                menu.DisplayMenu();
+                menu.GetExitCanvas().SetExitCanvasActive(true);
+                bucket.gameObject.SetActive(false);
+
+                // Check level progression
                 menu.SetBlockedEnvironments();
 
                 currentLevel = Level.menu;
+
                 // Eagle.
+                eagle.GetComponent<BirdStateChanger>().SwitchState(BirdStateChanger.BirdState.GoToLanding);
                 eagle.gameObject.SetActive(true);
-                // todo set eagle to land to stick when going back to menu
+                // todo set eagle to face correct angle.
                 eagleStory.gameObject.SetActive(false);
-                // Menu.
-                menu.SetSwitchActive(false);
+
+                // Bee
+                bee.gameObject.SetActive(false);
+                
                 break;
 
             case Level.eagle:
+                // Menu.
+                menuSwitch.TurnSwitchOnOff(false);
+                menu.HideMenu();
                 
                 StopAllCoroutines();
                 Debug.Log("Starting Eagle Level");
+
                 // Eagle
-                storyParts.StartIntroSequence();
                 eagleStory.gameObject.SetActive(true);
-
-                // Menu
-                menu.SetSwitchActive(true);
-                menu.SetSwitchOnOff(false);
-
+                storyParts.StartIntroSequence();
+                
                 //Sky
                 wind.ResetSky(); // change passtrough layer.
                 currentLevel = Level.eagle;
                 break;
 
             case Level.bee:
-                
+                // Menu.
+                menuSwitch.TurnSwitchOnOff(false);
+                menu.HideMenu();
+
                 StopAllCoroutines();
                 Debug.Log("Starting Bee Level");
 
@@ -123,13 +144,11 @@ public class LevelController : MonoBehaviour
                 // Bee
                 stump.ActivateBeeSystem();
 
-                // Menu
-                menu.SetSwitchActive(true);
-                menu.SetSwitchOnOff(false);
                 currentLevel = Level.bee;
                 break;
 
             case Level.after:
+                menu.HideMenu();
                 currentLevel = Level.after;
                 break;
         }
@@ -139,5 +158,11 @@ public class LevelController : MonoBehaviour
     {
         Debug.Log("Exit Application");
         Application.Quit();
+    }
+
+    private void DisplayLevelEnviroments()
+    {
+        ChangeLevel(Level.menu);
+        menuSwitch.onMenuSwitched.RemoveListener(DisplayLevelEnviroments);
     }
 }
