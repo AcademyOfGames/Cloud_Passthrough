@@ -132,6 +132,18 @@ public class BirdMovement : MonoBehaviour
         waypointViz.transform.localScale *= .5f;
     }
 
+    internal void GoToNest()
+    { 
+        birdState.SwitchState(BirdStateChanger.BirdState.TakeOff);
+        Invoke("WaitAndGoToNest", 6.5f);
+    }
+
+    void WaitAndGoToNest()
+    {
+        landingSpot = branchLandingSpot;
+        birdState.SwitchState(BirdStateChanger.BirdState.GoToLanding);
+    }
+
     public IEnumerator FacePlayer()
     {
         rotationGoal = Quaternion.LookRotation(player.position - transform.position);
@@ -203,8 +215,13 @@ public class BirdMovement : MonoBehaviour
                     _stump.RemoveFish(prey.gameObject);
                 }
 
-                
-                //story.StartIntroSequence();
+                print("Landing at " + landingSpot);
+                if(landingSpot == branchLandingSpot)
+                {
+                    print("Intro sequence started");
+                    story.StartIntroSequence();
+
+                }
 
                 transform.position = Vector3.MoveTowards(transform.position, landingSpot.position + Vector3.up * .1f, 1f * Time.deltaTime);
                 

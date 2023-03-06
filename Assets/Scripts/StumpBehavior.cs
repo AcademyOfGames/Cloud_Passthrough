@@ -50,8 +50,9 @@ public class StumpBehavior : MonoBehaviour
         fishSystemOn = true;
         gameObject.SetActive(true); 
         fishBucket.SetActive(true);
-        
-        SetStump();
+        seedBucket.SetActive(false);
+
+        //SetStump();
     }
 
     private void SetStump()
@@ -82,7 +83,7 @@ public class StumpBehavior : MonoBehaviour
     public void ActivateBeeSystem()
     {
         DeactivateFishBucket();
-        SetStump();
+        //SetStump();
         gameObject.SetActive(true);
         beeSystem.gameObject.SetActive(true);
         seedBucket.SetActive(true);

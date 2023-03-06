@@ -51,15 +51,21 @@ public class Wind : MonoBehaviour
         float timePassed = 0;
         float newContrast = -.1f;
         float newBrightness = -.04f;
-        
+
+        float startContrast = _passthroughLayer.colorMapEditorContrast;
+        float startBrightness = _passthroughLayer.colorMapEditorBrightness;
+
+        float currentBrightness = startBrightness;
+        float currentContrast = startContrast;
         while (timePassed < 1)
         {
-            timePassed += Time.deltaTime * .03f;
+            timePassed += Time.deltaTime * .1f;
 
-            newContrast = Mathf.Lerp( .3f,newContrast, timePassed);
-            newBrightness = Mathf.Lerp(-.4f,newBrightness,  timePassed);
-            _passthroughLayer.colorMapEditorContrast = newContrast;
-            _passthroughLayer.colorMapEditorBrightness = newBrightness;            
+            currentContrast = Mathf.Lerp(startContrast, newContrast, timePassed);
+            currentBrightness = Mathf.Lerp(startBrightness, newBrightness,  timePassed);
+
+            _passthroughLayer.colorMapEditorContrast = currentContrast;
+            _passthroughLayer.colorMapEditorBrightness = currentBrightness;            
             yield return new WaitForFixedUpdate();
         }
     }

@@ -29,6 +29,7 @@ public class LevelController : MonoBehaviour
     StumpBehavior stump; // for bee
     MenuSwitch menuSwitch;
 
+    public TutorialHand hand;
     private void Start()
     {
         menuSwitch = FindObjectOfType<MenuSwitch>();
@@ -122,10 +123,17 @@ public class LevelController : MonoBehaviour
 
                 // Eagle
                 eagleStory.gameObject.SetActive(true);
-                storyParts.StartIntroSequence();
-                
+                eagle.GetComponent<BirdMovement>().GoToNest();
+
+                foreach (var item in FindObjectsOfType<BrickLogic>())
+                {
+                    item.ActivateBrick();
+                }
+                //storyParts.StartIntroSequence();
+
                 //Sky
-                wind.ResetSky(); // change passtrough layer.
+                IEnumerator resetSky = wind.ResetSky();
+                StartCoroutine(resetSky);// change passtrough layer.
                 currentLevel = Level.eagle;
                 break;
 
@@ -133,6 +141,8 @@ public class LevelController : MonoBehaviour
                 // Menu.
                 menuSwitch.TurnSwitchOnOff(false);
                 menu.HideMenu();
+
+                hand.EquipGlove();
 
                 StopAllCoroutines();
                 Debug.Log("Starting Bee Level");

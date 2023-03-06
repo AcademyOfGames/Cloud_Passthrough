@@ -1822,6 +1822,8 @@ public class OVRManager : MonoBehaviour, OVRMixedRealityCaptureConfiguration
 
 	private void Update()
 	{
+
+		print("*** " + trackingOriginType);
 		//Only if we're using the XR SDK do we have to check if OVRManager isn't yet initialized, and init it.
 		//If we're on legacy, we know initialization occurred properly in Awake()
 #if USING_XR_SDK

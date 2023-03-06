@@ -20,17 +20,17 @@ public class BrickLogic : MonoBehaviour
         renderer = GetComponent<MeshRenderer>();
         renderer.enabled = false;
 
-        Invoke(nameof(ActivateBrick),7.7f);
+       // Invoke(nameof(ActivateBrick),7.7f);
     }
 
-    void ActivateBrick()
+    public void ActivateBrick()
     {
         _activated = true;
 
     }
     private void OnCollisionEnter(Collision other)
     {
-        if (_activated )
+        if (_activated && other.collider.gameObject.CompareTag("Tree") )
         {
            // StartCoroutine(nameof(TurnColliderOffAndOn));
 

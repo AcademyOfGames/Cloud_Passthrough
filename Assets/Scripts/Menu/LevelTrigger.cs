@@ -13,6 +13,7 @@ public class LevelTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        print("trigger entered " + name + " and " + other.name);
         if(other.CompareTag("Player"))
             onPressed.Invoke(levelToLoad);
         //StartCoroutine(PressingButtonSequence());

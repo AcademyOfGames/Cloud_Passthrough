@@ -50,7 +50,7 @@ public class SeedBehavior : MonoBehaviour
     {
         controlUIManager.ChangeSeedText("Grab Seeds");
 
-        flowers.gameObject.SetActive(true);
+       // flowers.gameObject.SetActive(true);
         Invoke("ControlVisualOn", 2);
         //seedParticleSystem.startSpeed = handSpeed.magnitude *5;
         grabbed = false;
@@ -79,9 +79,13 @@ public class SeedBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        print("Entering object " + other.name);
         if (other.gameObject.CompareTag("floor"))
         {
-            IEnumerator grow =  flowers.Grow(other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position));
+            Vector3 spawnPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+            print("Spawn point " + transform.position);
+
+            IEnumerator grow =  flowers.Grow(transform.position);
             StartCoroutine(grow);
         }
     }

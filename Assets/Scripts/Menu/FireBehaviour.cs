@@ -70,7 +70,7 @@ public class FireBehaviour : MonoBehaviour
             //flameColor = Color.white;
             //newFireTexture = blackFireTexture;
             flameColor = new Color(1f, 1f, 1f, 0.5f);
-            size = 0.1f;
+            size = 0f;
         }
         ParticleSystemRenderer rend = fire.GetComponent<ParticleSystemRenderer>();
         rend.maxParticleSize = size;

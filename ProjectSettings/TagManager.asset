@@ -8,6 +8,7 @@ TagManager:
   - LandingSpot
   - Brick
   - fire
+  - Tree
   layers:
   - Default
   - TransparentFX
