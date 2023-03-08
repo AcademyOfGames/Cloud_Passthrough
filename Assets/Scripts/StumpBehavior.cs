@@ -42,6 +42,8 @@ public class StumpBehavior : MonoBehaviour
     void Start()
     {
         FindObjectOfType<GoogleSheets>().AddEventData("Stump appeared", SystemInfo.deviceUniqueIdentifier);
+        new Cognitive3D.CustomEvent("Stump appeared");
+
         fish = new List<GameObject>();
     }
 

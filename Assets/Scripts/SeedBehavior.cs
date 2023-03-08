@@ -38,6 +38,7 @@ public class SeedBehavior : MonoBehaviour
     void IsGrabbed()
     {
         FindObjectOfType<GoogleSheets>().AddEventData("Seeds grabbed", SystemInfo.deviceUniqueIdentifier);
+        new Cognitive3D.CustomEvent("Seeds grabbed");
 
         controllerVisual.SetActive(false);
         seedVisual.SetActive(true);

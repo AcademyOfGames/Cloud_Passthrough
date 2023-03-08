@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using UnityEditor;
 using UnityEngine.InputSystem;
+
 public class BirdStateChanger : MonoBehaviour
 {
     OVRInput.Controller controllerR = OVRInput.Controller.RTouch;
@@ -227,7 +228,7 @@ public class BirdStateChanger : MonoBehaviour
                 if (bird.landingSpot == bird.handLandingSpot)
                 {
                     FindObjectOfType<GoogleSheets>().AddEventData("Eagle on Hand", SystemInfo.deviceUniqueIdentifier);
-
+                    new Cognitive3D.CustomEvent("Eagle on Hand");
                     FindObjectOfType<ControlUIManager>().ToggleEagleControlUI(true);
                 }
 
@@ -263,7 +264,7 @@ public class BirdStateChanger : MonoBehaviour
 
         currentState = birdState;
         FindObjectOfType<GoogleSheets>().AddEventData("Bird State " + currentState, SystemInfo.deviceUniqueIdentifier);
-        
+        new Cognitive3D.CustomEvent($"Bird State {currentState}");
         
     }
 
@@ -316,7 +317,7 @@ public class BirdStateChanger : MonoBehaviour
             if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch) || Keyboard.current[Key.S].wasPressedThisFrame)
             {
                 FindObjectOfType<GoogleSheets>().AddEventData("Added more fish", SystemInfo.deviceUniqueIdentifier);
-
+                new Cognitive3D.CustomEvent("Added more fish");
                 if (stump.fishSystemOn)
                 {
                     stump.SpawnMorePrey();
@@ -327,7 +328,7 @@ public class BirdStateChanger : MonoBehaviour
             if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch) || Keyboard.current[Key.S].wasPressedThisFrame)
             {
                 FindObjectOfType<GoogleSheets>().AddEventData("SlowMo Pressed", SystemInfo.deviceUniqueIdentifier);
-
+                new Cognitive3D.CustomEvent("SlowMo Pressed");
                 bird.ToggleSloMo(true);
             }
 

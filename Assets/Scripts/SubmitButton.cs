@@ -14,11 +14,13 @@ public class SubmitButton : GenericVRClick
     {
         base.Click();
         FindObjectOfType<GoogleSheets>().AddEventData(type + " clicked.", SystemInfo.deviceUniqueIdentifier);
+        new Cognitive3D.CustomEvent($"{type} clicked");
 
         switch (type)
         {
             case ButtonType.PlayAgain:
                 FindObjectOfType<GoogleSheets>().AddEventData(" Email Entered " + feedback.emailInput.text, SystemInfo.deviceUniqueIdentifier);
+                new Cognitive3D.CustomEvent($"Email entered. {feedback.emailInput.text}");
 
                 SceneManager.LoadScene(0);
 
