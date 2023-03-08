@@ -1,0 +1,160 @@
+*****************************
+***********SYSTEM************
+*****************************
+Unity Version:2020.3.35f1
+OS:Mac OS X 12.4.0
+System Time: 2023-03-08 2:25:50 PM
+
+*****************************
+***********PROJECT***********
+*****************************
+Scripting Define Symbols: C3D_DEFAULT
+Packages:
+  com.cognitive3d.c3d-sdk 1.0.6
+  com.unity.2d.sprite 1.0.0
+  com.unity.ads 3.7.5
+  com.unity.analytics 3.6.12
+  com.unity.collab-proxy 1.15.17
+  com.unity.ide.rider 2.0.7
+  com.unity.ide.visualstudio 2.0.15
+  com.unity.ide.vscode 1.2.5
+  com.unity.purchasing 4.1.4
+  com.unity.render-pipelines.universal 10.9.0
+  com.unity.test-framework 1.1.31
+  com.unity.textmeshpro 3.0.6
+  com.unity.timeline 1.4.8
+  com.unity.ugui 1.0.0
+  com.unity.xr.interaction.toolkit 2.0.2
+  com.unity.xr.oculus 1.12.0
+  com.unity.xr.openxr 1.4.1
+  com.unity.modules.ai 1.0.0
+  com.unity.modules.androidjni 1.0.0
+  com.unity.modules.animation 1.0.0
+  com.unity.modules.assetbundle 1.0.0
+  com.unity.modules.audio 1.0.0
+  com.unity.modules.cloth 1.0.0
+  com.unity.modules.director 1.0.0
+  com.unity.modules.imageconversion 1.0.0
+  com.unity.modules.imgui 1.0.0
+  com.unity.modules.jsonserialize 1.0.0
+  com.unity.modules.particlesystem 1.0.0
+  com.unity.modules.physics 1.0.0
+  com.unity.modules.physics2d 1.0.0
+  com.unity.modules.screencapture 1.0.0
+  com.unity.modules.terrain 1.0.0
+  com.unity.modules.terrainphysics 1.0.0
+  com.unity.modules.tilemap 1.0.0
+  com.unity.modules.ui 1.0.0
+  com.unity.modules.uielements 1.0.0
+  com.unity.modules.umbra 1.0.0
+  com.unity.modules.unityanalytics 1.0.0
+  com.unity.modules.unitywebrequest 1.0.0
+  com.unity.modules.unitywebrequestassetbundle 1.0.0
+  com.unity.modules.unitywebrequestaudio 1.0.0
+  com.unity.modules.unitywebrequesttexture 1.0.0
+  com.unity.modules.unitywebrequestwww 1.0.0
+  com.unity.modules.vehicles 1.0.0
+  com.unity.modules.video 1.0.0
+  com.unity.modules.vr 1.0.0
+  com.unity.modules.wind 1.0.0
+  com.unity.modules.xr 1.0.0
+SDK Version: 1.0.6
+Api Key: ****JR7D
+Developer Key: ****I0TO
+Enable Logging: True
+Enable Development Logging: False
+Gaze Type: Physics
+Snapshot Interval: 0.1
+Dynamic Object Search in Parent: True
+Dynamic Object Layer Mask: -1
+Track GPS Location: False
+GPS Accuracy: 2
+Record Floor Position: True
+Automatic Send Timer: 10
+Gaze Snapshot Batch Size: 64
+Event Snapshot Batch Size: 64
+Dynamic Snapshot Batch Size: 128
+Sensor Snapshot Batch Size: 128
+Fixation Snapshot Batch Size: 64
+Save Data to Local Cache if no internet connection: True
+Cache Size (bytes): 104857600
+Cache Size (mb): 100.0 MB
+Custom Protocol: https
+Custom Gateway: data.cognitive3d.com
+Custom Viewer: viewer.cognitive3d.com/scene/
+Custom Dashboard: app.cognitive3d.com
+Texture Export Quality: 1
+Export Lowest LOD from LODGroup Components: True
+Export AO Maps: False
+Scene Settings:
+  └─AugmentedObjects
+     ├─Scene Id: b9ecd516-4bb2-4e51-aa75-9bb3457ec00c
+     ├─Scene Path: Assets/Oculus/SampleFramework/Usage/Passthrough/Scenes/AugmentedObjects.unity
+     ├─Last Revision: 5249825085788713724
+     ├─Version Number: 1
+     └─Version Id: 3915
+
+*****************************
+********CURRENT SCENE********
+*****************************
+Scene Name: AugmentedObjects
+Scene Id: b9ecd516-4bb2-4e51-aa75-9bb3457ec00c
+Scene Path: Assets/Oculus/SampleFramework/Usage/Passthrough/Scenes/AugmentedObjects.unity
+Last Revision: 5249825085788713724
+Version Number: 1
+Version Id: 3915
+Scene Size (mb): 21.12
+Main Camera GameObject: CenterEyeAnchor
+Manager Initialize On Start: True
+Manager Startup Delay Time (s): 0
+
+*****************************
+****CURRENT SCENE OBJECTS****
+*****************************
+Dynamic Object Count: 3
+  ├─HeroRedwoodPrefab
+  │  ├─Mesh Name: heroredwoodprefab
+  │  ├─Has Collider: false
+  │  ├─Has Children: true
+  │  └─Has Child Colliders: true
+  ├─RightHandAnchor
+  │  ├─Mesh Name: 
+  │  ├─Has Collider: true
+  │  ├─Collider Type: UnityEngine.SphereCollider
+  │  ├─Has Children: true
+  │  └─Has Child Colliders: false
+  └─LeftHandAnchor
+     ├─Mesh Name: 
+     ├─Has Collider: true
+     ├─Collider Type: UnityEngine.SphereCollider
+     ├─Has Children: true
+     └─Has Child Colliders: false
+
+*****************************
+********EXPORT FOLDER********
+*****************************
+/Cognitive3D_SceneExplorerExport (25mb)
+   /AugmentedObjects (21.12mb)
+      1228218022BaldEagle_NormalBump.png (0.08mb)
+      1329406590BaldEagle_Feathers_BaseColorMain.png (0.05mb)
+      1548952971BaldEagle_BaseColorMain.png (0.30mb)
+      209073273BaldEagle_Feathers_NormalBump.png (0.05mb)
+      2107531381OculusTouchForQuest2_AlbedoRoughnessMain.png (0.44mb)
+      2112556917tex_bonfire_05_normBump.png (7.73mb)
+      259489182tex_bonfire_05_firelessMain.png (10.41mb)
+      371857150BGMain.png (0.00mb)
+      371857150CanvasMain.png (0.00mb)
+      371857150FeedbackCanvasMain.png (0.00mb)
+      debug.log (0.00mb)
+      scene.bin (1.89mb)
+      scene.gltf (0.12mb)
+      settings.json (0.00mb)
+      /screenshot (0.04mb)
+         screenshot.png (0.04mb)
+   /Dynamic (4.06mb)
+      /heroredwoodprefab (4.06mb)
+         648406274diffuseMain.png (0.27mb)
+         710181918Bird_Nest2_Nest_UV_DiffuseMain.png (2.24mb)
+         cvr_object_thumbnail.png (0.00mb)
+         heroredwoodprefab.bin (1.51mb)
+         heroredwoodprefab.gltf (0.04mb)

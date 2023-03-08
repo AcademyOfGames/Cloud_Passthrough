@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.cognitive3d.c3d-sdk": "https://github.com/cognitivevr/cvr-sdk-unity.git",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.ads": "3.7.5",
     "com.unity.analytics": "3.6.12",

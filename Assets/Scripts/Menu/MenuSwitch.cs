@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
+using Cognitive3D;
+
 
 public class MenuSwitch : MonoBehaviour
 {
@@ -21,6 +23,8 @@ public class MenuSwitch : MonoBehaviour
     {
         switchOn = onOff;
         onMenuSwitched.Invoke();
+
+        new Cognitive3D.CustomEvent("Fire Invoked").Send();
     }
 
     private void OnTriggerEnter(Collider other)
