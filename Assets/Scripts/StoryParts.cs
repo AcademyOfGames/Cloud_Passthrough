@@ -35,11 +35,11 @@ public class StoryParts : MonoBehaviour
 
         FindObjectOfType<SoundtrackPlayer>().PlaySound("Good Goodbye");
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(3f); //3f
 
         title.SetActive(true);
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(4f); // 4f
 
         FindObjectOfType<BirdMovement>().BirdScream();
 

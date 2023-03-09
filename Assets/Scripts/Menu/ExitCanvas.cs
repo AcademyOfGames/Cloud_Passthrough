@@ -60,7 +60,7 @@ public class ExitCanvas : MonoBehaviour
         Debug.Log("Back to Main Menu");
         OpenExitCanvas(false);
         levelController.ChangeLevel(LevelController.Level.menu);
-        menuSwitch.TurnSwitchOnOff(true);
+        menuSwitch.TurnSwitchOnOff(false);
     }
 
     public void OpenExitCanvas(bool open)

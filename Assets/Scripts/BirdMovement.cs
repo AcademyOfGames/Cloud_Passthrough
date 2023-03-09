@@ -135,7 +135,7 @@ public class BirdMovement : MonoBehaviour
     internal void GoToNest()
     { 
         birdState.SwitchState(BirdStateChanger.BirdState.TakeOff);
-        Invoke("WaitAndGoToNest", 6.5f);
+        Invoke("WaitAndGoToNest", 8.5f);
     }
 
     void WaitAndGoToNest()
