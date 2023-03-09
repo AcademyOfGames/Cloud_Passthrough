@@ -34,6 +34,7 @@ public class BirdMovement : MonoBehaviour
     public Transform landingSpot;
     public Transform handLandingSpot;
     public Transform branchLandingSpot;
+    public Transform stickLandingSpot;
 
     public Vector3 currentWaypoint;
     public GameObject waypointViz;
@@ -141,6 +142,12 @@ public class BirdMovement : MonoBehaviour
     void WaitAndGoToNest()
     {
         landingSpot = branchLandingSpot;
+        birdState.SwitchState(BirdStateChanger.BirdState.GoToLanding);
+    }
+
+    public void GoToStick()
+    {
+        landingSpot = stickLandingSpot;
         birdState.SwitchState(BirdStateChanger.BirdState.GoToLanding);
     }
 

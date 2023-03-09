@@ -13,7 +13,8 @@ public class LevelController : MonoBehaviour
 
     [Header("Eagle")]
     [SerializeField] Transform eagleStory;
-    [SerializeField] Transform eagle;
+    [SerializeField] BirdMovement eagle;
+    [SerializeField] Transform tree;
 
     [Header("Bee")]
     [SerializeField] Transform beeStory;
@@ -21,25 +22,21 @@ public class LevelController : MonoBehaviour
 
     [SerializeField] Transform bucket;
 
-    PlayerProgression playerProgress;
 
-    StoryParts storyParts;
     MenuSystem menu;
     Wind wind; // for sky
-    StumpBehavior stump; // for bee
+    StumpBehavior stump; // bucket
     MenuSwitch menuSwitch;
 
     public TutorialHand hand;
     private void Start()
     {
         menuSwitch = FindObjectOfType<MenuSwitch>();
-        playerProgress = GetComponent<PlayerProgression>();
         stump = FindObjectOfType<StumpBehavior>(true);
-        storyParts = FindObjectOfType<StoryParts>();
         menu = GetComponent<MenuSystem>();
         wind = FindObjectOfType<Wind>(true);
 
-        if (eagle == null) eagle = FindObjectOfType<BirdMovement>().transform;
+        if (eagle == null) eagle = FindObjectOfType<BirdMovement>();
 
         ChangeLevel(Level.start);
     }
@@ -103,13 +100,14 @@ public class LevelController : MonoBehaviour
                 currentLevel = Level.menu;
 
                 // Eagle.
-                eagle.GetComponent<BirdStateChanger>().SwitchState(BirdStateChanger.BirdState.GoToLanding);
+                eagle.GoToStick();
                 eagle.gameObject.SetActive(true);
                 // todo set eagle to face correct angle.
                 eagleStory.gameObject.SetActive(false);
 
                 // Bee
                 bee.gameObject.SetActive(false);
+                beeStory.gameObject.SetActive(false);
                 
                 break;
 
@@ -123,7 +121,7 @@ public class LevelController : MonoBehaviour
 
                 // Eagle
                 eagleStory.gameObject.SetActive(true);
-                eagle.GetComponent<BirdMovement>().GoToNest();
+                eagle.GoToNest();
 
                 foreach (var item in FindObjectsOfType<BrickLogic>())
                 {
@@ -138,20 +136,19 @@ public class LevelController : MonoBehaviour
                 break;
 
             case Level.bee:
+                Debug.Log("Starting Bee Level");
                 // Menu.
                 menuSwitch.TurnSwitchOnOff(false);
                 menu.HideMenu();
 
-                hand.EquipGlove();
-
                 StopAllCoroutines();
-                Debug.Log("Starting Bee Level");
-
+                
                 // Eagle
-                eagleStory.gameObject.SetActive(false);
+                //eagleStory.gameObject.SetActive(false);
                 eagle.gameObject.SetActive(false);
 
                 // Bee
+                hand.EquipGlove();
                 stump.ActivateBeeSystem();
 
                 currentLevel = Level.bee;

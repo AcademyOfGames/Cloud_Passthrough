@@ -85,10 +85,6 @@ public class Wind : MonoBehaviour
         
         StartCoroutine(nameof(ShrinkMist));
         FindObjectOfType<SoundtrackPlayer>().PlaySound("tornadoSong");
-
-        //Completed level. Change Level.
-        FindObjectOfType<PlayerProgression>().UpdateProgress(LevelController.Level.eagle);
-        levelController.ChangeLevel(LevelController.Level.bee);
     }
 
     public IEnumerator ShrinkMist()
@@ -121,8 +117,11 @@ public class Wind : MonoBehaviour
 
         yield return new WaitForSeconds(5);
 
-        stump.ActivateBeeSystem();
+        //Completed level. Change Level.
+        levelController.ChangeLevel(LevelController.Level.bee);
+        //stump.ActivateBeeSystem();
         ps.Stop();
+        FindObjectOfType<PlayerProgression>().UpdateProgress(LevelController.Level.eagle);
     }
 
     public void StartRain()
@@ -132,9 +131,6 @@ public class Wind : MonoBehaviour
         StartCoroutine(waitAndStartFeedback);
         StartCoroutine(nameof(WaitAndStartRain));
         StartCoroutine(nameof(DarkenSky));
-        
-
-
     }
 
     IEnumerator WaitAndStartRain()
