@@ -174,8 +174,4 @@ public class LevelController : MonoBehaviour
         menuSwitch.onMenuSwitched.RemoveListener(DisplayLevelEnviroments);
     }
 
-    public void DeleteFlowers()
-    {
-
-    }
 }

@@ -36,7 +36,6 @@ public class PreyBehavior : MonoBehaviour
             _controls.ChangeFishGrabText("Grab Fish");
 
             FindObjectOfType<GoogleSheets>().AddEventData("Eagle grabbed a fish.", SystemInfo.deviceUniqueIdentifier);
-            new Cognitive3D.CustomEvent("Eagle grabbed by fish");
 
             _fishThrown = true;
             bird.prey = transform;

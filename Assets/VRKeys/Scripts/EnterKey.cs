@@ -27,7 +27,6 @@ namespace VRKeys {
 			FindObjectOfType<GoogleSheets>().userName = keyboard.text;
 
 			FindObjectOfType<GoogleSheets>().AddEventData(" Email Entered " + keyboard.text, SystemInfo.deviceUniqueIdentifier);
-			new Cognitive3D.CustomEvent($"Email entered: {keyboard.text}");
 
 			FindObjectOfType<FeedbackLogic>().NextFeedbackPanel();
 			Destroy(FindObjectOfType<Keyboard>().gameObject);

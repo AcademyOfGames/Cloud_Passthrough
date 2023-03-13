@@ -33,7 +33,6 @@ public class FlowerBehavior : MonoBehaviour
             Invoke("SpawnHeroBee",2f);
             controlUIManager.TurnOnSeedControls(false);
             FindObjectOfType<GoogleSheets>().AddEventData("Unlocked Hero Bee", SystemInfo.deviceUniqueIdentifier);
-            new Cognitive3D.CustomEvent("Unlocked Hero Bee");
         }
     }
 
@@ -81,7 +80,6 @@ public class FlowerBehavior : MonoBehaviour
         if (other.GetComponent<HeroBeeBehavior>() != null && secondFlowersActive)
         {
             FindObjectOfType<GoogleSheets>().AddEventData("Pollinating flower", SystemInfo.deviceUniqueIdentifier);
-            new Cognitive3D.CustomEvent("Pollinating Flower");
 
             if (secondFlowerBloom) return;
             flowerIcon.SetActive(false);

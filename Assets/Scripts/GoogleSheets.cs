@@ -30,11 +30,13 @@ public class GoogleSheets : MonoBehaviour
    
    public void AddEventData(string data, string user)
    {    
-       if (!dataList.Contains(data))
+       /*if (!dataList.Contains(data))
        {
            userName = user;
            StartCoroutine(Post(data));    
            dataList.Add(data);
-       }
+       }*/
+
+        new Cognitive3D.CustomEvent(data);
    }
 }

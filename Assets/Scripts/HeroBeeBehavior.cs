@@ -325,7 +325,6 @@ public class HeroBeeBehavior : MonoBehaviour
                 break;
         }
         FindObjectOfType<GoogleSheets>().AddEventData("Bee State "+ newState, SystemInfo.deviceUniqueIdentifier);
-        new Cognitive3D.CustomEvent($"Bee State {newState}");
 
     }
 

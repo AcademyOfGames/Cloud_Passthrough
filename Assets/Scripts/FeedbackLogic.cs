@@ -19,7 +19,6 @@ public class FeedbackLogic : MonoBehaviour
     {
         if (feedbackStarted) return;
         FindObjectOfType<GoogleSheets>().AddEventData("Feedback Started", SystemInfo.deviceUniqueIdentifier);
-        new Cognitive3D.CustomEvent("Feedback Started");
 
         GetComponent<Animator>().Play("UIFadeIn");
         feedbackStarted = true;
@@ -42,7 +41,6 @@ public class FeedbackLogic : MonoBehaviour
         if (currentFeedbackPanel > feedbackPanels.Length - 1 || feedbackEnded)
         {
             FindObjectOfType<GoogleSheets>().AddEventData(" Email Entered " + emailInput.text, SystemInfo.deviceUniqueIdentifier);
-            new Cognitive3D.CustomEvent($"Email Entered {emailInput.text}");
 
             CancelFeedback();
             return;
@@ -60,12 +58,10 @@ public class FeedbackLogic : MonoBehaviour
         if (playAgainPanel.activeSelf)
         {
             FindObjectOfType<GoogleSheets>().AddEventData("Feedback Cancelled or ended", SystemInfo.deviceUniqueIdentifier);
-            new Cognitive3D.CustomEvent($"Feedback Cancelled or ended");
 
             if(emailInput.text != "")
             {
                 FindObjectOfType<GoogleSheets>().AddEventData(" Email Entered " + emailInput.text, SystemInfo.deviceUniqueIdentifier);
-                new Cognitive3D.CustomEvent($"Email entered: {emailInput.text}");
             }
                 
             

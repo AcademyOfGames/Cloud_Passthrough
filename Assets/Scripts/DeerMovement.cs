@@ -56,7 +56,7 @@ public class DeerMovement : MonoBehaviour
     void Start()
     {
         FindObjectOfType<GoogleSheets>().AddEventData("Deer showed up", SystemInfo.deviceUniqueIdentifier);
-        new Cognitive3D.CustomEvent("Deer showed up");
+
         anim = GetComponent<Animator>();
         waypoint = firstLocationGoal.position;
         SetAnimalSettings();
