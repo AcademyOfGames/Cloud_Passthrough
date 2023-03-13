@@ -57585,6 +57585,10 @@ MonoBehaviour:
   - {fileID: 7019431209546183470}
   - {fileID: 7019431210299272191}
   - {fileID: 7019431210333074607}
+  flowers:
+  - {fileID: 7019431209768663732}
+  - {fileID: 7019431209580023549}
+  - {fileID: 7019431211221975343}
 --- !u!137 &316965269708273120
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

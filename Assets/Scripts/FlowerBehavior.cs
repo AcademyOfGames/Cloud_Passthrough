@@ -97,15 +97,15 @@ public class FlowerBehavior : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void ActivateSecondFlowers()
     {
         secondFlowersActive = true;
         flowerIcon.SetActive(true);
+    }
+
+    public void DeactivateSecondFlowers()
+    {
+        secondFlowersActive = false;
+        flowerIcon.SetActive(false);
     }
 }

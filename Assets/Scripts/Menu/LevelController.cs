@@ -17,7 +17,7 @@ public class LevelController : MonoBehaviour
     [SerializeField] Transform tree;
 
     [Header("Bee")]
-    [SerializeField] Transform beeStory;
+    [SerializeField] BeeSystem beeSystem;
     [SerializeField] Transform bee;
 
     [SerializeField] Transform bucket;
@@ -107,7 +107,7 @@ public class LevelController : MonoBehaviour
 
                 // Bee
                 bee.gameObject.SetActive(false);
-                beeStory.gameObject.SetActive(false);
+                beeSystem.gameObject.SetActive(false);
                 
                 break;
 
@@ -148,6 +148,7 @@ public class LevelController : MonoBehaviour
                 eagle.gameObject.SetActive(false);
 
                 // Bee
+                beeSystem.ResetFlowers();
                 hand.EquipGlove();
                 stump.ActivateBeeSystem();
 
@@ -171,5 +172,10 @@ public class LevelController : MonoBehaviour
     {
         ChangeLevel(Level.menu);
         menuSwitch.onMenuSwitched.RemoveListener(DisplayLevelEnviroments);
+    }
+
+    public void DeleteFlowers()
+    {
+
     }
 }

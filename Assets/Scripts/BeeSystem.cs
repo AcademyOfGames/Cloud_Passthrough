@@ -6,6 +6,7 @@ public class BeeSystem : MonoBehaviour
 {
     HeroBeeBehavior bee;
     public GameObject[] littleBees;
+    public FlowerBehavior[] flowers;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,5 +31,14 @@ public class BeeSystem : MonoBehaviour
         
     }
 
+    public void ResetFlowers()
+    {
+        foreach(FlowerBehavior flower in flowers)
+        {
+            if (flower == this) continue;
+            flower.gameObject.SetActive(false);
+            flower.DeactivateSecondFlowers();
+        }
+    }
 
 }
