@@ -14501,6 +14501,11 @@ PrefabInstance:
       objectReference: {fileID: 3134433781838489306}
     - target: {fileID: 3164093182746311962, guid: c1b020bfe499a4bad9a263e2671bc923,
         type: 3}
+      propertyPath: beeSystem
+      value: 
+      objectReference: {fileID: 259968626303972133}
+    - target: {fileID: 3164093182746311962, guid: c1b020bfe499a4bad9a263e2671bc923,
+        type: 3}
       propertyPath: eagleStory
       value: 
       objectReference: {fileID: 311267958}
